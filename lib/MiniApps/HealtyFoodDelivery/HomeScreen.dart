@@ -3,6 +3,8 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_uis/Utils.dart';
 
+import 'package:flutter_uis/Widgets/HeroText/HeroText.dart';
+
 import './data.dart' as data;
 import './theme.dart' as theme;
 import './Transitions.dart';
@@ -171,17 +173,11 @@ class _HealtyFoodDeliveryHomeScreenState
                                       )
                                     ],
                                   ),
-                                ),
-                              ),
-                              Positioned(
-                                left: 12,
-                                right: (cardWidth - cardRWidth) - 12,
-                                bottom: 12,
-                                top: cardHeight * .58,
-                                child: Hero(
-                                  tag: "ma-hfd-bg-${itemIndex}",
                                   child: Container(
-                                    width: cardRWidth,
+                                    margin: EdgeInsets.only(
+                                      top: cardHeight * .58,
+                                    ),
+                                    height: 100,
                                     decoration: BoxDecoration(
                                       color: Colors.black.withOpacity(.44),
                                       borderRadius: BorderRadius.vertical(
@@ -215,16 +211,38 @@ class _HealtyFoodDeliveryHomeScreenState
                                           children: <Widget>[
                                             Hero(
                                               tag: "ma-hfd-name-${itemIndex}",
-                                              child: Material(
-                                                color: Colors.transparent,
-                                                child: Text(
-                                                  item.name,
-                                                  style: TextStyle(
+                                              flightShuttleBuilder: (
+                                                _,
+                                                __,
+                                                HeroFlightDirection direction,
+                                                ___,
+                                                ____,
+                                              ) {
+                                                return HeroText(
+                                                  title: item.name,
+                                                  viewState: direction ==
+                                                          HeroFlightDirection
+                                                              .push
+                                                      ? ViewState.enlarge
+                                                      : ViewState.shrink,
+                                                  smallFontSize: 19,
+                                                  largeFontSize: 22,
+                                                  textStyle: TextStyle(
                                                     color: Colors.white
                                                         .withOpacity(.92),
-                                                    fontSize: 19,
                                                     fontWeight: FontWeight.w600,
                                                   ),
+                                                );
+                                              },
+                                              child: HeroText(
+                                                title: item.name,
+                                                smallFontSize: 19,
+                                                largeFontSize: 22,
+                                                viewState: ViewState.shrunk,
+                                                textStyle: TextStyle(
+                                                  color: Colors.white
+                                                      .withOpacity(.92),
+                                                  fontWeight: FontWeight.w600,
                                                 ),
                                               ),
                                             ),

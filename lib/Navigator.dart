@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_analytics/observer.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 import './screens/Home/Home.dart';
 import './screens/UiList/UiList.dart';
@@ -9,10 +11,14 @@ import './MiniApps/HealtyFoodDelivery/ItemDetailScreen.dart';
 
 class AppNavigator extends StatelessWidget {
   AppNavigator();
+  final FirebaseAnalytics analytics = FirebaseAnalytics();
 
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: analytics),
+      ],
       home: HomeScreen(),
       routes: <String, WidgetBuilder>{
         "home": (ctx) => new HomeScreen(),

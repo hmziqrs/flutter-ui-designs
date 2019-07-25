@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "322047224635",
+    "firebase_url": "https://flutter-ui-challenges-hgl.firebaseio.com",
+    "project_id": "flutter-ui-challenges-hgl",
+    "storage_bucket": "flutter-ui-challenges-hgl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322047224635:android:16ac7d8a6518a95b",
+        "android_client_info": {
+          "package_name": "com.onemdev.flutter_ui_challenges"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322047224635-9mqs8s0t8vgcn51njv59cudn2721feb2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.onemdev.flutter_ui_challenges",
+            "certificate_hash": "8952c955aa3c7e88f3802f147a71e54ed051390f"
+          }
+        },
+        {
+          "client_id": "322047224635-t5kok07u4ur0cm5usvk9422eg3p6s4eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAw9j1uxAdRuOMkwYa6-dv4UQdn4GKr6Ow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "322047224635-t5kok07u4ur0cm5usvk9422eg3p6s4eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

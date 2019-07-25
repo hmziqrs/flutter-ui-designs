@@ -45,7 +45,7 @@ class _HealtyFoodDeliveryItemDetailScreenState
         Duration(milliseconds: 400),
         Tween(
           begin: backgroundImageSize * .6,
-          end: backgroundImageSize * .48,
+          end: backgroundImageSize * .3,
         ),
       ),
       Track("cardOpacity").add(
@@ -101,6 +101,15 @@ class _HealtyFoodDeliveryItemDetailScreenState
                     image: ExactAssetImage(item.image),
                   ),
                 ),
+                child: Container(
+                  margin: EdgeInsets.only(
+                    top: contentSpace,
+                  ),
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(.44),
+                  ),
+                ),
               ),
             ),
           ),
@@ -131,20 +140,6 @@ class _HealtyFoodDeliveryItemDetailScreenState
                     ),
                   )
                 ],
-              ),
-            ),
-          ),
-          Positioned(
-            top: contentSpace,
-            left: 0,
-            right: 0,
-            child: Hero(
-              tag: "ma-hfd-bg-${index}",
-              child: Container(
-                height: backgroundImageSize - contentSpace,
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(.44),
-                ),
               ),
             ),
           ),
@@ -285,14 +280,15 @@ class _HealtyFoodDeliveryItemDetailScreenState
               child: Opacity(
                 opacity: animation["cardOpacity"],
                 child: Container(
-                  // decoration: BoxDecoration(color: Colors.red.withOpacity(.5)),
+                  // decoration: BoxDecoration(color: Colors.blue.withOpacity(.5)),
                   child: ScrollConfiguration(
                     behavior: CustomScrollBehavior(),
                     child: SingleChildScrollView(
                       child: Column(
                         children: <Widget>[
                           Container(
-                            height: contentSpace * .85,
+                            height: contentSpace * 1.35,
+                            // decoration: BoxDecoration(color: Colors.red),
                           ),
                           Container(
                             transform: Matrix4.translationValues(0.0, 0, 0.0),
@@ -474,6 +470,9 @@ class _HealtyFoodDeliveryItemDetailScreenState
                               ],
                             ),
                           ),
+                          Container(
+                            height: contentSpace * .5,
+                          )
                         ],
                       ),
                     ),
