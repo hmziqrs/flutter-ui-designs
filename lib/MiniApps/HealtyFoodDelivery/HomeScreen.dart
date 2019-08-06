@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter_uis/Utils.dart';
 
 import 'package:flutter_uis/Widgets/HeroText/HeroText.dart';
+import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/UI.dart';
 
-import './data.dart' as data;
 import './theme.dart' as theme;
-import './Transitions.dart';
+import './data.dart' as data;
+
 import './ItemDetailScreen.dart';
+import './Transitions.dart';
 
 class HealtyFoodDeliveryHomeScreen extends StatefulWidget {
   HealtyFoodDeliveryHomeScreen({Key key}) : super(key: key);
@@ -35,7 +38,9 @@ class _HealtyFoodDeliveryHomeScreenState
   }
 
   Widget build(BuildContext context) {
-    final cardHeight = MediaQuery.of(context).size.width * .77;
+    UI.init(context);
+
+    final cardHeight = UI.vertical * 52;
     final cardWidth = cardHeight * .8;
     final cardRWidth = cardWidth * .88;
     return MaterialApp(

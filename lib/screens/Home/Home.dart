@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_uis/UI.dart';
+
 class HomeScreen extends StatelessWidget {
   final list = [
     {"label": "Explore UI", "path": 'uiList', "icon": Icons.explore},
@@ -9,6 +11,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UI.init(context);
+
     return MaterialApp(
       themeMode: ThemeMode.dark,
       home: Scaffold(

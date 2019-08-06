@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-import './data.dart' as data;
+import 'package:flutter_uis/UI.dart';
+
 import './theme.dart' as theme;
+import './data.dart' as data;
 
 class CustomScrollBehavior extends ScrollBehavior {
   @override
@@ -37,7 +40,9 @@ class _HealtyFoodDeliveryItemDetailScreenState
   Widget build(BuildContext context) {
     final int index = ModalRoute.of(context).settings.arguments ?? widget.index;
     final item = data.items[index];
-    final backgroundImageSize = MediaQuery.of(context).size.height * .68;
+    // final backgroundImageSize = MediaQuery.of(context).size.height * .68;
+    final backgroundImageSize = UI.vertical * 68;
+
     final contentSpace = MediaQuery.of(context).size.height * .3;
 
     final nutritionTween = MultiTrackTween([
