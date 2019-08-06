@@ -1,7 +1,6 @@
 const uilists = [
   {
     "name": "Healthy Food Delivery",
-    // "designer": "designer",
     "designer": "firdsm",
     "source": "dribble",
     "miniApp": "hfdHome",

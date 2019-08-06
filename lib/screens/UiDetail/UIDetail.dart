@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../UiList/list.dart';
+import 'package:flutter_uis/blocs/ui_bloc/bloc.dart';
 
 class UiDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final int args = ModalRoute.of(context).settings.arguments;
-    final ui = uilists[args];
-
-    print(args);
-
+    final UIItem uiItem = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -22,7 +18,7 @@ class UiDetailScreen extends StatelessWidget {
                     height: MediaQuery.of(context).size.height * .33,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: ExactAssetImage(ui["thumbnail"]),
+                        image: ExactAssetImage(uiItem.thumbnail),
                         fit: BoxFit.cover,
                       ),
                       // color: Colors.red,
@@ -41,13 +37,13 @@ class UiDetailScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Text(
-                              ui["name"],
+                              uiItem.name,
                               style: TextStyle(
                                 fontSize: 24.0,
                               ),
                             ),
                             Text(
-                              "By ${ui["designer"]}",
+                              "By ${uiItem.designer}",
                               style: TextStyle(
                                 fontSize: 18.0,
                               ),
@@ -60,7 +56,7 @@ class UiDetailScreen extends StatelessWidget {
                 ),
                 RaisedButton(
                   onPressed: () =>
-                      Navigator.of(context).pushNamed(ui["miniApp"]),
+                      Navigator.of(context).pushNamed(uiItem.miniApp),
                   child: Text("Open App"),
                 )
               ],

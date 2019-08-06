@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import './list.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:flutter_uis/blocs/ui_bloc/bloc.dart';
 
 class UiListScreen extends StatelessWidget {
-  renderList(context) {
+  renderList(BuildContext context, List<UIItem> list) {
     final double cardHeight = MediaQuery.of(context).size.height * .33;
     const borderRadius = BorderRadius.all(
       Radius.circular(6.0),
     );
-    int index = -1;
-
-    return uilists.map((ui) {
-      index += 1;
+    return list.map((uiItem) {
       return GestureDetector(
         onTap: () =>
-            Navigator.of(context).pushNamed("uiDetail", arguments: index),
+            Navigator.of(context).pushNamed("uiDetail", arguments: uiItem),
         child: Container(
           height: cardHeight,
           child: Stack(
@@ -25,7 +24,7 @@ class UiListScreen extends StatelessWidget {
                   margin: EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: ExactAssetImage(ui["thumbnail"]),
+                      image: ExactAssetImage(uiItem.thumbnail),
                       fit: BoxFit.cover,
                     ),
                     // color: Colors.red,
@@ -87,14 +86,14 @@ class UiListScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Text(
-                              ui["name"],
+                              uiItem.name,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 24.0,
                               ),
                             ),
                             Text(
-                              "By ${ui["designer"]}",
+                              "By ${uiItem.designer}",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18.0,
@@ -116,25 +115,33 @@ class UiListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Ui Lists"),
-      ),
-      body: Container(
-        padding: EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Result: ${uilists.length}"),
-                ),
-              ],
-            ),
-            ...this.renderList(context),
-          ],
+    return BlocProvider(
+      builder: (context) => UiBloc(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Ui Lists"),
+        ),
+        body: Container(
+          padding: EdgeInsets.all(8.0),
+          child: BlocBuilder<UiBloc, UiState>(
+            builder: (context, state) {
+              final List<UIItem> list = state.list;
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("Result: ${list.length}"),
+                      ),
+                    ],
+                  ),
+                  ...this.renderList(context, list),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );

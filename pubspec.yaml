@@ -14,7 +14,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.1.0 <3.0.0'
+  sdk: '>=2.2.2 <3.0.0'
 
 dependencies:
   flutter:
@@ -26,7 +26,11 @@ dependencies:
   firebase_core: 0.4.0+8
   firebase_analytics: ^4.0.2
   firebase_performance: 0.3.0+4
-  firebase_crashlytics: 0.0.4+11
+  firebase_crashlytics: 0.1.0+2
+
+  bloc: ^0.14.0
+  flutter_bloc: ^0.20.0
+  equatable: ^0.4.0
 
   pigment: ^1.0.3
   cupertino_icons: ^0.1.2
