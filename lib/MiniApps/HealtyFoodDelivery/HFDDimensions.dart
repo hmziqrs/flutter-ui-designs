@@ -27,8 +27,8 @@ class HFDDimensions {
     // ItemDetailScreen
     backgroundImageHeight = UI.vertical * 68;
     contentSpace = size.height * 0.3;
-    statsTopScrollPadding = contentSpace * 1.35;
-    statsBottomScrollPadding = contentSpace * 0.5;
+    statsTopScrollPadding = contentSpace * 1.06;
+    statsBottomScrollPadding = contentSpace * 0.0;
 
     if (isLandscape) {
       // HomeScreen
