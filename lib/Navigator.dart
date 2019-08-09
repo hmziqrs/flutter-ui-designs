@@ -9,6 +9,9 @@ import './screens/UiDetail/UIDetail.dart';
 import './MiniApps/HealtyFoodDelivery/HomeScreen.dart';
 import './MiniApps/HealtyFoodDelivery/ItemDetailScreen.dart';
 
+import './MiniApps/HotAirBalloons/Screens/HomeScreen/HABHomeScreen.dart';
+import './MiniApps/HotAirBalloons/Screens/DetailScreen/HABDetailScreen.dart';
+
 class AppNavigator extends StatelessWidget {
   AppNavigator();
   final FirebaseAnalytics analytics = FirebaseAnalytics();
@@ -24,8 +27,12 @@ class AppNavigator extends StatelessWidget {
         "home": (ctx) => new HomeScreen(),
         "uiList": (ctx) => new UiListScreen(),
         "uiDetail": (ctx) => new UiDetailScreen(),
+        // Healthy Food Delivery
         "hfdHome": (ctx) => new HealtyFoodDeliveryHomeScreen(),
         "hfdItemDetail": (ctx) => new HealtyFoodDeliveryItemDetailScreen(),
+        // Hot Air Balloon
+        "habHome": (ctx) => new HABHomeScreen(),
+        // "habDetail": (ctx) => new HABDetailScreen(),
       },
     );
   }
