@@ -9,6 +9,9 @@ void main() {
   Crashlytics.instance.enableInDevMode = true;
 
   // Pass all uncaught errors to Crashlytics.
-  FlutterError.onError = Crashlytics.instance.recordFlutterError;
+  FlutterError.onError = (FlutterErrorDetails err) {
+    print(err);
+    Crashlytics.instance.recordFlutterError(err);
+  };
   runApp(AppNavigator());
 }

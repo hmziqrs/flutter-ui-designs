@@ -14,7 +14,6 @@ class HomeScreen extends StatelessWidget {
     UI.init(context);
 
     return MaterialApp(
-      themeMode: ThemeMode.dark,
       home: Scaffold(
         body: Container(
           padding: EdgeInsets.only(

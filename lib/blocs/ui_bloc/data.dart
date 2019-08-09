@@ -11,4 +11,14 @@ List<UIItem> uilist = [
     link: "https://dribbble.com/shots/6790111-Healthy-Food-Delivery",
     thumbnail: "assets/thumbnails/healthy_food_delivery.png",
   ),
+  new UIItem(
+    id: 2,
+    name: "Hor Air Balloon",
+    designer: "designkes",
+    // "designer": "designer",
+    source: "dribble",
+    miniApp: "habHome",
+    link: "https://designkes.com/designs/mobile/hot-air-balloon/",
+    thumbnail: "assets/thumbnails/hot_air_balloon.jpg",
+  ),
 ];

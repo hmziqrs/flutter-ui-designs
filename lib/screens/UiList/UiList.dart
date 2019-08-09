@@ -19,7 +19,7 @@ class UiListScreen extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Hero(
-                tag: "thumbnail",
+                tag: "thumbnail-${uiItem.id}",
                 child: Container(
                   margin: EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
@@ -64,7 +64,7 @@ class UiListScreen extends StatelessWidget {
                 right: 8,
                 left: 8,
                 child: Hero(
-                  tag: 'ui-name',
+                  tag: "ui-name-${uiItem.id}",
                   child: Material(
                     color: Colors.transparent,
                     child: Container(
