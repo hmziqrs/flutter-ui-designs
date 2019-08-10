@@ -21,6 +21,7 @@ class _FlightsCarouselState extends State<FlightsCarousel> {
   void setActiveIndex(int index) async {
     setState(() {
       activeIndex = index;
+      print("activeIndex = index ${index}");
     });
     Utils.darkStatusBar();
     final newIndex = await Navigator.of(context).push(
@@ -33,83 +34,93 @@ class _FlightsCarouselState extends State<FlightsCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: UI.vertical * 18.15,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: data.flights.length,
-        padding: EdgeInsets.all(8),
-        itemBuilder: (ctx, index) {
-          final data.Flight item = data.flights[index];
-          final activeTextColor = index == this.activeIndex
-              ? theme.primary
-              : widget.fontStyle.color;
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: data.flights
+              .asMap()
+              .map(
+                (index, item) {
+                  print(index);
+                  final data.Flight item = data.flights[index];
+                  final activeTextColor = index == this.activeIndex
+                      ? theme.primary
+                      : widget.fontStyle.color;
 
-          return GestureDetector(
-            onTap: () => this.setActiveIndex(index),
-            child: Container(
-              margin: EdgeInsets.all(8.0),
-              width: UI.safeBlockHorizontal * 42,
-              padding: EdgeInsets.all(16.0),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16.0),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 4,
-                    offset: Offset(0, 3),
-                    color: Colors.black.withOpacity(.2),
-                  )
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Hero(
-                    tag: "hfb-name-${item.id}",
-                    child: Material(
-                      color: Colors.transparent,
-                      child: Text(
-                        item.name,
-                        style: widget.fontStyle.copyWith(
-                          fontSize: 16,
-                          color: activeTextColor,
-                          fontWeight: FontWeight.w700,
+                  return MapEntry(
+                    index,
+                    GestureDetector(
+                      onTap: () => this.setActiveIndex(index),
+                      child: Container(
+                        margin: EdgeInsets.all(8.0),
+                        width: UI.safeBlockHorizontal * 42,
+                        padding: EdgeInsets.all(16.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16.0),
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 4,
+                              offset: Offset(0, 3),
+                              color: Colors.black.withOpacity(.2),
+                            )
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Hero(
+                              tag: "hfb-name-${item.id}",
+                              child: Material(
+                                color: Colors.transparent,
+                                child: Text(
+                                  item.name,
+                                  style: widget.fontStyle.copyWith(
+                                    fontSize: 16,
+                                    color: activeTextColor,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Hero(
+                              tag: "hfb-flight-${item.id}",
+                              child: Material(
+                                color: Colors.transparent,
+                                child: Text(
+                                  "Flight",
+                                  style: widget.fontStyle.copyWith(
+                                    fontSize: 15,
+                                    color: activeTextColor,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: new EdgeInsets.only(
+                                top: UI.vertical * .6,
+                              ),
+                              child: Text(
+                                item.people,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: theme.subText,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  ),
-                  Hero(
-                    tag: "hfb-flight-${item.id}",
-                    child: Material(
-                      color: Colors.transparent,
-                      child: Text(
-                        "Flight",
-                        style: widget.fontStyle.copyWith(
-                          fontSize: 15,
-                          color: activeTextColor,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: new EdgeInsets.only(
-                      top: UI.vertical * .6,
-                    ),
-                    child: Text(
-                      item.people,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: theme.subText,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
+                  );
+                },
+              )
+              .values
+              .toList(),
+        ),
       ),
     );
   }

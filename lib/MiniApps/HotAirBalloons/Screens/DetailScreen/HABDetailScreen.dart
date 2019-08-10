@@ -133,7 +133,8 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
                 child: SafeArea(
                   child: Column(
                     children: <Widget>[
-                      Container(height: 48),
+                      // Container(height: 48),
+                      Container(height: UI.vertical * 7),
                       ControlledAnimation(
                         key: Key(this.activePage.toString()),
                         tween: Tween(begin: 0.0, end: 1.0),
