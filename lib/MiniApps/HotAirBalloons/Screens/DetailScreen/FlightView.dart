@@ -127,7 +127,7 @@ class _FlightViewState extends State<FlightView>
       decoration: BoxDecoration(
           // color: Colors.red.withOpacity(.5),
           ),
-      padding: EdgeInsets.only(top: UI.vertical * 26),
+      padding: EdgeInsets.only(top: (UI.vertical * 17 + 60)),
       child: ClipRRect(
         borderRadius: BorderRadius.vertical(top: Radius.circular(32.0)),
         child: Container(

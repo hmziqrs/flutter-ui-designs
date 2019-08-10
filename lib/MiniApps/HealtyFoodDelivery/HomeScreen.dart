@@ -175,6 +175,7 @@ class _HealtyFoodDeliveryHomeScreenState
                                     Hero(
                                       tag: "ma-hfd-image-${itemIndex}",
                                       child: Container(
+                                        alignment: Alignment.bottomCenter,
                                         margin: EdgeInsets.all(12.0),
                                         height: cardHeight,
                                         width: cardRWidth,
@@ -196,10 +197,8 @@ class _HealtyFoodDeliveryHomeScreenState
                                           ],
                                         ),
                                         child: Container(
-                                          margin: EdgeInsets.only(
-                                            top: cardHeight * .58,
-                                          ),
-                                          height: 100,
+                                          height: 120,
+                                          width: double.infinity,
                                           decoration: BoxDecoration(
                                             color:
                                                 Colors.black.withOpacity(.44),
