@@ -107,8 +107,6 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
   @override
   Widget build(BuildContext context) {
     UI.init(context);
-    print("SIZE");
-    print(Alignment.centerLeft);
 
     final fontStyle = Theme.of(context).textTheme.body1.copyWith(
           fontFamily: 'Montserrat',

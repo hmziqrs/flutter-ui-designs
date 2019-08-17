@@ -21,7 +21,6 @@ class _FlightsCarouselState extends State<FlightsCarousel> {
   void setActiveIndex(int index) async {
     setState(() {
       activeIndex = index;
-      print("activeIndex = index ${index}");
     });
     Utils.darkStatusBar();
     final newIndex = await Navigator.of(context).push(
@@ -43,7 +42,6 @@ class _FlightsCarouselState extends State<FlightsCarousel> {
               .asMap()
               .map(
                 (index, item) {
-                  print(index);
                   final data.Flight item = data.flights[index];
                   final activeTextColor = index == this.activeIndex
                       ? theme.primary
