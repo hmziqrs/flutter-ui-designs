@@ -23,21 +23,21 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
 
-  firebase_core: 0.4.0+8
-  firebase_analytics: ^4.0.2
-  firebase_performance: 0.3.0+4
-  firebase_crashlytics: 0.1.0+2
+  firebase_core: 0.4.0+9
+  firebase_analytics: ^5.0.2
+  firebase_performance: 0.3.0+5
+  firebase_crashlytics: 0.1.0+3
 
-  bloc: ^0.14.0
-  flutter_bloc: ^0.20.0
-  equatable: ^0.4.0
+  bloc: ^0.15.0
+  flutter_bloc: ^0.21.0
+  equatable: ^0.6.0
 
   pigment: ^1.0.3
   cupertino_icons: ^0.1.2
-  carousel_slider: ^1.3.0
-  flutter_vector_icons: ^0.2.0
+  carousel_slider: ^1.3.1
+  flutter_vector_icons: ^0.2.1
   simple_animations: ^1.3.3
-  percent_indicator: ^2.1.1
+  percent_indicator: ^2.1.1+1
 
   color: ^2.1.1
 
@@ -66,6 +66,15 @@ flutter:
     - assets/ma-hab/balloon.png
     - assets/ma-hab/balloon-shadow.png
     - assets/ma-hab/mountains.png
+
+    - assets/thumbnails/sky_view.jpg
+    - assets/ma-sk/mars-planet.png
+    - assets/ma-sk/venus-planet.png
+    - assets/ma-sk/andromeda.png
+    - assets/ma-sk/hubble-space-telescope.png
+    - assets/ma-sk/international-space-station.png
+    - assets/ma-sk/stars-bg.jpg
+    - assets/ma-sk/gradient-path.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -114,11 +123,3 @@ flutter:
           weight: 800
         - asset: fonts/Montserrat/Montserrat-Black.ttf
           weight: 900
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages

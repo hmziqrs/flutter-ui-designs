@@ -3,5 +3,5 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class UiEvent extends Equatable {
-  UiEvent([List props = const []]) : super(props);
+  UiEvent([List props = const []]) : super();
 }

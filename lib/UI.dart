@@ -49,4 +49,6 @@ class UI {
     isTablet = diagonal > 1100.0;
     // return isTablet;
   }
+
+  static MediaQueryData mediaQuery() => _mediaQueryData;
 }

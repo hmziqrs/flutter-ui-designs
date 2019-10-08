@@ -19,6 +19,7 @@ class UiListScreen extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Hero(
+                transitionOnUserGestures: true,
                 tag: "thumbnail-${uiItem.id}",
                 child: Container(
                   margin: EdgeInsets.all(8.0),
@@ -126,19 +127,21 @@ class UiListScreen extends StatelessWidget {
           child: BlocBuilder<UiBloc, UiState>(
             builder: (context, state) {
               final List<UIItem> list = state.list;
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("Result: ${list.length}"),
-                      ),
-                    ],
-                  ),
-                  ...this.renderList(context, list),
-                ],
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Result: ${list.length}"),
+                        ),
+                      ],
+                    ),
+                    ...this.renderList(context, list),
+                  ],
+                ),
               );
             },
           ),

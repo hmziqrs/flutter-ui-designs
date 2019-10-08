@@ -10,7 +10,9 @@ import './MiniApps/HealtyFoodDelivery/HomeScreen.dart';
 import './MiniApps/HealtyFoodDelivery/ItemDetailScreen.dart';
 
 import './MiniApps/HotAirBalloons/Screens/HomeScreen/HABHomeScreen.dart';
-import './MiniApps/HotAirBalloons/Screens/DetailScreen/HABDetailScreen.dart';
+// import './MiniApps/HotAirBalloons/Screens/DetailScreen/HABDetailScreen.dart';
+import './MiniApps/SkyView/Screens/HomeScreen/SKHomeScreen.dart';
+import './MiniApps/SkyView/Screens/DetailScreen/SKDetailScreen.dart';
 
 class AppNavigator extends StatelessWidget {
   AppNavigator();
@@ -30,9 +32,13 @@ class AppNavigator extends StatelessWidget {
         // Healthy Food Delivery
         "hfdHome": (ctx) => new HealtyFoodDeliveryHomeScreen(),
         "hfdItemDetail": (ctx) => new HealtyFoodDeliveryItemDetailScreen(),
+
         // Hot Air Balloon
         "habHome": (ctx) => new HABHomeScreen(),
-        // "habDetail": (ctx) => new HABDetailScreen(),
+
+        // Sky View
+        "skHome": (ctx) => new SKHomeScreen(),
+        // "skDetail": (ctx) => new SKDetailScreen(),
       },
     );
   }
