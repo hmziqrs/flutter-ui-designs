@@ -16,7 +16,8 @@ class UiDetailScreen extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       Hero(
-                        tag: "thumbnail",
+                        transitionOnUserGestures: true,
+                        tag: "thumbnail-${uiItem.id}",
                         child: Container(
                           height: MediaQuery.of(context).size.height * .33,
                           decoration: BoxDecoration(

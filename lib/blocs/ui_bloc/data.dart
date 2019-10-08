@@ -21,4 +21,14 @@ List<UIItem> uilist = [
     link: "https://designkes.com/designs/mobile/hot-air-balloon/",
     thumbnail: "assets/thumbnails/hot_air_balloon.jpg",
   ),
+  new UIItem(
+    id: 3,
+    name: "Sky View",
+    designer: "designkes",
+    // "designer": "designer",
+    source: "dribble",
+    miniApp: "skHome",
+    link: "https://designkes.com/designs/mobile/skyview-mars/",
+    thumbnail: "assets/thumbnails/sky_view.jpg",
+  ),
 ];

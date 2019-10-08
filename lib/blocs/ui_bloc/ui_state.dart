@@ -6,9 +6,12 @@ import 'ui_item.dart';
 abstract class UiState extends Equatable {
   final List<UIItem> list;
 
-  UiState(this.list, [List props = const []]) : super([list]..addAll(props));
+  UiState(this.list) : super();
 }
 
 class InitialUiState extends UiState {
+  @override
+  List<Object> get props => [];
+
   InitialUiState(List<UIItem> list) : super(list);
 }

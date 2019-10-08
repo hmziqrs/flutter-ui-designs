@@ -145,17 +145,17 @@ SPEC CHECKSUMS:
   Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: dedc9e48ea3f3649ad5f6b982f8a0c73508a14b5
-  firebase_analytics: 5afaaf8f43ae6a640f200d98f3ecff32e9873538
-  firebase_core: b3b02d0b5e9d01aab5e50ba7cbcf84c73cb6883c
-  firebase_crashlytics: 8493272a94ea1144fc0b4a25b98e0fc3ea2dab1f
-  firebase_performance: b1d13887f1ffcc4c1f2b02b041317a727fbb03d2
+  firebase_analytics: 045e7ebe7b8a4d27357168072868ff082dca15a6
+  firebase_core: ae55ea92448ec8675d325da4db22cf3b4d58a54d
+  firebase_crashlytics: 6b8e7358dbac1359c1e29e0796adf48eddef99c9
+  firebase_performance: f7b5c78075a37ae9c5e6f44822e377d57d4da6d8
   FirebaseABTesting: a32c488eb75089a61eb3d86db061dfb909d765db
   FirebaseAnalytics: 3fb375bc9d13779add4039716f868d233a473fad
   FirebaseCore: aecf02fb2274ec361b9bebeac112f5daa18273bd
   FirebaseInstanceID: 662b8108a09fe9ed01aafdedba100fde8536b0f6
   FirebasePerformance: bd3666700af4d43caf2a13b93718f3b532b8a5ff
   FirebaseRemoteConfig: ed74d16d7e5b19e77a4c3e3eee4fe363039b0834
-  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   GoogleAppMeasurement: 183bd916af7f80deb67c01888368f1108d641832
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
   GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
