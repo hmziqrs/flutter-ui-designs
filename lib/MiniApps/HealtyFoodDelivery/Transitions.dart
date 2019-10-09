@@ -82,11 +82,11 @@ class _FadeInPageTransition extends StatelessWidget {
         super(key: key);
 
   // Fractional offset from 1/4 screen below the top to fully on screen.
-  static final Tween<Offset> _bottomUpTween = Tween<Offset>(
+  static final Tween<Offset> bottomUpTween = Tween<Offset>(
     begin: const Offset(0.0, 0.25),
     end: Offset.zero,
   );
-  static final Animatable<double> _fastOutSlowInTween =
+  static final Animatable<double> fastOutSlowInTween =
       CurveTween(curve: Curves.fastOutSlowIn);
   static final Animatable<double> _easeInTween =
       CurveTween(curve: Curves.easeIn);

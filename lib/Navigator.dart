@@ -11,8 +11,9 @@ import './MiniApps/HealtyFoodDelivery/ItemDetailScreen.dart';
 
 import './MiniApps/HotAirBalloons/Screens/HomeScreen/HABHomeScreen.dart';
 // import './MiniApps/HotAirBalloons/Screens/DetailScreen/HABDetailScreen.dart';
+
 import './MiniApps/SkyView/Screens/HomeScreen/SKHomeScreen.dart';
-import './MiniApps/SkyView/Screens/DetailScreen/SKDetailScreen.dart';
+// import './MiniApps/SkyView/Screens/DetailScreen/SKDetailScreen.dart';
 
 class AppNavigator extends StatelessWidget {
   AppNavigator();

@@ -173,7 +173,7 @@ class _HealtyFoodDeliveryHomeScreenState
                                 child: Stack(
                                   children: <Widget>[
                                     Hero(
-                                      tag: "ma-hfd-image-${itemIndex}",
+                                      tag: "ma-hfd-image-$itemIndex",
                                       child: Container(
                                         alignment: Alignment.bottomCenter,
                                         margin: EdgeInsets.all(12.0),
@@ -235,7 +235,7 @@ class _HealtyFoodDeliveryHomeScreenState
                                                 children: <Widget>[
                                                   Hero(
                                                     tag:
-                                                        "ma-hfd-name-${itemIndex}",
+                                                        "ma-hfd-name-$itemIndex",
                                                     flightShuttleBuilder: (
                                                       _,
                                                       __,
@@ -284,7 +284,7 @@ class _HealtyFoodDeliveryHomeScreenState
                                                     width: cardRWidth * .8,
                                                     child: Hero(
                                                       tag:
-                                                          "ma-hfd-desc-${itemIndex}",
+                                                          "ma-hfd-desc-$itemIndex",
                                                       child: Material(
                                                         color:
                                                             Colors.transparent,
@@ -342,7 +342,7 @@ class _HealtyFoodDeliveryHomeScreenState
                                       bottom: 56,
                                       right: 0,
                                       child: Hero(
-                                        tag: "ma-hfd-price-${itemIndex}",
+                                        tag: "ma-hfd-price-$itemIndex",
                                         child: Material(
                                           color: theme.primary,
                                           elevation: 5.0,

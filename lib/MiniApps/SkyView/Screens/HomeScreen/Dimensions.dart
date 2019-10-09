@@ -12,7 +12,7 @@ class Dimensions {
     BuildContext context, {
     Orientation orientation = Orientation.portrait,
   }) {
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
     final bool isLandscape = Orientation.landscape == orientation;
 
     searchBarHeight = UI.vertical * 6.5;

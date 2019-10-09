@@ -110,7 +110,7 @@ class _HealtyFoodDeliveryItemDetailScreenState
                   left: 0,
                   right: 0,
                   child: Hero(
-                    tag: "ma-hfd-image-${index}",
+                    tag: "ma-hfd-image-$index",
                     child: Container(
                       height: backgroundImageSize,
                       decoration: BoxDecoration(
@@ -204,7 +204,7 @@ class _HealtyFoodDeliveryItemDetailScreenState
                                     .toList(),
                               ),
                               Hero(
-                                tag: "ma-hfd-price-${index}",
+                                tag: "ma-hfd-price-$index",
                                 child: Material(
                                   color: theme.primary,
                                   shape: RoundedRectangleBorder(
@@ -247,7 +247,7 @@ class _HealtyFoodDeliveryItemDetailScreenState
                         Padding(
                           padding: const EdgeInsets.only(top: 20.0, left: 20.0),
                           child: Hero(
-                            tag: "ma-hfd-name-${index}",
+                            tag: "ma-hfd-name-$index",
                             child: Material(
                               color: Colors.transparent,
                               child: Text(
@@ -268,7 +268,7 @@ class _HealtyFoodDeliveryItemDetailScreenState
                             right: 20.0,
                           ),
                           child: Hero(
-                            tag: "ma-hfd-desc-${index}",
+                            tag: "ma-hfd-desc-$index",
                             child: Material(
                               color: Colors.transparent,
                               child: Text(

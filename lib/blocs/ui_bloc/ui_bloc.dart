@@ -10,7 +10,5 @@ class UiBloc extends Bloc<UiEvent, UiState> {
   @override
   Stream<UiState> mapEventToState(
     UiEvent event,
-  ) async* {
-    // TODO: Add Logic
-  }
+  ) async* {}
 }
