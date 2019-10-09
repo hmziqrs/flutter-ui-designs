@@ -23,7 +23,7 @@ class _FlightsCarouselState extends State<FlightsCarousel> {
       activeIndex = index;
     });
     Utils.darkStatusBar();
-    final newIndex = await Navigator.of(context).push(
+    await Navigator.of(context).push(
       new MaterialPageRoute(
         builder: (ctx) => HABDetailScreen(index),
       ),
