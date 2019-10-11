@@ -1,89 +1,315 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:url_launcher/url_launcher.dart' as url;
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/blocs/ui_bloc/bloc.dart';
 
+import 'package:flutter_uis/UI.dart';
+
+import 'package:flutter_uis/Widgets/UICard/UICard.dart';
+
+import 'Dimensions.dart';
+
 class UiDetailScreen extends StatelessWidget {
+  Widget renderCoverImage(UIItem uiItem) {
+    return Hero(
+      transitionOnUserGestures: true,
+      tag: "thumbnail-${uiItem.id}",
+      child: Container(
+        height: Dimensions.coverImageHeight,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: ExactAssetImage(uiItem.thumbnail),
+            fit: BoxFit.cover,
+          ),
+          // color: Colors.red,
+        ),
+      ),
+    );
+  }
+
+  renderContent(BuildContext context, UIItem uiItem, List<UIItem> list) {
+    return Center(
+      child: Container(
+        constraints: BoxConstraints(
+          maxWidth: Dimensions.containerMaxWidth,
+        ),
+        padding: EdgeInsets.all(Dimensions.padding * 2),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: Dimensions.padding,
+              ),
+              child: Text(
+                uiItem.name,
+                style: TextStyle(
+                  fontSize: 28.0,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: Dimensions.padding,
+              ),
+              child: Text(
+                "By ${uiItem.designer}",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16.0,
+                ),
+              ),
+            ),
+            Padding(padding: EdgeInsets.all(Dimensions.padding)),
+            Row(
+              // crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                this.renderButton(
+                  "Open App",
+                  () => Navigator.of(context).pushNamed(
+                    uiItem.miniApp,
+                  ),
+                ),
+                this.renderButton(
+                  "View UI Source",
+                  () async {
+                    bool can = await url.canLaunch(uiItem.link);
+                    if (can) {
+                      await url.launch(uiItem.link);
+                    } else {
+                      print("ERROR");
+                    }
+                  },
+                ),
+              ],
+            ),
+            this.renderSupport(uiItem),
+            Padding(padding: EdgeInsets.all(Dimensions.padding)),
+            ...this.renderMoreUis(uiItem, list),
+            Row(
+              children: <Widget>[
+                Flexible(child: Container()),
+                this.renderButton(
+                  "Contact ${uiItem.designer}",
+                  () => Navigator.of(context).pushReplacementNamed(
+                    "designerProfile",
+                    arguments: uiItem.designer,
+                  ),
+                  flex: 5,
+                ),
+                Flexible(child: Container()),
+              ],
+            )
+            // this.renderDesignerProfile(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  renderButton(
+    String text,
+    Function callback, {
+    double width = double.infinity,
+    int flex = 1,
+  }) {
+    return Flexible(
+      flex: flex,
+      child: Container(
+        width: width,
+        margin: EdgeInsets.all(Dimensions.padding),
+        padding: EdgeInsets.all(Dimensions.padding),
+        child: RaisedButton(
+          elevation: 0.0,
+          color: Colors.white,
+          textColor: theme.primary,
+          highlightElevation: 0.0,
+          padding: EdgeInsets.symmetric(
+            // horizontal: Dimensions.padding * 9,
+            vertical: Dimensions.padding * 2,
+          ),
+          shape: RoundedRectangleBorder(
+            side: BorderSide(color: theme.primary, width: 2),
+            borderRadius: BorderRadius.circular(4.0),
+          ),
+          onPressed: callback,
+          child: Text(
+            text,
+            style: TextStyle(
+              fontSize: 17,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget renderSupport(UIItem uiItem) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: Dimensions.padding),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.all(Dimensions.padding),
+            child: Text(
+              "Platform & Screens",
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          Padding(padding: EdgeInsets.all(Dimensions.padding)),
+          Row(
+            children: [
+              this.renderSupportBox(
+                "Landscape",
+                MaterialCommunityIcons.phone_rotate_landscape,
+                uiItem.landscapeSupport,
+              ),
+              this.renderSupportBox(
+                "Tablet",
+                MaterialCommunityIcons.tablet,
+                uiItem.tabletSupport,
+              ),
+              this.renderSupportBox(
+                "Android",
+                MaterialCommunityIcons.android,
+                true,
+              ),
+              this.renderSupportBox(
+                "iOS",
+                MaterialCommunityIcons.apple,
+                true,
+              ),
+              this.renderSupportBox(
+                "Web",
+                MaterialCommunityIcons.web,
+                uiItem.webSupport,
+              ),
+              this.renderSupportBox(
+                "Desktop",
+                MaterialCommunityIcons.desktop_mac,
+                uiItem.desktopSupport,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget renderSupportBox(String label, IconData icon, bool enable) {
+    final color = enable == true ? theme.primary : Colors.grey;
+    return Flexible(
+      child: Center(
+        child: Column(
+          children: <Widget>[
+            Icon(
+              icon,
+              color: color,
+              size: 24,
+            ),
+            Padding(padding: EdgeInsets.only(top: 4)),
+            Text(
+              label,
+              style: TextStyle(
+                color: color,
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  List<Widget> renderMoreUis(UIItem uiItem, List<UIItem> list) {
+    final moreUis = list
+        .where((ui) => ui.id != uiItem.id && ui.designer == uiItem.designer);
+    if (moreUis.length == 0) {
+      return [Container()];
+    }
+    return [
+      Padding(
+        padding: EdgeInsets.all(Dimensions.padding),
+        child: Text(
+          "More UIs from ${uiItem.designer}",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: moreUis
+              .map((ui) => UICard(
+                    ui,
+                    isMini: true,
+                    padding: Dimensions.padding * 2,
+                    cardWidth: Dimensions.cardWidth,
+                    cardHeight: Dimensions.cardHeight,
+                  ))
+              .toList(),
+        ),
+      )
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     final UIItem uiItem = ModalRoute.of(context).settings.arguments;
+
     return OrientationBuilder(
-      builder: (BuildContext context, Orientation orientation) {
-        return Container(
+      builder: (BuildContext ctx, Orientation orientation) {
+        UI.init(ctx);
+        Dimensions.init(ctx, orientation: orientation);
+
+        return BlocProvider(
+          builder: (context) => UiBloc(),
           child: Scaffold(
-            body: Stack(
-              children: <Widget>[
-                Container(
-                  child: Column(
-                    children: <Widget>[
-                      Hero(
-                        transitionOnUserGestures: true,
-                        tag: "thumbnail-${uiItem.id}",
-                        child: Container(
-                          height: MediaQuery.of(context).size.height * .33,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: ExactAssetImage(uiItem.thumbnail),
-                              fit: BoxFit.cover,
-                            ),
-                            // color: Colors.red,
-                          ),
-                        ),
-                      ),
-                      Hero(
-                        tag: 'ui-name',
-                        child: Material(
-                          color: Colors.transparent,
-                          child: Container(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: <Widget>[
-                                  Text(
-                                    uiItem.name,
-                                    style: TextStyle(
-                                      fontSize: 24.0,
-                                    ),
-                                  ),
-                                  Text(
-                                    "By ${uiItem.designer}",
-                                    style: TextStyle(
-                                      fontSize: 18.0,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      RaisedButton(
-                        onPressed: () => Navigator.of(context).pushNamed(
-                          uiItem.miniApp,
-                        ),
-                        child: Text("Open App"),
-                      ),
-                    ],
-                  ),
-                ),
-                Positioned(
-                  child: Container(
-                    padding: EdgeInsets.only(
-                      left: 8.0,
-                      bottom: 8.0,
-                      top: MediaQuery.of(context).padding.top,
-                    ),
-                    decoration:
-                        BoxDecoration(color: Colors.black.withOpacity(0.2)),
-                    child: Row(
+            extendBodyBehindAppBar: false,
+            body: Theme(
+              data: Theme.of(context).copyWith(
+                primaryColor: theme.primary,
+                accentColor: theme.primary,
+              ),
+              child: SingleChildScrollView(
+                child: Stack(
+                  children: <Widget>[
+                    Column(
                       children: <Widget>[
-                        BackButton(),
+                        this.renderCoverImage(uiItem),
+                        BlocBuilder<UiBloc, UiState>(
+                          builder: (context, state) {
+                            List<UIItem> list = state.list;
+                            return this.renderContent(
+                              context,
+                              uiItem,
+                              list,
+                            );
+                          },
+                        ),
                       ],
                     ),
-                  ),
+                    Positioned(
+                      top: MediaQuery.of(context).padding.top,
+                      left: 0,
+                      child: BackButton(),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         );

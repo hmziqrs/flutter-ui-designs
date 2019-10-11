@@ -20,8 +20,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  device_info: 0.4.0+3
+  get_version: 0.2.0+1
 
   firebase_core: 0.4.0+9
   firebase_analytics: ^5.0.2
@@ -31,6 +31,8 @@ dependencies:
   bloc: ^0.15.0
   flutter_bloc: ^0.21.0
   equatable: ^0.6.0
+
+  url_launcher: ^5.1.6
 
   pigment: ^1.0.3
   cupertino_icons: ^0.1.2
@@ -56,6 +58,8 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/user/cover.jpg
+
     - assets/thumbnails/healthy_food_delivery.png
     - assets/ma-hfd/item-1.jpg
     - assets/ma-hfd/item-2.jpg
@@ -122,4 +126,21 @@ flutter:
         - asset: fonts/Montserrat/Montserrat-ExtraBold.ttf
           weight: 800
         - asset: fonts/Montserrat/Montserrat-Black.ttf
+          weight: 900
+
+    - family: Muli
+      fonts:
+        - asset: fonts/Muli/Muli-ExtraLight.ttf
+          weight: 200
+        - asset: fonts/Muli/Muli-Light.ttf
+          weight: 300
+        - asset: fonts/Muli/Muli-Regular.ttf
+          weight: 400
+        - asset: fonts/Muli/Muli-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Muli/Muli-Bold.ttf
+          weight: 700
+        - asset: fonts/Muli/Muli-ExtraBold.ttf
+          weight: 800
+        - asset: fonts/Muli/Muli-Black.ttf
           weight: 900

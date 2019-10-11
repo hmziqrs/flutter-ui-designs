@@ -5,7 +5,7 @@ import 'data.dart';
 
 class UiBloc extends Bloc<UiEvent, UiState> {
   @override
-  UiState get initialState => InitialUiState(uilist);
+  UiState get initialState => InitialUiState(uilist, designersList);
 
   @override
   Stream<UiState> mapEventToState(

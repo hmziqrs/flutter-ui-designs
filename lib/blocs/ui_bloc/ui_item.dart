@@ -6,6 +6,10 @@ class UIItem {
   String miniApp;
   String link;
   String thumbnail;
+  bool tabletSupport;
+  bool webSupport;
+  bool landscapeSupport;
+  bool desktopSupport;
 
   UIItem({
     this.id,
@@ -15,6 +19,10 @@ class UIItem {
     this.miniApp,
     this.link,
     this.thumbnail,
+    this.landscapeSupport = false,
+    this.tabletSupport = false,
+    this.webSupport = false,
+    this.desktopSupport = false,
   });
 
   UIItem.fromMap(Map json) {
@@ -25,5 +33,9 @@ class UIItem {
     this.miniApp = json["miniApp"];
     this.link = json["link"];
     this.thumbnail = json["thumbnail"];
+    this.tabletSupport = json["thumbnail"];
+    this.webSupport = json["thumbnail"];
+    this.landscapeSupport = json["thumbnail"];
+    this.desktopSupport = json["thumbnail"];
   }
 }
