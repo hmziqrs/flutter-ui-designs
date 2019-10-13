@@ -5,6 +5,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import './screens/Home/Home.dart';
 import './screens/UiList/UiList.dart';
 import './screens/UiDetail/UIDetail.dart';
+import './screens/DesignerProfile/DesignerProfile.dart';
 
 import './MiniApps/HealtyFoodDelivery/HomeScreen.dart';
 import './MiniApps/HealtyFoodDelivery/ItemDetailScreen.dart';
@@ -22,6 +23,9 @@ class AppNavigator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      theme: ThemeData(
+        fontFamily: "Muli",
+      ),
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: analytics),
       ],
@@ -30,6 +34,8 @@ class AppNavigator extends StatelessWidget {
         "home": (ctx) => new HomeScreen(),
         "uiList": (ctx) => new UiListScreen(),
         "uiDetail": (ctx) => new UiDetailScreen(),
+        "designerProfile": (ctx) => new DesignerProfileScreen(),
+
         // Healthy Food Delivery
         "hfdHome": (ctx) => new HealtyFoodDeliveryHomeScreen(),
         "hfdItemDetail": (ctx) => new HealtyFoodDeliveryItemDetailScreen(),

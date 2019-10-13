@@ -1,63 +1,82 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_uis/configs/Theme.dart' as theme;
+
 import 'package:flutter_uis/UI.dart';
+import 'Dimensions.dart';
 
 class HomeScreen extends StatelessWidget {
   final list = [
-    {"label": "Explore UI", "path": 'uiList', "icon": Icons.explore},
-    {"label": "Settings", "path": "settings", "icon": Icons.settings},
-    {"label": "about", "path": "about", "icon": Icons.ac_unit}
+    {"label": "Explore UIs", "path": 'uiList', "icon": Icons.explore},
+    {"label": "About App", "path": "about", "icon": Icons.ac_unit},
+    {"label": "About Developer", "path": "about", "icon": Icons.ac_unit},
   ];
 
   @override
-  Widget build(BuildContext context) {
-    UI.init(context);
+  Widget build(BuildContext buildCtx) {
+    return OrientationBuilder(
+      builder: (BuildContext context, Orientation orientation) {
+        UI.init(context);
+        Dimensions.init(context, orientation: orientation);
 
-    return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          padding: EdgeInsets.only(
-            top: MediaQuery.of(context).padding.top * 2.5,
-          ),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              colors: [
-                Colors.red,
-                Colors.purple,
-              ],
-            ),
-          ),
-          child: SizedBox.expand(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              // mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: EdgeInsets.all(8.0),
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: Text(
-                    "Welcome to Flutter UIs build by @hackerhgl",
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                ...list
-                    .map(
-                      (item) => RaisedButton(
-                        onPressed: () =>
-                            Navigator.of(context).pushNamed(item["path"]),
-                        child: Text(item["label"]),
+        return Scaffold(
+          backgroundColor: Colors.white,
+          body: SafeArea(
+            child: Center(
+              child: Container(
+                width: double.infinity,
+                constraints:
+                    BoxConstraints(maxWidth: Dimensions.containerMaxWidth),
+                padding: EdgeInsets.all(Dimensions.padding * 2),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Welcome",
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.w700,
                       ),
-                    )
-                    .toList()
-              ],
+                    ),
+                    Text(
+                      "Explore elegantly crafted UIs with Google's Flutter designed by creative designers.",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: theme.primary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Padding(padding: EdgeInsets.all(Dimensions.padding)),
+                    ...list
+                        .map(
+                          (item) => Container(
+                            width: double.infinity,
+                            child: OutlineButton(
+                              textColor: theme.primary,
+                              borderSide: BorderSide(
+                                color: theme.primary.withOpacity(0.2),
+                              ),
+                              highlightedBorderColor:
+                                  theme.primary.withOpacity(0.8),
+                              onPressed: () =>
+                                  Navigator.of(context).pushNamed(item["path"]),
+                              child: Text(
+                                item["label"],
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                        .toList()
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

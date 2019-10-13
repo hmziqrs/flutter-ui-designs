@@ -14,6 +14,7 @@ class UI {
   static double safeBlockVertical;
 
   static bool isTablet;
+  static double diagonal;
 
   static void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
@@ -34,17 +35,11 @@ class UI {
 
   static bool initTablet(MediaQueryData query) {
     var size = query.size;
-    var diagonal =
-        sqrt((size.width * size.width) + (size.height * size.height));
-
-    /*
-    print(
-      'size: ${size.width}x${size.height}\n'
-      'pixelRatio: ${query.devicePixelRatio}\n'
-      'pixels: ${size.width * query.devicePixelRatio}x${size.height * query.devicePixelRatio}\n'
-      'diagonal: $diagonal'
-    );
-    */
+    diagonal = sqrt((size.width * size.width) + (size.height * size.height));
+    // print('size: ${size.width}x${size.height}\n'
+    //     'pixelRatio: ${query.devicePixelRatio}\n'
+    //     'pixels: ${size.width * query.devicePixelRatio}x${size.height * query.devicePixelRatio}\n'
+    //     'diagonal: $diagonal');
 
     isTablet = diagonal > 1100.0;
     return isTablet;
