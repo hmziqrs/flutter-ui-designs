@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_uis/UI.dart';
 import 'package:flutter_uis/Utils.dart';
 
-import '../DetailScreen/HABDetailScreen.dart';
-import '../../configs/theme.dart' as theme;
-import '../../data/flights.dart' as data;
+import '../../DetailScreen/HABDetailScreen.dart';
+import '../../../configs/theme.dart' as theme;
+import '../../../data/flights.dart' as data;
+import '../Dimensions.dart';
 
 class FlightsCarousel extends StatefulWidget {
-  FlightsCarousel(this.fontStyle, {Key key}) : super(key: key);
-
+  FlightsCarousel(this.fontStyle);
   final TextStyle fontStyle;
 
   _FlightsCarouselState createState() => _FlightsCarouselState();
@@ -36,7 +35,7 @@ class _FlightsCarouselState extends State<FlightsCarousel> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(Dimensions.padding),
         child: Row(
           children: data.flights
               .asMap()
@@ -52,54 +51,42 @@ class _FlightsCarouselState extends State<FlightsCarousel> {
                     GestureDetector(
                       onTap: () => this.setActiveIndex(index),
                       child: Container(
-                        margin: EdgeInsets.all(8.0),
-                        width: UI.safeBlockHorizontal * 42,
-                        padding: EdgeInsets.all(16.0),
+                        width: Dimensions.flightCardWidth,
+                        margin: EdgeInsets.all(Dimensions.padding * 2),
+                        padding: EdgeInsets.all(Dimensions.padding * 2),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(16.0),
                           boxShadow: [
                             BoxShadow(
-                              blurRadius: 4,
-                              offset: Offset(0, 3),
-                              color: Colors.black.withOpacity(.2),
+                              blurRadius: 8,
+                              offset: Offset(0, 6),
+                              color: Colors.black.withOpacity(0.2),
                             )
                           ],
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Hero(
-                              tag: "hfb-name-${item.id}",
-                              child: Material(
-                                color: Colors.transparent,
-                                child: Text(
-                                  item.name,
-                                  style: widget.fontStyle.copyWith(
-                                    fontSize: 16,
-                                    color: activeTextColor,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
+                            Text(
+                              item.name,
+                              style: widget.fontStyle.copyWith(
+                                fontSize: 16,
+                                color: activeTextColor,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
-                            Hero(
-                              tag: "hfb-flight-${item.id}",
-                              child: Material(
-                                color: Colors.transparent,
-                                child: Text(
-                                  "Flight",
-                                  style: widget.fontStyle.copyWith(
-                                    fontSize: 15,
-                                    color: activeTextColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
+                            Text(
+                              "Flight",
+                              style: widget.fontStyle.copyWith(
+                                fontSize: 15,
+                                color: activeTextColor,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             Padding(
-                              padding: new EdgeInsets.only(
-                                top: UI.vertical * .6,
+                              padding: EdgeInsets.only(
+                                top: Dimensions.padding,
                               ),
                               child: Text(
                                 item.people,

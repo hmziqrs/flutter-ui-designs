@@ -3,8 +3,10 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import 'package:flutter_uis/UI.dart';
 
-import '../../configs/theme.dart' as theme;
-import '../../data/flights.dart' as data;
+import '../../../configs/theme.dart' as theme;
+import '../../../data/flights.dart' as data;
+
+import '../Dimensions.dart';
 import 'RowInfo.dart';
 
 class FlightDetailsTab extends StatelessWidget {
@@ -21,8 +23,8 @@ class FlightDetailsTab extends StatelessWidget {
         RowInfo("Price", flight.price, Feather.tag),
         Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: UI.horizontal * 5,
-            vertical: UI.vertical * 3,
+            horizontal: Dimensions.padding * 5,
+            vertical: Dimensions.padding * 4,
           ),
           child: Text(
             flight.desc,
@@ -34,7 +36,12 @@ class FlightDetailsTab extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.all(12.0),
+          width: double.infinity,
+          constraints: BoxConstraints(maxWidth: 500),
+          margin: EdgeInsets.symmetric(
+            vertical: Dimensions.padding * 2,
+            horizontal: Dimensions.padding * 3,
+          ),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12.0),
             boxShadow: [
@@ -46,14 +53,13 @@ class FlightDetailsTab extends StatelessWidget {
               )
             ],
           ),
-          width: double.infinity,
           child: FlatButton(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12.0),
             ),
             onPressed: () {},
             color: theme.primary,
-            padding: EdgeInsets.symmetric(vertical: UI.vertical * 2.5),
+            padding: EdgeInsets.symmetric(vertical: Dimensions.padding * 2),
             textColor: Colors.white,
             child: Text(
               "BOOK NOW",

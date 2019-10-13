@@ -23,6 +23,8 @@ List<UIItem> uilist = [
     miniApp: "habHome",
     link: "https://designkes.com/designs/mobile/hot-air-balloon/",
     thumbnail: "assets/thumbnails/hot_air_balloon.jpg",
+    tabletSupport: true,
+    landscapeSupport: true,
   ),
   new UIItem(
     id: 3,
