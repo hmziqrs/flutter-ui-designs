@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/UI.dart';
-import 'package:simple_animations/simple_animations.dart';
+import 'package:flutter_uis/Utils.dart';
 
 import '../../configs/theme.dart' as theme;
 import '../../data/flights.dart' as data;
-import 'FlightView.dart';
+import 'Widgets/FlightView.dart';
+import 'Dimensions.dart';
 
 class HABDetailScreen extends StatefulWidget {
   HABDetailScreen(this.index, {Key key}) : super(key: key);
@@ -17,28 +18,32 @@ class HABDetailScreen extends StatefulWidget {
 class _HABDetailScreenState extends State<HABDetailScreen> {
   PageController pageController;
   int activePage;
-  Alignment imageAlign;
+  double imageAlign;
 
   @override
   void initState() {
+    int listSize = data.flights.length - 1;
+
     this.activePage = widget.index;
     this.pageController = PageController(initialPage: widget.index);
-    this.imageAlign = Alignment(-1.0, -1.0);
+    this.imageAlign = this.imageAlign = Utils.rangeMap(
+        widget.index.toDouble(), 0, listSize.toDouble(), -1.0, 1.0);
+
     this.pageController.addListener(() {
-      final x = this.pageController.offset;
-      if (x < UI.width) {
-        setState(() {
-          final double calculate = x / UI.width;
-          this.imageAlign = Alignment(calculate - 1, -1.0);
-        });
-      } else if (x > UI.width) {
-        final double calculate = (x * .5) / UI.width;
-        setState(() {
-          this.imageAlign = Alignment(calculate, -calculate);
-        });
-      }
+      final offset = this.pageController.offset;
+      final totalSize = Dimensions.getSize().width * (listSize);
+      setState(() {
+        this.imageAlign = Utils.rangeMap(offset, 0, totalSize, -1.0, 1.0);
+      });
     });
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    this.pageController.dispose();
+    super.dispose();
   }
 
   setActivePage(int index) {
@@ -47,20 +52,59 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
     });
   }
 
-  imageBackground() {
+  Widget renderHeader(data.Flight flight, TextStyle fontStyle) {
     return Positioned(
-      top: 0,
       left: 0,
       right: 0,
+      top: Dimensions.headerSpace,
+      child: SafeArea(
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  flight.name,
+                  style: fontStyle.copyWith(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  " Flight",
+                  style: fontStyle.copyWith(
+                    fontSize: 30,
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              flight.shortDesc,
+              style: TextStyle(
+                fontSize: 12.0,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            this.indicators(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  renderImageBackground() {
+    return Positioned.fill(
+      bottom: null,
       child: Container(
-        height: UI.vertical * 40,
+        height: Dimensions.backgroudImageHeight,
         foregroundDecoration: BoxDecoration(
           color: theme.background2.withOpacity(0.8),
         ),
         child: Image.asset(
-          "assets/ma-hab/mountains.png",
+          "assets/ma-hab/mountains.jpg",
           fit: BoxFit.fitHeight,
-          alignment: this.imageAlign,
+          alignment: Alignment(this.imageAlign, 0.0),
+          repeat: ImageRepeat.repeatX,
         ),
       ),
     );
@@ -90,7 +134,7 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
     );
   }
 
-  pageViews(TextStyle fontStyle) {
+  buildPageViews(TextStyle fontStyle) {
     return PageView.builder(
       pageSnapping: true,
       controller: this.pageController,
@@ -106,92 +150,48 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    UI.init(context);
-
     final fontStyle = Theme.of(context).textTheme.body1.copyWith(
           fontFamily: 'Montserrat',
         );
 
     final flight = data.flights[this.activePage];
 
-    return Scaffold(
-      body: Theme(
-        data: Theme.of(context).copyWith(
-          primaryColor: theme.primary,
-          accentColor: theme.primary,
-          // textTheme: TextTheme(body1: Theme.of(context).textTheme.body1),
-        ),
-        child: DefaultTextStyle(
-          style: fontStyle,
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              this.imageBackground(),
-              Positioned.fill(
-                child: SafeArea(
-                  child: Column(
-                    children: <Widget>[
-                      // Container(height: 48),
-                      Container(height: UI.vertical * 7),
-                      ControlledAnimation(
-                        key: Key(this.activePage.toString()),
-                        tween: Tween(begin: 0.0, end: 1.0),
-                        duration: Duration(milliseconds: 400),
-                        builder: (ctx, animation) => Opacity(
-                          opacity: animation,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                flight.name,
-                                style: fontStyle.copyWith(
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              Text(
-                                " Flight",
-                                style: fontStyle.copyWith(
-                                  fontSize: 30,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: UI.vertical * 0.4),
-                        child: Text(
-                          flight.shortDesc,
-                          style: TextStyle(
-                            fontSize: 12.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                      this.indicators(),
-                    ],
+    return OrientationBuilder(builder: (
+      BuildContext context,
+      Orientation orientation,
+    ) {
+      UI.init(context);
+      Dimensions.init(context, orientation: orientation);
+      return Scaffold(
+        body: Theme(
+          data: Theme.of(context).copyWith(
+            primaryColor: theme.primary,
+            accentColor: theme.primary,
+          ),
+          child: DefaultTextStyle(
+            style: fontStyle,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                this.renderImageBackground(),
+                this.renderHeader(flight, fontStyle),
+                this.buildPageViews(fontStyle),
+                Positioned.fill(
+                  bottom: null,
+                  right: null,
+                  child: SafeArea(
+                    child: Container(
+                      height: 48,
+                      alignment: Alignment.center,
+                      child: BackButton(),
+                    ),
                   ),
-                ),
-              ),
-              Positioned.fill(
-                child: this.pageViews(fontStyle),
-              ),
-              Positioned.fill(
-                bottom: null,
-                right: null,
-                child: SafeArea(
-                  child: Container(
-                    height: 48,
-                    alignment: Alignment.center,
-                    child: BackButton(),
-                  ),
-                ),
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-import 'package:flutter_uis/UI.dart';
+import '../../../configs/theme.dart' as theme;
+import '../../../data/flights.dart' as data;
 
-import '../../configs/theme.dart' as theme;
-import '../../data/flights.dart' as data;
+import '../Dimensions.dart';
+import 'PostFlightInfoTab.dart';
 import 'FlightDetailsTab.dart';
 import 'PreFlightInfoTab.dart';
-import 'PostFlightInfoTab.dart';
 
 class FlightView extends StatefulWidget {
   FlightView(this.flight, this.fontStyle);
@@ -34,7 +34,7 @@ class _FlightViewState extends State<FlightView>
   void initState() {
     this.tabController = new TabController(
       vsync: this,
-      length: 4,
+      length: this.tabs.length,
       initialIndex: 0,
     );
     this.activeTab = 0;
@@ -54,44 +54,48 @@ class _FlightViewState extends State<FlightView>
   }
 
   tabBar() {
-    final tabBarFontStyle =
-        widget.fontStyle.copyWith(fontWeight: FontWeight.w600, fontSize: 13);
+    final tabBarFontStyle = widget.fontStyle.copyWith(
+      fontWeight: FontWeight.w600,
+      fontSize: 13,
+    );
 
-    int tabCount = -1;
     return TabBar(
-      controller: this.tabController,
       indicator: null,
-      indicatorColor: Colors.transparent,
-      labelStyle: tabBarFontStyle,
+      isScrollable: true,
       onTap: this.setActiveTab,
       labelColor: theme.primary,
+      labelStyle: tabBarFontStyle,
+      controller: this.tabController,
+      indicatorColor: Colors.transparent,
       unselectedLabelColor: Colors.black,
-      // labelColor: theme.primary,
-      // unselectedLabelStyle: widget.fontStyle,
-      isScrollable: true,
-      tabs: this.tabs.map(
-        (tab) {
-          tabCount += 1;
-          return GestureDetector(
-            child: Container(
-              child: Text(
-                tab,
-              ),
-              padding: EdgeInsets.only(bottom: 3),
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    width: 1,
-                    color: tabCount == this.activeTab
-                        ? theme.primary
-                        : Colors.transparent,
+      tabs: this
+          .tabs
+          .asMap()
+          .map(
+            (index, tab) => MapEntry(
+              index,
+              GestureDetector(
+                child: Container(
+                  child: Text(
+                    tab,
+                  ),
+                  padding: EdgeInsets.only(bottom: 3),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        width: 1,
+                        color: index == this.activeTab
+                            ? theme.primary
+                            : Colors.transparent,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          );
-        },
-      ).toList(),
+          )
+          .values
+          .toList(),
     );
   }
 
@@ -102,10 +106,7 @@ class _FlightViewState extends State<FlightView>
       return PreFlightInfoTab(widget.flight);
     } else if (this.activeTab == 2) {
       return Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: UI.horizontal * 5,
-          vertical: UI.vertical * 3,
-        ),
+        padding: EdgeInsets.all(Dimensions.padding * 3),
         child: Text(
           widget.flight.inFlightInfo,
           style: TextStyle(
@@ -127,14 +128,14 @@ class _FlightViewState extends State<FlightView>
       decoration: BoxDecoration(
           // color: Colors.red.withOpacity(.5),
           ),
-      padding: EdgeInsets.only(top: (UI.vertical * 17 + 60)),
+      padding: EdgeInsets.only(top: ((Dimensions.headerSpace * 2) + 100)),
       child: ClipRRect(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(32.0)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28.0)),
         child: Container(
           padding: EdgeInsets.only(
-            top: UI.vertical * 5,
-            left: UI.horizontal * 6,
-            right: UI.horizontal * 6,
+            top: Dimensions.padding * 4,
+            left: Dimensions.padding * 4,
+            right: Dimensions.padding * 4,
           ),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -143,15 +144,12 @@ class _FlightViewState extends State<FlightView>
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               this.tabBar(),
-              Container(height: UI.vertical * 3),
+              Padding(padding: EdgeInsets.all(Dimensions.padding * 1.5)),
               Flexible(
                 child: ControlledAnimation(
                   key: Key(this.activeTab.toString()),
-                  tween: Tween(
-                    begin: 0.0,
-                    end: 1.0,
-                  ),
-                  delay: Duration(milliseconds: 60),
+                  tween: Tween(begin: 0.0, end: 1.0),
+                  delay: Duration(milliseconds: 120),
                   duration: Duration(milliseconds: 500),
                   builder: (ctx, animation) => Opacity(
                     opacity: animation,

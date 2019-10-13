@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_uis/UI.dart';
+import '../../../configs/theme.dart' as theme;
 
-import '../../configs/theme.dart' as theme;
+import '../Dimensions.dart';
 
 class RowInfo extends StatelessWidget {
   const RowInfo(this.name, this.desc, this.icon, {this.fullWidth = false});
+  final bool fullWidth;
+  final IconData icon;
   final String name;
   final String desc;
-  final IconData icon;
-  final bool fullWidth;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(UI.horizontal * 5),
+      padding: EdgeInsets.symmetric(
+        horizontal: Dimensions.padding * 5,
+        vertical: Dimensions.padding * 4,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(top: UI.vertical * .4),
+            padding: EdgeInsets.only(top: Dimensions.padding * 0.4),
             child: Icon(
               icon,
               color: theme.primary,
@@ -28,8 +31,8 @@ class RowInfo extends StatelessWidget {
           ),
           Flexible(
             child: Container(
-              width: UI.horizontal * (this.fullWidth ? 80 : 50),
-              padding: EdgeInsets.only(left: UI.horizontal * 4),
+              width: Dimensions.padding * (this.fullWidth ? 80 : 50),
+              padding: EdgeInsets.only(left: Dimensions.padding * 4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
