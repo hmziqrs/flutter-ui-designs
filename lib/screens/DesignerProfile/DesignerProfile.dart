@@ -130,6 +130,7 @@ class DesignerProfileScreen extends StatelessWidget {
             ...this.renderContactMe(designer),
             Padding(padding: EdgeInsets.all(Dimensions.padding)),
             ...this.renderMoreUis(designer, uiList),
+            Utils.safePadding(context, "bottom"),
           ],
         ),
       ),

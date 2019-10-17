@@ -19,13 +19,13 @@ class Dimensions {
 
     // padding = UI.horizontal * 3;
     padding = UI.horizontal * 3;
-    cardHeight = UI.vertical * 35;
+    cardHeight = UI.horizontal * 60;
     cardWidth = UI.horizontal * 100;
     gridCount = 1;
 
     if (isLandscape) {
-      cardHeight = UI.vertical * 70;
-      padding = UI.horizontal * 2;
+      cardHeight = (UI.vertical * 30) + UI.horizontal * 25;
+      padding = UI.horizontal * 1.5;
     }
 
     if (UI.isTablet) {

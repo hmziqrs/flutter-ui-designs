@@ -22,7 +22,7 @@ class HFDDimensions {
 
     // HomeScreen
     chipsHolderWidth = size.width;
-    cardHeight = UI.vertical * 52;
+    cardHeight = (UI.horizontal * 40) + UI.vertical * 25;
 
     // ItemDetailScreen
     backgroundImageHeight = UI.vertical * 68;
@@ -32,7 +32,7 @@ class HFDDimensions {
 
     if (isLandscape) {
       // HomeScreen
-      cardHeight = cardHeight * 1.45;
+      cardHeight = (UI.horizontal * 30) + UI.vertical * 25;
 
       // ItemDetail
       backgroundImageHeight = size.height;

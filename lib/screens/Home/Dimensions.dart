@@ -16,7 +16,7 @@ class Dimensions {
 
     size = MediaQuery.of(context).size;
     padding = UI.vertical;
-    containerMaxWidth = 600;
+    containerMaxWidth = 540;
 
     if (isLandscape) {
       padding = UI.horizontal;

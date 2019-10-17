@@ -6,6 +6,7 @@ import 'package:flutter_uis/configs/Theme.dart' as theme;
 
 import 'package:flutter_uis/blocs/ui_bloc/bloc.dart';
 
+import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_uis/UI.dart';
 
 import 'package:flutter_uis/Widgets/UICard/UICard.dart';
@@ -31,15 +32,17 @@ class UiListScreen extends StatelessWidget {
               UI.init(ctx);
               Dimensions.init(ctx, orientation: orientation);
 
-              return Container(
+              return SafeArea(
+                bottom: false,
+                top: false,
                 child: BlocBuilder<UiBloc, UiState>(
-                  builder: (context, state) {
+                  builder: (blocCtx, state) {
                     final List<UIItem> list = state.list;
                     return CustomScrollView(
                       slivers: <Widget>[
+                        Utils.safePadding(ctx, 'top', true),
                         SliverPadding(
                           padding: EdgeInsets.only(
-                            top: MediaQuery.of(context).padding.top,
                             bottom: Dimensions.padding,
                           ),
                         ),
@@ -64,18 +67,21 @@ class UiListScreen extends StatelessWidget {
                                 Dimensions.cardWidth / Dimensions.cardHeight,
                             crossAxisCount: Dimensions.gridCount,
                             children: list
-                                .map((ui) => UICard(
-                                      ui,
-                                      padding: Dimensions.padding,
-                                      cardWidth: Dimensions.cardWidth,
-                                      cardHeight: Dimensions.cardHeight,
-                                    ))
+                                .map(
+                                  (ui) => UICard(
+                                    ui,
+                                    padding: Dimensions.padding,
+                                    cardWidth: Dimensions.cardWidth,
+                                    cardHeight: Dimensions.cardHeight,
+                                  ),
+                                )
                                 .toList(),
                           ),
                         ),
                         SliverPadding(
                           padding: EdgeInsets.all(Dimensions.padding * 1.5),
-                        )
+                        ),
+                        // Utils.safePadding(context, 'bottom', true),
                       ],
                     );
                   },

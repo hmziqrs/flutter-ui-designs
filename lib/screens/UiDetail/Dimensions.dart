@@ -19,8 +19,10 @@ class Dimensions {
     size = MediaQuery.of(context).size;
     final bool isLandscape = Orientation.landscape == orientation;
 
-    containerMaxWidth = 600;
-    padding = UI.vertical * 0.9;
+    containerMaxWidth = 540;
+    // padding = UI.vertical * 0.9;
+    padding = UI.horizontal * 1.5;
+
     coverImageHeight = UI.vertical * 34;
 
     cardWidth = UI.horizontal * 70;

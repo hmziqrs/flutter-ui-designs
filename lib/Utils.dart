@@ -1,18 +1,21 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'package:url_launcher/url_launcher.dart' as url;
 // import 'package:device_info/device_info.dart';
-import 'package:get_version/get_version.dart';
 
 class Utils {
   static lightStatusBar() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
       statusBarIconBrightness: Brightness.light,
+      systemNavigationBarIconBrightness: Brightness.light,
     ));
   }
 
   static darkStatusBar() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
       statusBarIconBrightness: Brightness.dark,
+      systemNavigationBarIconBrightness: Brightness.dark,
     ));
   }
 
@@ -28,17 +31,6 @@ class Utils {
       return 1.0;
     }
     return opacity;
-  }
-
-  static printDebug(String string, {bool deviceInfo = true}) async {
-    final version = await GetVersion.platformVersion;
-
-    print("\n\n/** STARt **/");
-    if (deviceInfo != null) {
-      print("version $version");
-    }
-    print(string);
-    print("/** END **/\n\n");
   }
 
   static launchUrl(link) async {
@@ -64,5 +56,40 @@ class Utils {
     } else if (platform == 'phone') {
       return "tel:$username";
     }
+  }
+
+  static Widget safePadding(
+    BuildContext context,
+    String direction, [
+    bool sliver = false,
+  ]) {
+    final padding = MediaQuery.of(context).viewPadding;
+    EdgeInsetsGeometry paddingWidget;
+    if (direction == 'top') {
+      paddingWidget = EdgeInsets.only(top: padding.top);
+    } else if (direction == 'bottom') {
+      paddingWidget = EdgeInsets.only(bottom: padding.bottom);
+    } else if (direction == 'right') {
+      paddingWidget = EdgeInsets.only(right: padding.right);
+    } else if (direction == 'left') {
+      paddingWidget = EdgeInsets.only(left: padding.left);
+    } else if (direction == 'horizontal') {
+      paddingWidget = EdgeInsets.only(right: padding.right, left: padding.left);
+    } else if (direction == 'vertical') {
+      paddingWidget = EdgeInsets.only(top: padding.top, bottom: padding.bottom);
+    } else if (direction == 'all') {
+      paddingWidget = EdgeInsets.only(
+        top: padding.top,
+        bottom: padding.bottom,
+        right: padding.right,
+        left: padding.left,
+      );
+    } else {
+      paddingWidget = EdgeInsets.all(0.0);
+    }
+    if (sliver) {
+      return SliverPadding(padding: paddingWidget);
+    }
+    return Padding(padding: paddingWidget);
   }
 }

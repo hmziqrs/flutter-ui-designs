@@ -78,12 +78,14 @@ class _HealtyFoodDeliveryHomeScreenState
                   .toList(),
             ),
             body: SafeArea(
+              top: false,
               child: SingleChildScrollView(
                 child: DefaultTextStyle(
                   style: defaultTextStyle,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Utils.safePadding(context, "top"),
                       Container(height: 8),
                       Padding(
                         padding: const EdgeInsets.symmetric(

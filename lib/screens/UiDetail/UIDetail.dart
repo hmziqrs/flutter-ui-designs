@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/blocs/ui_bloc/bloc.dart';
 
+import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_uis/UI.dart';
 
 import 'package:flutter_uis/Widgets/UICard/UICard.dart';
@@ -104,7 +105,8 @@ class UiDetailScreen extends StatelessWidget {
                 ),
                 Flexible(child: Container()),
               ],
-            )
+            ),
+            Utils.safePadding(context, 'bottom'),
             // this.renderDesignerProfile(),
           ],
         ),
