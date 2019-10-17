@@ -4,6 +4,7 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:simple_animations/simple_animations.dart';
 
+import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_uis/UI.dart';
 import 'HFDDimensions.dart';
 
@@ -303,215 +304,231 @@ class _HealtyFoodDeliveryItemDetailScreenState
                         //     BoxDecoration(color: Colors.blue.withOpacity(.5)),
                         child: ScrollConfiguration(
                           behavior: CustomScrollBehavior(),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  height: HFDDimensions.statsTopScrollPadding,
-                                  // decoration: BoxDecoration(color: Colors.blue),
-                                ),
-                                Container(
-                                  transform:
-                                      Matrix4.translationValues(0.0, 0, 0.0),
-                                  margin: EdgeInsets.all(24),
-                                  child: Column(
-                                    children: <Widget>[
-                                      Container(
-                                        padding: EdgeInsets.all(20.0),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius:
-                                              BorderRadius.circular(6.0),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              blurRadius: 6,
-                                              offset: Offset(0, 2),
-                                              color:
-                                                  Colors.black.withOpacity(.26),
-                                            ),
-                                          ],
-                                        ),
-                                        child: Column(
-                                          children: <Widget>[
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 0.0, bottom: 16.0),
-                                              child: Text(
-                                                "Nutrition Facts",
-                                                style: TextStyle(
-                                                  fontSize: 21,
-                                                  fontWeight: FontWeight.w600,
+                          child: SafeArea(
+                            top: false,
+                            bottom: false,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: <Widget>[
+                                  Container(
+                                    height: HFDDimensions.statsTopScrollPadding,
+                                    // decoration: BoxDecoration(color: Colors.blue),
+                                  ),
+                                  Container(
+                                    transform:
+                                        Matrix4.translationValues(0.0, 0, 0.0),
+                                    margin: EdgeInsets.all(24),
+                                    child: Column(
+                                      children: <Widget>[
+                                        Container(
+                                          padding: EdgeInsets.all(20.0),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(6.0),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                blurRadius: 6,
+                                                offset: Offset(0, 2),
+                                                color: Colors.black
+                                                    .withOpacity(.26),
+                                              ),
+                                            ],
+                                          ),
+                                          child: Column(
+                                            children: <Widget>[
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 0.0, bottom: 16.0),
+                                                child: Text(
+                                                  "Nutrition Facts",
+                                                  style: TextStyle(
+                                                    fontSize: 21,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            Row(
-                                              children: <Widget>[
-                                                CircularPercentIndicator(
-                                                  radius: 52.0,
-                                                  lineWidth: 4.5,
-                                                  center: new Text(
-                                                    "${item.kcal.toStringAsFixed(0)}",
-                                                    style: defaultTextStyle,
-                                                  ),
-                                                  progressColor: theme.primary,
-                                                  percent:
-                                                      animation["dailyCal"],
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 16),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: <Widget>[
-                                                      Text(
-                                                        "${item.kcal.toStringAsFixed(0)} kcal",
-                                                        style: TextStyle(
-                                                          fontSize: 15,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        height: 6,
-                                                      ),
-                                                      Text(
-                                                        "${item.dailyCal}% of daily calories",
-                                                        style: TextStyle(
-                                                          color: Colors.grey,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                            Container(height: 16),
-                                            Row(
-                                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: <Widget>[
-                                                Flexible(
-                                                  child: LinearPercentIndicator(
-                                                    percent: animation["carbo"],
-                                                    lineHeight: 6,
+                                              Row(
+                                                children: <Widget>[
+                                                  CircularPercentIndicator(
+                                                    radius: 52.0,
+                                                    lineWidth: 4.5,
+                                                    center: new Text(
+                                                      "${item.kcal.toStringAsFixed(0)}",
+                                                      style: defaultTextStyle,
+                                                    ),
                                                     progressColor:
                                                         theme.primary,
-                                                  ),
-                                                  flex: 1,
-                                                ),
-                                                Text(
-                                                  "${item.carbo}%  ",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w700,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "Carbo",
-                                                  style: TextStyle(
-                                                    fontSize: 13,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Colors.black
-                                                        .withOpacity(.7),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Container(height: 16),
-                                            Row(
-                                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: <Widget>[
-                                                Flexible(
-                                                  child: LinearPercentIndicator(
                                                     percent:
-                                                        animation["protien"],
-                                                    lineHeight: 6,
-                                                    progressColor:
-                                                        theme.primary,
+                                                        animation["dailyCal"],
                                                   ),
-                                                  flex: 1,
-                                                ),
-                                                Text(
-                                                  "${item.protien}%  ",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w700,
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 16),
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: <Widget>[
+                                                        Text(
+                                                          "${item.kcal.toStringAsFixed(0)} kcal",
+                                                          style: TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                          ),
+                                                        ),
+                                                        Container(
+                                                          height: 6,
+                                                        ),
+                                                        Text(
+                                                          "${item.dailyCal}% of daily calories",
+                                                          style: TextStyle(
+                                                            color: Colors.grey,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              Container(height: 16),
+                                              Row(
+                                                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: <Widget>[
+                                                  Flexible(
+                                                    child:
+                                                        LinearPercentIndicator(
+                                                      percent:
+                                                          animation["carbo"],
+                                                      lineHeight: 6,
+                                                      progressColor:
+                                                          theme.primary,
+                                                    ),
+                                                    flex: 1,
                                                   ),
-                                                ),
-                                                Text(
-                                                  "Protien",
-                                                  style: TextStyle(
-                                                    fontSize: 13,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Colors.black
-                                                        .withOpacity(.7),
+                                                  Text(
+                                                    "${item.carbo}%  ",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                            Container(height: 16),
-                                            Row(
-                                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: <Widget>[
-                                                Flexible(
-                                                  child: LinearPercentIndicator(
-                                                    percent: animation["fat"],
-                                                    lineHeight: 6,
-                                                    progressColor:
-                                                        theme.primary,
+                                                  Text(
+                                                    "Carbo",
+                                                    style: TextStyle(
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: Colors.black
+                                                          .withOpacity(.7),
+                                                    ),
                                                   ),
-                                                  flex: 1,
-                                                ),
-                                                Text(
-                                                  "${item.fat}%  ",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w700,
+                                                ],
+                                              ),
+                                              Container(height: 16),
+                                              Row(
+                                                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: <Widget>[
+                                                  Flexible(
+                                                    child:
+                                                        LinearPercentIndicator(
+                                                      percent:
+                                                          animation["protien"],
+                                                      lineHeight: 6,
+                                                      progressColor:
+                                                          theme.primary,
+                                                    ),
+                                                    flex: 1,
                                                   ),
-                                                ),
-                                                Text(
-                                                  "Fat",
-                                                  style: TextStyle(
-                                                    fontSize: 13,
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Colors.black
-                                                        .withOpacity(.7),
+                                                  Text(
+                                                    "${item.protien}%  ",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        height: 24.0,
-                                      ),
-                                      RaisedButton(
-                                        onPressed: () {},
-                                        color: theme.primary,
-                                        textColor: Colors.white,
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 46, vertical: 12),
-                                        shape: new RoundedRectangleBorder(
-                                          borderRadius:
-                                              new BorderRadius.circular(30.0),
-                                        ),
-                                        child: Text(
-                                          "Order Now",
-                                          style: defaultTextStyle.copyWith(
-                                            color: Colors.white,
-                                            fontSize: 20,
+                                                  Text(
+                                                    "Protien",
+                                                    style: TextStyle(
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: Colors.black
+                                                          .withOpacity(.7),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Container(height: 16),
+                                              Row(
+                                                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: <Widget>[
+                                                  Flexible(
+                                                    child:
+                                                        LinearPercentIndicator(
+                                                      percent: animation["fat"],
+                                                      lineHeight: 6,
+                                                      progressColor:
+                                                          theme.primary,
+                                                    ),
+                                                    flex: 1,
+                                                  ),
+                                                  Text(
+                                                    "${item.fat}%  ",
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    "Fat",
+                                                    style: TextStyle(
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      color: Colors.black
+                                                          .withOpacity(.7),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                        Container(
+                                          height: 24.0,
+                                        ),
+                                        RaisedButton(
+                                          onPressed: () {},
+                                          color: theme.primary,
+                                          textColor: Colors.white,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 46, vertical: 12),
+                                          shape: new RoundedRectangleBorder(
+                                            borderRadius:
+                                                new BorderRadius.circular(30.0),
+                                          ),
+                                          child: Text(
+                                            "Order Now",
+                                            style: defaultTextStyle.copyWith(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  // decoration: BoxDecoration(color: Colors.red),
-                                  height:
-                                      HFDDimensions.statsBottomScrollPadding,
-                                )
-                              ],
+                                  Container(
+                                    // decoration: BoxDecoration(color: Colors.red),
+                                    height:
+                                        HFDDimensions.statsBottomScrollPadding,
+                                  ),
+                                  Utils.safePadding(context, 'bottom'),
+                                ],
+                              ),
                             ),
                           ),
                         ),
