@@ -64,7 +64,7 @@ class _SKHomeScreenState extends State<SKHomeScreen>
                 BoxShadow(
                   blurRadius: 15,
                   spreadRadius: 1,
-                  color: theme.primary.withOpacity(.35),
+                  color: theme.primary.withOpacity(0.35),
                   offset: Offset(5, 5),
                 ),
               ],
@@ -127,8 +127,10 @@ class _SKHomeScreenState extends State<SKHomeScreen>
 
   stories() {
     return Container(
-      margin: EdgeInsets.only(top: 24),
-      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+      margin: EdgeInsets.only(top: Dimensions.padding * 3),
+      padding: Utils.safePaddingUnit(context, 'horizontal').add(
+        EdgeInsets.all(Dimensions.padding * 2),
+      ),
       decoration: BoxDecoration(
         color: theme.secondary,
         borderRadius: BorderRadius.vertical(
@@ -147,20 +149,18 @@ class _SKHomeScreenState extends State<SKHomeScreen>
             ),
           ),
           ...data.storyList
-              .map((story) => Padding(
-                    padding: const EdgeInsets.only(top: 24.0),
+              .map((story) => Container(
+                    margin: EdgeInsets.only(top: Dimensions.padding * 2),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(16.0),
-                          child: Image.asset(
-                            story.image,
-                            height: UI.vertical * 20,
-                          ),
+                        Image.asset(
+                          story.image,
+                          height: Dimensions.storyImageHeight,
+                          fit: BoxFit.cover,
                         ),
                         Flexible(
-                          child: Padding(
+                          child: Container(
                             padding: const EdgeInsets.only(left: 16.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -213,6 +213,7 @@ class _SKHomeScreenState extends State<SKHomeScreen>
                     ),
                   ))
               .toList(),
+          Utils.safePadding(context, 'bottom'),
         ],
       ),
     );
@@ -220,49 +221,65 @@ class _SKHomeScreenState extends State<SKHomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    UI.init(context);
-    Dimensions.init(context);
-
     final fontStyle = Theme.of(context).textTheme.body1.copyWith(
           fontFamily: 'Montserrat',
         );
 
-    return Scaffold(
-      backgroundColor: theme.background,
-      body: Theme(
-        data: Theme.of(context).copyWith(
-          primaryColor: theme.secondary,
-          accentColor: theme.secondary,
-          // textTheme: TextTheme(body1: Theme.of(context).textTheme.body1),
-        ),
-        child: DefaultTextStyle(
-          style: fontStyle,
-          child: GestureDetector(
-            onTap: () => FocusScope.of(context).requestFocus(new FocusNode()),
-            child: SafeArea(
-              child: ListView(
-                children: <Widget>[
-                  this.searchBar(fontStyle),
-                  Padding(
-                    padding: EdgeInsets.only(top: 24.0, left: 16.0),
-                    child: Text(
-                      "Explore",
-                      style: TextStyle(
-                        fontSize: 36,
-                        fontWeight: FontWeight.w800,
-                        color: theme.lightText,
+    return OrientationBuilder(
+      builder: (BuildContext context, Orientation orientation) {
+        UI.init(context);
+        Dimensions.init(context, orientation: orientation);
+
+        return Scaffold(
+          backgroundColor: theme.background,
+          body: Theme(
+            data: Theme.of(context).copyWith(
+              primaryColor: theme.secondary,
+              accentColor: theme.secondary,
+            ),
+            child: DefaultTextStyle(
+              style: fontStyle,
+              child: GestureDetector(
+                onTap: () => FocusScope.of(context).requestFocus(
+                  new FocusNode(),
+                ),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Utils.safePadding(context, 'top'),
+                      SafeArea(
+                        top: false,
+                        bottom: false,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            this.searchBar(fontStyle),
+                            Padding(
+                              padding: EdgeInsets.only(top: 24.0, left: 16.0),
+                              child: Text(
+                                "Explore",
+                                style: TextStyle(
+                                  fontSize: 36,
+                                  fontWeight: FontWeight.w800,
+                                  color: theme.lightText,
+                                ),
+                              ),
+                            ),
+                            this.tabsBar(fontStyle),
+                          ],
+                        ),
                       ),
-                    ),
+                      ObjectsCarousel(),
+                      this.stories(),
+                    ],
                   ),
-                  this.tabsBar(fontStyle),
-                  ObjectsCarousel(),
-                  this.stories(),
-                ],
+                ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

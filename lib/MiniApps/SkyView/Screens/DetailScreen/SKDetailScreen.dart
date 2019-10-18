@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -47,9 +48,11 @@ class _SKDetailScreenContentState extends State<SKDetailScreenContent>
     with SingleTickerProviderStateMixin {
   TabController tabController;
   PageController pageController;
+  ScrollController starsController;
   bool pageRendered = false;
   Timer timeout;
   double backgroundAlign = -1.0;
+  GlobalKey starsKey = GlobalKey();
 
   void initState() {
     super.initState();
@@ -57,21 +60,24 @@ class _SKDetailScreenContentState extends State<SKDetailScreenContent>
       initialPage: widget.index,
       keepPage: true,
     );
+    this.starsController = new ScrollController();
     this.pageController.addListener(() {
-      // print("PageController offsert ${this.pageController.offset}");
-      // print("WIdth ${Dimensions.size.width}");
-      // Parallax Stars
-
       final offset = this.pageController.offset;
+      final screenWidth = Dimensions.getSize().width;
 
-      final totalScroll =
-          (data.objectList.length - 1) * Dimensions.getSize().width;
+      final totalScroll = (data.objectList.length - 1) * screenWidth;
 
-      setState(() {
-        this.backgroundAlign =
-            Utils.rangeMap(offset, 0, totalScroll, -1.0, 1.0);
-      });
+      final starsWidget = this.starsKey.currentContext;
+      if (starsWidget != null) {
+        final stars = starsWidget.size.width - screenWidth;
+        this
+            .starsController
+            .jumpTo(Utils.rangeMap(offset, 0, totalScroll, 0, stars));
+
+        setState(() {});
+      }
     });
+
     Utils.lightStatusBar();
 
     this.timeout = Timer(
@@ -92,10 +98,11 @@ class _SKDetailScreenContentState extends State<SKDetailScreenContent>
     super.dispose();
   }
 
-  starsBackground() {
+  starsBackground(Orientation orientation) {
     final tween = Tween(begin: 0.0, end: 0.45);
     return Positioned.fill(
-      bottom: -UI.vertical * 20,
+      top: Dimensions.starBgTopSpace,
+      bottom: Dimensions.starBgBottomSpace,
       child: ControlledAnimation(
         duration: Duration(milliseconds: 1200),
         tween: tween,
@@ -105,10 +112,27 @@ class _SKDetailScreenContentState extends State<SKDetailScreenContent>
               this.pageRendered ? tween.end : animation,
             ),
           ),
-          child: Image.asset(
-            "assets/ma-sk/stars-bg.jpg",
-            fit: BoxFit.fitHeight,
-            alignment: Alignment(this.backgroundAlign, 0),
+          child: SingleChildScrollView(
+            controller: this.starsController,
+            scrollDirection: Axis.horizontal,
+            physics: NeverScrollableScrollPhysics(),
+            child: Row(
+              key: this.starsKey,
+              children: List.generate(
+                data.objectList.length,
+                (index) => Transform(
+                  transform: Matrix4.identity()
+                    ..setEntry(3, 2, 0.001)
+                    ..rotateX(0.0)
+                    ..rotateY(index % 2 == 1 ? 0.0 : math.pi),
+                  alignment: FractionalOffset.center,
+                  child: Image.asset(
+                    "assets/ma-sk/stars-bg.jpg",
+                    fit: BoxFit.fitHeight,
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
       ),
@@ -130,12 +154,13 @@ class _SKDetailScreenContentState extends State<SKDetailScreenContent>
 
   attribute(String label, String prefix, String text, IconData icon) {
     return Container(
-      margin: EdgeInsets.only(left: 16.0, bottom: 8.0),
+      margin: EdgeInsets.only(
+          left: Dimensions.padding * 2, bottom: Dimensions.padding),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(right: 8.0),
+            padding: EdgeInsets.only(right: Dimensions.padding),
             child: Icon(
               icon,
               color: Colors.white,
@@ -188,134 +213,150 @@ class _SKDetailScreenContentState extends State<SKDetailScreenContent>
         ),
         child: DefaultTextStyle(
           style: fontStyle,
-          child: Stack(
-            fit: StackFit.expand,
-            children: <Widget>[
-              this.starsBackground(),
-              Positioned.fill(
-                child: PageView.builder(
-                  controller: this.pageController,
-                  itemCount: data.objectList.length,
-                  scrollDirection: Axis.horizontal,
-                  pageSnapping: true,
-                  physics: this.pageRendered
-                      ? new AlwaysScrollableScrollPhysics()
-                      : new NeverScrollableScrollPhysics(),
-                  itemBuilder: (ctx, index) {
-                    data.SpaceObject item = data.objectList[index];
-                    return Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        Orbit(pageRendered, index, this.pageController.offset),
-                        Planet(
-                          item,
-                          pageRendered,
-                          index,
-                          this.pageController.offset,
-                        ),
-                        Positioned.fill(
-                          child: SafeArea(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Padding(
-                                  padding:
-                                      EdgeInsets.only(top: 24.0, left: 16.0),
-                                  child: this.renderText(
-                                    index: 0,
-                                    child: Text(
-                                      item.name,
-                                      style: TextStyle(
-                                        fontSize: 40,
-                                        fontWeight: FontWeight.w800,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 16.0),
-                                  child: this.renderText(
-                                    index: 1,
-                                    child: Text(
-                                      item.nickname,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 16.0),
-                                  child: this.renderText(
-                                    index: 2,
-                                    child: Text(
-                                      item.distanceInKm,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600,
-                                        color: theme.primary,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                this.renderText(
-                                  index: 3,
-                                  child: Container(
-                                    alignment: Alignment.topLeft,
-                                    margin:
-                                        EdgeInsets.only(left: 16.0, top: 8.0),
-                                    child: GestureDetector(
-                                      onTap: () => Navigator.of(context).pop(),
-                                      child: Icon(
-                                        Icons.arrow_back,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Flexible(
-                                  flex: 1,
-                                  child: Container(),
-                                ),
-                                this.renderText(
-                                  index: 4,
-                                  child: this.attribute(
-                                    "DISTANCE FROM THE SUN",
-                                    "km",
-                                    item.distanceFromSun,
-                                    MaterialCommunityIcons.arrow_expand,
-                                  ),
-                                ),
-                                this.renderText(
-                                  index: 5,
-                                  child: this.attribute(
-                                    "ONE WAY LIGHT TIME TO THE SUN",
-                                    "min",
-                                    item.lightTimeFromSun,
-                                    MaterialCommunityIcons.weather_sunny,
-                                  ),
-                                ),
-                                this.renderText(
-                                  index: 6,
-                                  child: this.attribute(
-                                    "LENGTH OF YEAR",
-                                    "Earth Days",
-                                    item.lengthOfYears,
-                                    MaterialCommunityIcons.moon_waning_crescent,
-                                  ),
-                                ),
-                              ],
+          child: OrientationBuilder(
+            builder: (BuildContext context, Orientation orientation) {
+              UI.init(context);
+              Dimensions.init(context, orientation: orientation);
+
+              return Stack(
+                fit: StackFit.expand,
+                children: <Widget>[
+                  this.starsBackground(orientation),
+                  Positioned.fill(
+                    child: PageView.builder(
+                      controller: this.pageController,
+                      itemCount: data.objectList.length,
+                      scrollDirection: Axis.horizontal,
+                      pageSnapping: true,
+                      physics: this.pageRendered
+                          ? new AlwaysScrollableScrollPhysics()
+                          : new NeverScrollableScrollPhysics(),
+                      itemBuilder: (ctx, index) {
+                        data.SpaceObject item = data.objectList[index];
+                        return Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            Orbit(pageRendered, index,
+                                this.pageController.offset),
+                            Planet(
+                              item,
+                              pageRendered,
+                              index,
+                              this.pageController.offset,
                             ),
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              )
-            ],
+                            Positioned.fill(
+                              child: SafeArea(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        top: Dimensions.padding * 2,
+                                        left: Dimensions.padding * 2,
+                                      ),
+                                      child: this.renderText(
+                                        index: 0,
+                                        child: Text(
+                                          item.name,
+                                          style: TextStyle(
+                                            fontSize: 40,
+                                            fontWeight: FontWeight.w800,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: Dimensions.padding * 2),
+                                      child: this.renderText(
+                                        index: 1,
+                                        child: Text(
+                                          item.nickname,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: Dimensions.padding * 2),
+                                      child: this.renderText(
+                                        index: 2,
+                                        child: Text(
+                                          item.distanceInKm,
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                            color: theme.primary,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    this.renderText(
+                                      index: 3,
+                                      child: Container(
+                                        alignment: Alignment.topLeft,
+                                        margin: EdgeInsets.only(
+                                          left: Dimensions.padding * 2,
+                                          top: Dimensions.padding,
+                                        ),
+                                        child: GestureDetector(
+                                          onTap: () =>
+                                              Navigator.of(context).pop(),
+                                          child: Icon(
+                                            Icons.arrow_back,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Flexible(
+                                      flex: 1,
+                                      child: Container(),
+                                    ),
+                                    this.renderText(
+                                      index: 4,
+                                      child: this.attribute(
+                                        "DISTANCE FROM THE SUN",
+                                        "km",
+                                        item.distanceFromSun,
+                                        MaterialCommunityIcons.arrow_expand,
+                                      ),
+                                    ),
+                                    this.renderText(
+                                      index: 5,
+                                      child: this.attribute(
+                                        "ONE WAY LIGHT TIME TO THE SUN",
+                                        "min",
+                                        item.lightTimeFromSun,
+                                        MaterialCommunityIcons.weather_sunny,
+                                      ),
+                                    ),
+                                    this.renderText(
+                                      index: 6,
+                                      child: this.attribute(
+                                        "LENGTH OF YEAR",
+                                        "Earth Days",
+                                        item.lengthOfYears,
+                                        MaterialCommunityIcons
+                                            .moon_waning_crescent,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  )
+                ],
+              );
+            },
           ),
         ),
       ),

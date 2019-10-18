@@ -58,35 +58,41 @@ class Utils {
     }
   }
 
-  static Widget safePadding(
+  static EdgeInsetsGeometry safePaddingUnit(
     BuildContext context,
-    String direction, [
-    bool sliver = false,
-  ]) {
+    String direction,
+  ) {
     final padding = MediaQuery.of(context).viewPadding;
-    EdgeInsetsGeometry paddingWidget;
     if (direction == 'top') {
-      paddingWidget = EdgeInsets.only(top: padding.top);
+      return EdgeInsets.only(top: padding.top);
     } else if (direction == 'bottom') {
-      paddingWidget = EdgeInsets.only(bottom: padding.bottom);
+      return EdgeInsets.only(bottom: padding.bottom);
     } else if (direction == 'right') {
-      paddingWidget = EdgeInsets.only(right: padding.right);
+      return EdgeInsets.only(right: padding.right);
     } else if (direction == 'left') {
-      paddingWidget = EdgeInsets.only(left: padding.left);
+      return EdgeInsets.only(left: padding.left);
     } else if (direction == 'horizontal') {
-      paddingWidget = EdgeInsets.only(right: padding.right, left: padding.left);
+      return EdgeInsets.only(right: padding.right, left: padding.left);
     } else if (direction == 'vertical') {
-      paddingWidget = EdgeInsets.only(top: padding.top, bottom: padding.bottom);
+      return EdgeInsets.only(top: padding.top, bottom: padding.bottom);
     } else if (direction == 'all') {
-      paddingWidget = EdgeInsets.only(
+      return EdgeInsets.only(
         top: padding.top,
         bottom: padding.bottom,
         right: padding.right,
         left: padding.left,
       );
     } else {
-      paddingWidget = EdgeInsets.all(0.0);
+      return EdgeInsets.all(0.0);
     }
+  }
+
+  static Widget safePadding(
+    BuildContext context,
+    String direction, [
+    bool sliver = false,
+  ]) {
+    final paddingWidget = safePaddingUnit(context, direction);
     if (sliver) {
       return SliverPadding(padding: paddingWidget);
     }
