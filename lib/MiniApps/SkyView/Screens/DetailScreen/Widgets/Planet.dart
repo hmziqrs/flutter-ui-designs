@@ -60,38 +60,40 @@ class Planet extends StatelessWidget {
     return Transform.rotate(
       origin: Dimensions.planetOrigin,
       angle: this.pageRendered ? rotationOffset : animation,
+      // angle: 1.0,
       child: Transform.translate(
         offset: Offset(xOffset, 0),
         child: Opacity(
           opacity:
               Utils.safeOpacity(this.pageRendered ? opacityOffset : animation),
           child: Container(
-            alignment: Alignment.bottomRight,
-            child: ControlledAnimation(
-              playback: Playback.LOOP,
-              delay: Duration(milliseconds: 1200),
-              tween: Tween(begin: 0.0, end: math.pi * 2),
-              duration: Duration(seconds: 50),
-              builder: (ctx, rotation) {
-                return Transform.rotate(
-                  angle: rotation,
-                  child: Container(
-                    alignment: Alignment.center,
-                    constraints: BoxConstraints(
-                      maxHeight: Dimensions.planetSize,
-                      maxWidth: Dimensions.planetSize,
-                    ),
-                    width: 200,
-                    height: 200,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(item.image),
+            alignment: Alignment.centerRight,
+            child: Container(
+              width: Dimensions.planetSize,
+              // decoration: BoxDecoration(color: Colors.red),
+              alignment: Alignment.bottomRight,
+              child: ControlledAnimation(
+                playback: Playback.LOOP,
+                delay: Duration(milliseconds: this.pageRendered ? 800 : 1400),
+                tween: Tween(begin: 0.0, end: math.pi * 2),
+                duration: Duration(seconds: 50),
+                builder: (ctx, rotation) {
+                  return Transform.rotate(
+                    angle: rotation,
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: Dimensions.planetSize,
+                      height: Dimensions.planetSize,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(item.image),
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
-                    child: null,
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
         ),

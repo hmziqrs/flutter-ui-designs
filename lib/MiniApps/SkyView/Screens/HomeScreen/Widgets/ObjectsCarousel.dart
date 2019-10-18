@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/UI.dart';
+import 'package:flutter_uis/Utils.dart';
 
 import '../../../configs/theme.dart' as theme;
 import '../../../data/data.dart' as data;
@@ -50,8 +51,8 @@ class ObjectsCarousel extends StatelessWidget {
 
   addIcon() {
     return Positioned(
-      right: UI.horizontal * 1,
-      bottom: 0,
+      right: Dimensions.padding,
+      bottom: Dimensions.padding,
       child: Container(
         width: 50,
         height: 50,
@@ -73,8 +74,8 @@ class ObjectsCarousel extends StatelessWidget {
   texts(item) {
     return Positioned(
       top: null,
-      bottom: UI.vertical * 5,
-      left: UI.vertical * 3,
+      bottom: Dimensions.padding * 5,
+      left: Dimensions.padding * 2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -116,11 +117,13 @@ class ObjectsCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        top: 32.0,
+        top: Dimensions.padding * 3,
       ),
       height: Dimensions.carouselHeight,
       child: ListView.builder(
-        padding: EdgeInsets.only(left: 20),
+        padding: Utils.safePaddingUnit(context, 'horizontal').add(
+          EdgeInsets.only(left: Dimensions.padding * 2),
+        ),
         scrollDirection: Axis.horizontal,
         itemCount: data.objectList.length,
         itemBuilder: (BuildContext context, int index) {
@@ -130,7 +133,7 @@ class ObjectsCarousel extends StatelessWidget {
               new SKDetailScreen(index),
             ),
             child: Container(
-              margin: EdgeInsets.only(right: 20),
+              margin: EdgeInsets.only(right: Dimensions.padding * 2),
               width: Dimensions.carouselCardWidth,
               child: Stack(
                 children: <Widget>[
