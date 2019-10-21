@@ -16,7 +16,7 @@ List<UIItem> uilist = [
   ),
   new UIItem(
     id: 2,
-    name: "Hor Air Balloon",
+    name: "Hot Air Balloon",
     designer: "designkes",
     // "designer": "designer",
     source: "dribbble",
