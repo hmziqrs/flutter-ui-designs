@@ -4,6 +4,7 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
+import 'package:flutter_uis/configs/AppDimensions.dart';
 
 import 'package:flutter_uis/blocs/ui_bloc/bloc.dart';
 
@@ -29,11 +30,11 @@ class DesignerProfileScreen extends StatelessWidget {
   }
 
   Widget renderAvatar(UIDesigner designer) {
-    double left = Dimensions.padding * 2;
+    double left = AppDimensions.padding * 2;
 
-    if (Dimensions.getSize().width.floor() - Dimensions.padding * 2 >
-        Dimensions.containerMaxWidth) {
-      left = (Dimensions.getSize().width - Dimensions.containerMaxWidth) / 2;
+    if (UI.width.floor() - AppDimensions.padding * 2 >
+        AppDimensions.maxContainerWidth) {
+      left = (UI.width - AppDimensions.maxContainerWidth) / 2;
     }
 
     return Positioned(
@@ -46,7 +47,7 @@ class DesignerProfileScreen extends StatelessWidget {
           shape: BoxShape.circle,
           color: Colors.black,
           border: Border.all(
-            width: Dimensions.padding,
+            width: AppDimensions.padding,
             // color: Colors.white,
             color: theme.primary,
           ),
@@ -74,72 +75,9 @@ class DesignerProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget renderContent(
-    BuildContext context,
-    UIDesigner designer,
-    List<UIItem> uiList,
-  ) {
-    return Center(
-      child: Container(
-        width: double.infinity,
-        constraints: BoxConstraints(
-          maxWidth: Dimensions.containerMaxWidth,
-        ),
-        padding: EdgeInsets.all(Dimensions.padding * 2),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(
-                top: Dimensions.avatarSize / 2,
-                left: Dimensions.padding,
-              ),
-              child: Text(
-                designer.name,
-                style: TextStyle(
-                  fontSize: 28.0,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-            designer.description != null
-                ? Padding(
-                    padding: EdgeInsets.fromLTRB(
-                      Dimensions.padding,
-                      Dimensions.padding,
-                      Dimensions.padding,
-                      0,
-                    ),
-                    child: Text(
-                      designer.description,
-                      style: TextStyle(
-                        // fontSize: 28.0,
-                        color: Colors.black.withOpacity(0.45),
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  )
-                : Container(),
-            Padding(padding: EdgeInsets.all(Dimensions.padding)),
-            ...this.renderSocialMedia(designer),
-            Padding(padding: EdgeInsets.all(Dimensions.padding)),
-            ...this.renderPortfolio(designer),
-            Padding(padding: EdgeInsets.all(Dimensions.padding)),
-            ...this.renderFreelance(designer),
-            Padding(padding: EdgeInsets.all(Dimensions.padding)),
-            ...this.renderContactMe(designer),
-            Padding(padding: EdgeInsets.all(Dimensions.padding)),
-            ...this.renderMoreUis(designer, uiList),
-            Utils.safePadding(context, "bottom"),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget renderHeading(String text) {
     return Padding(
-      padding: EdgeInsets.all(Dimensions.padding),
+      padding: EdgeInsets.all(AppDimensions.padding),
       child: Text(
         text,
         style: TextStyle(
@@ -310,30 +248,29 @@ class DesignerProfileScreen extends StatelessWidget {
   }) {
     Color color = enable ? theme.primary : Colors.black.withOpacity(0.3);
 
-    final screenSize = Dimensions.getSize().width;
+    final screenSize = UI.width;
+    final max = AppDimensions.maxContainerWidth;
 
-    final width = screenSize > Dimensions.containerMaxWidth
-        ? Dimensions.containerMaxWidth
-        : screenSize;
+    final width = screenSize > max ? max : screenSize;
 
     double buttonWidth =
-        ((width - (Dimensions.padding * 4)) / 2) - Dimensions.padding * 2;
+        ((width - (AppDimensions.padding * 4)) / 2) - AppDimensions.padding * 2;
 
-    if (screenSize > Dimensions.containerMaxWidth) {
-      buttonWidth = (width / 3) - ((Dimensions.padding * 3) + 6);
+    if (screenSize > max) {
+      buttonWidth = (width / 3) - ((AppDimensions.padding * 3) + 6);
     }
 
     return Container(
       width: buttonWidth,
-      margin: EdgeInsets.all(Dimensions.padding),
+      margin: EdgeInsets.all(AppDimensions.padding),
       child: RaisedButton(
         elevation: 0.0,
         color: Colors.white,
         textColor: color,
         highlightElevation: 0.0,
         padding: EdgeInsets.symmetric(
-          vertical: Dimensions.padding * 1.4,
-          horizontal: Dimensions.padding * 2,
+          vertical: AppDimensions.padding * 1.4,
+          horizontal: AppDimensions.padding * 2,
         ),
         shape: RoundedRectangleBorder(
           side: BorderSide(color: color, width: 2),
@@ -344,7 +281,7 @@ class DesignerProfileScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(right: Dimensions.padding / 2),
+              padding: EdgeInsets.only(right: AppDimensions.padding / 2),
               child: Icon(icon),
             ),
             Flexible(
@@ -368,7 +305,7 @@ class DesignerProfileScreen extends StatelessWidget {
   List<Widget> renderMoreUis(UIDesigner designer, List<UIItem> uiList) {
     return [
       Padding(
-        padding: EdgeInsets.all(Dimensions.padding),
+        padding: EdgeInsets.all(AppDimensions.padding),
         child: Text(
           "Explore UIs",
           style: TextStyle(
@@ -384,7 +321,7 @@ class DesignerProfileScreen extends StatelessWidget {
               .map((ui) => UICard(
                     ui,
                     isMini: true,
-                    padding: Dimensions.padding * 2,
+                    padding: AppDimensions.padding * 2,
                     cardWidth: Dimensions.cardWidth,
                     cardHeight: Dimensions.cardHeight,
                   ))
@@ -394,14 +331,76 @@ class DesignerProfileScreen extends StatelessWidget {
     ];
   }
 
+  Widget renderContent(
+    BuildContext context,
+    UIDesigner designer,
+    List<UIItem> uiList,
+  ) {
+    return Center(
+      child: Container(
+        width: double.infinity,
+        constraints: BoxConstraints(
+          maxWidth: AppDimensions.maxContainerWidth,
+        ),
+        padding: EdgeInsets.all(AppDimensions.padding * 2),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(
+                top: Dimensions.avatarSize / 2,
+                left: AppDimensions.padding,
+              ),
+              child: Text(
+                designer.name,
+                style: TextStyle(
+                  fontSize: 28.0,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            designer.description != null
+                ? Padding(
+                    padding: EdgeInsets.fromLTRB(
+                      AppDimensions.padding,
+                      AppDimensions.padding,
+                      AppDimensions.padding,
+                      0,
+                    ),
+                    child: Text(
+                      designer.description,
+                      style: TextStyle(
+                        // fontSize: 28.0,
+                        color: Colors.black.withOpacity(0.45),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  )
+                : Container(),
+            Padding(padding: EdgeInsets.all(AppDimensions.padding)),
+            ...this.renderSocialMedia(designer),
+            Padding(padding: EdgeInsets.all(AppDimensions.padding)),
+            ...this.renderPortfolio(designer),
+            Padding(padding: EdgeInsets.all(AppDimensions.padding)),
+            ...this.renderFreelance(designer),
+            Padding(padding: EdgeInsets.all(AppDimensions.padding)),
+            ...this.renderContactMe(designer),
+            Padding(padding: EdgeInsets.all(AppDimensions.padding)),
+            ...this.renderMoreUis(designer, uiList),
+            Utils.safePadding(context, "bottom"),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final String username = ModalRoute.of(context).settings.arguments;
 
     return OrientationBuilder(
       builder: (BuildContext ctx, Orientation orientation) {
-        UI.init(ctx);
-        Dimensions.init(ctx, orientation: orientation);
+        Dimensions.init(ctx, orientation);
 
         return BlocProvider(
           builder: (context) => UiBloc(),

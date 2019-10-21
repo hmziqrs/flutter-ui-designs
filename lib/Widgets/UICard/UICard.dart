@@ -83,51 +83,52 @@ class UICard extends StatelessWidget {
               arguments: this.item,
             ),
       child: Container(
-        alignment: Alignment.topLeft,
-        child: Container(
-          width: this.cardWidth,
-          height: this.cardHeight,
-          alignment: Alignment.center,
-          child: Stack(
-            children: <Widget>[
-              this.backgroundImage(borderRadius),
-              Positioned(
-                top: this.padding,
-                bottom: this.padding,
-                right: this.padding,
-                left: this.padding,
-                child: Container(
-                  child: Padding(
-                    padding: EdgeInsets.all(this.padding),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          this.item.name,
-                          style: TextStyle(
-                            fontSize: this.isMini ? 20.0 : 24.0,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                          ),
+        width: this.cardWidth,
+        height: this.cardHeight,
+        // constraints: BoxConstraints(
+        //   minHeight: this.isMini ? 100 : 160,
+        //   maxHeight: this.isMini ? 160 : 280,
+        // ),
+        alignment: Alignment.center,
+        child: Stack(
+          children: <Widget>[
+            this.backgroundImage(borderRadius),
+            Positioned(
+              top: this.padding,
+              bottom: this.padding,
+              right: this.padding,
+              left: this.padding,
+              child: Container(
+                child: Padding(
+                  padding: EdgeInsets.all(this.padding),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Text(
+                        this.item.name,
+                        style: TextStyle(
+                          fontSize: this.isMini ? 20.0 : 24.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
                         ),
-                        !this.isMini
-                            ? Text(
-                                "By ${this.item.designer}",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16.0,
-                                ),
-                              )
-                            : Container(),
-                      ],
-                    ),
+                      ),
+                      !this.isMini
+                          ? Text(
+                              "By ${this.item.designer}",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16.0,
+                              ),
+                            )
+                          : Container(),
+                    ],
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
+import 'package:flutter_uis/configs/AppDimensions.dart';
 
-import 'package:flutter_uis/UI.dart';
 import 'Dimensions.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -12,12 +12,35 @@ class HomeScreen extends StatelessWidget {
     {"label": "About Developer", "path": "about", "icon": Icons.ac_unit},
   ];
 
+  List<Widget> renderList(BuildContext context) {
+    return list
+        .map(
+          (item) => Container(
+            width: double.infinity,
+            child: OutlineButton(
+              textColor: theme.primary,
+              borderSide: BorderSide(
+                color: theme.primary.withOpacity(0.2),
+              ),
+              highlightedBorderColor: theme.primary.withOpacity(0.8),
+              onPressed: () => Navigator.of(context).pushNamed(item["path"]),
+              child: Text(
+                item["label"],
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+        )
+        .toList();
+  }
+
   @override
   Widget build(BuildContext buildCtx) {
     return OrientationBuilder(
       builder: (BuildContext context, Orientation orientation) {
-        UI.init(context);
-        Dimensions.init(context, orientation: orientation);
+        Dimensions.init(context, orientation);
 
         return Scaffold(
           backgroundColor: Colors.white,
@@ -25,9 +48,10 @@ class HomeScreen extends StatelessWidget {
             child: Center(
               child: Container(
                 width: double.infinity,
-                constraints:
-                    BoxConstraints(maxWidth: Dimensions.containerMaxWidth),
-                padding: EdgeInsets.all(Dimensions.padding * 2),
+                constraints: BoxConstraints(
+                  maxWidth: AppDimensions.maxContainerWidth,
+                ),
+                padding: EdgeInsets.all(AppDimensions.padding * 3),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -46,30 +70,8 @@ class HomeScreen extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    Padding(padding: EdgeInsets.all(Dimensions.padding)),
-                    ...list
-                        .map(
-                          (item) => Container(
-                            width: double.infinity,
-                            child: OutlineButton(
-                              textColor: theme.primary,
-                              borderSide: BorderSide(
-                                color: theme.primary.withOpacity(0.2),
-                              ),
-                              highlightedBorderColor:
-                                  theme.primary.withOpacity(0.8),
-                              onPressed: () =>
-                                  Navigator.of(context).pushNamed(item["path"]),
-                              child: Text(
-                                item["label"],
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList()
+                    Padding(padding: EdgeInsets.all(AppDimensions.padding)),
+                    ...this.renderList(context),
                   ],
                 ),
               ),

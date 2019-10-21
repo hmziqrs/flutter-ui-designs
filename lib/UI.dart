@@ -41,9 +41,11 @@ class UI {
     //     'pixels: ${size.width * query.devicePixelRatio}x${size.height * query.devicePixelRatio}\n'
     //     'diagonal: $diagonal');
 
-    isTablet = diagonal > 1100.0;
+    isTablet = diagonal > 900.0;
     return isTablet;
   }
 
   static MediaQueryData mediaQuery() => _mediaQueryData;
+
+  static Size getSize() => _mediaQueryData.size;
 }

@@ -1,59 +1,43 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_uis/UI.dart';
 
-class Dimensions {
-  static Size size;
+import 'package:flutter_uis/configs/AppDimensions.dart';
 
-  static double padding;
+class Dimensions {
   static double cardHeight;
   static double cardWidth;
-  static int gridCount;
 
-  static init(
-    BuildContext context, {
-    Orientation orientation = Orientation.portrait,
-  }) {
-    size = MediaQuery.of(context).size;
-    final bool isLandscape = Orientation.landscape == orientation;
+  static init(BuildContext context, Orientation orientation) {
+    AppDimensions.init(context, orientation);
+    initPotrait();
 
-    // padding = UI.horizontal * 3;
-    padding = UI.horizontal * 3;
-    cardHeight = UI.horizontal * 60;
-    cardWidth = UI.horizontal * 100;
-    gridCount = 1;
-
-    if (isLandscape) {
-      cardHeight = (UI.vertical * 30) + UI.horizontal * 25;
-      padding = UI.horizontal * 1.5;
+    if (AppDimensions.isLandscape) {
+      initLandscape();
     }
 
     if (UI.isTablet) {
-      padding = UI.horizontal * 2;
-
-      if (isLandscape) {
-        cardHeight = UI.vertical * 58;
-        cardWidth = UI.horizontal * 50;
-        gridCount = 2;
-      }
-
-      if (UI.diagonal > 1250) {
-        padding = UI.horizontal * 1.8;
-        cardHeight = UI.vertical * 45;
-        gridCount = 2;
-        if (isLandscape) {
-          gridCount = 3;
-          cardHeight = UI.vertical * 50;
-          padding = UI.horizontal * 1.1;
-        }
-      }
+      initTabletPotrait();
+    }
+    if (UI.isTablet && AppDimensions.isLandscape) {
+      initTabletLandscape();
     }
   }
 
-  static Size getSize() {
-    if (size != null) {
-      return size;
+  static initPotrait() {
+    cardHeight = AppDimensions.ratio * 100;
+  }
+
+  static initLandscape() {
+    cardHeight = AppDimensions.ratio * 120;
+  }
+
+  static initTabletPotrait() {
+    cardWidth = (UI.width / 2) - AppDimensions.padding;
+  }
+
+  static initTabletLandscape() {
+    if (UI.diagonal > 1000) {
+      cardWidth = (UI.width / 3) - AppDimensions.padding;
     }
-    return UI.mediaQuery().size;
   }
 }

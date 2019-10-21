@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
+import 'package:flutter_uis/configs/AppDimensions.dart';
 
 import 'package:flutter_uis/blocs/ui_bloc/bloc.dart';
 
 import 'package:flutter_uis/Utils.dart';
-import 'package:flutter_uis/UI.dart';
 
 import 'package:flutter_uis/Widgets/UICard/UICard.dart';
 
@@ -29,8 +29,7 @@ class UiListScreen extends StatelessWidget {
           ),
           child: OrientationBuilder(
             builder: (BuildContext ctx, Orientation orientation) {
-              UI.init(ctx);
-              Dimensions.init(ctx, orientation: orientation);
+              Dimensions.init(ctx, orientation);
 
               return SafeArea(
                 bottom: false,
@@ -42,14 +41,12 @@ class UiListScreen extends StatelessWidget {
                       slivers: <Widget>[
                         Utils.safePadding(ctx, 'top', true),
                         SliverPadding(
-                          padding: EdgeInsets.only(
-                            bottom: Dimensions.padding,
-                          ),
+                          padding: EdgeInsets.all(AppDimensions.padding),
                         ),
                         SliverToBoxAdapter(
                           child: Padding(
                             padding: EdgeInsets.symmetric(
-                              horizontal: Dimensions.padding * 2,
+                              horizontal: AppDimensions.padding * 3,
                             ),
                             child: Text(
                               "Explore UIs",
@@ -61,27 +58,27 @@ class UiListScreen extends StatelessWidget {
                           ),
                         ),
                         SliverPadding(
-                          padding: EdgeInsets.all(Dimensions.padding),
-                          sliver: SliverGrid.count(
-                            childAspectRatio:
-                                Dimensions.cardWidth / Dimensions.cardHeight,
-                            crossAxisCount: Dimensions.gridCount,
-                            children: list
-                                .map(
-                                  (ui) => UICard(
-                                    ui,
-                                    padding: Dimensions.padding,
-                                    cardWidth: Dimensions.cardWidth,
-                                    cardHeight: Dimensions.cardHeight,
-                                  ),
-                                )
-                                .toList(),
+                          padding: EdgeInsets.all(AppDimensions.padding),
+                          sliver: SliverToBoxAdapter(
+                            child: Wrap(
+                              alignment: WrapAlignment.spaceBetween,
+                              children: list
+                                  .map(
+                                    (ui) => UICard(
+                                      ui,
+                                      padding: AppDimensions.padding * 2,
+                                      cardWidth: Dimensions.cardWidth,
+                                      cardHeight: Dimensions.cardHeight,
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
                           ),
                         ),
                         SliverPadding(
-                          padding: EdgeInsets.all(Dimensions.padding * 1.5),
+                          padding: EdgeInsets.all(AppDimensions.padding * 3),
                         ),
-                        // Utils.safePadding(context, 'bottom', true),
+                        Utils.safePadding(context, 'bottom', true),
                       ],
                     );
                   },

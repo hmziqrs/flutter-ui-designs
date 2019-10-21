@@ -4,11 +4,12 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:url_launcher/url_launcher.dart' as url;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/blocs/ui_bloc/bloc.dart';
 
+import 'package:flutter_uis/configs/Theme.dart' as theme;
+import 'package:flutter_uis/configs/AppDimensions.dart';
+
 import 'package:flutter_uis/Utils.dart';
-import 'package:flutter_uis/UI.dart';
 
 import 'package:flutter_uis/Widgets/UICard/UICard.dart';
 
@@ -32,88 +33,6 @@ class UiDetailScreen extends StatelessWidget {
     );
   }
 
-  renderContent(BuildContext context, UIItem uiItem, List<UIItem> list) {
-    return Center(
-      child: Container(
-        constraints: BoxConstraints(
-          maxWidth: Dimensions.containerMaxWidth,
-        ),
-        padding: EdgeInsets.all(Dimensions.padding * 2),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: Dimensions.padding,
-              ),
-              child: Text(
-                uiItem.name,
-                style: TextStyle(
-                  fontSize: 28.0,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: Dimensions.padding,
-              ),
-              child: Text(
-                "By ${uiItem.designer}",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16.0,
-                ),
-              ),
-            ),
-            Padding(padding: EdgeInsets.all(Dimensions.padding)),
-            Row(
-              // crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                this.renderButton(
-                  "Open App",
-                  () => Navigator.of(context).pushNamed(
-                    uiItem.miniApp,
-                  ),
-                ),
-                this.renderButton(
-                  "View UI Source",
-                  () async {
-                    bool can = await url.canLaunch(uiItem.link);
-                    if (can) {
-                      await url.launch(uiItem.link);
-                    } else {
-                      print("ERROR");
-                    }
-                  },
-                ),
-              ],
-            ),
-            this.renderSupport(uiItem),
-            Padding(padding: EdgeInsets.all(Dimensions.padding)),
-            ...this.renderMoreUis(uiItem, list),
-            Row(
-              children: <Widget>[
-                Flexible(child: Container()),
-                this.renderButton(
-                  "Contact ${uiItem.designer}",
-                  () => Navigator.of(context).pushReplacementNamed(
-                    "designerProfile",
-                    arguments: uiItem.designer,
-                  ),
-                  flex: 5,
-                ),
-                Flexible(child: Container()),
-              ],
-            ),
-            Utils.safePadding(context, 'bottom'),
-            // this.renderDesignerProfile(),
-          ],
-        ),
-      ),
-    );
-  }
-
   renderButton(
     String text,
     Function callback, {
@@ -124,16 +43,16 @@ class UiDetailScreen extends StatelessWidget {
       flex: flex,
       child: Container(
         width: width,
-        margin: EdgeInsets.all(Dimensions.padding),
-        padding: EdgeInsets.all(Dimensions.padding),
+        margin: EdgeInsets.all(AppDimensions.padding),
+        padding: EdgeInsets.all(AppDimensions.padding),
         child: RaisedButton(
           elevation: 0.0,
           color: Colors.white,
           textColor: theme.primary,
           highlightElevation: 0.0,
           padding: EdgeInsets.symmetric(
-            // horizontal: Dimensions.padding * 9,
-            vertical: Dimensions.padding * 2,
+            // horizontal: AppDimensions.padding * 9,
+            vertical: AppDimensions.padding * 2,
           ),
           shape: RoundedRectangleBorder(
             side: BorderSide(color: theme.primary, width: 2),
@@ -154,12 +73,12 @@ class UiDetailScreen extends StatelessWidget {
 
   Widget renderSupport(UIItem uiItem) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: Dimensions.padding),
+      padding: EdgeInsets.symmetric(vertical: AppDimensions.padding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.all(Dimensions.padding),
+            padding: EdgeInsets.all(AppDimensions.padding),
             child: Text(
               "Platform & Screens",
               style: TextStyle(
@@ -168,7 +87,7 @@ class UiDetailScreen extends StatelessWidget {
               ),
             ),
           ),
-          Padding(padding: EdgeInsets.all(Dimensions.padding)),
+          Padding(padding: EdgeInsets.all(AppDimensions.padding)),
           Row(
             children: [
               this.renderSupportBox(
@@ -224,7 +143,7 @@ class UiDetailScreen extends StatelessWidget {
               label,
               style: TextStyle(
                 color: color,
-                fontSize: 11,
+                fontSize: 4 * AppDimensions.ratio,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -242,7 +161,7 @@ class UiDetailScreen extends StatelessWidget {
     }
     return [
       Padding(
-        padding: EdgeInsets.all(Dimensions.padding),
+        padding: EdgeInsets.all(AppDimensions.padding),
         child: Text(
           "More UIs from ${uiItem.designer}",
           style: TextStyle(
@@ -258,7 +177,7 @@ class UiDetailScreen extends StatelessWidget {
               .map((ui) => UICard(
                     ui,
                     isMini: true,
-                    padding: Dimensions.padding * 2,
+                    padding: AppDimensions.padding * 2,
                     cardWidth: Dimensions.cardWidth,
                     cardHeight: Dimensions.cardHeight,
                   ))
@@ -268,14 +187,96 @@ class UiDetailScreen extends StatelessWidget {
     ];
   }
 
+  renderContent(BuildContext context, UIItem uiItem, List<UIItem> list) {
+    return Center(
+      child: Container(
+        // width: 100,
+        constraints: BoxConstraints(
+          maxWidth: AppDimensions.maxContainerWidth,
+        ),
+        padding: EdgeInsets.all(AppDimensions.padding),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: AppDimensions.padding,
+              ),
+              child: Text(
+                uiItem.name,
+                style: TextStyle(
+                  fontSize: 28.0,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: AppDimensions.padding,
+              ),
+              child: Text(
+                "By ${uiItem.designer}",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 16.0,
+                ),
+              ),
+            ),
+            Padding(padding: EdgeInsets.all(AppDimensions.padding)),
+            Row(
+              // crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                this.renderButton(
+                  "Open App",
+                  () => Navigator.of(context).pushNamed(
+                    uiItem.miniApp,
+                  ),
+                ),
+                this.renderButton(
+                  "View UI Source",
+                  () async {
+                    bool can = await url.canLaunch(uiItem.link);
+                    if (can) {
+                      await url.launch(uiItem.link);
+                    } else {
+                      print("ERROR");
+                    }
+                  },
+                ),
+              ],
+            ),
+            this.renderSupport(uiItem),
+            Padding(padding: EdgeInsets.all(AppDimensions.padding)),
+            ...this.renderMoreUis(uiItem, list),
+            Row(
+              children: <Widget>[
+                Flexible(child: Container()),
+                this.renderButton(
+                  "Contact ${uiItem.designer}",
+                  () => Navigator.of(context).pushReplacementNamed(
+                    "designerProfile",
+                    arguments: uiItem.designer,
+                  ),
+                  flex: 5,
+                ),
+                Flexible(child: Container()),
+              ],
+            ),
+            Utils.safePadding(context, 'bottom'),
+            // this.renderDesignerProfile(),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final UIItem uiItem = ModalRoute.of(context).settings.arguments;
 
     return OrientationBuilder(
       builder: (BuildContext ctx, Orientation orientation) {
-        UI.init(ctx);
-        Dimensions.init(ctx, orientation: orientation);
+        Dimensions.init(ctx, orientation);
 
         return BlocProvider(
           builder: (context) => UiBloc(),
@@ -305,8 +306,9 @@ class UiDetailScreen extends StatelessWidget {
                       ],
                     ),
                     Positioned(
-                      top: MediaQuery.of(context).padding.top,
-                      left: 0,
+                      top: MediaQuery.of(context).padding.top +
+                          AppDimensions.padding,
+                      left: AppDimensions.padding,
                       child: BackButton(),
                     ),
                   ],
