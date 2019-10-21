@@ -7,9 +7,21 @@ import 'Dimensions.dart';
 
 class HomeScreen extends StatelessWidget {
   final list = [
-    {"label": "Explore UIs", "path": 'uiList', "icon": Icons.explore},
-    {"label": "About App", "path": "about", "icon": Icons.ac_unit},
-    {"label": "About Developer", "path": "about", "icon": Icons.ac_unit},
+    {
+      "label": "Explore UIs",
+      "path": 'uiList',
+      "icon": Icons.explore,
+    },
+    {
+      "label": "About App",
+      "path": "about",
+      "icon": Icons.ac_unit,
+    },
+    {
+      "label": "About Developer",
+      "path": "aboutDesigner",
+      "icon": Icons.ac_unit
+    },
   ];
 
   List<Widget> renderList(BuildContext context) {
