@@ -51,7 +51,6 @@ class UiDetailScreen extends StatelessWidget {
           textColor: theme.primary,
           highlightElevation: 0.0,
           padding: EdgeInsets.symmetric(
-            // horizontal: AppDimensions.padding * 9,
             vertical: AppDimensions.padding * 2,
           ),
           shape: RoundedRectangleBorder(
@@ -62,7 +61,7 @@ class UiDetailScreen extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-              fontSize: 17,
+              fontSize: 7 * AppDimensions.ratio,
               fontWeight: FontWeight.w600,
             ),
           ),

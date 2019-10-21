@@ -15,7 +15,7 @@ class Utils {
   static darkStatusBar() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
       statusBarIconBrightness: Brightness.dark,
-      systemNavigationBarIconBrightness: Brightness.dark,
+      // systemNavigationBarIconBrightness: Brightness.dark,
     ));
   }
 
@@ -42,7 +42,7 @@ class Utils {
 
   static soicalLink(username, platform) {
     String base = 'https://';
-    final coms = ['facebook', 'instagram', 'dribble', 'fiverr'];
+    final coms = ['facebook', 'instagram', 'dribbble', 'fiverr'];
     final nets = ['behance'];
 
     if (coms.contains(platform)) {

@@ -290,7 +290,7 @@ class DesignerProfileScreen extends StatelessWidget {
                   text,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    fontSize: 15,
+                    fontSize: AppDimensions.ratio * 7,
                     fontWeight: FontWeight.w600,
                   ),
                 ),

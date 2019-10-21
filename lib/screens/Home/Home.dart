@@ -51,7 +51,10 @@ class HomeScreen extends StatelessWidget {
                 constraints: BoxConstraints(
                   maxWidth: AppDimensions.maxContainerWidth,
                 ),
-                padding: EdgeInsets.all(AppDimensions.padding * 3),
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppDimensions.padding * 2,
+                  vertical: AppDimensions.padding,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

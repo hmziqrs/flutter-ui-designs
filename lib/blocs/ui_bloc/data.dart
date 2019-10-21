@@ -68,7 +68,7 @@ List<UIDesigner> designersList = [
     location: null,
     facebook: null,
     twitter: null,
-    instagram: "firdsm",
+    instagram: "designkes",
     linkedin: null,
     skype: null,
     dribbble: "designkes",
