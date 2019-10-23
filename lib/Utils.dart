@@ -55,6 +55,8 @@ class Utils {
       return "mailto:$username";
     } else if (platform == 'phone') {
       return "tel:$username";
+    } else if (platform == 'whatsapp') {
+      return "https://api.whatsapp.com/send?phone=$username";
     }
   }
 

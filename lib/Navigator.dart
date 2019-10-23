@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 
+import './configs/Theme.dart' as theme;
+
 import './screens/Home/Home.dart';
+import './screens/AboutApp/AboutApp.dart';
+import './screens/AboutDesigner/AboutDesigner.dart';
 import './screens/UiList/UiList.dart';
 import './screens/UiDetail/UIDetail.dart';
 import './screens/DesignerProfile/DesignerProfile.dart';
@@ -25,6 +29,8 @@ class AppNavigator extends StatelessWidget {
     return new MaterialApp(
       theme: ThemeData(
         fontFamily: "Muli",
+        primaryColor: theme.primary,
+        accentColor: theme.primary,
       ),
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: analytics),
@@ -32,6 +38,8 @@ class AppNavigator extends StatelessWidget {
       home: HomeScreen(),
       routes: <String, WidgetBuilder>{
         "home": (ctx) => new HomeScreen(),
+        "about": (ctx) => new AboutAppScreen(),
+        "aboutDesigner": (ctx) => new AboutDesignerScreen(),
         "uiList": (ctx) => new UiListScreen(),
         "uiDetail": (ctx) => new UiDetailScreen(),
         "designerProfile": (ctx) => new DesignerProfileScreen(),
