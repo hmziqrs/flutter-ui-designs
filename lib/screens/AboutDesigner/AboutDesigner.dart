@@ -118,7 +118,7 @@ class AboutDesignerScreen extends StatelessWidget {
             top: AppDimensions.padding,
           ),
           child: Text(
-            "Hi, I'm Hamza freelance developer. I've been developing end to end solutions from backend services to web app & mobile apps for two years. I Always use latest sate of the art technologies & implement flexible & readable code architectrue so most of the code can be use in different projects as well.\n\n" +
+            "Hi, I'm Hamza freelance developer. I've been developing end to end solutions from backend services to web apps & mobile apps for two years. I always use latest sate of the art technologies & implement flexible & readable code architectrue so most of code base is usable in different projects as well.\n\n" +
                 "Besides all the technical stuff I like to spend my free time by playing Clash Royale & Rise of Kingdoms, Watch anime, dramas & movies. I'm not the fan of reading books.",
             style: TextStyle(),
           ),

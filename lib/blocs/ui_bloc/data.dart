@@ -35,6 +35,8 @@ List<UIItem> uilist = [
     miniApp: "skHome",
     link: "https://designkes.com/designs/mobile/skyview-mars/",
     thumbnail: "assets/thumbnails/sky_view.jpg",
+    tabletSupport: true,
+    landscapeSupport: true,
   ),
 ];
 

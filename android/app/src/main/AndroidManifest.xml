@@ -11,7 +11,7 @@
 
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="flutter_uis"
+        android:label="Flutter UI Designs"
         android:icon="@mipmap/ic_launcher">
 
         <activity
