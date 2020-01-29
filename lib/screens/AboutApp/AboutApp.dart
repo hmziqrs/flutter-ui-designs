@@ -96,7 +96,7 @@ class AboutAppScreen extends StatelessWidget {
                         point: true,
                       ),
                       this.text(
-                        "Difficulty of adapting the languade & framework.",
+                        "Difficulty of adapting the dart enviroment & framework.",
                         point: true,
                       ),
                       this.text(
@@ -119,30 +119,30 @@ class AboutAppScreen extends StatelessWidget {
                         padding: EdgeInsets.all(AppDimensions.padding * 1.5),
                       ),
                       this.text(
-                        "Well for starters I fell in love with flutter at first glance because of no native rendering (Same render/behaviour on different platforms) & lightning fast hot reload. There's so much to talk about but I'll get to my conclusion.",
+                        "Well for starters I fell in love with flutter at first glance because of no native rendering (Same render/behaviour on different platforms), lightning fast hot reload & near to no configuration to install native libraries. There's so much to talk about but I'll get to my conclusion.",
                       ),
                       this.text(
-                        "It's very close to native & performance difference isn't noticable.",
+                        "It's very close to native & performance difference isn't even noticable.",
                         point: true,
                       ),
                       this.text(
-                        "As you can see in UI designs animations are running smooth without any glitches.",
+                        "As you can see in UI designs animations are running smooth without any glitches at 60FPS.",
                         point: true,
                       ),
                       this.text(
-                        "Someone with Java, Javascript or React Native background it's easy to adapt flutter & dart.",
+                        "Someone with Java/Kotlin, Javascript or React Native background it's easy to adapt dart & flutter & Mostly it depends on developer's interest to learn.",
                         point: true,
                       ),
                       this.text(
-                        "Yes, Thanks to the widget system in flutter.",
+                        "Yes, Thanks to the widget system in flutter you can implement different kinds of architectures.",
                         point: true,
                       ),
                       this.text(
-                        "Yes, As you can see this app supports variety of screen sizes, landscape & tablet devices.",
+                        "Yes, As you can see this app supports variety of screen sizes, landscape, tablets/iPads, Web & Desktop applications.",
                         point: true,
                       ),
                       this.text(
-                        "UI part of framework is true cross platform except some native plugin.",
+                        "UI part of the framework is true cross platform but most of native packages lacks support for desktop and web platfrom.",
                         point: true,
                       ),
                       this.text(
@@ -153,7 +153,7 @@ class AboutAppScreen extends StatelessWidget {
                         padding: EdgeInsets.all(AppDimensions.padding * 1.5),
                       ),
                       this.text(
-                        "I don't have any copyrights overs designs that's pusblished in this app. I asked for the perimission of designers before I published UIs. And I've gave credit & put every information(as much as I could find) of designers.",
+                        "I don't own any designs that's pusblished in this app. I asked for the perimission of designers before I published UIs. And I've gave credit & put all contact information(as much as I could find) of designers.",
                         textStyle: TextStyle(
                           color: theme.primary,
                         ),

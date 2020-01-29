@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -7,53 +8,56 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import 'Dimensions.dart';
 
+final skills = [
+  "HTML",
+  "CSS",
+  "Javascript",
+  "JQuery",
+  "React JS",
+  "React SSR",
+  "Redux",
+  "React Native",
+  "Dart",
+  "Flutter",
+  "Firebase",
+  "Photoshop",
+  "Basic UI designs",
+  "Node JS",
+  "Express JS",
+  "MYSQL",
+  "Mongo DB",
+  "Socket.IO",
+  "Go lang",
+  "Dart Server",
+];
+
+final contacts = [
+  {
+    "platform": "facebook",
+    "username": "hackerhgl",
+    "icon": MaterialCommunityIcons.facebook,
+  },
+  {
+    "platform": "instagram",
+    "username": "hackerhgl",
+    "icon": MaterialCommunityIcons.instagram,
+  },
+  {
+    "platform": "skype",
+    "username": "hamza.iqbal.jawaid.iqbal",
+    "icon": MaterialCommunityIcons.skype_business
+  },
+  {
+    "platform": "whatsapp",
+    "username": "+923148155304",
+    "icon": MaterialCommunityIcons.whatsapp
+  },
+];
+
 class AboutDesignerScreen extends StatelessWidget {
-  final skills = [
-    "HTML",
-    "CSS",
-    "Javascript",
-    "JQuery",
-    "React JS",
-    "React SSR",
-    "Redux",
-    "React Native",
-    "Dart",
-    "Flutter",
-    "Firebase",
-    "Photoshop",
-    "Basic UI designs",
-    "Node JS",
-    "Express JS",
-    "MYSQL",
-    "Socket.IO",
-    "Go lang",
-    "Dart Server",
-  ];
+  final screenKey = GlobalKey<ScreenState>();
 
-  final contacts = [
-    {
-      "platform": "facebook",
-      "username": "hackerhgl",
-      "icon": MaterialCommunityIcons.facebook,
-    },
-    {
-      "platform": "instagram",
-      "username": "hackerhgl",
-      "icon": MaterialCommunityIcons.instagram,
-    },
-    {
-      "platform": "skype",
-      "username": "hamza.iqbal.jawaid.iqbal",
-      "icon": MaterialCommunityIcons.skype_business
-    },
-    {
-      "platform": "whatsapp",
-      "username": "+923148155304",
-      "icon": MaterialCommunityIcons.whatsapp
-    },
-  ];
-
-  Widget renderContent(BuildContext context) {
+  Widget buildContent(BuildContext context) {
     final textStyle = Theme.of(context).textTheme.body1.copyWith(
           color: Colors.white,
         );
@@ -62,19 +66,18 @@ class AboutDesignerScreen extends StatelessWidget {
       children: <Widget>[
         Container(
           height: Dimensions.redBackground,
-          decoration: BoxDecoration(color: theme.primary, boxShadow: [
-            BoxShadow(
-              // color: theme.primary,
-              color: theme.primary.withOpacity(0.4),
-              blurRadius: 10,
-              spreadRadius: 3,
-            ),
-          ]),
+          decoration: BoxDecoration(
+            color: theme.primary,
+            boxShadow: [
+              BoxShadow(
+                color: theme.primary.withOpacity(0.4),
+                blurRadius: 10,
+                spreadRadius: 3,
+              ),
+            ],
+          ),
         ),
         Container(
-          // decoration: BoxDecoration(
-          //   color: theme.darkBackground,
-          // ),
           child: Center(
             child: Container(
               padding: EdgeInsets.all(AppDimensions.padding),
@@ -118,9 +121,8 @@ class AboutDesignerScreen extends StatelessWidget {
             top: AppDimensions.padding,
           ),
           child: Text(
-            "Hi, I'm Hamza freelance developer. I've been developing end to end solutions from backend services to web apps & mobile apps for two years. I always use latest sate of the art technologies & implement flexible & readable code architectrue so most of code base is usable in different projects as well.\n\n" +
-                "Besides all the technical stuff I like to spend my free time by playing Clash Royale & Rise of Kingdoms, Watch anime, dramas & movies. I'm not the fan of reading books.",
-            style: TextStyle(),
+            "Hi, I'm Hamza freelance developer. I've been developing end to end solutions from backend services to web apps & mobile apps for more than two years. I use latest sate of the art technologies & implement flexible code architectrue so it's easy to understand & some of the code base could be use in different projects as well.\n\n" +
+                "Besides all the technical stuff I like to spend my free time by playing Clash Royale & Rise of Kingdoms, Watch anime, k-drama, movie & read book sometime.",
           ),
         ),
         Padding(
@@ -141,8 +143,7 @@ class AboutDesignerScreen extends StatelessWidget {
             top: AppDimensions.padding,
           ),
           child: Wrap(
-            children: this
-                .skills
+            children: skills
                 .map(
                   (skill) => Container(
                     margin: EdgeInsets.all(AppDimensions.padding * 1),
@@ -194,19 +195,24 @@ class AboutDesignerScreen extends StatelessWidget {
             left: AppDimensions.padding,
           ),
           child: Column(
-            children: this
-                .contacts
+            children: contacts
                 .map(
                   (contact) => Padding(
                     padding:
                         EdgeInsets.symmetric(vertical: AppDimensions.padding),
                     child: OutlineButton(
-                      onPressed: () => Utils.launchUrl(Utils.soicalLink(
-                        contact["username"],
-                        contact["platform"],
-                      )),
+                      onPressed: () async {
+                        final check = await Utils.launchUrl(Utils.socialLink(
+                          contact["username"],
+                          contact["platform"],
+                        ));
+                        if (!check) {
+                          this.screenKey.currentState.showPopUp();
+                        }
+                      },
                       padding: EdgeInsets.symmetric(
-                          vertical: AppDimensions.padding * 1.2),
+                        vertical: AppDimensions.padding * 1.2,
+                      ),
                       color: theme.primary,
                       textColor: theme.primary,
                       highlightedBorderColor: theme.primary,
@@ -243,7 +249,7 @@ class AboutDesignerScreen extends StatelessWidget {
     );
   }
 
-  Widget renderAvatar() {
+  Widget buildAvatar() {
     return Positioned(
       left: 0,
       right: 0,
@@ -265,29 +271,36 @@ class AboutDesignerScreen extends StatelessWidget {
         child: CircleAvatar(
           radius: Dimensions.avatarSize / 2,
           backgroundImage: AssetImage("assets/user/hamza.jpg"),
+          backgroundColor: theme.primary,
         ),
       ),
     );
   }
 
-  @override
-  Widget build(BuildContext buildCtx) {
-    return OrientationBuilder(
-      builder: (BuildContext context, Orientation orientation) {
-        Dimensions.init(context, orientation);
+  Widget buildBackButton(context) {
+    return Positioned(
+      child: Padding(
+        padding: Utils.safePaddingUnit(context, "all"),
+        child: BackButton(),
+      ),
+    );
+  }
 
-        return Scaffold(
-          backgroundColor: theme.darkBackground,
-          body: SingleChildScrollView(
-            child: Stack(
-              children: <Widget>[
-                this.renderContent(context),
-                this.renderAvatar(),
-              ],
-            ),
-          ),
-        );
-      },
+  @override
+  Widget build(BuildContext context) {
+    return Screen(
+      Dimensions.init,
+      key: this.screenKey,
+      scaffoldBackgroundColor: theme.darkBackground,
+      builder: (_) => SingleChildScrollView(
+        child: Stack(
+          children: <Widget>[
+            this.buildContent(context),
+            this.buildAvatar(),
+            this.buildBackButton(context),
+          ],
+        ),
+      ),
     );
   }
 }

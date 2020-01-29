@@ -9,50 +9,22 @@ class Dimensions {
 
   static double cardHeight;
   static double cardWidth;
+  static double buttonWidth;
 
-  static init(BuildContext context, Orientation orientation) {
-    AppDimensions.init(context, orientation);
+  static init(BuildContext context) {
+    AppDimensions.init(context);
 
-    final bool isLandscape = Orientation.landscape == orientation;
+    coverImageHeight = 260;
+    cardWidth = 280;
+    cardHeight = 160;
+    buttonWidth =
+        (AppDimensions.maxContainerWidth - (AppDimensions.padding * 6)) / 2;
 
-    initPotrait();
-
-    if (isLandscape) {
-      initLandscape();
+    if (UI.lg && UI.height > 600) {
+      coverImageHeight = 380;
     }
-    if (UI.isTablet) {
-      initTabletPotrait();
+    if (UI.xlg && UI.height > 800) {
+      coverImageHeight = 500;
     }
-    if (UI.isTablet && isLandscape) {
-      initTabletLandscape();
-    }
-  }
-
-  static initPotrait() {
-    coverImageHeight = AppDimensions.ratio * 100;
-
-    cardWidth = AppDimensions.ratio * 140;
-    cardHeight = AppDimensions.ratio * 85;
-  }
-
-  static initLandscape() {
-    coverImageHeight = AppDimensions.ratio * 120;
-
-    cardWidth = AppDimensions.ratio * 140;
-    cardHeight = AppDimensions.ratio * 85;
-  }
-
-  static initTabletPotrait() {
-    coverImageHeight = AppDimensions.ratio * 200;
-
-    cardWidth = AppDimensions.ratio * 160;
-    cardHeight = AppDimensions.ratio * 90;
-  }
-
-  static initTabletLandscape() {
-    coverImageHeight = AppDimensions.ratio * 220;
-
-    cardWidth = AppDimensions.ratio * 180;
-    cardHeight = AppDimensions.ratio * 100;
   }
 }

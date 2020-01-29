@@ -32,7 +32,8 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     compileSdkVersion 29
-    buildToolsVersion '29.0.1'
+    // buildToolsVersion '29.0.1'
+
     lintOptions {
         disable 'InvalidPackage'
     }
@@ -71,6 +72,7 @@ flutter {
 }
 
 dependencies {
+    implementation "androidx.core:core-ktx:1.0.1"
     implementation 'androidx.multidex:multidex:2.0.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'

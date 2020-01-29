@@ -7,37 +7,24 @@ class Dimensions {
   static double cardHeight;
   static double cardWidth;
 
-  static init(BuildContext context, Orientation orientation) {
-    AppDimensions.init(context, orientation);
-    initPotrait();
+  static init(BuildContext context) {
+    AppDimensions.init(context);
+    cardHeight = 200;
 
-    if (AppDimensions.isLandscape) {
-      initLandscape();
+    final cardBase = UI.safeWidth - AppDimensions.padding * 3;
+    cardWidth = null;
+
+    if (UI.md) {
+      cardWidth = cardBase / 2;
     }
-
-    if (UI.isTablet) {
-      initTabletPotrait();
+    if (UI.lg) {
+      cardWidth = cardBase / 3;
     }
-    if (UI.isTablet && AppDimensions.isLandscape) {
-      initTabletLandscape();
+    if (UI.xlg) {
+      cardWidth = cardBase / 4;
     }
-  }
-
-  static initPotrait() {
-    cardHeight = AppDimensions.ratio * 100;
-  }
-
-  static initLandscape() {
-    cardHeight = AppDimensions.ratio * 120;
-  }
-
-  static initTabletPotrait() {
-    cardWidth = (UI.width / 2) - AppDimensions.padding;
-  }
-
-  static initTabletLandscape() {
-    if (UI.diagonal > 1000) {
-      cardWidth = (UI.width / 3) - AppDimensions.padding;
+    if (UI.xxlg) {
+      cardWidth = cardBase / 5;
     }
   }
 }

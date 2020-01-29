@@ -4,23 +4,33 @@ import 'package:flutter_uis/UI.dart';
 
 class AppDimensions {
   // Constants
-  static double maxContainerWidth = 540.0;
+  static double maxContainerWidth;
 
   // Changes based on screen size
   static bool isLandscape;
   static double padding;
   static double ratio;
 
-  static init(BuildContext context, Orientation orientation) {
+  static init(BuildContext context) {
     UI.init(context);
 
-    isLandscape = orientation == Orientation.landscape;
+    maxContainerWidth = 540.0;
 
-    if (isLandscape) {
-      initLandscape();
-    } else {
-      initPortrait();
+    if (UI.lg) {
+      maxContainerWidth = 700.0;
     }
+    if (UI.xl) {
+      maxContainerWidth = 820.0;
+    }
+    if (UI.xlg) {
+      maxContainerWidth = 1000.0;
+    }
+
+    if (maxContainerWidth > UI.getSize().width) {
+      maxContainerWidth = UI.getSize().width;
+    }
+
+    initPortrait();
   }
 
   static initPortrait() {
@@ -31,21 +41,21 @@ class AppDimensions {
     if (UI.width <= 380 && pixelDensity >= 3) {
       ratio *= 0.85;
     }
+    // print('Utils.isDesktop() ${Utils.isDesktop()}');
+    initLargeScreens();
 
     padding = ratio * 3;
     // padding = UI.vertical;
   }
 
-  static initLandscape() {
-    ratio = UI.height / UI.width;
-    double pixelDensity = UI.mediaQuery().devicePixelRatio;
-    ratio = (ratio) + ((pixelDensity + ratio) / 2);
+  static initLargeScreens() {
+    final safe = 2.4;
 
-    if (UI.height <= 380 && pixelDensity >= 3) {
-      ratio *= 0.85;
+    ratio *= 1.5;
+
+    if (ratio > safe) {
+      ratio = safe;
     }
-
-    padding = ratio * 3;
   }
 
   static String inString() {
