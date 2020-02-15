@@ -5,54 +5,34 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/UI.dart';
 
 class Dimensions {
-  static double coverImageHeight;
   static double avatarSize;
+  static double coverImageHeight;
 
-  static double cardHeight;
+  static double buttonWidth;
+
   static double cardWidth;
+  static double cardHeight;
 
-  static init(BuildContext context, Orientation orientation) {
-    AppDimensions.init(context, orientation);
+  static void init(BuildContext context) {
+    AppDimensions.init(context);
 
-    final bool isLandscape = Orientation.landscape == orientation;
-
-    initPotrait();
-
-    if (isLandscape) {
-      initLandscape();
-    }
-    if (UI.isTablet) {
-      initTabletPotrait();
-    }
-    if (UI.isTablet && isLandscape) {
-      initTabletLandscape();
-    }
-  }
-
-  static initPotrait() {
-    coverImageHeight = AppDimensions.ratio * 100;
+    cardWidth = 280;
+    cardHeight = 160;
     avatarSize = AppDimensions.padding * 14;
-    cardWidth = AppDimensions.ratio * 140;
-    cardHeight = AppDimensions.ratio * 85;
-  }
+    coverImageHeight = AppDimensions.ratio * 100;
+    buttonWidth =
+        (AppDimensions.maxContainerWidth - 2 - (AppDimensions.padding * 8)) / 2;
 
-  static initLandscape() {
-    coverImageHeight = AppDimensions.ratio * 120;
-    cardWidth = AppDimensions.ratio * 140;
-    cardHeight = AppDimensions.ratio * 85;
-  }
-
-  static initTabletPotrait() {
-    coverImageHeight = AppDimensions.ratio * 200;
-    avatarSize = AppDimensions.padding * 22;
-    cardWidth = AppDimensions.ratio * 160;
-    cardHeight = AppDimensions.ratio * 90;
-  }
-
-  static initTabletLandscape() {
-    coverImageHeight = AppDimensions.ratio * 220;
-    avatarSize = AppDimensions.padding * 22;
-    cardWidth = AppDimensions.ratio * 180;
-    cardHeight = AppDimensions.ratio * 100;
+    if (UI.md && UI.height > 480) {
+      avatarSize = AppDimensions.padding * 17;
+      coverImageHeight = AppDimensions.ratio * 130;
+    }
+    if (UI.lg && UI.height > 600) {
+      avatarSize = AppDimensions.padding * 20;
+      coverImageHeight = AppDimensions.ratio * 160;
+    }
+    if (UI.xlg && UI.height > 800) {
+      coverImageHeight = AppDimensions.ratio * 200;
+    }
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:url_launcher/url_launcher.dart' as url;
+import 'package:universal_io/io.dart';
 // import 'package:device_info/device_info.dart';
 
 class Utils {
@@ -34,16 +35,25 @@ class Utils {
   }
 
   static launchUrl(link) async {
-    final bool safeCheck = await url.canLaunch(link);
-    if (safeCheck) {
-      await url.launch(link);
+    try {
+      final bool safeCheck = await url.canLaunch(link);
+      if (safeCheck) {
+        await url.launch(link);
+      }
+      return safeCheck;
+    } catch (e) {
+      return false;
     }
   }
 
-  static soicalLink(username, platform) {
+  static socialLink(username, platform) {
     String base = 'https://';
     final coms = ['facebook', 'instagram', 'dribbble', 'fiverr'];
     final nets = ['behance'];
+
+    if (username == null) {
+      return null;
+    }
 
     if (coms.contains(platform)) {
       return "${base + platform}.com/$username";
@@ -99,5 +109,9 @@ class Utils {
       return SliverPadding(padding: paddingWidget);
     }
     return Padding(padding: paddingWidget);
+  }
+
+  static bool isDesktop() {
+    return Platform.isMacOS || Platform.isWindows;
   }
 }

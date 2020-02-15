@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 
 class UI {
   static MediaQueryData _mediaQueryData;
@@ -10,15 +11,25 @@ class UI {
 
   static double _safeAreaHorizontal;
   static double _safeAreaVertical;
-  static double safeBlockHorizontal;
-  static double safeBlockVertical;
+  static double safeWidth;
+  static double safeHeight;
 
   static bool isTablet;
   static double diagonal;
 
+  static bool xxs;
+  static bool xs;
+  static bool sm;
+  static bool md;
+  static bool xmd;
+  static bool lg;
+  static bool xl;
+  static bool xlg;
+  static bool xxlg;
+
   static void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
-    initTablet(_mediaQueryData);
+    initChecks(_mediaQueryData);
 
     width = _mediaQueryData.size.width;
     height = _mediaQueryData.size.height;
@@ -29,20 +40,30 @@ class UI {
         _mediaQueryData.padding.left + _mediaQueryData.padding.right;
     _safeAreaVertical =
         _mediaQueryData.padding.top + _mediaQueryData.padding.bottom;
-    safeBlockHorizontal = (width - _safeAreaHorizontal) / 100;
-    safeBlockVertical = (height - _safeAreaVertical) / 100;
+    safeWidth = (width - _safeAreaHorizontal);
+    safeHeight = (height - _safeAreaVertical);
   }
 
-  static bool initTablet(MediaQueryData query) {
+  static initChecks(MediaQueryData query) {
     var size = query.size;
     diagonal = sqrt((size.width * size.width) + (size.height * size.height));
     // print('size: ${size.width}x${size.height}\n'
     //     'pixelRatio: ${query.devicePixelRatio}\n'
     //     'pixels: ${size.width * query.devicePixelRatio}x${size.height * query.devicePixelRatio}\n'
-    //     'diagonal: $diagonal');
-
-    isTablet = diagonal > 900.0;
-    return isTablet;
+    //     'diagonal: $diagonal\n'
+    //     'Device.get().isTablet ${Device.get().isTablet}\n'
+    //     'Device.get().isIphoneX ${Device.get().isIphoneX}');
+    isTablet = diagonal > 900.0 && Device.get().isTablet;
+    xxs = size.width > 280;
+    xs = size.width > 360;
+    sm = size.width > 480;
+    md = size.width > 600;
+    xmd = size.width > 720;
+    lg = size.width > 980;
+    xl = size.width > 1160;
+    xlg = size.width > 1400;
+    xxlg = size.width > 1700;
+    // isTablet = false;
   }
 
   static MediaQueryData mediaQuery() => _mediaQueryData;

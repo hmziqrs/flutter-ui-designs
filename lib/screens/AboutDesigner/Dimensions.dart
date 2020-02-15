@@ -8,41 +8,22 @@ class Dimensions {
   static double redBackground;
   static double avatarSize;
 
-  static init(BuildContext context, Orientation orientation) {
-    AppDimensions.init(context, orientation);
+  static init(BuildContext context) {
+    AppDimensions.init(context);
 
-    final bool isLandscape = Orientation.landscape == orientation;
-
-    initPotrait();
-
-    if (isLandscape) {
-      initLandscape();
-    }
-    if (UI.isTablet) {
-      initTabletPotrait();
-    }
-    if (UI.isTablet && isLandscape) {
-      initTabletLandscape();
-    }
-  }
-
-  static initPotrait() {
     redBackground = AppDimensions.ratio * 60;
     avatarSize = AppDimensions.ratio * 60;
-  }
 
-  static initLandscape() {
-    redBackground = AppDimensions.ratio * 65;
-    avatarSize = AppDimensions.ratio * 80;
-  }
-
-  static initTabletPotrait() {
-    redBackground = AppDimensions.ratio * 200;
-    avatarSize = AppDimensions.ratio * 30;
-  }
-
-  static initTabletLandscape() {
-    redBackground = AppDimensions.ratio * 220;
-    avatarSize = AppDimensions.ratio * 30;
+    if (UI.md && UI.height > 480) {
+      avatarSize = AppDimensions.padding * 17;
+      redBackground = AppDimensions.ratio * 80;
+    }
+    if (UI.lg && UI.height > 600) {
+      avatarSize = AppDimensions.padding * 20;
+      redBackground = AppDimensions.ratio * 120;
+    }
+    if (UI.xlg && UI.height > 800) {
+      redBackground = AppDimensions.ratio * 160;
+    }
   }
 }

@@ -156,42 +156,67 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
 
     final flight = data.flights[this.activePage];
 
-    return OrientationBuilder(builder: (
-      BuildContext context,
-      Orientation orientation,
-    ) {
-      UI.init(context);
-      Dimensions.init(context, orientation: orientation);
-      return Scaffold(
-        body: Theme(
-          data: Theme.of(context).copyWith(
-            primaryColor: theme.primary,
-            accentColor: theme.primary,
-          ),
-          child: DefaultTextStyle(
-            style: fontStyle,
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                this.renderImageBackground(),
-                this.renderHeader(flight, fontStyle),
-                this.buildPageViews(fontStyle),
-                Positioned.fill(
-                  bottom: null,
-                  right: null,
-                  child: SafeArea(
-                    child: Container(
-                      height: 48,
-                      alignment: Alignment.center,
-                      child: BackButton(),
+    return RawKeyboardListener(
+      autofocus: true,
+      focusNode: FocusNode(),
+      onKey: (event) {
+        final key = event.logicalKey.debugName;
+        final rightKeys = ['Key K', 'Arrow Right'];
+        final leftKeys = ['Key I', 'Arrow Left'];
+
+        if (event.runtimeType.toString() == 'RawKeyUpEvent') {
+          if (rightKeys.contains(key) && activePage < data.flights.length - 1) {
+            this.pageController.animateToPage(
+                  this.activePage + 1,
+                  duration: Duration(milliseconds: 280),
+                  curve: Curves.easeIn,
+                );
+          } else if (leftKeys.contains(key) && activePage > 0) {
+            this.pageController.animateToPage(
+                  this.activePage - 1,
+                  duration: Duration(milliseconds: 280),
+                  curve: Curves.easeIn,
+                );
+          }
+        }
+      },
+      child: OrientationBuilder(builder: (
+        BuildContext context,
+        Orientation orientation,
+      ) {
+        UI.init(context);
+        Dimensions.init(context, orientation: orientation);
+        return Scaffold(
+          body: Theme(
+            data: Theme.of(context).copyWith(
+              primaryColor: theme.primary,
+              accentColor: theme.primary,
+            ),
+            child: DefaultTextStyle(
+              style: fontStyle,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  this.renderImageBackground(),
+                  this.renderHeader(flight, fontStyle),
+                  this.buildPageViews(fontStyle),
+                  Positioned.fill(
+                    bottom: null,
+                    right: null,
+                    child: SafeArea(
+                      child: Container(
+                        height: 48,
+                        alignment: Alignment.center,
+                        child: BackButton(),
+                      ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
-        ),
-      );
-    });
+        );
+      }),
+    );
   }
 }

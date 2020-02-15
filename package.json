@@ -1,0 +1,33 @@
+{
+  "name": "flutter",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "setup-ios": "cd node_modules/react-native && scripts/ios-install-third-party.sh && cd third-party/glog-0.3.5/ && ../../scripts/ios-configure-glog.sh",
+    "setup-pods": "cd ios && pod install",
+    "ios": "react-native run-ios --simulator=\"iPhone 7\"",
+    "android": "react-native run-android",
+    "clean-native": "rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-* && rm -rf $TMPDIR/haste-* && watchman watch-del-all && rm -rf .git/index.lock package-lock.json yarn.lock node_modules/ ios/build android/build/ android/app/build && npm i && cd ios && pod clean && pod install && cd .. && npm start -- --reset-cache",
+    "clean-android": "rm -rf android/app/build",
+    "extract-intl": "babel-node ./internals/scripts/extract-intl.js",
+    "eslint": "eslint ./app",
+    "eslint:fix": "eslint ./app --fix",
+    "lint:staged": "lint-staged",
+    "prettify": "prettier --config .prettierrc --write \"**/*.js\"",
+    "all-ios": "babel-node scripts/runAlliOS.js",
+    "debug-all-ios": "nodemon scripts/runAlliOS.js --exec  babel-node"
+  },
+  "dependencies": {
+    "@babel/polyfill": "7.7.0",
+    "@babel/runtime": "7.7.5",
+    "nodemon": "^2.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.7.5",
+    "@babel/core": "7.5.5",
+    "@babel/node": "7.7.4",
+    "@babel/preset-env": "7.0.0"
+  },
+  "resolutions": {}
+}

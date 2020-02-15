@@ -11,17 +11,56 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 
 import 'package:flutter_uis/Utils.dart';
 
+import 'package:flutter_uis/Widgets/BorderButton/BorderButton.dart';
+import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 import 'package:flutter_uis/Widgets/UICard/UICard.dart';
 
 import 'Dimensions.dart';
 
-class UiDetailScreen extends StatelessWidget {
+class UiDetailScreen extends StatefulWidget {
+  @override
+  _UiDetailScreenState createState() => _UiDetailScreenState();
+}
+
+class _UiDetailScreenState extends State<UiDetailScreen>
+    with SingleTickerProviderStateMixin {
+  ScrollController scrollController;
+  double scrollOffset = 0.0;
+  final screenKey = GlobalKey<ScreenState>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    this.scrollController = ScrollController();
+
+    this.scrollController.addListener(() {
+      final offset = this.scrollController.offset;
+      setState(() {
+        scrollOffset = -offset;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    this.scrollController.dispose();
+    super.dispose();
+  }
+
   Widget renderCoverImage(UIItem uiItem) {
+    double height = Dimensions.coverImageHeight + scrollOffset;
+
+    if (height < 0) {
+      height = 0;
+    }
+
     return Hero(
       transitionOnUserGestures: true,
       tag: "thumbnail-${uiItem.id}",
       child: Container(
-        height: Dimensions.coverImageHeight,
+        transform: Matrix4.identity()..translate(0.0, -scrollOffset),
+        height: height,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: ExactAssetImage(uiItem.thumbnail),
@@ -35,36 +74,18 @@ class UiDetailScreen extends StatelessWidget {
 
   renderButton(
     String text,
-    Function callback, {
-    double width = double.infinity,
-    int flex = 1,
-  }) {
-    return Flexible(
-      flex: flex,
-      child: Container(
-        width: width,
-        margin: EdgeInsets.all(AppDimensions.padding),
-        padding: EdgeInsets.all(AppDimensions.padding),
-        child: RaisedButton(
-          elevation: 0.0,
-          color: Colors.white,
-          textColor: theme.primary,
-          highlightElevation: 0.0,
-          padding: EdgeInsets.symmetric(
-            vertical: AppDimensions.padding * 2,
-          ),
-          shape: RoundedRectangleBorder(
-            side: BorderSide(color: theme.primary, width: 2),
-            borderRadius: BorderRadius.circular(4.0),
-          ),
-          onPressed: callback,
-          child: Text(
-            text,
-            style: TextStyle(
-              fontSize: 7 * AppDimensions.ratio,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+    Function callback,
+  ) {
+    return BorderButton(
+      maxWidth: 200,
+      onPressed: callback,
+      color: theme.primary,
+      width: Dimensions.buttonWidth,
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 7.5 * AppDimensions.ratio,
+          fontWeight: FontWeight.w600,
         ),
       ),
     );
@@ -142,7 +163,7 @@ class UiDetailScreen extends StatelessWidget {
               label,
               style: TextStyle(
                 color: color,
-                fontSize: 4 * AppDimensions.ratio,
+                fontSize: 5 * AppDimensions.ratio,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -187,9 +208,14 @@ class UiDetailScreen extends StatelessWidget {
   }
 
   renderContent(BuildContext context, UIItem uiItem, List<UIItem> list) {
+    double safeOffset = -scrollOffset;
+
+    if (safeOffset > Dimensions.coverImageHeight) {
+      safeOffset = Dimensions.coverImageHeight;
+    }
     return Center(
       child: Container(
-        // width: 100,
+        transform: Matrix4.identity()..translate(0.0, safeOffset),
         constraints: BoxConstraints(
           maxWidth: AppDimensions.maxContainerWidth,
         ),
@@ -224,6 +250,7 @@ class UiDetailScreen extends StatelessWidget {
             Padding(padding: EdgeInsets.all(AppDimensions.padding)),
             Row(
               // crossAxisAlignment: CrossAxisAlignment.stretch,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 this.renderButton(
                   "Open App",
@@ -234,11 +261,9 @@ class UiDetailScreen extends StatelessWidget {
                 this.renderButton(
                   "View UI Source",
                   () async {
-                    bool can = await url.canLaunch(uiItem.link);
-                    if (can) {
-                      await url.launch(uiItem.link);
-                    } else {
-                      print("ERROR");
+                    bool link = await Utils.launchUrl(uiItem.link);
+                    if (!link) {
+                      this.screenKey.currentState.showPopUp();
                     }
                   },
                 ),
@@ -247,22 +272,17 @@ class UiDetailScreen extends StatelessWidget {
             this.renderSupport(uiItem),
             Padding(padding: EdgeInsets.all(AppDimensions.padding)),
             ...this.renderMoreUis(uiItem, list),
-            Row(
-              children: <Widget>[
-                Flexible(child: Container()),
-                this.renderButton(
-                  "Contact ${uiItem.designer}",
-                  () => Navigator.of(context).pushReplacementNamed(
-                    "designerProfile",
-                    arguments: uiItem.designer,
-                  ),
-                  flex: 5,
-                ),
-                Flexible(child: Container()),
-              ],
+            this.renderButton(
+              "Contact ${uiItem.designer}",
+              () => Navigator.of(context).pushNamed(
+                "designerProfile",
+                arguments: {"designer": uiItem.designer, "id": uiItem.id},
+              ),
             ),
             Utils.safePadding(context, 'bottom'),
-            // this.renderDesignerProfile(),
+            Padding(
+              padding: EdgeInsets.only(top: safeOffset < 0 ? 0 : safeOffset),
+            )
           ],
         ),
       ),
@@ -273,46 +293,42 @@ class UiDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final UIItem uiItem = ModalRoute.of(context).settings.arguments;
 
-    return OrientationBuilder(
-      builder: (BuildContext ctx, Orientation orientation) {
-        Dimensions.init(ctx, orientation);
-
+    return Screen(
+      Dimensions.init,
+      key: this.screenKey,
+      builder: (_) {
         return BlocProvider(
           builder: (context) => UiBloc(),
-          child: Scaffold(
-            extendBodyBehindAppBar: false,
-            body: Theme(
-              data: Theme.of(context).copyWith(
-                primaryColor: theme.primary,
-                accentColor: theme.primary,
-              ),
-              child: SingleChildScrollView(
-                child: Stack(
+          child: SingleChildScrollView(
+            controller: this.scrollController,
+            child: Stack(
+              children: <Widget>[
+                Column(
                   children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        this.renderCoverImage(uiItem),
-                        BlocBuilder<UiBloc, UiState>(
-                          builder: (context, state) {
-                            List<UIItem> list = state.list;
-                            return this.renderContent(
-                              context,
-                              uiItem,
-                              list,
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                    Positioned(
-                      top: MediaQuery.of(context).padding.top +
-                          AppDimensions.padding,
-                      left: AppDimensions.padding,
-                      child: BackButton(),
+                    this.renderCoverImage(uiItem),
+                    BlocBuilder<UiBloc, UiState>(
+                      builder: (context, state) {
+                        List<UIItem> list = state.list;
+                        return this.renderContent(
+                          context,
+                          uiItem,
+                          list,
+                        );
+                      },
                     ),
                   ],
                 ),
-              ),
+                Positioned(
+                  top: MediaQuery.of(context).padding.top +
+                      AppDimensions.padding,
+                  left: AppDimensions.padding,
+                  child: BackButton(
+                    onPressed: () => Navigator.of(context).popUntil(
+                      ModalRoute.withName("uiList"),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         );
