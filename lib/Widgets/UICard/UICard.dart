@@ -28,7 +28,6 @@ class UICard extends StatefulWidget {
 }
 
 class _UICardState extends State<UICard> with AnimationControllerMixin {
-  bool isFocused = false;
   Animation<double> animation;
 
   @override

@@ -1,5 +1,6 @@
 class FoodItem {
   FoodItem({
+    this.id,
     this.name,
     this.description,
     this.price,
@@ -13,15 +14,16 @@ class FoodItem {
     this.image,
   });
 
+  int id;
   String name;
   String description;
   double price;
   double stars;
   double location;
   double kcal;
-  double dailyCal;
-  double carbo;
-  double protien;
-  double fat;
+  int dailyCal;
+  int carbo;
+  int protien;
+  int fat;
   String image;
 }

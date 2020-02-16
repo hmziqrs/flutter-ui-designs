@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 
-import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
 import 'package:flutter_uis/blocs/ui_bloc/bloc.dart';
@@ -17,7 +16,6 @@ import 'Dimensions.dart';
 class UiListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // print(AppDimensions.inString());
     return BlocProvider(
       builder: (context) => UiBloc(),
       child: Screen(
@@ -48,24 +46,23 @@ class UiListScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // SliverToBoxAdapter(
-                  //   child: Padding(
-                  //     padding: EdgeInsets.symmetric(
-                  //       horizontal: AppDimensions.padding * 3,
-                  //     ),
-                  //     child: Text(
-                  //       '''Card/ Width:${Dimensions.cardWidth} Height:${Dimensions.cardHeight}\n UI/ Tab:${UI.isTablet} \n Tab:${Device.get().isTablet} iX:${Device.get().isIphoneX}\nScreen/ Width:${UI.getSize().width} Height:${UI.getSize().height}\nApp/ Ratio:${AppDimensions.ratio} Density:${UI.mediaQuery().devicePixelRatio}''',
-                  //       style: TextStyle(
-                  //         fontWeight: FontWeight.w700,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: AppDimensions.padding * 3,
+                      ),
+                      // child: Text(
+                      //   '''Card/ Width:${Dimensions.cardWidth} Height:${Dimensions.cardHeight}\n UI/ Tab:${UI.isTablet} \n Tab:${Device.get().isTablet} iX:${Device.get().isIphoneX}\nScreen/ Width:${UI.getSize().width} Height:${UI.getSize().height}\nApp/ Ratio:${AppDimensions.ratio} Density:${UI.mediaQuery().devicePixelRatio}''',
+                      //   style: TextStyle(
+                      //     fontWeight: FontWeight.w700,
+                      //   ),
+                      // ),
+                    ),
+                  ),
                   SliverPadding(
                     padding: EdgeInsets.all(AppDimensions.padding),
                     sliver: SliverToBoxAdapter(
                       child: Wrap(
-                        // alignment: WrapAlignment.spaceBetween,
                         children: list
                             .map(
                               (ui) => UICard(

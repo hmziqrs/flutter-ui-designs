@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:universal_io/io.dart';
-// import 'package:firebase_analytics/observer.dart';
-// import 'package:firebase_analytics/firebase_analytics.dart';
 
 import './configs/Theme.dart' as theme;
 // import 'Utils.dart';
@@ -13,8 +11,8 @@ import './screens/UiList/UiList.dart';
 import './screens/UiDetail/UIDetail.dart';
 import './screens/DesignerProfile/DesignerProfile.dart';
 
-import './MiniApps/HealtyFoodDelivery/HomeScreen.dart';
-import './MiniApps/HealtyFoodDelivery/ItemDetailScreen.dart';
+import './MiniApps/HealtyFoodDelivery/Screens/HomeScreen/HFDHomeScreen.dart';
+import './MiniApps/HealtyFoodDelivery/Screens/DetailScreen/HFDDetailScreen.dart';
 
 import './MiniApps/HotAirBalloons/Screens/HomeScreen/HABHomeScreen.dart';
 // import './MiniApps/HotAirBalloons/Screens/DetailScreen/HABDetailScreen.dart';
@@ -25,7 +23,10 @@ import './MiniApps/SkyView/Screens/HomeScreen/SKHomeScreen.dart';
 bool isAlt = false;
 
 class AppNavigator extends StatelessWidget {
+  AppNavigator(this.observers);
+  final List<NavigatorObserver> observers;
   final GlobalKey<NavigatorState> navigator = new GlobalKey<NavigatorState>();
+
   @override
   Widget build(BuildContext context) {
     return RawKeyboardListener(
@@ -50,16 +51,28 @@ class AppNavigator extends StatelessWidget {
         }
       },
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         navigatorKey: this.navigator,
         theme: ThemeData(
           fontFamily: "Muli",
           primaryColor: theme.primary,
           accentColor: theme.primary,
         ),
-        navigatorObservers: [
-          // FirebaseAnalyticsObserver(analytics: analytics),
-        ],
+        navigatorObservers: observers,
         home: HomeScreen(),
+        onGenerateRoute: (settings) {
+          if (settings.name == "hfdDetail") {
+            return PageRouteBuilder(
+              settings: RouteSettings(arguments: settings.arguments),
+              pageBuilder: (_, __, ___) => HFDDetailScreen(),
+              transitionsBuilder: (_, anim, __, child) {
+                return FadeTransition(opacity: anim, child: child);
+              },
+            );
+          }
+          // unknown route
+          return MaterialPageRoute(builder: (context) => HomeScreen());
+        },
         routes: <String, WidgetBuilder>{
           "home": (ctx) => new HomeScreen(),
           "about": (ctx) => new AboutAppScreen(),
@@ -69,8 +82,8 @@ class AppNavigator extends StatelessWidget {
           "designerProfile": (ctx) => new DesignerProfileScreen(),
 
           // Healthy Food Delivery
-          "hfdHome": (ctx) => new HealtyFoodDeliveryHomeScreen(),
-          "hfdItemDetail": (ctx) => new HealtyFoodDeliveryItemDetailScreen(),
+          "hfdHome": (ctx) => new HFDHomeScreen(),
+          // "hfdDetail": (ctx) => new HFDDetailScreen(),
 
           // Hot Air Balloon
           "habHome": (ctx) => new HABHomeScreen(),

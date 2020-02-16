@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
+  "version": "1.0.0",
   "configurations": [
     {
       "name": "Flutter",
@@ -7,68 +7,23 @@
       "type": "dart"
     },
     {
-      "name": "Mac",
-      "request": "launch",
+      "name": "iPhone 11 Pro Max",
+      "deviceId": "7FC174DF-9430-4BBA-93BE-0131FD457926",
       "type": "dart",
-      "deviceId": "mac"
+      "request": "launch",
+      "args": ["-t", "lib/main.dart"]
     },
     {
-      "name": "XperiaZ4",
-      "request": "launch",
+      "name": "macOS",
+      "deviceId": "macOS",
       "type": "dart",
-      "deviceId": "CB5A27Y1RN"
-    },
-    {
-      "name": "i5s",
-      "request": "launch",
-      "type": "dart",
-      "deviceId": "D145E473-ABBB-40CC-912F-E728F5CDE577",
-      "target": "iOS"
-    },
-    {
-      "name": "i7",
-      "request": "launch",
-      "type": "dart",
-      "deviceId": "727065FD-0E51-48FD-9E7A-E0ED02409107",
-      "target": "iOS"
-    },
-    {
-      "name": "i8Plus",
-      "request": "launch",
-      "type": "dart",
-      "deviceId": "52DDB561-CFD8-49B8-806A-BE1CD53EEC30",
-      "target": "iOS"
-    },
-    {
-      "name": "iX",
-      "request": "launch",
-      "type": "dart",
-      "deviceId": "C9690F55-56AD-460F-8063-D8ABAB471412",
-      "target": "iOS"
-    },
-    {
-      "name": "iXR",
-      "request": "launch",
-      "type": "dart",
-      "deviceId": "FDB31D1D-821F-4F2A-9169-0AD0A5B9371B",
-      "target": "iOS"
-    },
-    {
-      "name": "iXSMax",
-      "request": "launch",
-      "type": "dart",
-      "deviceId": "8E9FBADF-F341-4D41-B49F-22FBE3EE42CD",
-      "target": "iOS"
+      "request": "launch"
     }
   ],
   "compounds": [
     {
-      "name": "All iOS",
-      "configurations": ["iX", "iXR"]
-    },
-    {
-      "name": "Mac n Xperia",
-      "configurations": ["Mac", "XperiaZ4"]
+      "name": "current",
+      "configurations": ["7FC174DF-9430-4BBA-93BE-0131FD457926", "macOS"]
     }
   ]
 }

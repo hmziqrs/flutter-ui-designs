@@ -22,10 +22,10 @@ dependencies:
 
   device_info: 0.4.0+3
 
-  firebase_core: 0.4.0+9
-  firebase_analytics: ^5.0.10
-  firebase_performance: 0.3.0+5
-  firebase_crashlytics: 0.1.0+3
+  firebase_core: 0.4.4
+  firebase_analytics: 5.0.11
+  firebase_performance: 0.3.1+5
+  firebase_crashlytics: 0.1.2+5
 
   bloc: ^0.15.0
   flutter_bloc: ^0.21.0
@@ -37,9 +37,9 @@ dependencies:
   flash: ^1.1.0
   pigment: ^1.0.3
   cupertino_icons: ^0.1.3
-  carousel_slider: ^1.4.1
   flutter_vector_icons: ^0.2.1
   simple_animations: ^1.3.6
+  carousel_slider: ^1.4.1
   percent_indicator: ^2.1.1+1
   flutter_device_type: ^0.2.0
 
@@ -67,6 +67,16 @@ flutter:
     - assets/ma-hfd/item-1.jpg
     - assets/ma-hfd/item-2.jpg
     - assets/ma-hfd/item-3.jpg
+    - assets/ma-hfd/item-4.jpg
+    - assets/ma-hfd/item-5.jpg
+    - assets/ma-hfd/item-6.jpg
+    - assets/ma-hfd/item-7.jpg
+    - assets/ma-hfd/item-8.jpg
+    - assets/ma-hfd/resturant-1.jpg
+    - assets/ma-hfd/resturant-2.jpg
+    - assets/ma-hfd/resturant-3.jpg
+    - assets/ma-hfd/resturant-4.jpg
+    - assets/ma-hfd/resturant-5.jpg
 
     - assets/thumbnails/hot_air_balloon.jpg
     - assets/ma-hab/bubbles-bg.png
