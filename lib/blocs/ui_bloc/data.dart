@@ -13,6 +13,8 @@ List<UIItem> uilist = [
     thumbnail: "assets/thumbnails/healthy_food_delivery.png",
     tabletSupport: true,
     landscapeSupport: true,
+    webSupport: true,
+    desktopSupport: true,
   ),
   new UIItem(
     id: 2,

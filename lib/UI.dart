@@ -54,7 +54,7 @@ class UI {
     //     'Device.get().isTablet ${Device.get().isTablet}\n'
     //     'Device.get().isIphoneX ${Device.get().isIphoneX}');
     isTablet = diagonal > 900.0 && Device.get().isTablet;
-    xxs = size.width > 280;
+    xxs = size.width > 300;
     xs = size.width > 360;
     sm = size.width > 480;
     md = size.width > 600;

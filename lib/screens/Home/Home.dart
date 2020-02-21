@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext buildCtx) {
     return OrientationBuilder(
       builder: (BuildContext context, Orientation orientation) {
-        Dimensions.init(context, orientation);
+        Dimensions.init(context);
 
         return Scaffold(
           backgroundColor: Colors.white,

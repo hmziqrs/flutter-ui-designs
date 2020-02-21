@@ -22,6 +22,7 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 def keystoreProperties = new Properties()
@@ -32,7 +33,10 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     compileSdkVersion 29
-    // buildToolsVersion '29.0.1'
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 
     lintOptions {
         disable 'InvalidPackage'
@@ -43,10 +47,9 @@ android {
         applicationId "com.onemdev.flutter_ui_challenges"
         minSdkVersion 16
         targetSdkVersion 29
-        multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
    signingConfigs {
@@ -72,12 +75,12 @@ flutter {
 }
 
 dependencies {
-    implementation "androidx.core:core-ktx:1.0.1"
-    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
+
 
 apply plugin: 'io.fabric'
 apply plugin: 'com.google.gms.google-services'

@@ -12,11 +12,17 @@ class Screen extends StatefulWidget {
   final void Function(BuildContext) init;
   final Widget Function(VoidCallback showPopUp) builder;
   final Color scaffoldBackgroundColor;
+  final ThemeData theme;
+  final TextStyle textStyle;
+  final BottomNavigationBar bottomNavigationBar;
 
   Screen(
     this.init, {
     Key key,
+    this.theme,
     this.builder,
+    this.textStyle,
+    this.bottomNavigationBar,
     this.scaffoldBackgroundColor,
   }) : super(key: key);
 
@@ -149,29 +155,40 @@ class ScreenState extends State<Screen> with AnimationControllerMixin {
 
   @override
   Widget build(BuildContext context) {
-    final rootTheme = Theme.of(context).copyWith(
-      primaryColor: theme.primary,
-      accentColor: theme.primary,
-    );
+    final ThemeData rootTheme = widget.theme ??
+        Theme.of(context).copyWith(
+          primaryColor: theme.primary,
+          accentColor: theme.primary,
+        );
+
+    final textStyle = widget.textStyle ?? Theme.of(context).textTheme.bodyText1;
 
     return OrientationBuilder(
       builder: (orientationContext, _) {
         widget.init(orientationContext);
 
         return Scaffold(
+          bottomNavigationBar: this.widget.bottomNavigationBar,
           backgroundColor: this.widget.scaffoldBackgroundColor,
-          body: Theme(
-            data: rootTheme,
-            child: Stack(
-              fit: StackFit.expand,
-              children: <Widget>[
-                Positioned.fill(
-                  child: widget.builder(
-                    this.showPopUp,
-                  ),
+          body: DefaultTextStyle(
+            style: textStyle,
+            child: Theme(
+              data: rootTheme.copyWith(
+                textTheme: rootTheme.textTheme.copyWith(
+                  bodyText1: textStyle,
                 ),
-                this.buildPopUp(),
-              ],
+              ),
+              child: Stack(
+                fit: StackFit.expand,
+                children: <Widget>[
+                  Positioned.fill(
+                    child: widget.builder(
+                      this.showPopUp,
+                    ),
+                  ),
+                  this.buildPopUp(),
+                ],
+              ),
             ),
           ),
         );
