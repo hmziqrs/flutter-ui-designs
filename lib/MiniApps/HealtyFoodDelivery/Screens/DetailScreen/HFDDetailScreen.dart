@@ -68,30 +68,33 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
             controller: this.scrollController,
             child: Stack(
               children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    this.buildBackgroundImage(item),
-                    Container(
-                      transform: Matrix4.identity()
-                        ..translate(
-                          0.0,
-                          safeOffset + (-AppDimensions.padding * 8),
+                this.buildBackgroundImage(item),
+                Container(
+                  margin: EdgeInsets.only(
+                    top: Dimensions.coverImageHeight - Dimensions.contentHeight,
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      this.buildBackgroundImageBody(item),
+                      Container(
+                        transform: Matrix4.identity()
+                          ..translate(0.0, (-AppDimensions.padding * 8)),
+                        child: Column(
+                          children: <Widget>[
+                            this.buildBody(item, safeOffset),
+                            Container(
+                              height: AppDimensions.padding * 4,
+                            ),
+                            this.buildOrderButton(textStyle),
+                          ],
                         ),
-                      child: Column(
-                        children: <Widget>[
-                          this.buildBody(item, safeOffset),
-                          Container(
-                            height: AppDimensions.padding * 4,
-                          ),
-                          this.buildOrderButton(textStyle),
-                        ],
                       ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsets.only(top: safeOffset < 0 ? 0 : safeOffset),
-                    ),
-                  ],
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.only(top: safeOffset < 0 ? 0 : safeOffset),
                 ),
                 Padding(
                   padding:
@@ -161,87 +164,86 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
           fit: BoxFit.cover,
         ),
       ),
-      child: Container(
-        alignment: Alignment.topCenter,
-        width: double.infinity,
-        height: Dimensions.contentHeight,
-        decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.4),
-        ),
-        child: this.buildBackgroundImageBody(item),
-      ),
     );
   }
 
   Widget buildBackgroundImageBody(data.FoodItem item) {
     return Container(
-      height: double.infinity,
-      width: AppDimensions.miniContainerWidth,
-      padding: EdgeInsets.all(AppDimensions.padding * 2),
-      margin: EdgeInsets.only(bottom: AppDimensions.padding * 8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Row(
-                children: List.generate(5, (index) {
-                  bool active = item.stars.floor().clamp(1, 5) < (index + 1);
-                  return Container(
-                    child: Icon(
-                      active
-                          ? MaterialCommunityIcons.star_outline
-                          : MaterialCommunityIcons.star,
-                      color: theme.primary,
+      alignment: Alignment.topCenter,
+      width: double.infinity,
+      height: Dimensions.contentHeight,
+      decoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.4),
+      ),
+      child: Container(
+        height: double.infinity,
+        width: AppDimensions.miniContainerWidth,
+        padding: EdgeInsets.all(AppDimensions.padding * 2),
+        margin: EdgeInsets.only(bottom: AppDimensions.padding * 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Row(
+                  children: List.generate(5, (index) {
+                    bool active = item.stars.floor().clamp(1, 5) < (index + 1);
+                    return Container(
+                      child: Icon(
+                        active
+                            ? MaterialCommunityIcons.star_outline
+                            : MaterialCommunityIcons.star,
+                        color: theme.primary,
+                      ),
+                    );
+                  }),
+                ),
+                Flexible(child: Container()),
+                Container(
+                  decoration: BoxDecoration(
+                    color: theme.primary,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(16.0),
                     ),
-                  );
-                }),
-              ),
-              Flexible(child: Container()),
-              Container(
-                decoration: BoxDecoration(
-                  color: theme.primary,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16.0),
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppDimensions.padding * 4,
+                    vertical: AppDimensions.padding * 1.5,
+                  ),
+                  child: Text(
+                    "\$ ${item.price.toStringAsFixed(2)}",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppDimensions.padding * 4,
-                  vertical: AppDimensions.padding * 1.5,
-                ),
-                child: Text(
-                  "\$ ${item.price.toStringAsFixed(2)}",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Container(height: AppDimensions.padding * 3),
-          Text(
-            item.name,
-            style: TextStyle(
-              fontSize: 12 + AppDimensions.ratio * 8,
-              color: Colors.white.withOpacity(
-                0.88,
-              ),
-              fontWeight: FontWeight.w600,
+              ],
             ),
-          ),
-          Container(height: AppDimensions.padding),
-          Expanded(
-            child: Text(
-              item.description,
-              // maxLines: 9,
-              overflow: TextOverflow.clip,
+            Container(height: AppDimensions.padding * 3),
+            Text(
+              item.name,
               style: TextStyle(
-                color: Colors.white.withOpacity(0.6),
-                fontSize: 15,
+                fontSize: 12 + AppDimensions.ratio * 8,
+                color: Colors.white.withOpacity(
+                  0.88,
+                ),
+                fontWeight: FontWeight.w600,
               ),
             ),
-          ),
-        ],
+            Container(height: AppDimensions.padding),
+            Expanded(
+              child: Text(
+                item.description,
+                // maxLines: 9,
+                overflow: TextOverflow.clip,
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.6),
+                  fontSize: 15,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
