@@ -7,9 +7,6 @@ const desktopFilters = ['mac', 'linux', 'windows'];
 
 async function main() {
   try {
-    if (process.platform !== 'darwin') {
-      throw Error('This script can only run on MacOS');
-    }
     const { stdout } = await exec('flutter devices');
     const raw = stdout.split('\n');
     const devices = raw
@@ -27,7 +24,7 @@ async function main() {
           desktopFilters.filter(str => deviceId.toLowerCase().includes(str))
             .length === 0
         ) {
-          obj.args = '-t lib/main.mobile.dart';
+          obj.args = ['it', 'lib/main.mobile.dart'];
         }
         return obj;
       });
@@ -45,7 +42,7 @@ async function main() {
       compounds: [
         {
           name: 'current',
-          configurations: devices.map(obj => obj.deviceId),
+          configurations: devices.map(obj => obj.name),
         },
       ],
     };

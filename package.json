@@ -5,8 +5,8 @@
   "scripts": {
     "all-ios": "babel-node scripts/runAlliOS.js",
     "debug-all-ios": "nodemon scripts/runAlliOS.js --exec  babel-node",
-    "debug-all-current": "nodemon scripts/runAllCurrent.js --exec  babel-node",
-    "all-current": "babel-node scripts/runAllCurrent.js",
+    "debug-vslaunch": "nodemon scripts/vslaunch.js --exec  babel-node",
+    "vslaunch": "babel-node scripts/vslaunch.js",
     "appbundle": "flutter run appbundle -t lib/main.mobile.dart"
   },
   "dependencies": {

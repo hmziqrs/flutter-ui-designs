@@ -8,6 +8,7 @@ import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
+import '../../../../configs/AppDimensions.dart';
 import '../../data/data.dart' as data;
 import '../../configs/theme.dart' as theme;
 
@@ -163,53 +164,60 @@ class _HFDHomeScreenState extends State<HFDHomeScreen> {
   }
 
   Widget buildCategories() {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: data.categories
-            .map(
-              (category) => Ink(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      width: Dimensions.categoryBaseSize,
-                      height: Dimensions.categoryBaseSize,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 8,
-                            offset: Offset(0, 6),
-                            color: Colors.black.withOpacity(0.10),
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Container(
+        width: double.infinity,
+        constraints: BoxConstraints(
+          maxWidth: AppDimensions.maxContainerWidth,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: data.categories
+              .map(
+                (category) => Ink(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        width: Dimensions.categoryBaseSize,
+                        height: Dimensions.categoryBaseSize,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 8,
+                              offset: Offset(0, 6),
+                              color: Colors.black.withOpacity(0.10),
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: category.margin,
+                          child: Icon(
+                            category.icon,
+                            color: theme.primary,
+                            size: category.iconSize,
                           ),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: category.margin,
-                        child: Icon(
-                          category.icon,
-                          color: theme.primary,
-                          size: category.iconSize,
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(AppDimensions.padding * 0.8),
-                    ),
-                    Text(
-                      category.name,
-                      style: TextStyle(
-                        fontSize: 8 + AppDimensions.ratio * 4,
-                        fontWeight: FontWeight.w600,
+                      Padding(
+                        padding: EdgeInsets.all(AppDimensions.padding * 0.8),
                       ),
-                    ),
-                  ],
+                      Text(
+                        category.name,
+                        style: TextStyle(
+                          fontSize: 8 + AppDimensions.ratio * 4,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            )
-            .toList(),
+              )
+              .toList(),
+        ),
       ),
     );
   }
