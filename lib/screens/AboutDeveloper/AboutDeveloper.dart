@@ -4,61 +4,33 @@ import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/configs/AppDimensions.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
+import 'data.dart' as data;
 import 'Dimensions.dart';
 
-final skills = [
-  "HTML",
-  "CSS",
-  "Javascript",
-  "JQuery",
-  "React JS",
-  "React SSR",
-  "Redux",
-  "React Native",
-  "Dart",
-  "Flutter",
-  "Firebase",
-  "Photoshop",
-  "Basic UI designs",
-  "Node JS",
-  "Express JS",
-  "MYSQL",
-  "Mongo DB",
-  "Socket.IO",
-  "Go lang",
-  "Dart Server",
-];
-
-final contacts = [
-  {
-    "platform": "facebook",
-    "username": "hackerhgl",
-    "icon": MaterialCommunityIcons.facebook,
-  },
-  {
-    "platform": "instagram",
-    "username": "hackerhgl",
-    "icon": MaterialCommunityIcons.instagram,
-  },
-  {
-    "platform": "skype",
-    "username": "hamza.iqbal.jawaid.iqbal",
-    "icon": MaterialCommunityIcons.skype_business
-  },
-  {
-    "platform": "whatsapp",
-    "username": "+923148155304",
-    "icon": MaterialCommunityIcons.whatsapp
-  },
-];
-
-class AboutDesignerScreen extends StatelessWidget {
+class AboutDeveloperScreen extends StatelessWidget {
   final screenKey = GlobalKey<ScreenState>();
 
+  @override
+  Widget build(BuildContext context) {
+    return Screen(
+      Dimensions.init,
+      key: this.screenKey,
+      scaffoldBackgroundColor: theme.darkBackground,
+      builder: (_) => SingleChildScrollView(
+        child: Stack(
+          children: <Widget>[
+            this.buildContent(context),
+            this.buildAvatar(),
+            this.buildBackButton(context),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget buildContent(BuildContext context) {
-    final textStyle = Theme.of(context).textTheme.body1.copyWith(
+    final textStyle = Theme.of(context).textTheme.bodyText1.copyWith(
           color: Colors.white,
         );
 
@@ -87,7 +59,7 @@ class AboutDesignerScreen extends StatelessWidget {
               ),
               child: DefaultTextStyle(
                 style: textStyle,
-                child: this.renderBody(),
+                child: this.buildBody(),
               ),
             ),
           ),
@@ -96,7 +68,7 @@ class AboutDesignerScreen extends StatelessWidget {
     );
   }
 
-  Widget renderBody() {
+  Widget buildBody() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -143,7 +115,7 @@ class AboutDesignerScreen extends StatelessWidget {
             top: AppDimensions.padding,
           ),
           child: Wrap(
-            children: skills
+            children: data.skills
                 .map(
                   (skill) => Container(
                     margin: EdgeInsets.all(AppDimensions.padding * 1),
@@ -195,7 +167,7 @@ class AboutDesignerScreen extends StatelessWidget {
             left: AppDimensions.padding,
           ),
           child: Column(
-            children: contacts
+            children: data.contacts
                 .map(
                   (contact) => Padding(
                     padding:
@@ -282,24 +254,6 @@ class AboutDesignerScreen extends StatelessWidget {
       child: Padding(
         padding: Utils.safePaddingUnit(context, "all"),
         child: BackButton(),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Screen(
-      Dimensions.init,
-      key: this.screenKey,
-      scaffoldBackgroundColor: theme.darkBackground,
-      builder: (_) => SingleChildScrollView(
-        child: Stack(
-          children: <Widget>[
-            this.buildContent(context),
-            this.buildAvatar(),
-            this.buildBackButton(context),
-          ],
-        ),
       ),
     );
   }

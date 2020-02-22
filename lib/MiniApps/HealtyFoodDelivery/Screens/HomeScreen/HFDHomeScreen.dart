@@ -121,7 +121,7 @@ class _HFDHomeScreenState extends State<HFDHomeScreen> {
           Flexible(child: Container()),
           InkWell(
             onTap: () {},
-            child: Icon(MaterialCommunityIcons.search_web),
+            child: Icon(MaterialIcons.search),
           )
         ],
       ),

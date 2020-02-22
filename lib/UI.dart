@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_device_type/flutter_device_type.dart';
+
+import 'DeviceType.dart';
 
 class UI {
   static MediaQueryData _mediaQueryData;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 
 import 'package:flutter_uis/Utils.dart';
 
@@ -49,6 +50,18 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
     final textStyle =
         Theme.of(context).textTheme.bodyText1.copyWith(fontFamily: 'Nunito');
 
+    final baseDuration = Duration(milliseconds: 400);
+    final baseTween = Tween(begin: 0.0, end: 1.0);
+    final tween = MultiTrackTween([
+      Track("base").add(baseDuration, baseTween),
+      Track("circle")
+          .add(Duration(milliseconds: 300), ConstantTween(0.0))
+          .add(baseDuration, baseTween),
+      Track("bars")
+          .add(Duration(milliseconds: 300), ConstantTween(0.0))
+          .add(baseDuration, baseTween),
+    ]);
+
     return Container(
       child: Screen(
         Dimensions.init,
@@ -76,17 +89,34 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
                   child: Column(
                     children: <Widget>[
                       this.buildBackgroundImageBody(item),
-                      Container(
-                        transform: Matrix4.identity()
-                          ..translate(0.0, (-AppDimensions.padding * 8)),
-                        child: Column(
-                          children: <Widget>[
-                            this.buildBody(item, safeOffset),
-                            Container(
-                              height: AppDimensions.padding * 4,
+                      ControlledAnimation(
+                        tween: tween,
+                        duration: tween.duration,
+                        delay: Duration(milliseconds: 400),
+                        builder: (context, multiTrack) => Opacity(
+                          opacity: multiTrack["base"],
+                          child: Container(
+                            transform: Matrix4.identity()
+                              ..translate(
+                                0.0,
+                                Utils.rangeMap(
+                                  multiTrack["base"],
+                                  0.0,
+                                  1.0,
+                                  80,
+                                  (-AppDimensions.padding * 8),
+                                ),
+                              ),
+                            child: Column(
+                              children: <Widget>[
+                                this.buildBody(item, multiTrack),
+                                Container(
+                                  height: AppDimensions.padding * 4,
+                                ),
+                                this.buildOrderButton(textStyle),
+                              ],
                             ),
-                            this.buildOrderButton(textStyle),
-                          ],
+                          ),
                         ),
                       ),
                     ],
@@ -248,7 +278,7 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
     );
   }
 
-  Widget buildBody(data.FoodItem item, double safeOffset) {
+  Widget buildBody(data.FoodItem item, dynamic multiTrack) {
     return Container(
       padding: EdgeInsets.all(AppDimensions.padding * 2),
       width: (AppDimensions.miniContainerWidth - AppDimensions.padding * 8),
@@ -290,7 +320,7 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
                     "${item.kcal.toStringAsFixed(0)}",
                   ),
                   progressColor: theme.primary,
-                  percent: 1.0,
+                  percent: multiTrack["circle"],
                 ),
               ),
               Column(
@@ -313,15 +343,15 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
               ),
             ],
           ),
-          this.buildLinearBar(item.carbo, "Carbo"),
-          this.buildLinearBar(item.protien, "Protien"),
-          this.buildLinearBar(item.fat, "fat"),
+          this.buildLinearBar(item.carbo, "Carbo", multiTrack["bars"]),
+          this.buildLinearBar(item.protien, "Protien", multiTrack["bars"]),
+          this.buildLinearBar(item.fat, "fat", multiTrack["bars"]),
         ],
       ),
     );
   }
 
-  Widget buildLinearBar(int no, String label) {
+  Widget buildLinearBar(int no, String label, double animate) {
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: AppDimensions.padding * 2,
@@ -337,7 +367,7 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
               child: Container(
                 height: 4 + AppDimensions.ratio * 1,
                 child: LinearProgressIndicator(
-                  value: no / 100,
+                  value: Utils.rangeMap(animate, 0.0, 1.0, 0.0, no / 100),
                   backgroundColor: Colors.black.withOpacity(0.3),
                 ),
               ),

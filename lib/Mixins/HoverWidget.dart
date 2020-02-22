@@ -64,16 +64,17 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
     Color hoverColor,
     Color highlightColor,
     Color splashColor,
+    bool isButton = false,
   }) {
     return InkWell(
       child: child,
       onDoubleTap: onDoubleTap,
       onLongPress: onLongPress,
       onHighlightChanged: onHighlightChanged,
-      hoverColor: Colors.transparent,
-      focusColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      splashColor: Colors.transparent,
+      hoverColor: isButton ? null : Colors.transparent,
+      focusColor: isButton ? null : Colors.transparent,
+      highlightColor: isButton ? null : Colors.transparent,
+      splashColor: isButton ? null : Colors.transparent,
       onTap: () {
         this.removeForceFocus();
         if (onTap != null) {

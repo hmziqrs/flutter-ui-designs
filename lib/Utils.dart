@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_uis/io/io.dart';
 
 import 'package:url_launcher/url_launcher.dart' as url;
-import 'package:universal_io/io.dart';
-// import 'package:device_info/device_info.dart';
+import 'package:open_url/open_url.dart';
 
 class Utils {
   static lightStatusBar() {
@@ -20,7 +20,7 @@ class Utils {
     ));
   }
 
-  static rangeMap(
+  static double rangeMap(
       double number, double inMin, double inMax, double outMin, double outMax) {
     return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
   }
@@ -36,11 +36,16 @@ class Utils {
 
   static launchUrl(link) async {
     try {
-      final bool safeCheck = await url.canLaunch(link);
-      if (safeCheck) {
-        await url.launch(link);
+      if (Platform.isLinux || Platform.isWindows) {
+        final result = await openUrl(link);
+        return result.exitCode != 0;
+      } else {
+        final bool safeCheck = await url.canLaunch(link);
+        if (safeCheck) {
+          await url.launch(link);
+        }
+        return safeCheck;
       }
-      return safeCheck;
     } catch (e) {
       return false;
     }
@@ -112,6 +117,6 @@ class Utils {
   }
 
   static bool isDesktop() {
-    return Platform.isMacOS || Platform.isWindows;
+    return Platform.isMacOS || Platform.isWindows || Platform.isLinux;
   }
 }
