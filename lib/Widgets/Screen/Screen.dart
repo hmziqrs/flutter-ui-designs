@@ -11,6 +11,7 @@ export 'package:flutter_uis/configs/Theme.dart';
 class Screen extends StatefulWidget {
   final void Function(BuildContext) init;
   final Widget Function(VoidCallback showPopUp) builder;
+  final Widget Function(BuildContext context) belowBuilder;
   final Color scaffoldBackgroundColor;
   final ThemeData theme;
   final TextStyle textStyle;
@@ -22,6 +23,7 @@ class Screen extends StatefulWidget {
     this.theme,
     this.builder,
     this.textStyle,
+    this.belowBuilder,
     this.bottomNavigationBar,
     this.scaffoldBackgroundColor,
   }) : super(key: key);
@@ -181,6 +183,9 @@ class ScreenState extends State<Screen> with AnimationControllerMixin {
               child: Stack(
                 fit: StackFit.expand,
                 children: <Widget>[
+                  widget.belowBuilder != null
+                      ? widget.belowBuilder(orientationContext)
+                      : Container(),
                   Positioned.fill(
                     child: widget.builder(
                       this.showPopUp,

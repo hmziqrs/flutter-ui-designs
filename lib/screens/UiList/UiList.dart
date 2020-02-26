@@ -17,7 +17,7 @@ class UiListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      builder: (context) => UiBloc(),
+      create: (_) => UiBloc(),
       child: Screen(
         Dimensions.init,
         builder: (_) => SafeArea(

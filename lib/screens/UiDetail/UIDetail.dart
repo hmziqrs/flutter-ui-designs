@@ -298,7 +298,7 @@ class _UiDetailScreenState extends State<UiDetailScreen>
       key: this.screenKey,
       builder: (_) {
         return BlocProvider(
-          builder: (context) => UiBloc(),
+          create: (_) => UiBloc(),
           child: SingleChildScrollView(
             controller: this.scrollController,
             child: Stack(

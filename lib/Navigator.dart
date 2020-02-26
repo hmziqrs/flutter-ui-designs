@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:universal_io/io.dart';
+// import 'package:firebase/firebase.dart' as firebase;
 
 import './configs/Theme.dart' as theme;
-// import 'Utils.dart';
+import 'package:flutter_uis/io/io.dart';
 
 import './screens/Home/Home.dart';
+import './screens/Download/Download.dart';
 import './screens/AboutApp/AboutApp.dart';
-import './screens/AboutDesigner/AboutDesigner.dart';
+import './screens/AboutDeveloper/AboutDeveloper.dart';
 import './screens/UiList/UiList.dart';
 import './screens/UiDetail/UIDetail.dart';
 import './screens/DesignerProfile/DesignerProfile.dart';
@@ -76,7 +77,8 @@ class AppNavigator extends StatelessWidget {
         routes: <String, WidgetBuilder>{
           "home": (ctx) => new HomeScreen(),
           "about": (ctx) => new AboutAppScreen(),
-          "aboutDesigner": (ctx) => new AboutDesignerScreen(),
+          "aboutDeveloper": (ctx) => new AboutDeveloperScreen(),
+          "download": (ctx) => new DownloadScreen(),
           "uiList": (ctx) => new UiListScreen(),
           "uiDetail": (ctx) => new UiDetailScreen(),
           "designerProfile": (ctx) => new DesignerProfileScreen(),

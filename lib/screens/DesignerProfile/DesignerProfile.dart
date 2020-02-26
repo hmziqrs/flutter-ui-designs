@@ -441,7 +441,7 @@ class _DesignerProfileScreenState extends State<DesignerProfileScreen>
     final String username = obj["designer"];
 
     return BlocProvider<UiBloc>(
-      builder: (_) => UiBloc(),
+      create: (_) => UiBloc(),
       child: Screen(
         Dimensions.init,
         key: this.screenKey,
