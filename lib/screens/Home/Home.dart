@@ -65,13 +65,15 @@ class _HomeScreenState extends State<HomeScreen> {
     VoidCallback onSecondary,
   }) {
     if (!mount) {
-      return Container();
+      return Positioned(
+        child: Container(),
+      );
     }
-    return AnimatedOpacity(
-      opacity: opacity,
-      duration: Duration(milliseconds: 280),
-      onEnd: onEnd,
-      child: Positioned.fill(
+    return Positioned.fill(
+      child: AnimatedOpacity(
+        opacity: opacity,
+        duration: Duration(milliseconds: 280),
+        onEnd: onEnd,
         child: Container(
           alignment: Alignment.center,
           color: Colors.black.withOpacity(0.4),
@@ -241,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
             this.buildAlertModal(
               title: "Alert",
               description:
-                  "In some screens 'BackButton' isn't avaible becuase it made UI hideous. So as an alternative I implemented keyboard actions to navigate back.\n\nMacOS: Option + Backspace\nLinux: Alt + Backsoace\nWindows: Ctrl + Backspace",
+                  "In some screens 'BackButton' isn't avaible becuase it made UI hideous. So as an alternative I implemented keyboard shortcut to navigate back.\n\nMacOS: Option + Backspace\nLinux: Alt + Backsoace\nWindows: Ctrl + Backspace",
               mount: this.desktopPopUpMounted,
               opacity: this.desktopPopUpOpacity,
               secondaryText: "Continue",

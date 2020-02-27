@@ -8,7 +8,7 @@ final mobileLinks = [
     "icon": MaterialCommunityIcons.google_play,
   },
   {
-    "key": "apk",
+    "key": "apk-release.apk",
     "name": "Apk",
     "icon": MaterialCommunityIcons.android,
   }
@@ -16,17 +16,17 @@ final mobileLinks = [
 
 final desktopLinks = [
   {
-    "key": "mac",
+    "key": "mac-release.zip",
     "name": "Mac",
     "icon": MaterialCommunityIcons.apple_finder,
   },
   {
-    "key": "linux",
+    "key": "linux-release.zip",
     "name": "Linux",
     "icon": FontAwesome.linux,
   },
   {
-    "key": "windows",
+    "key": "windows-release.zip",
     "name": "Windows",
     "icon": MaterialCommunityIcons.apple,
   },
@@ -40,7 +40,7 @@ final webLinks = [
   },
   {
     "name": "Github",
-    "url": "https://flutter-ui-challenges-hgl.firebaseapp.com",
+    "url": "https://github.com/hackerhgl/flutter-ui-designs",
     "icon": MaterialCommunityIcons.github_face,
   },
 ];

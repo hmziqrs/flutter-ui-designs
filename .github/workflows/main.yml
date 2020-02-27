@@ -1,0 +1,124 @@
+on:
+  push:
+    tags:
+      - '*'
+
+name: Release Builds
+jobs:
+  linux:
+    name: Android & Linux & Web
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          git clone https://github.com/flutter/flutter.git
+          cd flutter
+          git checkout 4df8fdb7df
+      - run: echo ::add-path::`pwd`"/flutter/bin"
+
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+
+      - uses: actions/checkout@v2
+        with:
+          path: 'app'
+
+      - run: |
+          cd app
+          flutter config --enable-linux-desktop
+          flutter config --enable-web
+          flutter pub get
+          flutter build linux --release
+          flutter build apk --release
+          flutter build web --release
+          cd build/linux/
+          zip -r linux-release.zip release
+
+      # - run: |
+      #     cd app
+      #     npm i
+      #     npm run upload apk ${{ secrets.ACCOUNT }}
+      #     npm run upload linux ${{ secrets.ACCOUNT }}
+
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@v1.3.0
+        with:
+          args: deploy --only hosting
+        env:
+          PROJECT_PATH: 'app'
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: Create Android & linux Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'app/build/app/outputs/apk/release/app-release.apk,app/build/linux/linux-release.zip'
+          token: ${{ secrets.TOKEN }}
+          allowUpdates: true
+
+  macos:
+    name: MacOS
+    runs-on: macos-latest
+    steps:
+      - run: |
+          git clone https://github.com/flutter/flutter.git
+          cd flutter
+          git checkout 4df8fdb7df
+      - run: echo ::add-path::`pwd`"/flutter/bin"
+
+      - uses: actions/checkout@v2
+        with:
+          path: 'app'
+
+      - run: |
+          cd app
+          flutter config --enable-macos-desktop
+          flutter pub get
+          flutter build macos --release
+          cd build/macos/Build/Products/Release
+          ditto -c -k --sequesterRsrc --keepParent flutter_uis.app macos-release.zip
+
+      # - run: |
+      #     cd app
+      #     npm i
+      #     npm run upload macos ${{ secrets.ACCOUNT }}
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'app/build/macOS/Build/Products/Release/macos-release.zip'
+          token: ${{ secrets.TOKEN }}
+          allowUpdates: true
+
+  windows:
+    name: Windows
+    runs-on: windows-latest
+    steps:
+      - run: |
+          git clone https://github.com/flutter/flutter.git
+          cd flutter
+          git checkout 4df8fdb7df
+      - run: echo ::add-path::"$(pwd)\flutter\bin"
+
+      - uses: actions/checkout@v2
+        with:
+          path: 'app'
+
+      - run: |
+          cd app
+          flutter config --enable-windows-desktop
+          flutter pub get
+          flutter build windows --release
+          cd build\windows\x64\Release
+          Compress-Archive -Path Runner -DestinationPath windows-release.zip
+
+      # Windows prints the secret variable in log taht's why It's disabled for now
+      # - run: |
+      #     cd app
+      #     npm i
+      #     npm run upload windows ${{ secrets.ACCOUNT }}
+
+      - name: Windows release build for github
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'app\build\windows\x64\Release\windows-release.zip'
+          token: ${{ secrets.TOKEN }}
+          allowUpdates: true

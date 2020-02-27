@@ -1,11 +1,5 @@
 import admin from 'firebase-admin';
 
-const app = admin.initializeApp({
-  credential: admin.credential.cert(JSON.parse(process.env.account)),
-  storageBucket: 'flutter-ui-challenges-hgl.appspot.com',
-  databaseURL: 'https://flutter-ui-challenges-hgl.firebaseio.com',
-});
-
 const platforms = {
   apk: {
     path: 'build/app/outputs/apk/release/app-release.apk',
@@ -15,21 +9,28 @@ const platforms = {
     path: 'build/linux/linux-release.zip',
     name: 'linux-release.zip',
   },
-  mac: {
-    path: 'build/macOS/Build/Products/Release/mac-release.zip',
-    name: 'mac-release.zip',
+  macos: {
+    path: 'build/macos/Build/Products/Release/macos-release.zip',
+    name: 'macos-release.zip',
   },
   windows: {
     path: 'build\\windows\\x64\\Release\\windows-release.zip',
-    name: 'window-release.zip',
+    name: 'windows-release.zip',
   },
 };
 
 async function main() {
-  try {
-    console.log('Automated process started');
+  const platform = process.argv[2];
 
-    const platform = process.argv[2];
+  admin.initializeApp({
+    credential: admin.credential.cert(
+      JSON.parse(process.env.ACCOUNT || process.argv[3])
+    ),
+    storageBucket: 'flutter-ui-challenges-hgl.appspot.com',
+    databaseURL: 'https://flutter-ui-challenges-hgl.firebaseio.com',
+  });
+  try {
+    console.log(`Automated process started | ${platform}`);
 
     if (!platforms[platform]) {
       throw Error('Undefined platform');
@@ -51,12 +52,12 @@ async function main() {
       .ref(`urls/${platform}`)
       .set(url);
 
-    console.log('Automated process completed');
+    console.log(`Automated process completed | ${platform}`);
   } catch (e) {
-    console.log('Automated process failed');
-
+    console.log(`Automated process failed | ${platform}`);
     console.error(e);
   }
+  process.exit(0);
 }
 
 main();
