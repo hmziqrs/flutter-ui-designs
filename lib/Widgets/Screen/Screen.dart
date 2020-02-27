@@ -37,6 +37,7 @@ class ScreenState extends State<Screen> with AnimationControllerMixin {
 
   Animation<double> popUpAnimation;
   bool inProgress = false;
+  bool mounted = false;
   String popUpTitle;
   String popUpMessage;
 
@@ -60,6 +61,7 @@ class ScreenState extends State<Screen> with AnimationControllerMixin {
       return;
     }
     setState(() {
+      mounted = true;
       popUpMessage = message;
       popUpTitle = title;
     });
@@ -76,6 +78,9 @@ class ScreenState extends State<Screen> with AnimationControllerMixin {
           to: 0.0,
           onComplete: () {
             inProgress = false;
+            setState(() {
+              mounted = false;
+            });
           }),
     ]);
   }
@@ -83,6 +88,10 @@ class ScreenState extends State<Screen> with AnimationControllerMixin {
   buildPopUp() {
     final margin = AppDimensions.padding * 3;
     final borderRadius = BorderRadius.circular(6.0);
+
+    if (!mounted) {
+      return Container();
+    }
 
     return Positioned(
       bottom: Utils.rangeMap(
@@ -102,6 +111,7 @@ class ScreenState extends State<Screen> with AnimationControllerMixin {
               duration: Duration(milliseconds: popUpTransitionDuration),
               onComplete: () {
                 inProgress = false;
+                mounted = false;
               },
             )
           ]),

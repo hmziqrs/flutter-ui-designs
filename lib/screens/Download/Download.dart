@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:http/http.dart' as http;
 
@@ -87,6 +88,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  Utils.safePadding(context, "top"),
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.all(AppDimensions.padding * 2),
@@ -94,7 +96,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
                       "Download will start in browser",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 14 + AppDimensions.ratio * 5,
+                        fontSize: 12 + AppDimensions.ratio * 4,
                       ),
                     ),
                   ),

@@ -8,7 +8,7 @@ final mobileLinks = [
     "icon": MaterialCommunityIcons.google_play,
   },
   {
-    "key": "apk-release.apk",
+    "key": "app-release.apk",
     "name": "Apk",
     "icon": MaterialCommunityIcons.android,
   }
@@ -16,7 +16,7 @@ final mobileLinks = [
 
 final desktopLinks = [
   {
-    "key": "mac-release.zip",
+    "key": "macos-release.zip",
     "name": "Mac",
     "icon": MaterialCommunityIcons.apple_finder,
   },

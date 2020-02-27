@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:url_launcher/url_launcher.dart' as url;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_uis/blocs/ui_bloc/bloc.dart';
@@ -66,7 +65,6 @@ class _UiDetailScreenState extends State<UiDetailScreen>
             image: ExactAssetImage(uiItem.thumbnail),
             fit: BoxFit.cover,
           ),
-          // color: Colors.red,
         ),
       ),
     );
@@ -279,10 +277,10 @@ class _UiDetailScreenState extends State<UiDetailScreen>
                 arguments: {"designer": uiItem.designer, "id": uiItem.id},
               ),
             ),
-            Utils.safePadding(context, 'bottom'),
             Padding(
               padding: EdgeInsets.only(top: safeOffset < 0 ? 0 : safeOffset),
-            )
+            ),
+            Utils.safePadding(context, 'bottom'),
           ],
         ),
       ),
