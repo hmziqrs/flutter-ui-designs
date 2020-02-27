@@ -38,13 +38,22 @@ class _DownloadScreenState extends State<DownloadScreen> {
 
       this.setParams(true, false);
 
-      final url = 'https://flutter-ui-challenges-hgl.firebaseio.com/urls.json';
+      final url =
+          'https://api.github.com/repos/hackerhgl/flutter-ui-designs/releases/latest';
       final res = await http.Client().get(url);
-      this.setParams(false, false);
+      final decode = json.decode(res.body) as Map;
+      final list = List<Map<String, dynamic>>.from(decode["assets"]);
       setState(() {
-        cache = json.decode(res.body) as Map;
+        if (cache == null) {
+          cache = {};
+        }
+        list.forEach((obj) {
+          cache[obj["name"]] = obj["browser_download_url"];
+        });
       });
+      this.setParams(false, false);
     } catch (e) {
+      print(e);
       this.setParams(false, true);
       this
           .screenKey
