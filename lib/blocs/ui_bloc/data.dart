@@ -40,6 +40,20 @@ List<UIItem> uilist = [
     tabletSupport: true,
     landscapeSupport: true,
   ),
+  new UIItem(
+    id: 4,
+    name: "Asics Shoes concept",
+    designer: "anonymous",
+    // "designer": "designer",
+    source: "youtube",
+    miniApp: "ascHome",
+    link: "https://www.youtube.com/watch?v=PYLHeRTNLWE",
+    thumbnail: "assets/thumbnails/asics_shoes_concept.jpg",
+    tabletSupport: true,
+    landscapeSupport: true,
+    webSupport: true,
+    desktopSupport: true,
+  ),
 ];
 
 List<UIDesigner> designersList = [

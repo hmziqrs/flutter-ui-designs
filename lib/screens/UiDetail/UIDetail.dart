@@ -270,13 +270,15 @@ class _UiDetailScreenState extends State<UiDetailScreen>
             this.renderSupport(uiItem),
             Padding(padding: EdgeInsets.all(AppDimensions.padding)),
             ...this.renderMoreUis(uiItem, list),
-            this.renderButton(
-              "Contact ${uiItem.designer}",
-              () => Navigator.of(context).pushNamed(
-                "designerProfile",
-                arguments: {"designer": uiItem.designer, "id": uiItem.id},
-              ),
-            ),
+            uiItem.designer != "anonymous"
+                ? this.renderButton(
+                    "Contact ${uiItem.designer}",
+                    () => Navigator.of(context).pushNamed(
+                      "designerProfile",
+                      arguments: {"designer": uiItem.designer, "id": uiItem.id},
+                    ),
+                  )
+                : Container(),
             Padding(
               padding: EdgeInsets.only(top: safeOffset < 0 ? 0 : safeOffset),
             ),
