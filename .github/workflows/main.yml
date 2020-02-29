@@ -29,8 +29,8 @@ jobs:
           flutter config --enable-web
           flutter pub get
           flutter build linux --release
-          flutter build apk --release
-          flutter build web --release
+          flutter build apk -t lib/main.mobile.dart --release
+          flutter build web -t lib/main.mobile.dart --release
           cd build/linux/
           zip -r linux-release.zip release
 

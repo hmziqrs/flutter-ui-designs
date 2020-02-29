@@ -19,6 +19,8 @@ import './MiniApps/HotAirBalloons/Screens/HomeScreen/HABHomeScreen.dart';
 // import './MiniApps/HotAirBalloons/Screens/DetailScreen/HABDetailScreen.dart';
 
 import './MiniApps/SkyView/Screens/HomeScreen/SKHomeScreen.dart';
+
+import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/ASCHomeScreen.dart';
 // import './MiniApps/SkyView/Screens/DetailScreen/SKDetailScreen.dart';
 
 bool isAlt = false;
@@ -93,6 +95,8 @@ class AppNavigator extends StatelessWidget {
           // Sky View
           "skHome": (ctx) => new SKHomeScreen(),
           // "skDetail": (ctx) => new SKDetailScreen(),
+
+          "ascHome": (ctx) => new ASCHomeScreen(),
         },
       ),
     );

@@ -98,6 +98,14 @@ flutter:
     - assets/ma-sk/stars-bg.jpg
     - assets/ma-sk/gradient-path.png
 
+    - assets/thumbnails/asics_shoes_concept.jpg
+    - assets/ma-asc/Asics_Logo_1.png
+    - assets/ma-asc/Asics_Logo_2.png
+    - assets/ma-asc/Asics_Logo_3.png
+    - assets/ma-asc/blue.png
+    - assets/ma-asc/yellow.png
+    - assets/ma-asc/red.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
