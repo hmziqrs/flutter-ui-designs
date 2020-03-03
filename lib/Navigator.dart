@@ -19,9 +19,9 @@ import './MiniApps/HotAirBalloons/Screens/HomeScreen/HABHomeScreen.dart';
 // import './MiniApps/HotAirBalloons/Screens/DetailScreen/HABDetailScreen.dart';
 
 import './MiniApps/SkyView/Screens/HomeScreen/SKHomeScreen.dart';
+import './MiniApps/SkyView/Screens/DetailScreen/SKDetailScreen.dart';
 
 import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/ASCHomeScreen.dart';
-// import './MiniApps/SkyView/Screens/DetailScreen/SKDetailScreen.dart';
 
 bool isAlt = false;
 
@@ -64,16 +64,21 @@ class AppNavigator extends StatelessWidget {
         navigatorObservers: observers,
         home: HomeScreen(),
         onGenerateRoute: (settings) {
-          if (settings.name == "hfdDetail") {
+          final index = ["skDetail", "hfdDetail"].indexOf(settings.name);
+          if (index > -1) {
             return PageRouteBuilder(
-              settings: RouteSettings(arguments: settings.arguments),
-              pageBuilder: (_, __, ___) => HFDDetailScreen(),
+              settings: settings,
+              pageBuilder: (_, __, ___) {
+                if (index == 1) {
+                  return HFDDetailScreen();
+                }
+                return SKDetailScreen(settings.arguments);
+              },
               transitionsBuilder: (_, anim, __, child) {
                 return FadeTransition(opacity: anim, child: child);
               },
             );
           }
-          // unknown route
           return MaterialPageRoute(builder: (context) => HomeScreen());
         },
         routes: <String, WidgetBuilder>{

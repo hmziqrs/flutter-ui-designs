@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/AppDimensions.dart';
 
 import 'package:simple_animations/simple_animations.dart';
 
@@ -17,83 +18,97 @@ class Planet extends StatelessWidget {
   final double offset;
 
   Widget renderContent(double animation) {
-    double width = Dimensions.getSize().width;
-    double widthIndex = width * this.index;
+    final width = AppDimensions.size.width;
+    // This variale helps us calculate parallax for each page.
+    final widthOffset = this.offset - (width * this.index);
+    final rotateRatio = math.pi / 180;
 
-    double xOffset = 0;
-    double rotationOffset = animation;
-    double opacityOffset = rotationOffset;
+    double opacityOffset = animation;
 
+    // Init offSet bascially works like rotate origin here we set the center of radius
+    double initOffSetX =
+        AppDimensions.size.width - (Dimensions.planetSize * 0.5);
+    double initOffSetY =
+        (AppDimensions.size.height * 0.5) - (Dimensions.planetSize * 0.5);
+
+    final radiusY = AppDimensions.size.height * 0.5;
+    final radiusX = AppDimensions.size.width * 0.5;
+
+    double angle = Utils.rangeMap(widthOffset, 0, width, -90, -200);
+
+    /* pageRendered variable is very important
+    becuase it is responsible to trigger animation when use first navigate to this screen*/
     if (this.pageRendered) {
-      rotationOffset = Utils.rangeMap(
-        offset,
-        widthIndex,
-        width * (index + 1) - (width * .2),
+      opacityOffset = Utils.rangeMap(
+        widthOffset,
+        0.0,
+        width * 0.8,
         1.0,
-        -0.38,
+        0.0,
       );
-      opacityOffset = rotationOffset;
-
-      xOffset = Utils.rangeMap(
-            offset,
-            widthIndex,
-            width * (index + 1),
-            0,
-            width,
-          ) *
-          0.38;
-      if (offset < widthIndex) {
-        xOffset = xOffset * .4;
-
-        opacityOffset = Utils.rangeMap(
-          offset,
-          widthIndex - (width * 0.45),
-          widthIndex,
-          0.3,
-          1.0,
-        );
-      } else if (offset > widthIndex) {
-        xOffset = xOffset * -1;
+      // This condition resets the opacity when user is scrolling back from the page.
+      if (opacityOffset > 1) {
+        opacityOffset = 1 - (opacityOffset - 1);
       }
+    } else {
+      angle = Utils.rangeMap(animation, 0, 1.0, -200, -90);
     }
 
-    return Transform.rotate(
-      origin: Dimensions.planetOrigin,
-      angle: this.pageRendered ? rotationOffset : animation,
-      // angle: 1.0,
-      child: Transform.translate(
-        offset: Offset(xOffset, 0),
-        child: Opacity(
-          opacity:
-              Utils.safeOpacity(this.pageRendered ? opacityOffset : animation),
+    final sin = initOffSetX + (math.sin(angle * rotateRatio) * radiusX);
+    final cos = initOffSetY + (math.cos(angle * rotateRatio) * -radiusY);
+
+    return Opacity(
+      opacity: (this.pageRendered ? opacityOffset : animation).clamp(0.0, 1.0),
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: Transform(
+          transform: Matrix4.identity()
+            ..translate(
+              sin,
+              cos,
+            )
+            ..rotateZ(0 * rotateRatio),
           child: Container(
-            alignment: Alignment.centerRight,
-            child: Container(
-              width: Dimensions.planetSize,
-              // decoration: BoxDecoration(color: Colors.red),
-              alignment: Alignment.bottomRight,
-              child: ControlledAnimation(
-                playback: Playback.LOOP,
-                delay: Duration(milliseconds: this.pageRendered ? 800 : 1400),
-                tween: Tween(begin: 0.0, end: math.pi * 2),
-                duration: Duration(seconds: 50),
-                builder: (ctx, rotation) {
-                  return Transform.rotate(
-                    angle: rotation,
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: Dimensions.planetSize,
-                      height: Dimensions.planetSize,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(item.image),
-                          fit: BoxFit.fill,
+            width: Dimensions.planetSize,
+            height: Dimensions.planetSize,
+            alignment: Alignment.bottomCenter,
+            child: ControlledAnimation(
+              playback: Playback.LOOP,
+              delay: Duration(milliseconds: this.pageRendered ? 800 : 1400),
+              tween: Tween(begin: 0.0, end: math.pi * 2),
+              duration: Duration(seconds: 50),
+              builder: (ctx, rotation) {
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(Dimensions.planetSize),
+                  child: Container(
+                    width: Dimensions.planetSize,
+                    height: Dimensions.planetSize,
+                    foregroundDecoration: BoxDecoration(
+                      gradient: RadialGradient(
+                        center: Alignment(0.30, -0.40),
+                        colors: [
+                          Colors.white.withOpacity(0.09),
+                          Colors.transparent,
+                          Colors.black.withOpacity(0.85),
+                        ],
+                        radius: 0.68,
+                      ),
+                    ),
+                    child: Transform.rotate(
+                      angle: rotation,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(item.image),
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
           ),
         ),
