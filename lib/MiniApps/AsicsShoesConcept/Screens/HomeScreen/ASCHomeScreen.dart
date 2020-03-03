@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/UI.dart';
+
 import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/UI.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
-import '../../data/data.dart' as data;
-
 import 'package:flutter_uis/Widgets/Screen/Screen.dart';
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 import 'Widgets/Content.dart';
 
+import '../../data/data.dart' as data;
 import 'Dimensions.dart';
 
 class ASCHomeScreen extends StatefulWidget {
@@ -16,13 +17,23 @@ class ASCHomeScreen extends StatefulWidget {
   _ASCHomeScreenState createState() => _ASCHomeScreenState();
 }
 
-class _ASCHomeScreenState extends State<ASCHomeScreen> {
+class _ASCHomeScreenState extends State<ASCHomeScreen>
+    with AnimationControllerMixin {
   PageController pageController = PageController();
+  Animation<Color> activeColor;
+  int activeColorIndex = 0;
   double offset = 0.0;
   int activePage = 0;
 
   @override
   void initState() {
+    final color = data.list[activePage].colors[0];
+
+    this.activeColor = ColorTween(
+      begin: color,
+      end: color,
+    ).animate(this.controller);
+
     this.pageController.addListener(() {
       setState(() {
         this.offset = this.pageController.offset;
@@ -30,6 +41,26 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> {
     });
 
     super.initState();
+  }
+
+  void changeColor(Color color, int index) {
+    setState(() {
+      this.activeColorIndex = index;
+    });
+    this.activeColor = ColorTween(
+      begin: this.activeColor.value,
+      end: color,
+    ).animate(this.controller);
+    this.controller.reset([
+      FromToTask(
+        to: 0.0,
+        duration: Duration(milliseconds: 0),
+      ),
+      FromToTask(
+        to: 1.0,
+        duration: Duration(milliseconds: 280),
+      ),
+    ]);
   }
 
   @override
@@ -73,10 +104,22 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> {
           child: Screen(
             Dimensions.init,
             scaffoldBackgroundColor: Colors.white,
+            theme: Theme.of(context).copyWith(
+              accentColor: this.activeColor.value,
+              primaryColor: this.activeColor.value,
+            ),
             builder: (_) => PageView.builder(
               physics: ClampingScrollPhysics(),
               controller: this.pageController,
-              onPageChanged: (index) => setState(() => this.activePage = index),
+              onPageChanged: (index) => setState(() {
+                this.activePage = index;
+                final color = data.list[index].colors[0];
+
+                this.activeColor = ColorTween(
+                  begin: color,
+                  end: color,
+                ).animate(this.controller);
+              }),
               itemCount: data.list.length,
               itemBuilder: (itemCtx, index) {
                 final item = data.list[index];
@@ -107,7 +150,13 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> {
                         Column(
                           children: [
                             this.buildHeader(item, ratio),
-                            Content(item, ratio, uiRatio),
+                            Content(
+                              item: item,
+                              uiRatio: uiRatio,
+                              changeColor: this.changeColor,
+                              activeColor: this.activeColor.value,
+                              activeColorIndex: this.activeColorIndex,
+                            ),
                           ],
                         ),
                         this.buildShoe(item, ratio, uiRatio),
@@ -135,7 +184,6 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> {
               .toList(),
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          // stops: [0.0, 0.3, 0.7, 1.0],
         ),
       ),
       child: Container(
@@ -144,14 +192,16 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Utils.safePadding(context, "top"),
-            Container(height: AppDimensions.padding * 2),
             Container(
               height: Dimensions.logoHeight,
+              margin: EdgeInsets.only(left: AppDimensions.padding * 1),
               child: Image.asset(item.logoLink),
             ),
-            Container(height: AppDimensions.padding * 2),
             Container(
-              margin: EdgeInsets.all(AppDimensions.padding * 2),
+              margin: EdgeInsets.only(
+                top: AppDimensions.padding * 1,
+                left: AppDimensions.padding * 2,
+              ),
               transform: Matrix4.identity()..translate(ratio * -0.9),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -161,15 +211,17 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> {
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
-                      fontSize: 12 + AppDimensions.ratio * 6,
+                      fontSize: 8 + AppDimensions.ratio * 8,
                     ),
                   ),
                   Container(height: AppDimensions.padding * 1),
                   Text(
                     item.headerDescription,
+                    maxLines: 3,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 7 + AppDimensions.ratio * 4,
+                      // fontSize: 7 + AppDimensions.ratio * 4,
+                      fontSize: 5 + AppDimensions.ratio * 5,
                     ),
                   ),
                 ],

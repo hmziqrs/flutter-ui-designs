@@ -16,42 +16,31 @@ class Dimensions {
   static init(BuildContext context) {
     AppDimensions.init(context);
 
-    headerHeight = AppDimensions.ratio * 290;
-    logoHeight = 30 + AppDimensions.ratio * 10;
-
     sizeRadius = 18 + AppDimensions.ratio * 6;
     colorRadius = AppDimensions.ratio * 20;
 
-    shoeTop = headerHeight * 0.65;
-    shoeWidth = AppDimensions.ratio * 190;
-    shoeHeight = shoeWidth * 0.55;
+    logoHeight = 30 + AppDimensions.ratio * 10;
 
-    double safeShoeWidth = AppDimensions.size.width * 0.90;
+    headerHeight = 60 + AppDimensions.ratio * 170;
+    shoeWidth = 120 + AppDimensions.ratio * 80;
+    shoeTop = headerHeight * 0.60;
 
-    if (UI.xs) {
-      // print("UI.XS");
-      shoeWidth = AppDimensions.ratio * 200;
-      shoeHeight = shoeWidth * 0.5;
-
-      shoeTop = headerHeight * 0.60;
-    }
     if (UI.sm) {
-      headerHeight = AppDimensions.ratio * 280;
+      headerHeight = 70 + AppDimensions.ratio * 180;
+      shoeWidth = 120 + AppDimensions.ratio * 100;
       shoeTop = headerHeight * 0.55;
-      // print("UI.SM");
     }
-    if (UI.md) {
-      // print("UI.MD");
-      shoeWidth = AppDimensions.ratio * 220;
-      shoeHeight = shoeWidth * 0.5;
-
-      shoeTop = headerHeight * 0.60;
+    if (UI.lg) {
+      headerHeight = 90 + AppDimensions.ratio * 200;
+      shoeWidth = 150 + AppDimensions.ratio * 120;
+      shoeTop = headerHeight * 0.55;
     }
 
+    double safeShoeWidth = AppDimensions.size.width * 0.80;
     if (shoeWidth > safeShoeWidth) {
       shoeWidth = safeShoeWidth;
     }
-  }
 
-  static initShoe() {}
+    shoeHeight = shoeWidth * 0.50;
+  }
 }
