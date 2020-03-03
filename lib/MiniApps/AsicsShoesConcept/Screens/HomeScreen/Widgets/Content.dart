@@ -1,34 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/Mixins/HoverWidget.dart';
-import 'package:flutter_uis/Utils.dart';
-import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+
+import 'package:flutter_uis/Utils.dart';
+
+import 'package:flutter_uis/configs/AppDimensions.dart';
+
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 
 import '../../../data/data.dart' as data;
 import '../Dimensions.dart';
 
 class Content extends StatefulWidget {
-  final double ratio;
   final double uiRatio;
   final data.ASCItem item;
-  Content(this.item, this.ratio, this.uiRatio, {Key key}) : super(key: key);
+  final Color activeColor;
+  final int activeColorIndex;
+  final void Function(Color, int) changeColor;
+
+  Content({
+    this.item,
+    this.uiRatio,
+    this.changeColor,
+    this.activeColor,
+    this.activeColorIndex,
+  });
 
   @override
   _ContentState createState() => _ContentState();
 }
 
-class _ContentState extends State<Content> with AnimationControllerMixin {
+class _ContentState extends State<Content> {
   int activeSize;
-  Animation<Color> activeColor;
-  int activeColorIndex = 0;
   final List<int> sizes = [7, 8, 9, 10, 11];
 
   @override
   void initState() {
-    this.activeColor = ColorTween(
-      begin: widget.item.colors[0],
-      end: widget.item.colors[0],
-    ).animate(this.controller);
     this.activeSize = this.sizes[0];
     super.initState();
   }
@@ -37,7 +43,7 @@ class _ContentState extends State<Content> with AnimationControllerMixin {
   Widget build(BuildContext context) {
     return Container(
       width: AppDimensions.maxContainerWidth,
-      margin: EdgeInsets.only(top: AppDimensions.padding * 4),
+      margin: EdgeInsets.only(top: AppDimensions.padding * 2),
       padding: EdgeInsets.all(AppDimensions.padding * 4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,9 +76,9 @@ class _ContentState extends State<Content> with AnimationControllerMixin {
               this.buildBadge(),
             ],
           ),
-          Container(height: AppDimensions.padding * 3),
+          Container(height: AppDimensions.padding * 2),
           this.buildStars(),
-          Container(height: AppDimensions.padding * 8),
+          Container(height: AppDimensions.padding * 6),
           Text(
             "SIZE",
             style: TextStyle(
@@ -82,7 +88,7 @@ class _ContentState extends State<Content> with AnimationControllerMixin {
           ),
           Container(height: AppDimensions.padding * 2),
           this.buildSize(),
-          Container(height: AppDimensions.padding * 8),
+          Container(height: AppDimensions.padding * 6),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -111,7 +117,7 @@ class _ContentState extends State<Content> with AnimationControllerMixin {
           vertical: AppDimensions.padding * 2,
         ),
         decoration: BoxDecoration(
-          color: this.activeColor.value,
+          color: widget.activeColor,
           borderRadius: BorderRadius.circular(6.0),
         ),
         child: Text(
@@ -145,7 +151,7 @@ class _ContentState extends State<Content> with AnimationControllerMixin {
               MaterialCommunityIcons.star,
               size: 18 + AppDimensions.ratio + 10,
               color: widget.item.stars > index
-                  ? this.activeColor.value
+                  ? widget.activeColor
                   : Colors.black.withOpacity(0.5),
             ),
           ),
@@ -237,29 +243,11 @@ class _ContentState extends State<Content> with AnimationControllerMixin {
                   final offset = Dimensions.colorRadius / 2;
 
                   return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        this.activeColorIndex = index;
-                      });
-                      this.activeColor = ColorTween(
-                        begin: this.activeColor.value,
-                        end: color,
-                      ).animate(this.controller);
-                      this.controller.reset([
-                        FromToTask(
-                          to: 0.0,
-                          duration: Duration(milliseconds: 0),
-                        ),
-                        FromToTask(
-                          to: 1.0,
-                          duration: Duration(milliseconds: 280),
-                        ),
-                      ]);
-                    },
+                    onTap: () => widget.changeColor(color, index),
                     child: ControlledAnimation(
                         tween: Tween(begin: 0.0, end: 1.0),
                         duration: Duration(milliseconds: 180),
-                        playback: this.activeColorIndex == index
+                        playback: widget.activeColorIndex == index
                             ? Playback.PLAY_FORWARD
                             : Playback.PLAY_REVERSE,
                         builder: (context, animation) {
@@ -285,7 +273,7 @@ class _ContentState extends State<Content> with AnimationControllerMixin {
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       border: Border.all(
-                                        color: this.activeColor.value,
+                                        color: widget.activeColor,
                                         width: AppDimensions.ratio * 1,
                                       ),
                                     ),
@@ -328,7 +316,7 @@ class _ContentState extends State<Content> with AnimationControllerMixin {
           vertical: AppDimensions.padding * 3.5,
         ),
         decoration: BoxDecoration(
-          color: this.activeColor.value,
+          color: widget.activeColor,
           borderRadius: BorderRadius.horizontal(
             left: Radius.circular(12.0),
           ),
