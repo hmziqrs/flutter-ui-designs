@@ -44,8 +44,6 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> {
         final duration =
             (AppDimensions.size.width * 0.5).clamp(500.0, 800.0).toInt();
 
-        print("duration $duration");
-
         if (event.runtimeType.toString() == 'RawKeyUpEvent') {
           if (rightKeys.contains(key) && activePage < data.list.length - 1) {
             this.pageController.animateToPage(

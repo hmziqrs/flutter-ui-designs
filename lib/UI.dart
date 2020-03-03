@@ -64,7 +64,6 @@ class UI {
     xl = size.width > 1160;
     xlg = size.width > 1400;
     xxlg = size.width > 1700;
-    // isTablet = false;
   }
 
   static MediaQueryData mediaQuery() => _mediaQueryData;
