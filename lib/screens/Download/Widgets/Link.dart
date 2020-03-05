@@ -11,8 +11,7 @@ import '../Dimensions.dart';
 
 class Link extends StatefulWidget {
   final Map obj;
-  final Map links;
-  Link(this.obj, this.links, {Key key}) : super(key: key);
+  Link(this.obj, {Key key}) : super(key: key);
 
   @override
   _LinkState createState() => _LinkState();
@@ -43,12 +42,7 @@ class _LinkState extends State<Link> with HoverWidgetMixin {
         type: MaterialType.transparency,
         child: this.buildInkWell(
           onTap: () async {
-            String key = widget.obj["key"];
-            if (key == null) {
-              Utils.launchUrl(widget.obj["url"]);
-            } else if (widget.links != null) {
-              Utils.launchUrl(widget.links[key]);
-            }
+            Utils.launchUrl(widget.obj["url"]);
           },
           isButton: true,
           child: Container(

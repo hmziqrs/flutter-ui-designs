@@ -52,7 +52,7 @@ class AboutDeveloperScreen extends StatelessWidget {
         Container(
           child: Center(
             child: Container(
-              padding: EdgeInsets.all(AppDimensions.padding),
+              padding: EdgeInsets.all(AppDimensions.padding * 2),
               width: double.infinity,
               constraints: BoxConstraints(
                 maxWidth: AppDimensions.maxContainerWidth,
@@ -93,8 +93,8 @@ class AboutDeveloperScreen extends StatelessWidget {
             top: AppDimensions.padding,
           ),
           child: Text(
-            "Hi, I'm Hamza freelance developer. I've been developing end to end solutions from backend services to web apps & mobile apps for more than two years. I use latest sate of the art technologies & implement flexible code architectrue so it's easy to understand & some of the code base could be use in different projects as well.\n\n" +
-                "Besides all the technical stuff I like to spend my free time by playing Clash Royale & Rise of Kingdoms, Watch anime, k-drama, movie & read book sometime.",
+            "Hi, I am Hamza freelance developer. I have been building end to end smart solutions for my clients for more than three years. When a client hire me I don't offer just my skills I offer them my experience. I help them at every stage of product development such as prototyping wireframes, improving UI designs, timelined development, quality assurance, project deployment & feedback based changes." +
+                "\n\nFor developement I use latest technologies, Modularized project structure for flexible, readable & easy to maintain code. Performance optimised best practices. Automated build process with production & debug enviroments.",
           ),
         ),
         Padding(
@@ -154,7 +154,7 @@ class AboutDeveloperScreen extends StatelessWidget {
             top: AppDimensions.padding * 3,
           ),
           child: Text(
-            "Wanna hire me ?",
+            "Let's Chat !",
             style: TextStyle(
               fontSize: 22,
               fontWeight: FontWeight.w600,
@@ -200,7 +200,7 @@ class AboutDeveloperScreen extends StatelessWidget {
                             child: Icon(contact["icon"], color: Colors.white),
                           ),
                           Text(
-                            (["facebook", "instagram"]
+                            (["facebook", "instagram", "linkedin"]
                                         .contains(contact["platform"])
                                     ? "@"
                                     : "") +
@@ -216,34 +216,108 @@ class AboutDeveloperScreen extends StatelessWidget {
                 )
                 .toList(),
           ),
-        )
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            left: AppDimensions.padding,
+            top: AppDimensions.padding * 3,
+          ),
+          child: Text(
+            "Show Support",
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            left: AppDimensions.padding,
+            top: AppDimensions.padding,
+          ),
+          child: Text(
+            "If you like the project and want to appreciate my effort. Then please click any of these links and perform any action you may like.",
+            style: TextStyle(
+              fontSize: 8 + AppDimensions.ratio * 4,
+              // fontWeight: FontWeight.w300,
+              color: Colors.white.withOpacity(0.55),
+            ),
+          ),
+        ),
+        this.buildShowSupportList(),
       ],
     );
   }
 
+  Widget buildShowSupportList() {
+    return Padding(
+      padding: EdgeInsets.only(
+        top: AppDimensions.padding * 2,
+        left: AppDimensions.padding * 1,
+        right: AppDimensions.padding * 1,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: data.showSupport
+            .map(
+              (support) => GestureDetector(
+                onTap: () => Utils.launchUrl(support["link"]),
+                child: Text(
+                  "* ${support["text"]}",
+                  style: TextStyle(
+                    height: 1 + AppDimensions.ratio * 0.5,
+                    fontSize: 10 + AppDimensions.ratio * 5,
+                  ),
+                ),
+              ),
+            )
+            .toList(),
+      ),
+    );
+  }
+
   Widget buildAvatar() {
+    final borderWidth = AppDimensions.ratio * 8;
     return Positioned(
       left: 0,
       right: 0,
-      top: (Dimensions.redBackground - (Dimensions.avatarSize / 2)),
+      top: (Dimensions.redBackground -
+          (Dimensions.avatarSize / 2) -
+          borderWidth / 2),
       child: Container(
-        alignment: Alignment.center,
-        width: Dimensions.avatarSize,
-        height: Dimensions.avatarSize,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 12,
-              spreadRadius: 3,
-              color: Colors.white.withOpacity(0.18),
+        child: Stack(
+          children: <Widget>[
+            Center(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(Dimensions.avatarSize),
+                child: Container(
+                  width: Dimensions.avatarSize + borderWidth,
+                  height: Dimensions.avatarSize + borderWidth,
+                  child: Column(
+                    children: <Widget>[
+                      Flexible(child: Container(color: theme.darkBackground)),
+                      Flexible(child: Container(color: theme.primary)),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: borderWidth / 2,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Container(
+                  width: Dimensions.avatarSize,
+                  child: CircleAvatar(
+                    radius: Dimensions.avatarSize / 2,
+                    backgroundImage: AssetImage("assets/user/hamza.jpg"),
+                    backgroundColor: theme.primary,
+                  ),
+                ),
+              ),
             ),
           ],
-        ),
-        child: CircleAvatar(
-          radius: Dimensions.avatarSize / 2,
-          backgroundImage: AssetImage("assets/user/hamza.jpg"),
-          backgroundColor: theme.primary,
         ),
       ),
     );

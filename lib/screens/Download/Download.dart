@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:http/http.dart' as http;
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/Theme.dart' as theme;
@@ -14,67 +11,11 @@ import 'Widgets/Link.dart';
 import 'Dimensions.dart';
 import 'data.dart' as data;
 
-class DownloadScreen extends StatefulWidget {
-  @override
-  _DownloadScreenState createState() => _DownloadScreenState();
-}
-
-class _DownloadScreenState extends State<DownloadScreen> {
-  final screenKey = GlobalKey<ScreenState>();
-  bool fetching = false;
-  bool error = false;
-  static Map cache;
-
-  @override
-  void initState() {
-    super.initState();
-    this.fetch();
-  }
-
-  fetch({bool force = false}) async {
-    try {
-      if (this.fetching || (cache != null && !force)) {
-        return;
-      }
-
-      this.setParams(true, false);
-
-      final url =
-          'https://api.github.com/repos/hackerhgl/flutter-ui-designs/releases/latest';
-      final res = await http.Client().get(url);
-      final decode = json.decode(res.body) as Map;
-      final list = List<Map<String, dynamic>>.from(decode["assets"]);
-      setState(() {
-        if (cache == null) {
-          cache = {};
-        }
-        list.forEach((obj) {
-          cache[obj["name"]] = obj["browser_download_url"];
-        });
-      });
-      this.setParams(false, false);
-    } catch (e) {
-      print(e);
-      this.setParams(false, true);
-      this
-          .screenKey
-          .currentState
-          .showPopUp(message: "Unable to fetch download links");
-    }
-  }
-
-  setParams(fetching, error) {
-    setState(() {
-      this.fetching = fetching;
-      this.error = error;
-    });
-  }
-
+class DownloadScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Screen(
       Dimensions.init,
-      key: this.screenKey,
       belowBuilder: (context) => this.buildBackground(),
       builder: (_) => Container(
         height: AppDimensions.size.height,
@@ -103,7 +44,6 @@ class _DownloadScreenState extends State<DownloadScreen> {
                   ...this.buildPlatformWithLinks("Mobile", data.mobileLinks),
                   ...this.buildPlatformWithLinks("Desktop", data.desktopLinks),
                   ...this.buildPlatformWithLinks("Online", data.webLinks),
-                  this.buildErrorButton(),
                 ],
               ),
             ),
@@ -117,10 +57,10 @@ class _DownloadScreenState extends State<DownloadScreen> {
     return ControlledAnimation(
         tween: ColorTween(
           begin: theme.primary.withOpacity(0.15),
-          end: theme.primary.withOpacity(0.4),
+          end: theme.primary.withOpacity(1.0),
         ),
-        duration: Duration(milliseconds: 280),
-        playback: this.fetching ? Playback.MIRROR : Playback.PAUSE,
+        duration: Duration(milliseconds: 2400),
+        playback: Playback.MIRROR,
         builder: (context, animation) {
           return Positioned(
             bottom: AppDimensions.ratio * -10,
@@ -151,23 +91,8 @@ class _DownloadScreenState extends State<DownloadScreen> {
         ),
       ),
       Wrap(
-        children: links.map((obj) => Link(obj, cache)).toList(),
+        children: links.map((obj) => Link(obj)).toList(),
       ),
     ];
-  }
-
-  Widget buildErrorButton() {
-    if (!error) {
-      return Container();
-    }
-    return Container(
-      padding: EdgeInsets.all(AppDimensions.padding * 2),
-      child: RaisedButton(
-        color: theme.primary,
-        textColor: Colors.white,
-        onPressed: () => this.fetch(force: true),
-        child: Text("Fetch again"),
-      ),
-    );
   }
 }
