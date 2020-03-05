@@ -87,28 +87,28 @@
 **If you like the project and want to appreciate my effort. Then please perform any of these steps :)**
 
 - Star this repository.
-- Rate the app on <a href="https://play.google.com/store/apps/details?id=com.onemdev.flutter_ui_challenges">Play Store</a>.
-- Endorse my skills on my <a href="https://www.linkedin.com/in/hackerhgl/">linkedin Profile</a>.
-- Favorite my gigs on <a href="https://www.fiverr.com/hackerhgl">fiverr</a>.
-- Give a recommendation on <a href="https://www.freelancer.com/u/hackerhgl">Freelancer</a>.
+- Rate the app on <a href="https://play.google.com/store/apps/details?id=com.onemdev.flutter_ui_challenges" target="_playstore">Play Store</a>.
+- Endorse my skills on my <a href="https://www.linkedin.com/in/hackerhgl" target="linkedin">linkedin Profile</a>.
+- Favorite my gigs on <a href="https://www.fiverr.com/hackerhgl" target="fiver">Fiverr</a>.
+- Give a recommendation on <a href="https://www.freelancer.com/u/hackerhgl" target="freelance">Freelancer</a>.
 
 ## Download
 
 <div id="downloads">
   <a href="https://play.google.com/store/apps/details?id=com.onemdev.flutter_ui_challenges">
-    <img src="https://raw.githubusercontent.com/hackerhgl/flutter-ui-designs/master/.github/assets/google-play.png" alt="Play Store badge" />
+    <img src="https://raw.githubusercontent.com/hackerhgl/flutter-ui-designs/master/.github/assets/google-play.png" alt="Play Store badge" width="200" />
   </a>
   <a href="https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/app-release.apk">
-    <img src="https://raw.githubusercontent.com/hackerhgl/flutter-ui-designs/master/.github/assets/android.png" alt="Android badge" />
+    <img src="https://raw.githubusercontent.com/hackerhgl/flutter-ui-designs/master/.github/assets/android.png" alt="Android badge" width="200" />
   </a>
   <a href="https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/windows-release.zip">
-    <img src="https://raw.githubusercontent.com/hackerhgl/flutter-ui-designs/master/.github/assets/windows.png" alt="Windows badge" />
+    <img src="https://raw.githubusercontent.com/hackerhgl/flutter-ui-designs/master/.github/assets/windows.png" alt="Windows badge" width="200" />
   </a>
   <a href="https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/macos-release.zip">
-    <img src="https://raw.githubusercontent.com/hackerhgl/flutter-ui-designs/master/.github/assets/macos.png" alt="MacOS badge" />
+    <img src="https://raw.githubusercontent.com/hackerhgl/flutter-ui-designs/master/.github/assets/macos.png" alt="MacOS badge"  width="200" />
   </a>
   <a href="https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/linux-release.zip">
-    <img src="https://raw.githubusercontent.com/hackerhgl/flutter-ui-designs/master/.github/assets/linux.png" alt="Linux badge" />
+    <img src="https://raw.githubusercontent.com/hackerhgl/flutter-ui-designs/master/.github/assets/linux.png" alt="Linux badge"  width="200"/>
   </a>
 </div>
 
