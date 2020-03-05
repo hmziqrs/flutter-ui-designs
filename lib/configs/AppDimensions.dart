@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_uis/UI.dart';
 
 class AppDimensions {
-  // Constants
   static double maxContainerWidth;
   static double miniContainerWidth;
 
-  // Changes based on screen size
   static bool isLandscape;
   static double padding;
   static double ratio;

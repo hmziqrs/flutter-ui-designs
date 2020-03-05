@@ -8,7 +8,8 @@ final mobileLinks = [
     "icon": MaterialCommunityIcons.google_play,
   },
   {
-    "key": "app-release.apk",
+    "url":
+        "https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/app-release.apk",
     "name": "Apk",
     "icon": MaterialCommunityIcons.android,
   }
@@ -16,17 +17,20 @@ final mobileLinks = [
 
 final desktopLinks = [
   {
-    "key": "macos-release.zip",
+    "url":
+        "https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/macos-release.zip",
     "name": "Mac",
     "icon": MaterialCommunityIcons.apple_finder,
   },
   {
-    "key": "linux-release.zip",
+    "url":
+        "https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/linux-release.zip",
     "name": "Linux",
     "icon": FontAwesome.linux,
   },
   {
-    "key": "windows-release.zip",
+    "url":
+        "https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/windows-release.zip",
     "name": "Windows",
     "icon": MaterialCommunityIcons.apple,
   },

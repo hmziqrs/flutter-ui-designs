@@ -103,7 +103,7 @@ class ScreenState extends State<Screen> with AnimationControllerMixin {
       ),
       right: 0,
       child: Opacity(
-        opacity: Utils.safeOpacity(popUpAnimation.value),
+        opacity: popUpAnimation.value.clamp(0.0, 1.0),
         child: GestureDetector(
           onTap: () => controller.reset([
             FromToTask(

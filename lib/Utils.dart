@@ -25,15 +25,6 @@ class Utils {
     return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
   }
 
-  static safeOpacity(double opacity) {
-    if (opacity < 0) {
-      return 0.0;
-    } else if (opacity > 1) {
-      return 1.0;
-    }
-    return opacity;
-  }
-
   static launchUrl(link) async {
     try {
       if (Platform.isLinux || Platform.isWindows) {
@@ -72,6 +63,8 @@ class Utils {
       return "tel:$username";
     } else if (platform == 'whatsapp') {
       return "https://api.whatsapp.com/send?phone=$username";
+    } else if (platform == 'linkedin') {
+      return "$base/linkedin.com/in/$username";
     }
   }
 
