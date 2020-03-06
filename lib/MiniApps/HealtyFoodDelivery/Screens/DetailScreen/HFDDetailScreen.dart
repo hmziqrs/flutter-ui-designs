@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/Mixins/HoverWidget.dart';
 
@@ -192,6 +194,23 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
         image: DecorationImage(
           image: ExactAssetImage(item.image),
           fit: BoxFit.cover,
+        ),
+      ),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(
+          sigmaX: 10,
+          sigmaY: 10,
+        ),
+        child: Container(
+          color: Colors.transparent,
+          child: Container(
+            width: AppDimensions.miniContainerWidth * 1.1,
+            height: double.infinity,
+            child: Image.asset(
+              item.image,
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
       ),
     );

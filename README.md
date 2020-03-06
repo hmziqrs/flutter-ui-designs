@@ -7,7 +7,7 @@
   <dd>Scales UI on any size of device wether it be tablet, small screen mobile, phablet or desktop screen.</dd>
 
   <dt>True Cross Platform</dt>
-  <dd>Just download the <a href="#downloads">app</a> from for your OS and run it without installing any dependencies.</dd>
+  <dd>Just download the <a href="#downloads">app</a> for your OS and run it without installing any dependencies.</dd>
 
   <dt>Offline-first</dt>
   <dd>Run app without an internet connection. All assets are saved locally.</dd>
@@ -24,7 +24,7 @@
 
 ## Requirements to run locally
 
-> Just in case if you ran into errors make sure your'e using correct flutter & dart version. In order to support desktop build master branch is a requirement & Master branch is not stable so breaking changes happen very often.
+> Just in case if you ran into errors make sure you're using correct flutter & dart version. In order to support desktop build master branch is a requirement & Master branch is not stable so breaking changes happen very often.
 
 - Flutter master channel & Framework • revision `4df8fdb7df`
   - Run `flutter --version` to check it
@@ -72,19 +72,19 @@
 - `scripts/upload.js`
   - `npm run upload platform` // platforms: [apk, windows, linux, macos]
   - This script will upload the release build to your firebase storage
-  - I intended to integrate this script with github actions but the use account acess was visible on logs that's why I stick with github-release.
+  - I intended to integrate this script with github actions but the use account access key was visible on logs that's why I stick with github-release downloads.
 - `scripts/runAlliOS.js`
   - Need work currently not a priority.
 - `vslaunch.js`
   - `npm run vslaunch`
   - This script will make vscode configuration file with all of your connected devices.
-  - You can live debug app on multiple devices at once.
+  - You can live debug app on multiple devices at once from vs code.
   - Each device's debug logs on seprate **DEBUG CONSOLE**.
-  - Very useful when testing UIs for multiple devices.
+  - Very useful for testing UI for multiple devices simultaneously.
 
 ## Show support
 
-**If you like the project and want to appreciate my effort. Then please perform any of these steps :)**
+> **If you like the project and want to appreciate my effort. Then please perform any of these steps :)**
 
 - Star this repository.
 - Rate the app on <a href="https://play.google.com/store/apps/details?id=com.onemdev.flutter_ui_challenges" target="_playstore">Play Store</a>.
