@@ -53,6 +53,78 @@ class _HomeScreenState extends State<HomeScreen> {
     },
   ];
 
+  @override
+  Widget build(BuildContext buildCtx) {
+    return Screen(
+      Dimensions.init,
+      scaffoldBackgroundColor: Colors.white,
+      builder: (_) => SafeArea(
+        child: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            Center(
+              child: Container(
+                width: double.infinity,
+                constraints: BoxConstraints(
+                  maxWidth: AppDimensions.maxContainerWidth,
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppDimensions.padding * 2,
+                  vertical: AppDimensions.padding,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Welcome",
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Text(
+                      "Explore elegantly crafted UIs with Google's Flutter designed by creative designers.",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: theme.primary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Padding(padding: EdgeInsets.all(AppDimensions.padding)),
+                    ...this.buildNavList(context),
+                    this.buildVersion(),
+                  ],
+                ),
+              ),
+            ),
+            this.buildAlertModal(
+              title: "Warning",
+              description:
+                  "Flutter does not have good support for web out of box. That's why you will face bugs and lag. There is nothing wrong with my implementaion becuase every things works well on native apps.\n\nSo for hassle free smooth experience I recommend you to download native app",
+              mount: this.webPopUpMounted,
+              opacity: this.webPopUpOpacity,
+              primaryText: "Download",
+              onPrimary: () => Navigator.of(context).pushNamed("download"),
+              secondaryText: "Continue",
+              onSecondary: () => setState(() => (this.webPopUpOpacity = 0)),
+              onEnd: () => setState(() => (this.webPopUpMounted = false)),
+            ),
+            this.buildAlertModal(
+              title: "Alert",
+              description:
+                  "In some screens 'BackButton' isn't avaible becuase it made UI hideous. So as an alternative I implemented keyboard shortcut to navigate back.\n\nMacOS: Option + Backspace\nLinux: Alt + Backsoace\nWindows: Ctrl + Backspace",
+              mount: this.desktopPopUpMounted,
+              opacity: this.desktopPopUpOpacity,
+              secondaryText: "Continue",
+              onSecondary: () => setState(() => (this.desktopPopUpOpacity = 0)),
+              onEnd: () => setState(() => (this.desktopPopUpMounted = false)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget buildAlertModal({
     String title,
     String description,
@@ -185,72 +257,19 @@ class _HomeScreenState extends State<HomeScreen> {
         .toList();
   }
 
-  @override
-  Widget build(BuildContext buildCtx) {
-    return Screen(
-      Dimensions.init,
-      scaffoldBackgroundColor: Colors.white,
-      builder: (_) => SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            Center(
-              child: Container(
-                width: double.infinity,
-                constraints: BoxConstraints(
-                  maxWidth: AppDimensions.maxContainerWidth,
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppDimensions.padding * 2,
-                  vertical: AppDimensions.padding,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Welcome",
-                      style: TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    Text(
-                      "Explore elegantly crafted UIs with Google's Flutter designed by creative designers.",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: theme.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    Padding(padding: EdgeInsets.all(AppDimensions.padding)),
-                    ...this.buildNavList(context),
-                  ],
-                ),
-              ),
-            ),
-            this.buildAlertModal(
-              title: "Warning",
-              description:
-                  "Flutter does not have good support for web out of box. That's why you will face bugs and lag. There is nothing wrong with my implementaion becuase every things works well on native apps.\n\nSo for hassle free smooth experience I recommend you to download native app",
-              mount: this.webPopUpMounted,
-              opacity: this.webPopUpOpacity,
-              primaryText: "Download",
-              onPrimary: () => Navigator.of(context).pushNamed("download"),
-              secondaryText: "Continue",
-              onSecondary: () => setState(() => (this.webPopUpOpacity = 0)),
-              onEnd: () => setState(() => (this.webPopUpMounted = false)),
-            ),
-            this.buildAlertModal(
-              title: "Alert",
-              description:
-                  "In some screens 'BackButton' isn't avaible becuase it made UI hideous. So as an alternative I implemented keyboard shortcut to navigate back.\n\nMacOS: Option + Backspace\nLinux: Alt + Backsoace\nWindows: Ctrl + Backspace",
-              mount: this.desktopPopUpMounted,
-              opacity: this.desktopPopUpOpacity,
-              secondaryText: "Continue",
-              onSecondary: () => setState(() => (this.desktopPopUpOpacity = 0)),
-              onEnd: () => setState(() => (this.desktopPopUpMounted = false)),
-            ),
-          ],
+  Widget buildVersion() {
+    return Container(
+      margin: EdgeInsets.symmetric(
+        vertical: AppDimensions.padding * 3,
+      ),
+      width: double.infinity,
+      child: Text(
+        "VERSION 1.1.0",
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontWeight: FontWeight.w700,
+          color: Colors.black.withOpacity(0.25),
+          fontSize: 5 + AppDimensions.ratio * 4,
         ),
       ),
     );

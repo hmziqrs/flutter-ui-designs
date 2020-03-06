@@ -23,7 +23,7 @@ async function main() {
         desktopFilters.filter(str => deviceId.toLowerCase().includes(str))
           .length === 0
       ) {
-        obj.args = ['it', 'lib/main.mobile.dart'];
+        obj.args = ['-t', 'lib/main.mobile.dart'];
       }
       return obj;
     });
