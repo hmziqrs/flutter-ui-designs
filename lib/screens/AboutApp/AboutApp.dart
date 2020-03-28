@@ -130,7 +130,7 @@ class AboutAppScreen extends StatelessWidget {
                         point: true,
                       ),
                       this.text(
-                        "Someone with Java/Kotlin, Javascript or React Native background it's easy to adapt dart & flutter & Mostly it depends on developer's interest to learn.",
+                        "Someone with Java/Kotlin, Javascript or React Native background it's easy to adapt dart/flutter. Mostly it depends on developer's interest to learn.",
                         point: true,
                       ),
                       this.text(
@@ -142,7 +142,7 @@ class AboutAppScreen extends StatelessWidget {
                         point: true,
                       ),
                       this.text(
-                        "UI part of the framework is true cross platform but most of native packages lacks support for desktop and web platfrom.",
+                        "UI part of the framework is true cross platform but most of native packages lacks support for desktop and web platform.",
                         point: true,
                       ),
                       this.text(
