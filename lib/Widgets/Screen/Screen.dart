@@ -188,6 +188,7 @@ class ScreenState extends State<Screen> with AnimationControllerMixin {
               data: rootTheme.copyWith(
                 textTheme: rootTheme.textTheme.copyWith(
                   bodyText1: textStyle,
+                  button: textStyle,
                 ),
               ),
               child: Stack(

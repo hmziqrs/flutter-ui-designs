@@ -7,6 +7,7 @@
     "debug-all-ios": "nodemon scripts/runAlliOS.js --exec  babel-node",
     "debug-vslaunch": "nodemon scripts/vslaunch.js --exec  babel-node",
     "appbundle": "flutter build appbundle -t lib/main.mobile.dart",
+    "build-android": "flutter build apk -t lib/main.mobile.dart",
     "vslaunch": "babel-node scripts/vslaunch.js",
     "build-web": "flutter build web -t lib/main.mobile.dart --release",
     "deploy-web": "npm run build-web && firebase deloy",

@@ -6,25 +6,27 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 class Dimensions {
   static double cardHeight;
   static double cardWidth;
+  static int chunks;
 
   static init(BuildContext context) {
     AppDimensions.init(context);
     cardHeight = 200;
 
-    final cardBase = UI.safeWidth - AppDimensions.padding * 3;
-    cardWidth = null;
+    chunks = 1;
 
     if (UI.md) {
-      cardWidth = cardBase / 2;
+      chunks = 2;
     }
     if (UI.lg) {
-      cardWidth = cardBase / 3;
+      chunks = 3;
     }
     if (UI.xlg) {
-      cardWidth = cardBase / 4;
+      chunks = 4;
     }
     if (UI.xxlg) {
-      cardWidth = cardBase / 5;
+      chunks = 5;
     }
+    final cardBase = UI.safeWidth - AppDimensions.padding * 2;
+    cardWidth = cardBase / chunks;
   }
 }

@@ -56,6 +56,21 @@ List<UIItem> uilist = [
     webSupport: true,
     desktopSupport: true,
   ),
+  new UIItem(
+    id: 5,
+    name: "Egg Timer Concept",
+    designer: "ultranoir",
+    // "designer": "designer",
+    source: "dribbble",
+    miniApp: "etcHome",
+    link:
+        "https://dribbble.com/shots/2764686-Original-timer-app-UX-interaction",
+    thumbnail: "assets/thumbnails/egg_timer_concept.jpg",
+    tabletSupport: true,
+    landscapeSupport: true,
+    webSupport: true,
+    desktopSupport: true,
+  ),
 ];
 
 List<UIDesigner> designersList = [
@@ -98,5 +113,25 @@ List<UIDesigner> designersList = [
     upwork: null,
     emails: [],
     phone: [],
+  ),
+  new UIDesigner(
+    id: 3,
+    username: "ultranoir",
+    name: "Ultranoir",
+    description: null,
+    job: null,
+    location: null,
+    facebook: null,
+    twitter: null,
+    instagram: null,
+    linkedin: null,
+    skype: null,
+    dribbble: "ultranoir",
+    behance: null,
+    website: "https://www.ultranoir.com/en/",
+    fiverr: null,
+    upwork: null,
+    emails: ["hello@ultranoir.com"],
+    phone: ["+33142714836"],
   ),
 ];
