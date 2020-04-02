@@ -31,14 +31,14 @@
 - Dart VM version: 2.7.1
   - Run `dart --version` to check it
 - Follow these step to use correct revision version
-  - cd \$FLUTTER_HOME (path where your flutter is installed)
-  - git checkout master
-  - git checkout `4df8fdb7df`
-- To enable dekstop & web builds run these commands
-  - flutter --enable-web
-  - flutter --enable-macos-desktop
-  - flutter --enable-linux-desktop
-  - flutter --enable-windows-desktop
+  - Run `cd \$FLUTTER_HOME` (or the path where your flutter is installed)
+  - Run `git checkout master`
+  - Run `git checkout 4df8fdb7df`
+- To enable dekstop & web builds run the relevant command
+  - Run `flutter --enable-web`
+  - Run `flutter --enable-macos-desktop`
+  - Run `flutter --enable-linux-desktop`
+  - Run `flutter --enable-windows-desktop`
 - Run `flutter doctor` this command will show you what dependencies you need to install.
 
 ## Getting started with code
@@ -46,7 +46,7 @@
 > Please note that this project's code is not meant for beginners! If you're just getting started with flutter I recommend you to explore some ToDo and basic setState apps and get yourself familiar with flutter and dart eco-system becuase in this project intermediate and advance implementations are use which will confuse you and won't help much in terms of learning.
 
 - There are 2 entry files for this project `main.dart` & `main.mobile.dart`. It was necesarry because I'm using Firebase analytics and crashlytics and there isn't desktop support for Firebase yet.
-- `Navigator.dart` is responisble for managing routes, handles custom trasnition, pass parameter in screens & Controll navigation with keyboard shortcuts.
+- `Navigator.dart` is responisble for managing routes, handles custom trasnition, pass parameter in screens and control navigation with keyboard shortcuts.
 - `UI.dart` provides constant for building responsive UI.
 - `blocs/` Intially I was going to implement Rest APIs but that seemed unnecessary & a lot of work So I'll probably remove `blocs/` in futrue.
 - `configs/AppDimensions.dart` this is the magical file. It provides the app with:

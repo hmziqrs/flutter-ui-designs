@@ -93,9 +93,7 @@ class AboutDeveloperScreen extends StatelessWidget {
             top: AppDimensions.padding,
           ),
           child: Text(
-            "Hi, I am Hamza freelance developer. I have been building end to end smart solutions for my clients for more than three years. When a client hire me I don't offer just my skills I offer them my experience. I help them at every stage of product development such as prototyping wireframes, improving UI designs, timelined development, quality assurance, project deployment & feedback based changes." +
-                "\n\nFor developement I use latest technologies, Modularized project structure for flexible, readable & easy to maintain code. Performance optimised best practices. Automated build process with production & debug enviroments.",
-          ),
+              "Hi, I am full stack developer who has been developing end to end smart solutions for more than three years. I am a committed individual who is highly efficient and has excellent organisational skills to develop applications. I help throughout the life cycle of an assigned project with my experience and ensure quality solutions that meet objectives. With all that being said, I am very proud of the work I do, and will stop at nothing to make sure the job is done to 100% satisfaction."),
         ),
         Padding(
           padding: EdgeInsets.only(

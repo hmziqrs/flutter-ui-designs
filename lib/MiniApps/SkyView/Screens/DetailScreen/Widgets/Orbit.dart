@@ -53,7 +53,6 @@ class Orbit extends StatelessWidget {
           -0.55;
 
       if (offset < widthIndex) {
-        // print("$index $offset < $widthIndex ${offset < widthIndex}");
         opacityOffset = Utils.rangeMap(
           offset,
           widthIndex - (width * 0.45),
@@ -61,7 +60,6 @@ class Orbit extends StatelessWidget {
           0.0,
           1.0,
         );
-        // print("opacity: $opacityOffset");
       }
       if (offset > widthIndex) {
         opacityOffset = Utils.rangeMap(
@@ -73,8 +71,6 @@ class Orbit extends StatelessWidget {
         );
       }
 
-      // print(
-      //     "\n\nindex:$index  opacity:$opacityOffset\noffset: $offset \ninMin:${width * index} inMax:${(width * (index + 1) - (width * .33))}\n\n");
       opacityOffset = opacityOffset.clamp(0.0, 1.0);
     }
 

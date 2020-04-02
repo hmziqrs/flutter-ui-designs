@@ -24,6 +24,9 @@ dependencies:
 
   # firebase: 7.2.1
 
+  quiver: 2.1.3
+  intl: 0.16.1
+
   firebase_core: 0.4.4
   firebase_analytics: 5.0.11
   firebase_performance: 0.3.1+5
@@ -33,11 +36,12 @@ dependencies:
   flutter_bloc: ^3.2.0
   equatable: ^1.1.0
 
-  url_launcher: ^5.4.1
   open_url: 1.0.1
+  url_launcher: ^5.4.1
 
   flash: ^1.1.0
   pigment: ^1.0.3
+  fluttery_dart2: 0.0.9
   cupertino_icons: ^0.1.3
   flutter_vector_icons: ^0.2.1
   simple_animations: ^1.3.6
@@ -48,8 +52,6 @@ dependencies:
   color: ^2.1.1
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -62,10 +64,9 @@ flutter:
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/user/cover.jpg
-    - assets/user/hamza.jpg
+    - assets/user/
+    - assets/thumbnails/
 
-    - assets/thumbnails/healthy_food_delivery.jpg
     - assets/ma-hfd/item-1.jpg
     - assets/ma-hfd/item-2.jpg
     - assets/ma-hfd/item-3.jpg
@@ -81,13 +82,11 @@ flutter:
     - assets/ma-hfd/resturant-4.jpg
     - assets/ma-hfd/resturant-5.jpg
 
-    - assets/thumbnails/hot_air_balloon.jpg
     - assets/ma-hab/bubbles-bg.png
     - assets/ma-hab/balloon.png
     - assets/ma-hab/balloon-shadow.png
     - assets/ma-hab/mountains.jpg
 
-    - assets/thumbnails/sky_view.jpg
     # - assets/ma-sk/
     - assets/ma-sk/mercury.png
     - assets/ma-sk/venus.png
@@ -100,7 +99,6 @@ flutter:
     - assets/ma-sk/stars-bg.jpg
     - assets/ma-sk/gradient-path.png
 
-    - assets/thumbnails/asics_shoes_concept.jpg
     - assets/ma-asc/Asics_Logo_1.png
     - assets/ma-asc/Asics_Logo_2.png
     - assets/ma-asc/Asics_Logo_3.png
@@ -172,3 +170,8 @@ flutter:
           weight: 800
         - asset: fonts/Muli/Muli-Black.ttf
           weight: 900
+
+    - family: BebasNeue
+      fonts:
+        - asset: fonts/BebasNeue/BebasNeue-Regular.ttf
+          weight: 400

@@ -23,6 +23,8 @@ import './MiniApps/SkyView/Screens/DetailScreen/SKDetailScreen.dart';
 
 import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/ASCHomeScreen.dart';
 
+import 'MiniApps/EggTimerConcept/Screens/HomeScreen/EggTimerConcept.dart';
+
 bool isAlt = false;
 
 class AppNavigator extends StatelessWidget {
@@ -102,6 +104,8 @@ class AppNavigator extends StatelessWidget {
           // "skDetail": (ctx) => new SKDetailScreen(),
 
           "ascHome": (ctx) => new ASCHomeScreen(),
+
+          "etcHome": (ctx) => new ETCHomeScreen(),
         },
       ),
     );
