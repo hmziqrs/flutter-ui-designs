@@ -264,7 +264,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       width: double.infinity,
       child: Text(
-        "VERSION 1.1.0",
+        "VERSION 1.1.1",
         textAlign: TextAlign.center,
         style: TextStyle(
           fontWeight: FontWeight.w700,
