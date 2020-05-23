@@ -13,7 +13,7 @@
     "deploy-web": "npm run build-web && firebase deloy",
     "debug-upload": "nodemon scripts/upload.js --exec  babel-node",
     "upload": "babel-node scripts/upload.js",
-    "install": "npm i && npm i -g @babel/cli @babel/core @babel/node @babel/preset-env nodemon"
+    "setup": "npm i && npm i -g @babel/cli @babel/core @babel/node @babel/preset-env nodemon"
   },
   "dependencies": {
     "@babel/polyfill": "7.7.0",

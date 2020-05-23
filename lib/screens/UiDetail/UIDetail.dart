@@ -245,6 +245,22 @@ class _UiDetailScreenState extends State<UiDetailScreen>
                 ),
               ),
             ),
+            (uiItem.description != null
+                ? Container(
+                    margin: EdgeInsets.only(top: AppDimensions.padding),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppDimensions.padding,
+                    ),
+                    child: Text(
+                      uiItem.description,
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w600,
+                        color: Theme.of(context).textTheme.bodyText2.color,
+                      ),
+                    ),
+                  )
+                : Container()),
             Padding(padding: EdgeInsets.all(AppDimensions.padding)),
             Row(
               // crossAxisAlignment: CrossAxisAlignment.stretch,

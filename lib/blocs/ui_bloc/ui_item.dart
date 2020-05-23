@@ -1,6 +1,7 @@
 class UIItem {
   int id;
   String name;
+  String description;
   String designer;
   String source;
   String miniApp;
@@ -14,6 +15,7 @@ class UIItem {
   UIItem({
     this.id,
     this.name,
+    this.description,
     this.designer,
     this.source,
     this.miniApp,
@@ -28,6 +30,7 @@ class UIItem {
   UIItem.fromMap(Map json) {
     this.id = json["id"];
     this.name = json["name"];
+    this.description = json["description"];
     this.designer = json["designer"];
     this.source = json["source"];
     this.miniApp = json["miniApp"];

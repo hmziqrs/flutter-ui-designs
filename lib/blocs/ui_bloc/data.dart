@@ -60,7 +60,8 @@ List<UIItem> uilist = [
     id: 5,
     name: "Egg Timer Concept",
     designer: "ultranoir",
-    // "designer": "designer",
+    description:
+        "This UI was pirmarly built by fluttery youtube channel. But for some reasons all the resources published by him was removed from every online platform. Someone saved his video tutorials on google drive so I found those videos and build this one master piece with my code style",
     source: "dribbble",
     miniApp: "etcHome",
     link:

@@ -26,6 +26,8 @@
 
 > Just in case if you ran into errors make sure you're using correct flutter & dart version. In order to support desktop build master branch is a requirement & Master branch is not stable so breaking changes happen very often.
 
+> A formal warning. In order to complie app properly on your machine you'll need to switch master channel with exact revision. By doing so the process will delete any previous stable/beta flutter/dart sdk. Thank you <a href="https://github.com/3mrdev" tagret="_3mrdev">@3mrdev</a> for letting me know of this issue. I'll look into the fvm or any other version manger when I get more free time to spend on it.
+
 - Flutter master channel & Framework • revision `4df8fdb7df`
   - Run `flutter --version` to check it
 - Dart VM version: 2.7.1
@@ -67,7 +69,7 @@
 
 ## Scripts
 
-> Just run `npm run install` once
+> Just run `npm run setup` once
 
 - `scripts/upload.js`
   - `npm run upload platform` // platforms: [apk, windows, linux, macos]
