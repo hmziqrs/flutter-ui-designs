@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_uis/AppLocalizations.dart';
+import 'package:provider/provider.dart';
 // import 'package:firebase/firebase.dart' as firebase;
 
 import './configs/Theme.dart' as theme;
@@ -24,6 +27,7 @@ import './MiniApps/SkyView/Screens/DetailScreen/SKDetailScreen.dart';
 import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/ASCHomeScreen.dart';
 
 import 'MiniApps/EggTimerConcept/Screens/HomeScreen/EggTimerConcept.dart';
+import 'Providers/AppProvider.dart';
 
 bool isAlt = false;
 
@@ -45,9 +49,6 @@ class AppNavigator extends StatelessWidget {
         if (Platform.isWindows && keyName == ctrl) {
           isAlt = (runtime == 'RawKeyDownEvent');
         }
-
-        // print(
-        //     "runtime:${event.runtimeType} | keyName:${event.logicalKey.debugName} | alt:${event.isAltPressed}");
         if (runtime == 'RawKeyUpEvent' &&
             (keyName == 'Backspace' || keyName == 'Digit 1') &&
             (event.isAltPressed || isAlt) &&
@@ -55,63 +56,86 @@ class AppNavigator extends StatelessWidget {
           this.navigator.currentState.pop();
         }
       },
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        navigatorKey: this.navigator,
-        theme: ThemeData(
-          fontFamily: "Muli",
-          primaryColor: theme.primary,
-          accentColor: theme.primary,
-          textTheme: TextTheme(
-            bodyText2: TextStyle(
-              color: Colors.black.withOpacity(0.6),
-            ),
-          ),
-        ),
-        navigatorObservers: observers,
-        home: HomeScreen(),
-        onGenerateRoute: (settings) {
-          final index = ["skDetail", "hfdDetail"].indexOf(settings.name);
-          if (index > -1) {
-            return PageRouteBuilder(
-              settings: settings,
-              pageBuilder: (_, __, ___) {
-                if (index == 1) {
-                  return HFDDetailScreen();
+      child: ChangeNotifierProvider<AppProvider>(
+        create: (_) => AppProvider(),
+        child: Consumer<AppProvider>(
+          // stream: null,
+          builder: (context, value, _) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              locale: value.activeLocale,
+              supportedLocales: AppProvider.locales,
+              localizationsDelegates: [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              localeResolutionCallback: (locale, supportedLocales) {
+                for (var supportedLocale in supportedLocales) {
+                  if (locale != null &&
+                      supportedLocale.languageCode == locale.languageCode &&
+                      supportedLocale.countryCode == locale.countryCode) {
+                    return supportedLocale;
+                  }
                 }
-                return SKDetailScreen(settings.arguments);
+                return supportedLocales.first;
               },
-              transitionsBuilder: (_, anim, __, child) {
-                return FadeTransition(opacity: anim, child: child);
+              navigatorKey: this.navigator,
+              theme: ThemeData(
+                fontFamily: "Muli",
+                primaryColor: theme.primary,
+                accentColor: theme.primary,
+                textTheme: TextTheme(
+                  bodyText2: TextStyle(),
+                ),
+              ),
+              navigatorObservers: observers,
+              home: HomeScreen(),
+              onGenerateRoute: (settings) {
+                final index = ["skDetail", "hfdDetail"].indexOf(settings.name);
+                if (index > -1) {
+                  return PageRouteBuilder(
+                    settings: settings,
+                    pageBuilder: (_, __, ___) {
+                      if (index == 1) {
+                        return HFDDetailScreen();
+                      }
+                      return SKDetailScreen(settings.arguments);
+                    },
+                    transitionsBuilder: (_, anim, __, child) {
+                      return FadeTransition(opacity: anim, child: child);
+                    },
+                  );
+                }
+                return MaterialPageRoute(builder: (context) => HomeScreen());
+              },
+              routes: <String, WidgetBuilder>{
+                "home": (ctx) => new HomeScreen(),
+                "about": (ctx) => new AboutAppScreen(),
+                "aboutDeveloper": (ctx) => new AboutDeveloperScreen(),
+                "download": (ctx) => new DownloadScreen(),
+                "uiList": (ctx) => new UiListScreen(),
+                "uiDetail": (ctx) => new UiDetailScreen(),
+                "designerProfile": (ctx) => new DesignerProfileScreen(),
+
+                // Healthy Food Delivery
+                "hfdHome": (ctx) => new HFDHomeScreen(),
+                // "hfdDetail": (ctx) => new HFDDetailScreen(),
+
+                // Hot Air Balloon
+                "habHome": (ctx) => new HABHomeScreen(),
+
+                // Sky View
+                "skHome": (ctx) => new SKHomeScreen(),
+                // "skDetail": (ctx) => new SKDetailScreen(),
+
+                "ascHome": (ctx) => new ASCHomeScreen(),
+
+                "etcHome": (ctx) => new ETCHomeScreen(),
               },
             );
-          }
-          return MaterialPageRoute(builder: (context) => HomeScreen());
-        },
-        routes: <String, WidgetBuilder>{
-          "home": (ctx) => new HomeScreen(),
-          "about": (ctx) => new AboutAppScreen(),
-          "aboutDeveloper": (ctx) => new AboutDeveloperScreen(),
-          "download": (ctx) => new DownloadScreen(),
-          "uiList": (ctx) => new UiListScreen(),
-          "uiDetail": (ctx) => new UiDetailScreen(),
-          "designerProfile": (ctx) => new DesignerProfileScreen(),
-
-          // Healthy Food Delivery
-          "hfdHome": (ctx) => new HFDHomeScreen(),
-          // "hfdDetail": (ctx) => new HFDDetailScreen(),
-
-          // Hot Air Balloon
-          "habHome": (ctx) => new HABHomeScreen(),
-
-          // Sky View
-          "skHome": (ctx) => new SKHomeScreen(),
-          // "skDetail": (ctx) => new SKDetailScreen(),
-
-          "ascHome": (ctx) => new ASCHomeScreen(),
-
-          "etcHome": (ctx) => new ETCHomeScreen(),
-        },
+          },
+        ),
       ),
     );
   }

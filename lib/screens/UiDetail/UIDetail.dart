@@ -256,7 +256,7 @@ class _UiDetailScreenState extends State<UiDetailScreen>
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w600,
-                        color: Theme.of(context).textTheme.bodyText2.color,
+                        color: Colors.black.withOpacity(0.6),
                       ),
                     ),
                   )

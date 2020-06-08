@@ -1,0 +1,23 @@
+{
+  "DownloadScreen/title": "تحميل",
+  "HomeScreen/title": "أهلا بك",
+  "HomeScreen/desc": "استكشاف معهد اليونسكو للإحصاء وضعت بشكل رائع مع رفرفة جوجل صممه المصممين المبدعين.",
+  "HomeScreen/uiList": "استكشاف معهد اليونسكو للإحصاء",
+  "HomeScreen/about": "حول التطبيقات",
+  "HomeScreen/aboutDeveloper": "وشك المطور",
+  "HomeScreen/download": "تحميل",
+  "HomeScreen/settings": "الإعدادات",
+  "HomeScreen/modalWebTitle": "تحذير",
+  "HomeScreen/modalWebDesc": "رفرفة ليس لديه دعم جيد لشبكة الإنترنت للخروج من مربع. هذا هو السبب في أنك سوف تواجه الخلل والتخلف. لا يوجد شيء خاطئ مع بلدي implementaion بيكوس كل شيء يعمل بشكل جيد على تطبيقات الوطنية.\n\nوذلك لخالية من المتاعب على نحو سلس تجربة فإنني أوصي لكم لتحميل التطبيق الأصلي",
+  "HomeScreen/modalWebButton1": "تحميل",
+  "HomeScreen/modalWebButton2": "استمر",
+  "HomeScreen/modalDesktopTitle": "إنذار",
+  "HomeScreen/modalDesktopDesc": "في \"BackButton\" بعض الشاشات ليست أفيبل بيكوس انها حققت UI البشعة. لذلك كبديل I نفذت اختصار لوحة المفاتيح لاعادة التنقل.\n\nماك: خيار + مسافة للخلف\nلينكس: البديل + مسافة للخلف\nنوافذ: السيطرة + مسافة للخلف",
+  "HomeScreen/modalDesktopButton": "استمر",
+  "HomeScreen/version": "الإصدار",
+  "HomeScreen/settingsModalTitle": "اختار اللغة",
+  "HomeScreen/settingsModalEnglish": "الإنجليزية",
+  "HomeScreen/settingsModalChinese": "صينى",
+  "HomeScreen/settingsModalArabic": "عربى",
+  "HomeScreen/settingsModalSystemDefault": "النظام الافتراضي"
+}

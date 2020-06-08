@@ -159,6 +159,22 @@ class AboutDeveloperScreen extends StatelessWidget {
             ),
           ),
         ),
+        Container(
+          decoration: BoxDecoration(),
+          padding: EdgeInsets.only(
+            left: AppDimensions.padding,
+            top: AppDimensions.padding,
+            bottom: AppDimensions.padding * 2,
+          ),
+          child: Text(
+            "NOTE: These contact links are not any kind of flutter helpline. I shared my contacts only for buisness related inquiries.\n\nAny help related query will not be entertain. For any help/answer follow docs or post your query on stackoverflow & community group.",
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.white.withOpacity(0.5),
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
         Padding(
           padding: EdgeInsets.only(
             right: AppDimensions.padding,
@@ -234,7 +250,7 @@ class AboutDeveloperScreen extends StatelessWidget {
             top: AppDimensions.padding,
           ),
           child: Text(
-            "If you like the project and want to appreciate my effort. Then please click any of these links and perform any action you may like.",
+            "If you like the project and want to appreciate my effort. Then click any of these links below and perform the action.",
             style: TextStyle(
               fontSize: 8 + AppDimensions.ratio * 4,
               // fontWeight: FontWeight.w300,

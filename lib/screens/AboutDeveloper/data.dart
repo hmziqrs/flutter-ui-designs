@@ -33,11 +33,6 @@ final contacts = [
     "icon": MaterialCommunityIcons.facebook,
   },
   {
-    "platform": "instagram",
-    "username": "hackerhgl",
-    "icon": MaterialCommunityIcons.instagram,
-  },
-  {
     "platform": "linkedin",
     "username": "hackerhgl",
     "icon": MaterialCommunityIcons.linkedin,
