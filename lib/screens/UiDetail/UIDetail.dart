@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:flutter_uis/blocs/ui_bloc/bloc.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/configs/AppDimensions.dart';
-
+import 'package:flutter_uis/statics/data/uiList.dart';
 import 'package:flutter_uis/Utils.dart';
 
 import 'package:flutter_uis/Widgets/BorderButton/BorderButton.dart';
@@ -94,7 +90,7 @@ class _UiDetailScreenState extends State<UiDetailScreen>
       padding: EdgeInsets.symmetric(vertical: AppDimensions.padding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+        children: [
           Padding(
             padding: EdgeInsets.all(AppDimensions.padding),
             child: Text(
@@ -150,7 +146,7 @@ class _UiDetailScreenState extends State<UiDetailScreen>
     return Flexible(
       child: Center(
         child: Column(
-          children: <Widget>[
+          children: [
             Icon(
               icon,
               color: color,
@@ -220,7 +216,7 @@ class _UiDetailScreenState extends State<UiDetailScreen>
         padding: EdgeInsets.all(AppDimensions.padding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: AppDimensions.padding,
@@ -313,39 +309,30 @@ class _UiDetailScreenState extends State<UiDetailScreen>
       Dimensions.init,
       key: this.screenKey,
       builder: (_) {
-        return BlocProvider(
-          create: (_) => UiBloc(),
-          child: SingleChildScrollView(
-            controller: this.scrollController,
-            child: Stack(
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    this.renderCoverImage(uiItem),
-                    BlocBuilder<UiBloc, UiState>(
-                      builder: (context, state) {
-                        List<UIItem> list = state.list;
-                        return this.renderContent(
-                          context,
-                          uiItem,
-                          list,
-                        );
-                      },
-                    ),
-                  ],
-                ),
-                Positioned(
-                  top: MediaQuery.of(context).padding.top +
-                      AppDimensions.padding,
-                  left: AppDimensions.padding,
-                  child: BackButton(
-                    onPressed: () => Navigator.of(context).popUntil(
-                      ModalRoute.withName("uiList"),
-                    ),
+        return SingleChildScrollView(
+          controller: this.scrollController,
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  this.renderCoverImage(uiItem),
+                  this.renderContent(
+                    context,
+                    uiItem,
+                    uilist,
+                  )
+                ],
+              ),
+              Positioned(
+                top: MediaQuery.of(context).padding.top + AppDimensions.padding,
+                left: AppDimensions.padding,
+                child: BackButton(
+                  onPressed: () => Navigator.of(context).popUntil(
+                    ModalRoute.withName("uiList"),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },

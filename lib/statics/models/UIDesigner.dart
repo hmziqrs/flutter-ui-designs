@@ -57,28 +57,4 @@ class UIDesigner {
     this.emails,
     this.phone,
   });
-
-  UIDesigner.fromMap(Map json) {
-    this.id = json["id"];
-    this.username = json["username"];
-    this.avatar = json["avatar"];
-    this.cover = json["cover"];
-    this.name = json["name"];
-    this.description = json["description"];
-    this.address = json["address"];
-    this.job = json["job"];
-    this.location = json["location"];
-    this.facebook = json["facebook"];
-    this.twitter = json["twitter"];
-    this.instagram = json["instagram"];
-    this.linkedin = json["linkedin"];
-    this.skype = json["skype"];
-    this.dribbble = json["dribbble"];
-    this.behance = json["behance"];
-    this.website = json["website"];
-    this.fiverr = json["fiverr"];
-    this.upwork = json["upwork"];
-    this.emails = json["emails"];
-    this.phone = json["phone"];
-  }
 }

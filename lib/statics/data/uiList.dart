@@ -1,5 +1,5 @@
-import 'ui_item.dart';
-import 'ui_designer.dart';
+import '../models/UIItem.dart';
+export '../models/UIItem.dart';
 
 List<UIItem> uilist = [
   new UIItem(
@@ -71,68 +71,5 @@ List<UIItem> uilist = [
     landscapeSupport: true,
     webSupport: true,
     desktopSupport: true,
-  ),
-];
-
-List<UIDesigner> designersList = [
-  new UIDesigner(
-    id: 1,
-    username: "firdsm",
-    name: "Mohammad Firdaus",
-    description: null,
-    job: null,
-    location: null,
-    facebook: "firdsm",
-    twitter: null,
-    instagram: "firdsm",
-    linkedin: null,
-    skype: null,
-    dribbble: "firdsm",
-    behance: "firdsm",
-    website: null,
-    fiverr: null,
-    upwork: null,
-    phone: [],
-    emails: [],
-  ),
-  new UIDesigner(
-    id: 2,
-    username: "designkes",
-    name: "Designkes",
-    description: null,
-    job: null,
-    location: null,
-    facebook: null,
-    twitter: null,
-    instagram: "designkes",
-    linkedin: null,
-    skype: null,
-    dribbble: "designkes",
-    behance: "designkes",
-    website: null,
-    fiverr: null,
-    upwork: null,
-    emails: [],
-    phone: [],
-  ),
-  new UIDesigner(
-    id: 3,
-    username: "ultranoir",
-    name: "Ultranoir",
-    description: null,
-    job: null,
-    location: null,
-    facebook: null,
-    twitter: null,
-    instagram: null,
-    linkedin: null,
-    skype: null,
-    dribbble: "ultranoir",
-    behance: null,
-    website: "https://www.ultranoir.com/en/",
-    fiverr: null,
-    upwork: null,
-    emails: ["hello@ultranoir.com"],
-    phone: ["+33142714836"],
   ),
 ];

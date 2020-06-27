@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:flutter_uis/statics/data/uiDesigners.dart';
+import 'package:flutter_uis/statics/data/uiList.dart';
 import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/configs/AppDimensions.dart';
-
-import 'package:flutter_uis/blocs/ui_bloc/bloc.dart';
-
 import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_uis/UI.dart';
 
@@ -440,42 +437,37 @@ class _DesignerProfileScreenState extends State<DesignerProfileScreen>
     final Map obj = ModalRoute.of(context).settings.arguments;
     final String username = obj["designer"];
 
-    return BlocProvider<UiBloc>(
-      create: (_) => UiBloc(),
-      child: Screen(
-        Dimensions.init,
-        key: this.screenKey,
-        builder: (showPopUp) => SingleChildScrollView(
-          controller: this.scrollController,
-          child: BlocBuilder<UiBloc, UiState>(
-            builder: (blocCtx, state) {
-              List<UIItem> uiList =
-                  state.list.where((ui) => ui.designer == username).toList();
-              UIDesigner designer = state.designers
-                  .firstWhere((user) => user.username == username);
+    return Screen(
+      Dimensions.init,
+      key: this.screenKey,
+      builder: (showPopUp) {
+        List<UIItem> uiList =
+            uilist.where((ui) => ui.designer == username).toList();
+        UIDesigner designer =
+            uiDesigners.firstWhere((user) => user.username == username);
 
-              return Stack(
+        return SingleChildScrollView(
+          controller: this.scrollController,
+          child: Stack(
+            children: <Widget>[
+              Column(
                 children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      this.renderCoverImage(designer),
-                      this.renderContent(blocCtx, designer, uiList),
-                    ],
-                  ),
-                  this.renderAvatar(designer),
-                  Positioned(
-                    top: MediaQuery.of(context).padding.top,
-                    left: 0,
-                    child: BackButton(
-                      color: Colors.white,
-                    ),
-                  ),
+                  this.renderCoverImage(designer),
+                  this.renderContent(context, designer, uiList),
                 ],
-              );
-            },
+              ),
+              this.renderAvatar(designer),
+              Positioned(
+                top: MediaQuery.of(context).padding.top,
+                left: 0,
+                child: BackButton(
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

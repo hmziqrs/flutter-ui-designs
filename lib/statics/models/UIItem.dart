@@ -26,19 +26,4 @@ class UIItem {
     this.webSupport = false,
     this.desktopSupport = false,
   });
-
-  UIItem.fromMap(Map json) {
-    this.id = json["id"];
-    this.name = json["name"];
-    this.description = json["description"];
-    this.designer = json["designer"];
-    this.source = json["source"];
-    this.miniApp = json["miniApp"];
-    this.link = json["link"];
-    this.thumbnail = json["thumbnail"];
-    this.tabletSupport = json["thumbnail"];
-    this.webSupport = json["thumbnail"];
-    this.landscapeSupport = json["thumbnail"];
-    this.desktopSupport = json["thumbnail"];
-  }
 }
