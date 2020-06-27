@@ -54,6 +54,7 @@ dependencies:
 
 dev_dependencies:
   glob: 1.2.0
+  path: 1.7.0
   translator: 0.1.4
   intl_translation: 0.17.10
 

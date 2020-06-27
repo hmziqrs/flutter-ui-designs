@@ -4,6 +4,8 @@ import 'dart:isolate';
 import 'package:glob/glob.dart';
 import 'package:translator/translator.dart';
 
+import './utils.dart';
+
 main(List<String> args) async {
   print("\n\n\nGENERATE BUNDLED JSON FOR YOUR LOCALIZE MESSAGES");
   final dartFile = new Glob("lib/**/**.dart");
@@ -14,7 +16,7 @@ main(List<String> args) async {
   final Map<String, Map<String, String>> defaultLocaleMessages = {};
 
   for (var entity in files) {
-    if (entity.path.contains("/messages/strings.dart")) {
+    if (entity.path.contains(normalize("/messages/strings.dart"))) {
       ReceivePort port = new ReceivePort();
       final raw = await getMessagesViaIsolate(entity, port);
       final Map messages = raw["strings"].cast<String, String>();
@@ -22,10 +24,14 @@ main(List<String> args) async {
       final localesDirectory = new Directory(
         entity.path.replaceFirst(r'strings.dart', r'locales').toString(),
       );
+      // print("dlkasdhaskjhd $localesDirectory");
       if (localesDirectory.existsSync()) {
-        await localesDirectory.list().forEach((localeFile) async {});
+        // print("$localesDirectory EXISSITS");
+
+        // await localesDirectory.list().forEach((localeFile) async {});
         for (final localeFile in localesDirectory.listSync()) {
-          final localeCode = localeFile.path.split("/").last.split(".").first;
+          final localeCode =
+              localeFile.path.split(normalize("/")).last.split(".").first;
           final localeRaw = await getMessagesViaIsolate(
             localeFile,
             new ReceivePort(),
@@ -42,7 +48,7 @@ main(List<String> args) async {
     }
   }
 
-  final directory = new Directory("./assets/langs");
+  final directory = new Directory(normalize("./assets/langs"));
 
   await directory.list().forEach((element) async {
     final file = new File(element.path);
@@ -56,7 +62,7 @@ main(List<String> args) async {
 
       file.writeAsStringSync(newJson);
     } else {
-      final langCode = file.path.split('/').last.split('.').first;
+      final langCode = file.path.split(normalize('/')).last.split('.').first;
       final Map<String, dynamic> newObj = {...defaultMessages, ...parsed};
       final localeMessages = defaultLocaleMessages[langCode];
 
@@ -94,7 +100,7 @@ Future<Map> getMessagesViaIsolate(
   ReceivePort port,
 ) async {
   await Isolate.spawnUri(
-    Uri.parse(entity.resolveSymbolicLinksSync()),
+    Uri.parse(entity.resolveSymbolicLinksSync().replaceAll("\\", "/")),
     null,
     port.sendPort,
   );

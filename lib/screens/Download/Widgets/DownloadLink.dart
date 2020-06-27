@@ -9,15 +9,15 @@ import 'package:flutter_uis/Mixins/HoverWidget.dart';
 
 import '../Dimensions.dart';
 
-class Link extends StatefulWidget {
+class DownloadLink extends StatefulWidget {
   final Map obj;
-  Link(this.obj, {Key key}) : super(key: key);
+  DownloadLink(this.obj, {Key key}) : super(key: key);
 
   @override
-  _LinkState createState() => _LinkState();
+  _DownloadLinkState createState() => _DownloadLinkState();
 }
 
-class _LinkState extends State<Link> with HoverWidgetMixin {
+class _DownloadLinkState extends State<DownloadLink> with HoverWidgetMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
