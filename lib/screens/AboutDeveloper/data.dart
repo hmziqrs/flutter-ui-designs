@@ -1,5 +1,7 @@
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
+import 'messages/keys.dart';
+
 final skills = [
   "HTML",
   "CSS",
@@ -51,24 +53,24 @@ final contacts = [
 
 final showSupport = [
   {
-    "text": "Star this github repository",
+    "text": AboutDeveloperScreenMessages.stepGit,
     "link": "https://github.com/hackerhgl/flutter-ui-designs",
   },
   {
-    "text": "Rate this app on playstore",
+    "text": AboutDeveloperScreenMessages.stepStore,
     "link":
         "https://play.google.com/store/apps/details?id=com.onemdev.flutter_ui_challenges",
   },
   {
-    "text": "Endorse my skills on my Linkedin",
+    "text": AboutDeveloperScreenMessages.stepEndorse,
     "link": "https://www.linkedin.com/in/hackerhgl/",
   },
   {
-    "text": "Favorite my gigs on fiver",
+    "text": AboutDeveloperScreenMessages.stepFiver,
     "link": "https://www.fiverr.com/hackerhgl",
   },
   {
-    "text": "Give a recommendation on freelancer",
+    "text": AboutDeveloperScreenMessages.stepFreelancer,
     "link": "https://www.freelancer.com/u/hackerhgl",
   },
 ];
