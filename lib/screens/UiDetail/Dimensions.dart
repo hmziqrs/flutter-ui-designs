@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_uis/UI.dart';
-
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
+import 'package:flutter_uis/UI.dart';
 
 class Dimensions {
   static double coverImageHeight;
 
-  static double cardHeight;
   static double cardWidth;
+  static double cardHeight;
   static double buttonWidth;
 
   static init(BuildContext context) {
-    AppDimensions.init(context);
+    App.init(context);
 
     coverImageHeight = 260;
     cardWidth = 280;

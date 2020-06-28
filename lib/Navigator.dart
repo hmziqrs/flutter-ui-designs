@@ -12,7 +12,7 @@ import './screens/Download/Download.dart';
 import './screens/AboutApp/AboutApp.dart';
 import './screens/AboutDeveloper/AboutDeveloper.dart';
 import './screens/UiList/UiList.dart';
-import './screens/UiDetail/UIDetail.dart';
+import './screens/UIDetail/UIDetail.dart';
 import './screens/DesignerProfile/DesignerProfile.dart';
 
 import './MiniApps/HealtyFoodDelivery/Screens/HomeScreen/HFDHomeScreen.dart';
@@ -27,6 +27,7 @@ import './MiniApps/SkyView/Screens/DetailScreen/SKDetailScreen.dart';
 import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/ASCHomeScreen.dart';
 
 import 'MiniApps/EggTimerConcept/Screens/HomeScreen/EggTimerConcept.dart';
+
 import 'Providers/AppProvider.dart';
 
 bool isAlt = false;
@@ -115,7 +116,7 @@ class AppNavigator extends StatelessWidget {
                 "aboutDeveloper": (ctx) => new AboutDeveloperScreen(),
                 "download": (ctx) => new DownloadScreen(),
                 "uiList": (ctx) => new UiListScreen(),
-                "uiDetail": (ctx) => new UiDetailScreen(),
+                "uiDetail": (ctx) => new UIDetailScreen(),
                 "designerProfile": (ctx) => new DesignerProfileScreen(),
 
                 // Healthy Food Delivery
