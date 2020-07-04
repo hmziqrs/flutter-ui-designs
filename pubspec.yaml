@@ -39,6 +39,7 @@ dependencies:
   url_launcher: ^5.4.1
 
   flash: ^1.1.0
+  emojis: 0.8.1
   pigment: ^1.0.3
   fluttery_dart2: 0.0.9
   cupertino_icons: ^0.1.3

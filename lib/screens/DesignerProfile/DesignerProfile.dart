@@ -94,7 +94,7 @@ class _DesignerProfileScreenState extends State<DesignerProfileScreen>
           border: Border.all(
             width: AppDimensions.padding,
             // color: Colors.white,
-            color: primary,
+            color: theme.primary,
           ),
           boxShadow: [
             BoxShadow(

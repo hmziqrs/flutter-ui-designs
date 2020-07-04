@@ -17,16 +17,14 @@ class UIDetailScreen extends StatefulWidget {
 
 class _UIDetailScreenState extends State<UIDetailScreen>
     with SingleTickerProviderStateMixin {
-  ScrollController scrollController;
   double scrollOffset = 0.0;
+  ScrollController scrollController;
   final screenKey = GlobalKey<ScreenState>();
 
   @override
   void initState() {
     super.initState();
-
     this.scrollController = ScrollController();
-
     this.scrollController.addListener(() {
       final offset = this.scrollController.offset;
       setState(() {
@@ -68,11 +66,14 @@ class _UIDetailScreenState extends State<UIDetailScreen>
               ),
               Positioned(
                 top: MediaQuery.of(context).padding.top + AppDimensions.padding,
-                left: AppDimensions.padding,
-                right: AppDimensions.padding,
-                child: BackButton(
-                  onPressed: () => Navigator.of(context).popUntil(
-                    ModalRoute.withName("uiList"),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppDimensions.padding,
+                  ),
+                  child: BackButton(
+                    onPressed: () => Navigator.of(context).popUntil(
+                      ModalRoute.withName("uiList"),
+                    ),
                   ),
                 ),
               ),
