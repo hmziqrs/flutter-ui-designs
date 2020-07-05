@@ -1,5 +1,5 @@
-class Resturant {
-  Resturant({
+class HFDRestaurant {
+  HFDRestaurant({
     this.id,
     this.name,
     this.image,

@@ -75,20 +75,20 @@ flutter:
     - assets/user/
     - assets/thumbnails/
 
-    - assets/ma-hfd/item-1.jpg
-    - assets/ma-hfd/item-2.jpg
-    - assets/ma-hfd/item-3.jpg
-    - assets/ma-hfd/item-4.jpg
-    - assets/ma-hfd/item-5.jpg
-    - assets/ma-hfd/item-6.jpg
-    - assets/ma-hfd/item-7.jpg
-    - assets/ma-hfd/item-8.jpg
-    - assets/ma-hfd/item-9.jpg
-    - assets/ma-hfd/resturant-1.jpg
-    - assets/ma-hfd/resturant-2.jpg
-    - assets/ma-hfd/resturant-3.jpg
-    - assets/ma-hfd/resturant-4.jpg
-    - assets/ma-hfd/resturant-5.jpg
+    - assets/ma-hfd/
+    # - assets/ma-hfd/item-2.jpg
+    # - assets/ma-hfd/item-3.jpg
+    # - assets/ma-hfd/item-4.jpg
+    # - assets/ma-hfd/item-5.jpg
+    # - assets/ma-hfd/item-6.jpg
+    # - assets/ma-hfd/item-7.jpg
+    # - assets/ma-hfd/item-8.jpg
+    # - assets/ma-hfd/item-9.jpg
+    # - assets/ma-hfd/resturant-1.jpg
+    # - assets/ma-hfd/resturant-2.jpg
+    # - assets/ma-hfd/resturant-3.jpg
+    # - assets/ma-hfd/resturant-4.jpg
+    # - assets/ma-hfd/resturant-5.jpg
 
     - assets/ma-hab/bubbles-bg.png
     - assets/ma-hab/balloon.png

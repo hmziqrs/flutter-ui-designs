@@ -1,22 +1,25 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/Mixins/HoverWidget.dart';
-import 'package:flutter_uis/Utils.dart';
+
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/Utils.dart';
 
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
+
+import '../data.dart' as data;
 import '../Dimensions.dart';
-import '../../../data/data.dart' as data;
 
-class ResturantCard extends StatefulWidget {
-  final data.Resturant resrutant;
-  ResturantCard(this.resrutant, {Key key}) : super(key: key);
+class HFDHomeScreenRestaurantCard extends StatefulWidget {
+  final data.HFDRestaurant resrutant;
+  HFDHomeScreenRestaurantCard(this.resrutant, {Key key}) : super(key: key);
 
   @override
-  _ResturantCardState createState() => _ResturantCardState();
+  _HFDHomeScreenRestaurantCardState createState() =>
+      _HFDHomeScreenRestaurantCardState();
 }
 
-class _ResturantCardState extends State<ResturantCard> with HoverWidgetMixin {
+class _HFDHomeScreenRestaurantCardState
+    extends State<HFDHomeScreenRestaurantCard> with HoverWidgetMixin {
   @override
   Widget build(BuildContext context) {
     final sigma = Utils.rangeMap(animation.value, 0.0, 1.0, 2.4, 0);
@@ -26,7 +29,7 @@ class _ResturantCardState extends State<ResturantCard> with HoverWidgetMixin {
       child: Align(
         child: this.buildInkWell(
           child: Container(
-            width: Dimensions.resturantCardBaseWidth,
+            width: Dimensions.restaurantCardBaseWidth,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.0),
               image: DecorationImage(

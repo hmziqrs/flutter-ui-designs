@@ -1,17 +1,17 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/MiniApps/HealtyFoodDelivery/Screens/HomeScreen/messages/keys.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
-import './FoodItem.dart';
-import './Category.dart';
-import './Resturant.dart';
+import '../../models/HFDRestaurant.dart';
+import '../../models/HFDFoodItem.dart';
+import '../../models/HFDCategory.dart';
 
-export './FoodItem.dart';
-export './Category.dart';
-export './Resturant.dart';
+export '../../models/HFDRestaurant.dart';
+export '../../models/HFDFoodItem.dart';
+export '../../models/HFDCategory.dart';
 
-final bottomnavList = [
+final bottomNavList = [
   Icons.home,
   Icons.room,
   Icons.shopping_cart,
@@ -19,45 +19,45 @@ final bottomnavList = [
   MaterialCommunityIcons.account,
 ];
 
-const fliters = [
-  'Nearby',
-  'Recommended',
-  'Popular',
-];
-
-final resturants = List.generate(
+final restaurants = List.generate(
   5,
-  (index) => new Resturant(
+  (index) => new HFDRestaurant(
     id: index,
-    name: "Resturant $index",
-    image: "assets/ma-hfd/resturant-${index + 1}.jpg",
+    name: "Restaurant $index",
+    image: "assets/ma-hfd/restaurant-${index + 1}.jpg",
   ),
 );
 
 final categories = [
-  new Category(
-    "Breakfast",
+  new HFDCategory(
+    HFDHomeScreenMessages.breakfast,
     FontAwesome5Solid.bread_slice,
     margin: EdgeInsets.only(right: 3),
   ),
-  new Category(
-    "Lunch",
+  new HFDCategory(
+    HFDHomeScreenMessages.lunch,
     MaterialCommunityIcons.food,
     iconSize: 34,
     margin: EdgeInsets.only(bottom: 4),
   ),
-  new Category("Bevrages", Entypo.drink),
-  new Category("Snack", FontAwesome5Solid.hamburger),
+  new HFDCategory(
+    HFDHomeScreenMessages.bevrages,
+    Entypo.drink,
+  ),
+  new HFDCategory(
+    HFDHomeScreenMessages.snack,
+    FontAwesome5Solid.hamburger,
+  ),
 ];
 
 final _description =
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s";
 
-final List<FoodItem> items = List.generate(
+final List<HFDFoodItem> items = List.generate(
   9,
   (index) {
     final r = Random();
-    return new FoodItem(
+    return new HFDFoodItem(
       id: index,
       name: "Healthy Food",
       description: "$_description $_description $_description $_description",

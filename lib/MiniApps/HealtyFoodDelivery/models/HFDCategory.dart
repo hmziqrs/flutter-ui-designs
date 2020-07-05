@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Category {
-  Category(
+class HFDCategory {
+  HFDCategory(
     this.name,
     this.icon, {
     this.margin = const EdgeInsets.all(0.0),

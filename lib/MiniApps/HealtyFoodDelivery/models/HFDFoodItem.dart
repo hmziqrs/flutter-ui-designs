@@ -1,5 +1,5 @@
-class FoodItem {
-  FoodItem({
+class HFDFoodItem {
+  HFDFoodItem({
     this.id,
     this.name,
     this.description,

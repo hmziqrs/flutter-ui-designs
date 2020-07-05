@@ -6,19 +6,20 @@ import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
-import '../Dimensions.dart';
-import '../../../data/data.dart' as data;
 import '../../../configs/theme.dart' as theme;
+import '../../../models/HFDFoodItem.dart';
+import '../Dimensions.dart';
 
-class BoxItem extends StatefulWidget {
-  final data.FoodItem item;
-  BoxItem(this.item, {Key key}) : super(key: key);
+class HFDHomeScreenItemCard extends StatefulWidget {
+  final HFDFoodItem item;
+  HFDHomeScreenItemCard(this.item, {Key key}) : super(key: key);
 
   @override
-  _BoxItemState createState() => _BoxItemState();
+  _HFDHomeScreenItemCardState createState() => _HFDHomeScreenItemCardState();
 }
 
-class _BoxItemState extends State<BoxItem> with HoverWidgetMixin {
+class _HFDHomeScreenItemCardState extends State<HFDHomeScreenItemCard>
+    with HoverWidgetMixin {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +29,27 @@ class _BoxItemState extends State<BoxItem> with HoverWidgetMixin {
           fit: StackFit.expand,
           children: <Widget>[
             this.buildBase(),
-            this.buildDiscount(),
+            Positioned(
+              bottom: Dimensions.itemDiscountSize * 0.8,
+              right: 0,
+              child: Container(
+                width: Dimensions.itemDiscountSize,
+                height: Dimensions.itemDiscountSize,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: theme.primary,
+                ),
+                child: Text(
+                  "\$${widget.item.price.toStringAsFixed(2)}",
+                  style: TextStyle(
+                    fontSize: Dimensions.itemDiscountSize * 0.25,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -159,30 +180,6 @@ class _BoxItemState extends State<BoxItem> with HoverWidgetMixin {
                 ),
               ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildDiscount() {
-    return Positioned(
-      bottom: Dimensions.itemDiscountSize * 0.8,
-      right: 0,
-      child: Container(
-        width: Dimensions.itemDiscountSize,
-        height: Dimensions.itemDiscountSize,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: theme.primary,
-        ),
-        child: Text(
-          "\$${widget.item.price.toStringAsFixed(2)}",
-          style: TextStyle(
-            fontSize: Dimensions.itemDiscountSize * 0.25,
-            fontWeight: FontWeight.w600,
-            color: Colors.white,
           ),
         ),
       ),

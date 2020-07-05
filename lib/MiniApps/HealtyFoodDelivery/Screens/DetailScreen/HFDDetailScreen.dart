@@ -10,8 +10,8 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
-import '../../data/data.dart' as data;
 import '../../configs/theme.dart' as theme;
+import '../../models/HFDFoodItem.dart';
 
 import 'Dimensions.dart';
 
@@ -48,7 +48,7 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
 
   @override
   Widget build(BuildContext context) {
-    final data.FoodItem item = ModalRoute.of(context).settings.arguments;
+    final HFDFoodItem item = ModalRoute.of(context).settings.arguments;
     final textStyle =
         Theme.of(context).textTheme.bodyText1.copyWith(fontFamily: 'Nunito');
 
@@ -179,7 +179,7 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
     );
   }
 
-  Widget buildBackgroundImage(data.FoodItem item) {
+  Widget buildBackgroundImage(HFDFoodItem item) {
     double height = Dimensions.coverImageHeight + (this.offset * -1);
 
     if (height < 0) {
@@ -216,7 +216,7 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
     );
   }
 
-  Widget buildBackgroundImageBody(data.FoodItem item) {
+  Widget buildBackgroundImageBody(HFDFoodItem item) {
     return Container(
       alignment: Alignment.topCenter,
       width: double.infinity,
@@ -297,7 +297,7 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
     );
   }
 
-  Widget buildBody(data.FoodItem item, dynamic multiTrack) {
+  Widget buildBody(HFDFoodItem item, dynamic multiTrack) {
     return Container(
       padding: EdgeInsets.all(AppDimensions.padding * 2),
       width: (AppDimensions.miniContainerWidth - AppDimensions.padding * 8),
