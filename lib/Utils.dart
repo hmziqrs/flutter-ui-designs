@@ -68,6 +68,10 @@ class Utils {
     }
   }
 
+  static launchSocialLink(username, platform) {
+    Utils.launchUrl(Utils.socialLink(username, platform));
+  }
+
   static EdgeInsetsGeometry safePaddingUnit(
     BuildContext context,
     String direction,

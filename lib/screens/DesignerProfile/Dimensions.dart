@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
-
+import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/UI.dart';
 
 class Dimensions {
@@ -14,7 +14,7 @@ class Dimensions {
   static double cardHeight;
 
   static void init(BuildContext context) {
-    AppDimensions.init(context);
+    App.init(context);
 
     cardWidth = 280;
     cardHeight = 160;
