@@ -11,7 +11,7 @@ import './screens/Home/Home.dart';
 import './screens/Download/Download.dart';
 import './screens/AboutApp/AboutApp.dart';
 import './screens/AboutDeveloper/AboutDeveloper.dart';
-import './screens/UiList/UiList.dart';
+import './screens/UIList/UIList.dart';
 import './screens/UIDetail/UIDetail.dart';
 import './screens/DesignerProfile/DesignerProfile.dart';
 
@@ -115,7 +115,7 @@ class AppNavigator extends StatelessWidget {
                 "about": (ctx) => new AboutAppScreen(),
                 "aboutDeveloper": (ctx) => new AboutDeveloperScreen(),
                 "download": (ctx) => new DownloadScreen(),
-                "uiList": (ctx) => new UiListScreen(),
+                "uiList": (ctx) => new UIListScreen(),
                 "uiDetail": (ctx) => new UIDetailScreen(),
                 "designerProfile": (ctx) => new DesignerProfileScreen(),
 

@@ -10,12 +10,12 @@ import 'package:flutter_uis/Widgets/UICard/UICard.dart';
 
 import 'Dimensions.dart';
 
-class UiListScreen extends StatefulWidget {
+class UIListScreen extends StatefulWidget {
   @override
-  _UiListScreenState createState() => _UiListScreenState();
+  _UIListScreenState createState() => _UIListScreenState();
 }
 
-class _UiListScreenState extends State<UiListScreen>
+class _UIListScreenState extends State<UIListScreen>
     with SingleTickerProviderStateMixin {
   double scrollStart = 0.0;
   double offset = 0.0;
