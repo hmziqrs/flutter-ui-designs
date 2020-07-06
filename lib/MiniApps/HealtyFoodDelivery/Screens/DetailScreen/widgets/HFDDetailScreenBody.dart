@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/App.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_uis/Utils.dart';
 
 import '../../../configs/theme.dart' as theme;
 import '../../../models/HFDFoodItem.dart';
+import '../messages/keys.dart';
 
 class HFDDetailScreenBody extends StatelessWidget {
   HFDDetailScreenBody({
@@ -37,7 +39,7 @@ class HFDDetailScreenBody extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(AppDimensions.padding * 2),
             child: Text(
-              "Nutirion Fact",
+              App.translate(HFDDetailScreenMessages.nutritionFact),
               style: TextStyle(
                 fontSize: 10 + AppDimensions.ratio * 5,
                 fontWeight: FontWeight.w600,
@@ -73,7 +75,7 @@ class HFDDetailScreenBody extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "${item.dailyCal}% of daily calories",
+                    "${item.dailyCal}% ${App.translate(HFDDetailScreenMessages.dailyCalories)}",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: Colors.black.withOpacity(0.4),
@@ -85,17 +87,23 @@ class HFDDetailScreenBody extends StatelessWidget {
           ),
           this.buildLinearBar(
             item.carbo,
-            "Carbo",
+            App.translate(
+              HFDDetailScreenMessages.carbo,
+            ),
             this.multiTrackAnimations["bars"],
           ),
           this.buildLinearBar(
             item.protien,
-            "Protien",
+            App.translate(
+              HFDDetailScreenMessages.protein,
+            ),
             this.multiTrackAnimations["bars"],
           ),
           this.buildLinearBar(
             item.fat,
-            "fat",
+            App.translate(
+              HFDDetailScreenMessages.fat,
+            ),
             this.multiTrackAnimations["bars"],
           ),
         ],

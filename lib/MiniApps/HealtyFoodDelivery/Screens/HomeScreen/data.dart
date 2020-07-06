@@ -19,14 +19,23 @@ final bottomNavList = [
   MaterialCommunityIcons.account,
 ];
 
-final restaurants = List.generate(
-  5,
-  (index) => new HFDRestaurant(
-    id: index,
-    name: "Restaurant $index",
-    image: "assets/ma-hfd/restaurant-${index + 1}.jpg",
-  ),
-);
+final restaurants = [
+  "Island Grill",
+  "Shanghai Dynasty",
+  "Divine lunch",
+  "Quick Bite",
+  "Urban Zest Cafe",
+]
+    .asMap()
+    .entries
+    .map(
+      (entry) => HFDRestaurant(
+        id: entry.key,
+        name: entry.value,
+        image: "assets/ma-hfd/restaurant-${entry.key + 1}.jpg",
+      ),
+    )
+    .toList();
 
 final categories = [
   new HFDCategory(

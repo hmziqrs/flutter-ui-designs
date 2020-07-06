@@ -14,6 +14,7 @@ main(List<String> args) async {
   final List<FileSystemEntity> files = dartFile.listSync();
   final Map<String, String> defaultMessages = {};
   final Map<String, Map<String, String>> defaultLocaleMessages = {};
+  final JsonEncoder jsonEncoder = JsonEncoder.withIndent('     ');
 
   for (var entity in files) {
     if (entity.path.contains(normalize("/messages/strings.dart"))) {
@@ -58,7 +59,7 @@ main(List<String> args) async {
     if (file.path.contains('en.json')) {
       parsed.addAll(defaultMessages);
 
-      final newJson = json.encode(parsed);
+      final newJson = jsonEncoder.convert(parsed);
 
       file.writeAsStringSync(newJson);
     } else {
@@ -89,7 +90,9 @@ main(List<String> args) async {
           );
         }
       }
-      final newJson = json.encode(newObj);
+
+      final newJson = jsonEncoder.convert(newObj);
+
       file.writeAsStringSync(newJson);
     }
   });

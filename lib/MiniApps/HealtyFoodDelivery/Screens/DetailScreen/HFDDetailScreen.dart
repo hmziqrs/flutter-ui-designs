@@ -1,14 +1,16 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_uis/Mixins/HoverWidget.dart';
-import 'package:flutter_uis/Widgets/Screen/Screen.dart';
-
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/Utils.dart';
+
+import 'package:flutter_uis/Widgets/Screen/Screen.dart';
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 
 import '../../configs/theme.dart' as theme;
 import '../../models/HFDFoodItem.dart';
+import 'messages/keys.dart';
 
 import 'widgets/HFDDetailScreenBackgroundImageBody.dart';
 import 'widgets/HFDDetailScreenBackground.dart';
@@ -136,7 +138,9 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
                                       borderRadius: BorderRadius.circular(80),
                                     ),
                                     child: Text(
-                                      "Order Now",
+                                      App.translate(
+                                        HFDDetailScreenMessages.orderNow,
+                                      ),
                                       style: textStyle.copyWith(
                                         fontSize: 17,
                                         color: Colors.white,
