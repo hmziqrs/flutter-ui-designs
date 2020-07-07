@@ -1,8 +1,8 @@
-import 'Flight.dart';
-export 'Flight.dart';
+import '../models/HABFlight.dart';
+export '../models/HABFlight.dart';
 
 final flights = [
-  new Flight(
+  new HABFlight(
     id: 1,
     name: "Standard",
     people: "20-24 people",
@@ -13,7 +13,7 @@ final flights = [
     desc:
         "The flight is minimum one hour and we will ascend anywhere from rock formations to several thousand feet. Once you’re airborne your pilot will point out the spectacular sites of Cappadocia, from Red Valley to the Goreme and vineyards to rock formations, absolutely beauty of the nature. Our flying area has many wonderful things to see.",
   ),
-  new Flight(
+  new HABFlight(
     id: 2,
     name: "Ultra Comfort",
     people: "8-16 people",
@@ -24,7 +24,7 @@ final flights = [
     desc:
         "The flight is minimum 75 to 90 minutes hour and we will ascend anywhere from rock formations to several thousand feet. Once you’re airborne your pilot will point out the spectacular sites of Cappadocia, from Red Valley to the Goreme and vineyards to rock formations, absolutely beauty of the nature. Our flying area has many wonderful things to see.",
   ),
-  new Flight(
+  new HABFlight(
     id: 3,
     name: "Exclusive",
     people: "4 people",

@@ -6,7 +6,7 @@ import 'RowInfo.dart';
 
 class PostFlightInfoTab extends StatelessWidget {
   const PostFlightInfoTab(this.flight);
-  final data.Flight flight;
+  final data.HABFlight flight;
 
   @override
   Widget build(BuildContext context) {

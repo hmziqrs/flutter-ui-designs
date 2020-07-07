@@ -11,7 +11,7 @@ import 'PreFlightInfoTab.dart';
 
 class FlightView extends StatefulWidget {
   FlightView(this.flight, this.fontStyle);
-  final data.Flight flight;
+  final data.HABFlight flight;
   final TextStyle fontStyle;
 
   @override

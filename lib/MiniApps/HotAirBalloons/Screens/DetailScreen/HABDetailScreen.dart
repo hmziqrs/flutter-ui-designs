@@ -52,7 +52,7 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
     });
   }
 
-  Widget renderHeader(data.Flight flight, TextStyle fontStyle) {
+  Widget renderHeader(data.HABFlight flight, TextStyle fontStyle) {
     return Positioned(
       left: 0,
       right: 0,

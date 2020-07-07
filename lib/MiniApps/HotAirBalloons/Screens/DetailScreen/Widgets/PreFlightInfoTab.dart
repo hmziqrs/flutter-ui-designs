@@ -6,7 +6,7 @@ import 'RowInfo.dart';
 
 class PreFlightInfoTab extends StatelessWidget {
   const PreFlightInfoTab(this.flight);
-  final data.Flight flight;
+  final data.HABFlight flight;
 
   @override
   Widget build(BuildContext context) {

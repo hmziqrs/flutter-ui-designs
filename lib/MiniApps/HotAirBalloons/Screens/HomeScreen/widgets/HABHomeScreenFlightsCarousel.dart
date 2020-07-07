@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/Utils.dart';
 
 import '../../DetailScreen/HABDetailScreen.dart';
@@ -7,14 +8,16 @@ import '../../../configs/theme.dart' as theme;
 import '../../../data/flights.dart' as data;
 import '../Dimensions.dart';
 
-class FlightsCarousel extends StatefulWidget {
-  FlightsCarousel(this.fontStyle);
+class HABHomeScreenFlightsCarousel extends StatefulWidget {
+  HABHomeScreenFlightsCarousel(this.fontStyle);
   final TextStyle fontStyle;
 
-  _FlightsCarouselState createState() => _FlightsCarouselState();
+  _HABHomeScreenFlightsCarouselState createState() =>
+      _HABHomeScreenFlightsCarouselState();
 }
 
-class _FlightsCarouselState extends State<FlightsCarousel> {
+class _HABHomeScreenFlightsCarouselState
+    extends State<HABHomeScreenFlightsCarousel> {
   int activeIndex = 0;
 
   void setActiveIndex(int index) async {
@@ -35,13 +38,13 @@ class _FlightsCarouselState extends State<FlightsCarousel> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Padding(
-        padding: EdgeInsets.all(Dimensions.padding),
+        padding: EdgeInsets.all(AppDimensions.padding),
         child: Row(
           children: data.flights
               .asMap()
               .map(
                 (index, item) {
-                  final data.Flight item = data.flights[index];
+                  final data.HABFlight item = data.flights[index];
                   final activeTextColor = index == this.activeIndex
                       ? theme.primary
                       : widget.fontStyle.color;
@@ -52,8 +55,8 @@ class _FlightsCarouselState extends State<FlightsCarousel> {
                       onTap: () => this.setActiveIndex(index),
                       child: Container(
                         width: Dimensions.flightCardWidth,
-                        margin: EdgeInsets.all(Dimensions.padding * 2),
-                        padding: EdgeInsets.all(Dimensions.padding * 2),
+                        margin: EdgeInsets.all(AppDimensions.padding * 2),
+                        padding: EdgeInsets.all(AppDimensions.padding * 2),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(16.0),
@@ -86,7 +89,7 @@ class _FlightsCarouselState extends State<FlightsCarousel> {
                             ),
                             Padding(
                               padding: EdgeInsets.only(
-                                top: Dimensions.padding,
+                                top: AppDimensions.padding,
                               ),
                               child: Text(
                                 item.people,
