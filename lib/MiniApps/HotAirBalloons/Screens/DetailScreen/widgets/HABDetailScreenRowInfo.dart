@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_uis/configs/AppDimensions.dart';
+
 import '../../../configs/theme.dart' as theme;
 
-import '../Dimensions.dart';
-
-class RowInfo extends StatelessWidget {
-  const RowInfo(this.name, this.desc, this.icon, {this.fullWidth = false});
+class HABDetailScreenRowInfo extends StatelessWidget {
+  const HABDetailScreenRowInfo(this.name, this.desc, this.icon,
+      {this.fullWidth = false});
   final bool fullWidth;
   final IconData icon;
   final String name;
@@ -15,14 +16,14 @@ class RowInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: Dimensions.padding * 5,
-        vertical: Dimensions.padding * 4,
+        horizontal: AppDimensions.padding * 5,
+        vertical: AppDimensions.padding * 4,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: EdgeInsets.only(top: Dimensions.padding * 0.4),
+            padding: EdgeInsets.only(top: AppDimensions.padding * 0.4),
             child: Icon(
               icon,
               color: theme.primary,
@@ -31,8 +32,8 @@ class RowInfo extends StatelessWidget {
           ),
           Flexible(
             child: Container(
-              width: Dimensions.padding * (this.fullWidth ? 80 : 50),
-              padding: EdgeInsets.only(left: Dimensions.padding * 4),
+              width: AppDimensions.padding * (this.fullWidth ? 80 : 50),
+              padding: EdgeInsets.only(left: AppDimensions.padding * 4),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
