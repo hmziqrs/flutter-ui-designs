@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/Utils.dart';
 
 import '../../DetailScreen/HABDetailScreen.dart';
 import '../../../configs/theme.dart' as theme;
 import '../../../data/flights.dart' as data;
+import '../messages/keys.dart';
 import '../Dimensions.dart';
 
 class HABHomeScreenFlightsCarousel extends StatefulWidget {
@@ -72,7 +74,7 @@ class _HABHomeScreenFlightsCarouselState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              item.name,
+                              App.translate(item.name),
                               style: widget.fontStyle.copyWith(
                                 fontSize: 16,
                                 color: activeTextColor,
@@ -80,7 +82,7 @@ class _HABHomeScreenFlightsCarouselState
                               ),
                             ),
                             Text(
-                              "Flight",
+                              App.translate(HABHomeScreenMessages.flight),
                               style: widget.fontStyle.copyWith(
                                 fontSize: 15,
                                 color: activeTextColor,
@@ -92,7 +94,7 @@ class _HABHomeScreenFlightsCarouselState
                                 top: AppDimensions.padding,
                               ),
                               child: Text(
-                                item.people,
+                                App.translate(item.people),
                                 style: TextStyle(
                                   fontSize: 12,
                                   color: theme.subText,

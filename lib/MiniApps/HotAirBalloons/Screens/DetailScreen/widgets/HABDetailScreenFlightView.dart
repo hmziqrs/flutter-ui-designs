@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:simple_animations/simple_animations.dart';
+
+import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
 
 import '../../../configs/theme.dart' as theme;
 import '../../../data/flights.dart' as data;
-
+import '../messages/keys.dart';
 import '../Dimensions.dart';
+
 import 'HABDetailScreenPostFlightInfoTab.dart';
 import 'HABDetailScreenFlightDetailsTab.dart';
 import 'HABDetailScreenPreFlightInfoTab.dart';
@@ -26,10 +29,10 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
   int activeTab;
 
   final tabs = [
-    'FLIGHT DETAILS',
-    'PRE-FLIGHT INFORMATION',
-    'IN-FLIGHT INFORMATION',
-    'POST-FLIGHT INFORMATION'
+    HABDetailScreenMessages.tabFlightDetails,
+    HABDetailScreenMessages.tabPreFlightInfo,
+    HABDetailScreenMessages.tabInFlightInfo,
+    HABDetailScreenMessages.tabPostFlightInfo,
   ];
 
   @override
@@ -71,7 +74,7 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
       buildContent = Padding(
         padding: EdgeInsets.all(AppDimensions.padding * 3),
         child: Text(
-          widget.flight.inFlightInfo,
+          App.translate(widget.flight.inFlightInfo),
           style: TextStyle(
             fontSize: 12,
             color: theme.subText,
@@ -79,10 +82,11 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
           ),
         ),
       );
+    } else {
+      buildContent = HABDetailScreenPostFlightInfoTab(
+        widget.flight,
+      );
     }
-    buildContent = HABDetailScreenPostFlightInfoTab(
-      widget.flight,
-    );
 
     return Container(
       padding: EdgeInsets.only(top: ((Dimensions.headerSpace * 2) + 100)),
@@ -117,9 +121,7 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
                         index,
                         GestureDetector(
                           child: Container(
-                            child: Text(
-                              tab,
-                            ),
+                            child: Text(App.translate(tab)),
                             padding: EdgeInsets.only(bottom: 3),
                             decoration: BoxDecoration(
                               border: Border(

@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/UI.dart';
 
 import '../../../configs/theme.dart' as theme;
 import '../../../data/flights.dart' as data;
+import '..//messages/keys.dart';
 
 import 'HABDetailScreenRowInfo.dart';
 
@@ -19,16 +21,28 @@ class HABDetailScreenFlightDetailsTab extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        HABDetailScreenRowInfo("Basket Size", flight.basketSize, Feather.users),
-        HABDetailScreenRowInfo("Flight Time", flight.time, Feather.clock),
-        HABDetailScreenRowInfo("Price", flight.price, Feather.tag),
+        HABDetailScreenRowInfo(
+          App.translate(HABDetailScreenMessages.basketSize),
+          App.translate(flight.basketSize),
+          Feather.users,
+        ),
+        HABDetailScreenRowInfo(
+          App.translate(HABDetailScreenMessages.flightTime),
+          App.translate(flight.time),
+          Feather.clock,
+        ),
+        HABDetailScreenRowInfo(
+          App.translate(HABDetailScreenMessages.price),
+          App.translate(flight.price),
+          Feather.tag,
+        ),
         Padding(
           padding: EdgeInsets.symmetric(
             horizontal: AppDimensions.padding * 5,
             vertical: AppDimensions.padding * 4,
           ),
           child: Text(
-            flight.desc,
+            App.translate(flight.desc),
             style: TextStyle(
               fontSize: 12,
               color: theme.subText,
@@ -55,22 +69,22 @@ class HABDetailScreenFlightDetailsTab extends StatelessWidget {
             ],
           ),
           child: FlatButton(
+            onPressed: () {},
+            color: theme.primary,
+            textColor: Colors.white,
+            splashColor: Colors.transparent,
+            highlightColor: Colors.black.withOpacity(0.1),
+            padding: EdgeInsets.symmetric(vertical: AppDimensions.padding * 2),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12.0),
             ),
-            onPressed: () {},
-            color: theme.primary,
-            padding: EdgeInsets.symmetric(vertical: AppDimensions.padding * 2),
-            textColor: Colors.white,
             child: Text(
-              "BOOK NOW",
+              App.translate(HABDetailScreenMessages.bookNow),
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
             ),
-            splashColor: Colors.transparent,
-            highlightColor: Colors.black.withOpacity(0.1),
           ),
         ),
         Container(

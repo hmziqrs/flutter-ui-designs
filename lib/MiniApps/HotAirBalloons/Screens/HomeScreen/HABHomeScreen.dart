@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 
 import 'widgets/HABHomeScreenBaloonAnimationWrapper.dart';
 import 'widgets/HABHomeScreenFlightsCarousel.dart';
 import '../../configs/theme.dart' as theme;
+import 'messages/keys.dart';
 import 'Dimensions.dart';
 
 class HABHomeScreen extends StatelessWidget {
@@ -69,7 +71,7 @@ class HABHomeScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: AppDimensions.padding * 2),
                     child: Text(
-                      "Cappadocia\nHot Air Balloon",
+                      App.translate(HABHomeScreenMessages.title),
                       style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.w700,
@@ -83,7 +85,7 @@ class HABHomeScreen extends StatelessWidget {
                       bottom: AppDimensions.padding,
                     ),
                     child: Text(
-                      "Once in a lifetime adventure",
+                      App.translate(HABHomeScreenMessages.subTitle),
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                       ),

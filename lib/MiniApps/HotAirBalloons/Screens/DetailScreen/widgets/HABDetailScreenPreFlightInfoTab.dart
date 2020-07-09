@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
+import 'package:flutter_uis/configs/App.dart';
+
 import '../../../data/flights.dart' as data;
 import 'HABDetailScreenRowInfo.dart';
+import '../messages/keys.dart';
 
 class HABDetailScreenPreFlightInfoTab extends StatelessWidget {
   const HABDetailScreenPreFlightInfoTab(this.flight);
@@ -13,20 +16,20 @@ class HABDetailScreenPreFlightInfoTab extends StatelessWidget {
     return Column(
       children: [
         HABDetailScreenRowInfo(
-          "Pick-up from your hotel",
-          flight.pickUp,
+          App.translate(HABDetailScreenMessages.pickUp),
+          App.translate(flight.pickUp),
           MaterialCommunityIcons.bus_side,
           fullWidth: true,
         ),
         HABDetailScreenRowInfo(
-          flight.breakFastType,
-          flight.breakFast,
+          App.translate(flight.breakFastType),
+          App.translate(flight.breakFast),
           Feather.coffee,
           fullWidth: true,
         ),
         HABDetailScreenRowInfo(
-          "Watching the inflation",
-          flight.inflation,
+          App.translate(HABDetailScreenMessages.watchingInflation),
+          App.translate(flight.inflation),
           MaterialCommunityIcons.airballoon,
           fullWidth: true,
         ),

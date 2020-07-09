@@ -91,7 +91,7 @@ class AppNavigator extends StatelessWidget {
                 ),
               ),
               navigatorObservers: observers,
-              home: HomeScreen(),
+              home: HABHomeScreen(),
               onGenerateRoute: (settings) {
                 final index = ["skDetail", "hfdDetail"].indexOf(settings.name);
                 if (index > -1) {

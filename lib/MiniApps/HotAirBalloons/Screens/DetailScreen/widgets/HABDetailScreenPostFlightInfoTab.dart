@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
+import 'package:flutter_uis/configs/App.dart';
+
 import '../../../data/flights.dart' as data;
 import 'HABDetailScreenRowInfo.dart';
+import '../messages/keys.dart';
 
 class HABDetailScreenPostFlightInfoTab extends StatelessWidget {
   const HABDetailScreenPostFlightInfoTab(this.flight);
@@ -13,20 +16,20 @@ class HABDetailScreenPostFlightInfoTab extends StatelessWidget {
     return Column(
       children: [
         HABDetailScreenRowInfo(
-          "Celebration",
-          flight.celebration,
+          App.translate(HABDetailScreenMessages.celebration),
+          App.translate(flight.celebration),
           Entypo.drink,
           fullWidth: true,
         ),
         HABDetailScreenRowInfo(
-          "Flight Certificate",
-          flight.certificate,
+          App.translate(HABDetailScreenMessages.flightCertificate),
+          App.translate(flight.certificate),
           MaterialCommunityIcons.certificate,
           fullWidth: true,
         ),
         HABDetailScreenRowInfo(
-          "Service back to your hotel",
-          flight.serviceBack,
+          App.translate(HABDetailScreenMessages.serviceBack),
+          App.translate(flight.serviceBack),
           MaterialCommunityIcons.bus_side,
           fullWidth: true,
         ),

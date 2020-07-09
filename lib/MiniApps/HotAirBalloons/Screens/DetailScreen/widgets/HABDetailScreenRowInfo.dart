@@ -16,8 +16,8 @@ class HABDetailScreenRowInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: AppDimensions.padding * 5,
         vertical: AppDimensions.padding * 4,
+        horizontal: AppDimensions.padding * 5,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,14 +26,16 @@ class HABDetailScreenRowInfo extends StatelessWidget {
             padding: EdgeInsets.only(top: AppDimensions.padding * 0.4),
             child: Icon(
               icon,
-              color: theme.primary,
               size: 16,
+              color: theme.primary,
             ),
           ),
           Flexible(
             child: Container(
               width: AppDimensions.padding * (this.fullWidth ? 80 : 50),
-              padding: EdgeInsets.only(left: AppDimensions.padding * 4),
+              padding: EdgeInsets.symmetric(
+                horizontal: AppDimensions.padding * 4,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -45,11 +47,11 @@ class HABDetailScreenRowInfo extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 6),
+                    padding: EdgeInsets.only(top: AppDimensions.padding),
                     child: Text(
                       desc,
                       style: TextStyle(
-                        color: theme.subText.withOpacity(.6),
+                        color: theme.subText.withOpacity(0.6),
                         fontWeight: FontWeight.w500,
                       ),
                     ),

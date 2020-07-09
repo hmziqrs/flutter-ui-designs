@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/MiniApps/HotAirBalloons/Screens/DetailScreen/messages/keys.dart';
+import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/Utils.dart';
@@ -130,14 +132,14 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            flight.name,
+                            App.translate(flight.name),
                             style: TextStyle(
                               fontSize: 30,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
                           Text(
-                            " Flight",
+                            " ${App.translate(HABDetailScreenMessages.flight)}",
                             style: TextStyle(
                               fontSize: 30,
                             ),
@@ -145,7 +147,7 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
                         ],
                       ),
                       Text(
-                        flight.shortDesc,
+                        App.translate(flight.shortDesc),
                         style: TextStyle(
                           fontSize: 12.0,
                           fontWeight: FontWeight.w500,
