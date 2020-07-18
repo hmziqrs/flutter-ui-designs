@@ -1,18 +1,21 @@
 import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/configs/AppDimensions.dart';
-
 import 'package:simple_animations/simple_animations.dart';
 
+import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/Utils.dart';
 
 import '../../../data/data.dart' as data;
 import '../Dimensions.dart';
 
-class Planet extends StatelessWidget {
-  Planet(this.item, this.pageRendered, this.index, this.offset);
-  final data.SpaceObject item;
+class SKVDetailScreenPlanet extends StatelessWidget {
+  SKVDetailScreenPlanet({
+    @required this.item,
+    @required this.pageRendered,
+    @required this.index,
+    @required this.offset,
+  });
+  final data.SKVObject item;
   final bool pageRendered;
   final int index;
   final double offset;

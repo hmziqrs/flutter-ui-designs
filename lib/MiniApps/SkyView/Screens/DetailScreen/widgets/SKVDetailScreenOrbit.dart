@@ -7,8 +7,12 @@ import 'package:flutter_uis/Utils.dart';
 
 import '../Dimensions.dart';
 
-class Orbit extends StatelessWidget {
-  Orbit(this.pageRendered, this.index, this.offset);
+class SKVDetailScreenOrbit extends StatelessWidget {
+  SKVDetailScreenOrbit({
+    @required this.pageRendered,
+    @required this.index,
+    @required this.offset,
+  });
   final bool pageRendered;
   final int index;
   final double offset;

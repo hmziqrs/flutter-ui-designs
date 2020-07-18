@@ -34,7 +34,7 @@ List<UIItem> uilist = [
     designer: "designkes",
     // "designer": "designer",
     source: "dribbble",
-    miniApp: "skHome",
+    miniApp: "skvHome",
     link: "https://designkes.live/designs/mobile/skyview-mars/",
     thumbnail: "assets/thumbnails/sky_view.jpg",
     tabletSupport: true,

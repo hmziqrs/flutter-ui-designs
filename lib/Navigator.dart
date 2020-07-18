@@ -21,8 +21,8 @@ import './MiniApps/HealtyFoodDelivery/Screens/DetailScreen/HFDDetailScreen.dart'
 import './MiniApps/HotAirBalloons/Screens/HomeScreen/HABHomeScreen.dart';
 // import './MiniApps/HotAirBalloons/Screens/DetailScreen/HABDetailScreen.dart';
 
-import './MiniApps/SkyView/Screens/HomeScreen/SKHomeScreen.dart';
-import './MiniApps/SkyView/Screens/DetailScreen/SKDetailScreen.dart';
+import 'MiniApps/SkyView/Screens/HomeScreen/SKVHomeScreen.dart';
+import 'MiniApps/SkyView/Screens/DetailScreen/SKVDetailScreen.dart';
 
 import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/ASCHomeScreen.dart';
 
@@ -91,9 +91,9 @@ class AppNavigator extends StatelessWidget {
                 ),
               ),
               navigatorObservers: observers,
-              home: HABHomeScreen(),
+              home: SKVHomeScreen(),
               onGenerateRoute: (settings) {
-                final index = ["skDetail", "hfdDetail"].indexOf(settings.name);
+                final index = ["skvDetail", "hfdDetail"].indexOf(settings.name);
                 if (index > -1) {
                   return PageRouteBuilder(
                     settings: settings,
@@ -101,7 +101,7 @@ class AppNavigator extends StatelessWidget {
                       if (index == 1) {
                         return HFDDetailScreen();
                       }
-                      return SKDetailScreen(settings.arguments);
+                      return SKVDetailScreen(settings.arguments);
                     },
                     transitionsBuilder: (_, anim, __, child) {
                       return FadeTransition(opacity: anim, child: child);
@@ -127,8 +127,11 @@ class AppNavigator extends StatelessWidget {
                 "habHome": (ctx) => new HABHomeScreen(),
 
                 // Sky View
-                "skHome": (ctx) => new SKHomeScreen(),
-                // "skDetail": (ctx) => new SKDetailScreen(),
+                "skvHome": (ctx) => new SKVHomeScreen(),
+                "skvDetail": (ctx) {
+                  final int index = ModalRoute.of(ctx).settings.arguments;
+                  return SKVDetailScreen(index);
+                },
 
                 "ascHome": (ctx) => new ASCHomeScreen(),
 

@@ -4,23 +4,23 @@ import 'package:pigment/pigment.dart';
 
 import '../Dimensions.dart';
 
-import './StarFieldPainter.dart';
+import 'SKVHomeScreenStarFieldPainter.dart';
 
-class StarField extends StatefulWidget {
+class SKVHomeScreenStarField extends StatefulWidget {
   final double scrollX;
   final double scrollY;
 
-  StarField({
+  SKVHomeScreenStarField({
     this.scrollX = 0.0,
     this.scrollY = 0.0,
     Key key,
   }) : super(key: key);
 
   @override
-  _StarFieldState createState() => _StarFieldState();
+  _SKVHomeScreenStarFieldState createState() => _SKVHomeScreenStarFieldState();
 }
 
-class _StarFieldState extends State<StarField> {
+class _SKVHomeScreenStarFieldState extends State<SKVHomeScreenStarField> {
   final Map<int, Color> colorMap = {
     1: Pigment.fromString("#f00"),
     4: Pigment.fromString("#9400D3"),
@@ -86,7 +86,7 @@ class _StarFieldState extends State<StarField> {
       width: double.infinity,
       height: double.infinity,
       child: CustomPaint(
-        painter: StarFieldPainter(
+        painter: SKVHomeScreenStarFieldPainter(
           this
               .stars
               .map(

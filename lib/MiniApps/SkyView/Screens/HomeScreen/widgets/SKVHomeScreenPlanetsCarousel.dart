@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/MiniApps/SkyView/Screens/HomeScreen/Widgets/StarField.dart';
 
 import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -8,35 +7,45 @@ import '../../../configs/theme.dart' as theme;
 import '../../../data/data.dart' as data;
 
 import '../Dimensions.dart';
+import 'SKVHomeScreenStarField.dart';
 
-class PlanetsCarousel extends StatefulWidget {
+class SKVHomeScreenPlanetsCarousel extends StatefulWidget {
   final double scrollOffset;
-  const PlanetsCarousel(this.scrollOffset, {Key key}) : super(key: key);
+  const SKVHomeScreenPlanetsCarousel(this.scrollOffset, {Key key})
+      : super(key: key);
 
   @override
-  _PlanetsCarouselState createState() => _PlanetsCarouselState();
+  _SKVHomeScreenPlanetsCarouselState createState() =>
+      _SKVHomeScreenPlanetsCarouselState();
 }
 
-class _PlanetsCarouselState extends State<PlanetsCarousel> {
+class _SKVHomeScreenPlanetsCarouselState
+    extends State<SKVHomeScreenPlanetsCarousel> {
   double scrollOffset = 0.0;
   double previousOffset = 0.0;
+
+  void onTap(int index) {
+    Navigator.of(context).pushNamed(
+      "skvDetail",
+      arguments: index,
+    );
+  }
+
+  bool onScrollNotification(notification) {
+    setState(() {
+      this.scrollOffset = notification.metrics.pixels - this.previousOffset;
+      this.previousOffset = notification.metrics.pixels;
+    });
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-        top: AppDimensions.padding * 2,
-      ),
+      margin: EdgeInsets.only(top: AppDimensions.padding * 2),
       height: Dimensions.carouselHeight,
       child: NotificationListener<ScrollNotification>(
-        onNotification: (notification) {
-          setState(() {
-            this.scrollOffset =
-                notification.metrics.pixels - this.previousOffset;
-            this.previousOffset = notification.metrics.pixels;
-          });
-          return true;
-        },
+        onNotification: this.onScrollNotification,
         child: ListView.builder(
           padding: Utils.safePaddingUnit(context, 'horizontal').add(
             EdgeInsets.symmetric(horizontal: AppDimensions.padding * 3),
@@ -46,10 +55,7 @@ class _PlanetsCarouselState extends State<PlanetsCarousel> {
           itemBuilder: (BuildContext context, int index) {
             final item = data.objectList[index];
             return GestureDetector(
-              onTap: () => Navigator.of(context).pushNamed(
-                "skDetail",
-                arguments: index,
-              ),
+              onTap: () => this.onTap(index),
               child: Container(
                 margin: EdgeInsets.only(right: AppDimensions.padding * 2),
                 width: Dimensions.carouselCardWidth,
@@ -88,7 +94,7 @@ class _PlanetsCarouselState extends State<PlanetsCarousel> {
           ),
           child: Stack(
             children: <Widget>[
-              StarField(
+              SKVHomeScreenStarField(
                 key: Key("${AppDimensions.size.toString()}"),
                 scrollX: this.scrollOffset,
                 scrollY: widget.scrollOffset,
@@ -141,7 +147,7 @@ class _PlanetsCarouselState extends State<PlanetsCarousel> {
     );
   }
 
-  Widget buildPlanet(data.SpaceObject item) {
+  Widget buildPlanet(data.SKVObject item) {
     return Positioned(
       right: AppDimensions.padding * 1,
       child: ClipRRect(
@@ -167,7 +173,7 @@ class _PlanetsCarouselState extends State<PlanetsCarousel> {
     );
   }
 
-  Widget buildInformation(data.SpaceObject item) {
+  Widget buildInformation(data.SKVObject item) {
     return Positioned(
       bottom: AppDimensions.padding * 5,
       left: AppDimensions.padding * 2,
@@ -193,7 +199,6 @@ class _PlanetsCarouselState extends State<PlanetsCarousel> {
           Text(
             item.positionInSystem,
             style: TextStyle(
-              // fontSize: 10,
               fontSize: 4 + AppDimensions.ratio * 4,
               color: Colors.white,
             ),

@@ -1,8 +1,8 @@
-import 'SpaceObject.dart';
-export 'SpaceObject.dart';
+import '../models/SKVObject.dart';
+export '../models/SKVObject.dart';
 
-final List<SpaceObject> objectList = [
-  new SpaceObject(
+final List<SKVObject> objectList = [
+  new SKVObject(
     "MERCURY",
     "The Swiftest Planet",
     "Fourth planet From the sun",
@@ -12,7 +12,7 @@ final List<SpaceObject> objectList = [
     lightTimeFromSun: "3.231326",
     lengthOfYears: "88",
   ),
-  new SpaceObject(
+  new SKVObject(
     "VENUS",
     "Palnetary Hot Spot",
     "Second planet from the sun",
@@ -22,7 +22,7 @@ final List<SpaceObject> objectList = [
     lightTimeFromSun: "13.730062",
     lengthOfYears: "687",
   ),
-  new SpaceObject(
+  new SKVObject(
     "EARTH",
     "Our Home Planet",
     "Second planet from the sun",
@@ -32,7 +32,7 @@ final List<SpaceObject> objectList = [
     lightTimeFromSun: "13.730062",
     lengthOfYears: "687",
   ),
-  new SpaceObject(
+  new SKVObject(
     "MARS",
     "Red Planet",
     "Fourth planet From the sun",
@@ -42,7 +42,7 @@ final List<SpaceObject> objectList = [
     lightTimeFromSun: "13.730062",
     lengthOfYears: "687",
   ),
-  new SpaceObject(
+  new SKVObject(
     "JUPITER",
     "Massive planet",
     "Fourth planet From the sun",

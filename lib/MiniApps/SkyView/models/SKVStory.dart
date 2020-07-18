@@ -1,5 +1,5 @@
-class SpaceStory {
-  SpaceStory(
+class SKVStory {
+  SKVStory(
     this.name,
     this.stars,
     this.desc,

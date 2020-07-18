@@ -70,21 +70,23 @@ class ScreenState extends State<Screen> with AnimationControllerMixin {
     });
     controller.addTasks([
       FromToTask(
-          duration: Duration(milliseconds: popUpTransitionDuration),
-          to: 1.0,
-          onStart: () {
-            inProgress = true;
-          }),
+        duration: Duration(milliseconds: popUpTransitionDuration),
+        to: 1.0,
+        onStart: () {
+          inProgress = true;
+        },
+      ),
       SleepTask(duration: Duration(milliseconds: duration)),
       FromToTask(
-          duration: Duration(milliseconds: popUpTransitionDuration),
-          to: 0.0,
-          onComplete: () {
-            inProgress = false;
-            setState(() {
-              mounted = false;
-            });
-          }),
+        duration: Duration(milliseconds: popUpTransitionDuration),
+        to: 0.0,
+        onComplete: () {
+          inProgress = false;
+          setState(() {
+            mounted = false;
+          });
+        },
+      ),
     ]);
   }
 
@@ -114,7 +116,6 @@ class ScreenState extends State<Screen> with AnimationControllerMixin {
     return OrientationBuilder(
       builder: (orientationContext, _) {
         widget.init(orientationContext);
-
         return Scaffold(
           bottomNavigationBar: this.widget.bottomNavigationBar,
           backgroundColor: this.widget.scaffoldBackgroundColor,
@@ -122,9 +123,18 @@ class ScreenState extends State<Screen> with AnimationControllerMixin {
             style: textStyle,
             child: Theme(
               data: rootTheme.copyWith(
+                tabBarTheme: TabBarTheme(
+                  labelColor: Colors.red,
+                  labelStyle: textStyle,
+                  unselectedLabelStyle: textStyle,
+                ),
                 textTheme: rootTheme.textTheme.copyWith(
                   bodyText1: textStyle,
                   button: textStyle,
+                ),
+                inputDecorationTheme: InputDecorationTheme(
+                  hintStyle: textStyle,
+                  labelStyle: textStyle,
                 ),
               ),
               child: Stack(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class StarFieldPainter extends CustomPainter {
-  StarFieldPainter(this.stars);
+class SKVHomeScreenStarFieldPainter extends CustomPainter {
+  SKVHomeScreenStarFieldPainter(this.stars);
   final List<Star> stars;
 
   @override

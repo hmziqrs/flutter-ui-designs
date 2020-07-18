@@ -1,5 +1,5 @@
-class SpaceObject {
-  SpaceObject(
+class SKVObject {
+  SKVObject(
     this.name,
     this.nickname,
     this.positionInSystem,
