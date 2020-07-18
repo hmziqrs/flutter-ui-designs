@@ -2,30 +2,28 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/UI.dart';
 import 'package:flutter_uis/configs/App.dart';
+import 'package:flutter_uis/configs/AppDimensions.dart';
 
 class Dimensions {
-  static double headerSpace;
+  static double borderCliping;
   static double backgroudImageHeight;
+  static int noOfImages = 1;
 
-  static init(
-    BuildContext context, {
-    Orientation orientation = Orientation.portrait,
-  }) {
+  static init(BuildContext context) {
     App.init(context);
-    final bool isLandscape = Orientation.landscape == orientation;
 
-    headerSpace = UI.vertical * 6;
-    backgroudImageHeight = UI.vertical * 30;
+    backgroudImageHeight = 100 + AppDimensions.ratio * 80;
+    borderCliping = 30.0;
 
-    if (isLandscape) {
-      headerSpace = UI.vertical * 4;
-      backgroudImageHeight = UI.vertical * 60;
+    if (UI.width > UI.height) {
+      backgroudImageHeight = 80 + AppDimensions.ratio * 60;
     }
 
-    if (UI.isTablet) {
-      if (isLandscape) {
-        backgroudImageHeight = UI.vertical * 70;
-      }
+    if (UI.md) {
+      noOfImages = 2;
+    }
+    if (UI.xlg) {
+      noOfImages = 3;
     }
   }
 }

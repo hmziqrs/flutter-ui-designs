@@ -6,7 +6,14 @@ import 'utils.dart' as utils;
 const List<String> desktopFilters = ['mac', 'linux', 'windows'];
 
 void main(List<String> args) async {
-  final result = await Process.run("flutter", ["devices"]);
+  final result = await Process.run("flutter", ["devices"]).catchError((err) {
+    print("asd");
+    print(err.toString());
+    print("asd");
+    print("asd");
+    print("asd");
+    print("asd");
+  });
   final List<String> raw = result.stdout.split('\n');
 
   print(raw.runtimeType);

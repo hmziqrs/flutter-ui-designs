@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/UI.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -88,74 +89,82 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
       );
     }
 
-    return Container(
-      padding: EdgeInsets.only(top: ((Dimensions.headerSpace * 2) + 100)),
-      child: ClipRRect(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(28.0)),
-        child: Container(
-          padding: EdgeInsets.only(
-            top: AppDimensions.padding * 4,
-            left: AppDimensions.padding * 4,
-            right: AppDimensions.padding * 4,
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: ClipRRect(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(Dimensions.borderCliping),
           ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TabBar(
-                indicator: null,
-                isScrollable: true,
-                onTap: this.setActiveTab,
-                labelColor: theme.primary,
-                labelStyle: tabBarFontStyle,
-                controller: this.tabController,
-                indicatorColor: Colors.transparent,
-                unselectedLabelColor: Colors.black,
-                tabs: this
-                    .tabs
-                    .asMap()
-                    .map(
-                      (index, tab) => MapEntry(
-                        index,
-                        GestureDetector(
-                          child: Container(
-                            child: Text(App.translate(tab)),
-                            padding: EdgeInsets.only(bottom: 3),
-                            decoration: BoxDecoration(
-                              border: Border(
-                                bottom: BorderSide(
-                                  width: 1,
-                                  color: index == this.activeTab
-                                      ? theme.primary
-                                      : Colors.transparent,
+          child: Container(
+            margin: EdgeInsets.only(
+              top: Dimensions.backgroudImageHeight -
+                  Dimensions.borderCliping * 2,
+            ),
+            padding: EdgeInsets.only(
+              top: AppDimensions.padding * 4,
+              left: AppDimensions.padding * 4,
+              right: AppDimensions.padding * 4,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(Dimensions.borderCliping),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TabBar(
+                  indicator: null,
+                  isScrollable: true,
+                  onTap: this.setActiveTab,
+                  labelColor: theme.primary,
+                  labelStyle: tabBarFontStyle,
+                  controller: this.tabController,
+                  indicatorColor: Colors.transparent,
+                  unselectedLabelColor: Colors.black,
+                  tabs: this
+                      .tabs
+                      .asMap()
+                      .map(
+                        (index, tab) => MapEntry(
+                          index,
+                          GestureDetector(
+                            child: Container(
+                              child: Text(App.translate(tab)),
+                              padding: EdgeInsets.only(bottom: 3),
+                              decoration: BoxDecoration(
+                                border: Border(
+                                  bottom: BorderSide(
+                                    width: 1,
+                                    color: index == this.activeTab
+                                        ? theme.primary
+                                        : Colors.transparent,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    )
-                    .values
-                    .toList(),
-              ),
-              Padding(padding: EdgeInsets.all(AppDimensions.padding * 1.5)),
-              Flexible(
-                child: ControlledAnimation(
+                      )
+                      .values
+                      .toList(),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(AppDimensions.padding * 1.5),
+                ),
+                ControlledAnimation(
                   key: Key(this.activeTab.toString()),
                   tween: Tween(begin: 0.0, end: 1.0),
                   delay: Duration(milliseconds: 120),
                   duration: Duration(milliseconds: 500),
                   builder: (ctx, animation) => Opacity(
                     opacity: animation,
-                    child: SingleChildScrollView(
-                      child: buildContent,
-                    ),
+                    child: buildContent,
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

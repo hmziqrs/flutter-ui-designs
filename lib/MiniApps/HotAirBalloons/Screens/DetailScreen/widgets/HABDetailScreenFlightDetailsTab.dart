@@ -8,7 +8,7 @@ import 'package:flutter_uis/UI.dart';
 
 import '../../../configs/theme.dart' as theme;
 import '../../../data/flights.dart' as data;
-import '..//messages/keys.dart';
+import '../messages/keys.dart';
 
 import 'HABDetailScreenRowInfo.dart';
 
