@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
+
 import '../../../configs/theme.dart' as theme;
+import '../messages/keys.dart';
 import '../Dimensions.dart';
 
 class SKVHomeScreenSearchBar extends StatelessWidget {
@@ -46,7 +49,7 @@ class SKVHomeScreenSearchBar extends StatelessWidget {
                 fontSize: 8 + AppDimensions.ratio * 4,
               ),
               decoration: InputDecoration(
-                hintText: "Search Planets, Stars, Satellite",
+                hintText: App.translate(SKVHomeScreenMessages.searchBar),
                 hintStyle: baseTheme.inputDecorationTheme.hintStyle.copyWith(
                   color: theme.lightText,
                   fontWeight: FontWeight.w500,

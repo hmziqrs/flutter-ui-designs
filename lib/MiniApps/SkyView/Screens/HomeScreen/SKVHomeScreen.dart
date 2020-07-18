@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_uis/Utils.dart';
-import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
+import 'package:flutter_uis/Utils.dart';
 
-import '../../configs/theme.dart' as theme;
-import '../../data/data.dart' as data;
+import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 
 import 'widgets/SKVHomeScreenPlanetsCarousel.dart';
 import 'widgets/SKVHomeScreenSearchBar.dart';
+import '../../configs/theme.dart' as theme;
 import 'widgets/SKVHomeScreenStory.dart';
+import '../../data/data.dart' as data;
+import 'messages/keys.dart';
 import 'Dimensions.dart';
 
 class SKVHomeScreen extends StatefulWidget {
@@ -26,11 +28,11 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
   Key pageScrollKey = GlobalKey(debugLabel: "pageScroll");
 
   final List<String> tabs = [
-    "Planets",
-    "Stars",
-    "Satellites",
-    "Astroids",
-    "Comets"
+    SKVHomeScreenMessages.planets,
+    SKVHomeScreenMessages.stars,
+    SKVHomeScreenMessages.satellites,
+    SKVHomeScreenMessages.astroids,
+    SKVHomeScreenMessages.comets,
   ];
 
   @override
@@ -99,9 +101,10 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
                           padding: EdgeInsets.only(
                             top: AppDimensions.padding * 4,
                             left: AppDimensions.padding * 3,
+                            right: AppDimensions.padding * 3,
                           ),
                           child: Text(
-                            "Explore",
+                            App.translate(SKVHomeScreenMessages.explore),
                             style: TextStyle(
                               fontSize: 20 + AppDimensions.ratio * 10,
                               fontWeight: FontWeight.w800,
@@ -135,11 +138,10 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
                               vertical: AppDimensions.padding,
                               horizontal: AppDimensions.padding * 3,
                             ),
-                            tabs: this.tabs.map(
-                              (tab) {
-                                return Text(tab);
-                              },
-                            ).toList(),
+                            tabs: this
+                                .tabs
+                                .map((tab) => Text(App.translate(tab)))
+                                .toList(),
                           ),
                         ),
                       ],
@@ -167,9 +169,10 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
                             top: AppDimensions.padding * 4,
                             bottom: AppDimensions.padding * 2,
                             left: AppDimensions.padding * 1.5,
+                            right: AppDimensions.padding * 1.5,
                           ),
                           child: Text(
-                            "Popular",
+                            App.translate(SKVHomeScreenMessages.popular),
                             style: TextStyle(
                               color: theme.lightText,
                               fontWeight: FontWeight.w800,

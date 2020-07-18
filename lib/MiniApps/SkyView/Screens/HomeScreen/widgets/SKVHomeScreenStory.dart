@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:flutter_uis/configs/App.dart';
 
 import '../../../configs/theme.dart' as theme;
 import '../../../models/SKVStory.dart';
@@ -29,12 +30,14 @@ class SKVHomeScreenStory extends StatelessWidget {
           ),
           Flexible(
             child: Container(
-              padding: EdgeInsets.only(left: AppDimensions.padding * 3),
+              padding: EdgeInsets.symmetric(
+                horizontal: AppDimensions.padding * 3,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    this.story.name,
+                    App.translate(this.story.name),
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
@@ -66,7 +69,7 @@ class SKVHomeScreenStory extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    this.story.desc,
+                    App.translate(this.story.desc),
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

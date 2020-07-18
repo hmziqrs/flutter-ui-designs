@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -7,6 +8,7 @@ import '../../../configs/theme.dart' as theme;
 import 'SKVDetailScreenAnimatedText.dart';
 import '../../../models/SKVObject.dart';
 import 'SKVDetailScreenAttribute.dart';
+import '../messages/keys.dart';
 
 class SKVDetailScreenTextContent extends StatelessWidget {
   SKVDetailScreenTextContent({
@@ -28,6 +30,7 @@ class SKVDetailScreenTextContent extends StatelessWidget {
               padding: EdgeInsets.only(
                 top: AppDimensions.padding * 2,
                 left: AppDimensions.padding * 2,
+                right: AppDimensions.padding * 2,
               ),
               child: SKVDetailScreenAnimatedText(
                 pageRendered: this.pageRendered,
@@ -43,12 +46,14 @@ class SKVDetailScreenTextContent extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: AppDimensions.padding * 2),
+              padding: EdgeInsets.symmetric(
+                horizontal: AppDimensions.padding * 2,
+              ),
               child: SKVDetailScreenAnimatedText(
                 pageRendered: this.pageRendered,
                 index: 1,
                 child: Text(
-                  this.item.nickname,
+                  App.translate(this.item.nickname),
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
@@ -57,7 +62,9 @@ class SKVDetailScreenTextContent extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: AppDimensions.padding * 2),
+              padding: EdgeInsets.symmetric(
+                horizontal: AppDimensions.padding * 2,
+              ),
               child: SKVDetailScreenAnimatedText(
                 pageRendered: this.pageRendered,
                 index: 2,
@@ -75,10 +82,10 @@ class SKVDetailScreenTextContent extends StatelessWidget {
               pageRendered: this.pageRendered,
               index: 3,
               child: Container(
-                alignment: Alignment.topLeft,
                 margin: EdgeInsets.only(
-                  left: AppDimensions.padding * 2,
                   top: AppDimensions.padding,
+                  left: AppDimensions.padding * 2,
+                  right: AppDimensions.padding * 2,
                 ),
                 child: GestureDetector(
                   onTap: () => Navigator.of(context).pop(),
@@ -97,7 +104,7 @@ class SKVDetailScreenTextContent extends StatelessWidget {
               pageRendered: this.pageRendered,
               index: 4,
               child: SKVDetailScreenAttribute(
-                label: "DISTANCE FROM THE SUN",
+                label: App.translate(SKVDetailScreenMessages.distanceFromSun),
                 prefix: "km",
                 text: this.item.distanceFromSun,
                 icon: MaterialCommunityIcons.arrow_expand,
@@ -107,7 +114,7 @@ class SKVDetailScreenTextContent extends StatelessWidget {
               pageRendered: this.pageRendered,
               index: 5,
               child: SKVDetailScreenAttribute(
-                label: "ONE WAY LIGHT TIME TO THE SUN",
+                label: App.translate(SKVDetailScreenMessages.oneWayTimeSun),
                 prefix: "min",
                 text: this.item.lightTimeFromSun,
                 icon: MaterialCommunityIcons.weather_sunny,
@@ -117,8 +124,8 @@ class SKVDetailScreenTextContent extends StatelessWidget {
               pageRendered: this.pageRendered,
               index: 6,
               child: SKVDetailScreenAttribute(
-                label: "LENGTH OF YEAR",
-                prefix: "Earth Days",
+                label: App.translate(SKVDetailScreenMessages.lengthYear),
+                prefix: App.translate(SKVDetailScreenMessages.earthDays),
                 text: this.item.lengthOfYears,
                 icon: MaterialCommunityIcons.moon_waning_crescent,
               ),

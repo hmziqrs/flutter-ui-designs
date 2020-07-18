@@ -21,38 +21,59 @@ class SKVDetailScreenAttribute extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(
         left: AppDimensions.padding * 2,
+        right: AppDimensions.padding * 2,
         bottom: AppDimensions.padding,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
+          Icon(this.icon, color: Colors.white),
           Padding(
-            padding: EdgeInsets.only(right: AppDimensions.padding),
-            child: Icon(this.icon, color: Colors.white),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(bottom: 2.0),
-                child: Text(
-                  this.label,
-                  style: TextStyle(
-                    fontSize: 10.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
+            padding: EdgeInsets.symmetric(horizontal: AppDimensions.padding),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 2.0),
+                  child: Text(
+                    this.label,
+                    style: TextStyle(
+                      fontSize: 10.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-              ),
-              Text(
-                this.text,
-                style: TextStyle(
-                  fontSize: 20,
-                  color: theme.primary,
-                  fontWeight: FontWeight.w700,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      this.text,
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: theme.primary,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: AppDimensions.padding,
+                        right: AppDimensions.padding,
+                        bottom: 3,
+                      ),
+                      child: Text(
+                        this.prefix,
+                        style: TextStyle(
+                          fontSize: 12.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
+              ],
+            ),
           )
         ],
       ),

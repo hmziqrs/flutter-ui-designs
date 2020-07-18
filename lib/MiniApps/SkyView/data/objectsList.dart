@@ -1,11 +1,13 @@
 import '../models/SKVObject.dart';
 export '../models/SKVObject.dart';
 
+import '../messages/keys.dart';
+
 final List<SKVObject> objectList = [
   new SKVObject(
     "MERCURY",
-    "The Swiftest Planet",
-    "Fourth planet From the sun",
+    SKVRootMessages.objectMercuryNick,
+    SKVRootMessages.objectMercuryPosition,
     "assets/ma-sk/mercury.png",
     distanceInKm: "54.600.00 km away",
     distanceFromSun: "36,116,057",
@@ -14,8 +16,8 @@ final List<SKVObject> objectList = [
   ),
   new SKVObject(
     "VENUS",
-    "Palnetary Hot Spot",
-    "Second planet from the sun",
+    SKVRootMessages.objectVenusNick,
+    SKVRootMessages.objectVenusPosition,
     "assets/ma-sk/venus.png",
     distanceInKm: "54.600.00 km away",
     distanceFromSun: "246,970,045",
@@ -24,8 +26,8 @@ final List<SKVObject> objectList = [
   ),
   new SKVObject(
     "EARTH",
-    "Our Home Planet",
-    "Second planet from the sun",
+    SKVRootMessages.objectEarthNick,
+    SKVRootMessages.objectEarthPosition,
     "assets/ma-sk/earth.png",
     distanceInKm: "54.600.00 km away",
     distanceFromSun: "246,970,045",
@@ -34,8 +36,8 @@ final List<SKVObject> objectList = [
   ),
   new SKVObject(
     "MARS",
-    "Red Planet",
-    "Fourth planet From the sun",
+    SKVRootMessages.objectMarsNick,
+    SKVRootMessages.objectMarsPosition,
     "assets/ma-sk/mars.png",
     distanceInKm: "54.600.00 km away",
     distanceFromSun: "246,970,045",
@@ -44,8 +46,8 @@ final List<SKVObject> objectList = [
   ),
   new SKVObject(
     "JUPITER",
-    "Massive planet",
-    "Fourth planet From the sun",
+    SKVRootMessages.objectJupiterNick,
+    SKVRootMessages.objectJupiterPosition,
     "assets/ma-sk/jupiter.png",
     distanceInKm: "54.600.00 km away",
     distanceFromSun: "246,970,045",
