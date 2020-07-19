@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
 
 import '../../../ models/ASCItem.dart';
+import '../messages/keys.dart';
 
 class ASCHomeScreenContentPriceBadge extends StatelessWidget {
   ASCHomeScreenContentPriceBadge({
@@ -36,7 +38,7 @@ class ASCHomeScreenContentPriceBadge extends StatelessWidget {
         ),
         child: RichText(
           text: TextSpan(
-            text: "USD ",
+            text: "${App.translate(ASCHomeScreenMessages.usd)} ",
             style: TextStyle(
               fontSize: 10 + AppDimensions.ratio * 4,
             ),

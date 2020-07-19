@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/Utils.dart';
-
-import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:simple_animations/simple_animations.dart';
 
+import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
+import 'package:flutter_uis/Utils.dart';
+
 import '../../../ models/ASCItem.dart';
+import '../messages/keys.dart';
 import '../Dimensions.dart';
 
 class ASCHomeScreenContentColorFilters extends StatelessWidget {
@@ -34,7 +36,7 @@ class ASCHomeScreenContentColorFilters extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "COLOURS",
+              App.translate(ASCHomeScreenMessages.colours),
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 8 + AppDimensions.ratio * 6,

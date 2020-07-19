@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/Utils.dart';
 
 import 'ASCHomeScreenContentColorFilters.dart';
@@ -9,6 +10,7 @@ import '../../../data/data.dart' as data;
 import 'ASCHomeScreenContentBadge.dart';
 import 'ASCHomeScreenContentSizes.dart';
 import 'ASCHomeScreenContentStars.dart';
+import '../messages/keys.dart';
 
 class ASCHomeScreenContent extends StatefulWidget {
   ASCHomeScreenContent({
@@ -70,7 +72,7 @@ class _ASCHomeScreenContentState extends State<ASCHomeScreenContent> {
                   ),
                   Container(height: AppDimensions.padding),
                   Text(
-                    widget.item.contentSubHeading,
+                    App.translate(widget.item.contentSubHeading),
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       color: Colors.black.withOpacity(0.4),
@@ -93,7 +95,7 @@ class _ASCHomeScreenContentState extends State<ASCHomeScreenContent> {
           ),
           Container(height: AppDimensions.padding * 6),
           Text(
-            "SIZE",
+            App.translate(ASCHomeScreenMessages.size),
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 8 + AppDimensions.ratio * 6,

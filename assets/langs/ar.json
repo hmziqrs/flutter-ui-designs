@@ -1,4 +1,10 @@
 {
+     "ASCRoot/defaultDescription": "يتميز هذا النموذج دخول المستوى من الصمغ كامل طول المطاط تسولي لالجر ممتازة على المحكمة. يوفر Rearfoot GEL نظام توسيد تعزيز توسيد - في حين أن جلد مزيج الاصطناعية وشبكة العلوي يوفر التهوية والراحة. قيمة كبيرة للاعب متعددة المحكمة.",
+     "ASCRoot/defaultSubHeading": "دوران COLLECTION",
+     "ASCHomeScreen/size": "بحجم",
+     "ASCHomeScreen/newText": "جديد",
+     "ASCHomeScreen/colours": "الألوان",
+     "ASCHomeScreen/usd": "دولار أمريكي",
      "HFDDetailScreen/title": "الطعام الصحي",
      "HFDDetailScreen/orderNow": "اطلب الان",
      "HFDDetailScreen/nutritionFact": "حقيقة التغذية",
@@ -174,6 +180,7 @@
      "ScreenWidget/smSystemDefault": "النظام الافتراضي",
      "ScreenWidget/error": "خطأ",
      "ScreenWidget/cantPerform": "Platfrom لا يمكن تنفيذ الإجراء",
+     "ASCHomeScreen/new": "جديد",
      "SKVDetailScreen/distanceFromSub": "المسافة من الشمس",
      "HABDetailScreen/Celebrationx": "احتفال",
      "HABDetailScreen/flightDetails": "تفاصيل الرحلة",

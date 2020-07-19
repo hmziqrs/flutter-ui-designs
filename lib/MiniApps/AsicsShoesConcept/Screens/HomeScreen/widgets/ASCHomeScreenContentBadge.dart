@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/App.dart';
+
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import '../messages/keys.dart';
 
 class ASCHomeScreenContentBadge extends StatelessWidget {
   ASCHomeScreenContentBadge({
@@ -30,7 +33,7 @@ class ASCHomeScreenContentBadge extends StatelessWidget {
           borderRadius: BorderRadius.circular(6.0),
         ),
         child: Text(
-          "NEW",
+          App.translate(ASCHomeScreenMessages.newText),
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w700,

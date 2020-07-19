@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/Utils.dart';
 
 import '../../../ models/ASCItem.dart';
@@ -28,7 +29,7 @@ class ASCHomeScreenHeader extends StatelessWidget {
             this.item.colors[1],
             this.item.colors[2]
           ].reversed.toList(),
-          begin: Alignment.topLeft,
+          begin: App.isLtr ? Alignment.topLeft : Alignment.topRight,
           end: Alignment.bottomRight,
         ),
       ),
@@ -40,13 +41,16 @@ class ASCHomeScreenHeader extends StatelessWidget {
             Utils.safePadding(context, "top"),
             Container(
               height: Dimensions.logoHeight,
-              margin: EdgeInsets.only(left: AppDimensions.padding * 1),
+              margin: EdgeInsets.symmetric(
+                horizontal: AppDimensions.padding * 1,
+              ),
               child: Image.asset(this.item.logoLink),
             ),
             Container(
               margin: EdgeInsets.only(
                 top: AppDimensions.padding * 1,
                 left: AppDimensions.padding * 2,
+                right: AppDimensions.padding * 2,
               ),
               transform: Matrix4.identity()..translate(this.parallax * -0.9),
               child: Column(
@@ -62,11 +66,10 @@ class ASCHomeScreenHeader extends StatelessWidget {
                   ),
                   Container(height: AppDimensions.padding * 1),
                   Text(
-                    this.item.headerDescription,
+                    App.translate(this.item.headerDescription),
                     maxLines: 3,
                     style: TextStyle(
                       color: Colors.white,
-                      // fontSize: 7 + AppDimensions.ratio * 4,
                       fontSize: 5 + AppDimensions.ratio * 5,
                     ),
                   ),

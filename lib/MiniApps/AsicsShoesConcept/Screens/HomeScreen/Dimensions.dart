@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/UI.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
+import 'package:flutter_uis/UI.dart';
 
 class Dimensions {
   static double headerHeight;
@@ -14,7 +15,7 @@ class Dimensions {
   static double sizeRadius;
   static double colorRadius;
   static init(BuildContext context) {
-    AppDimensions.init(context);
+    App.init(context);
 
     sizeRadius = 18 + AppDimensions.ratio * 6;
     colorRadius = AppDimensions.ratio * 20;

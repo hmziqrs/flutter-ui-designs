@@ -187,5 +187,12 @@
      "SKVDetailScreen/oneWayTimeSun": "ONE WAY LIGHT TIME TO THE SUN",
      "SKVDetailScreen/lengthYear": "LENGTH OF YEAR",
      "SKVDetailScreen/earthDays": "Earth Days",
-     "SKVDetailScreen/distanceFromSun": "DISTANCE FROM THE SUN"
+     "SKVDetailScreen/distanceFromSun": "DISTANCE FROM THE SUN",
+     "ASCHomeScreen/size": "SIZE",
+     "ASCHomeScreen/new": "NEW",
+     "ASCHomeScreen/colours": "COLOURS",
+     "ASCHomeScreen/usd": "USD",
+     "ASCHomeScreen/newText": "NEW",
+     "ASCRoot/defaultDescription": "This entry-level model features a full-length Gum Rubber Outsole for excellent traction on the court. Rearfoot GEL Cushioning System provides enhanced cushioning - while the combination synthetic leather and mesh upper provides breathability and comfort. A great value for the multi-court player.",
+     "ASCRoot/defaultSubHeading": "RUNNING COLLECTION"
 }
