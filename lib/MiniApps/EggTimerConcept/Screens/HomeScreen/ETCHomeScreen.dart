@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:fluttery_dart2/gestures.dart';
 
@@ -9,10 +10,11 @@ import 'package:simple_animations/simple_animations/controlled_animation.dart';
 
 import '../../configs/theme.dart' as theme;
 import '../../models/ETCTimer.dart';
+import 'messages/keys.dart';
 
+import 'widgets/ETCHomeScreenTimerTime.dart';
 import 'widgets/ETCHomeScreenTimerDail.dart';
 import 'widgets/ETCHomeScreenButton.dart';
-import 'widgets/ETCHomeScreenTimerTime.dart';
 import 'Dimensions.dart';
 
 class ETCHomeScreen extends StatefulWidget {
@@ -164,14 +166,14 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                     children: <Widget>[
                       Expanded(
                         child: ETCHomeScreenButton(
-                          label: "Restart",
+                          label: App.translate(ETCHomeScreenMessages.restart),
                           icon: Icons.refresh,
                           onPress: this.timer.restart,
                         ),
                       ),
                       Expanded(
                         child: ETCHomeScreenButton(
-                          label: "Reset",
+                          label: App.translate(ETCHomeScreenMessages.reset),
                           icon: Icons.arrow_back,
                           onPress: this.timer.reset,
                         ),
@@ -196,7 +198,11 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                   child: Opacity(
                     opacity: animation,
                     child: ETCHomeScreenButton(
-                      label: isRunning ? "pause" : "play",
+                      label: App.translate(
+                        isRunning
+                            ? ETCHomeScreenMessages.pause
+                            : ETCHomeScreenMessages.play,
+                      ),
                       icon: isRunning ? Icons.pause : Icons.play_arrow,
                       onPress: () =>
                           isRunning ? this.timer.pause() : this.timer.resume(),

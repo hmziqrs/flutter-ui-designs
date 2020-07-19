@@ -15,14 +15,16 @@ class ETCHomeScreenButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-      padding: EdgeInsets.symmetric(vertical: AppDimensions.padding * 1.5),
       onPressed: onPress,
+      padding: EdgeInsets.symmetric(vertical: AppDimensions.padding * 1.5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+        children: [
           Icon(icon),
           Padding(
-            padding: EdgeInsets.only(left: AppDimensions.padding),
+            padding: EdgeInsets.symmetric(
+              horizontal: AppDimensions.padding,
+            ),
             child: Text(
               label,
               style: TextStyle(

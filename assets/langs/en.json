@@ -194,5 +194,10 @@
      "ASCHomeScreen/usd": "USD",
      "ASCHomeScreen/newText": "NEW",
      "ASCRoot/defaultDescription": "This entry-level model features a full-length Gum Rubber Outsole for excellent traction on the court. Rearfoot GEL Cushioning System provides enhanced cushioning - while the combination synthetic leather and mesh upper provides breathability and comfort. A great value for the multi-court player.",
-     "ASCRoot/defaultSubHeading": "RUNNING COLLECTION"
+     "ASCRoot/defaultSubHeading": "RUNNING COLLECTION",
+     "ETCHomeScreen/restart": "Restart",
+     "ETCHomeScreen/reset": "Reset",
+     "ETCHomeScreen/play": "Play",
+     "ETCHomeScreen/Pause": "Pause",
+     "ETCHomeScreen/pause": "Pause"
 }
