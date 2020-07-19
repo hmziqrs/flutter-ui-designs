@@ -1,12 +1,13 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:simple_animations/simple_animations/controlled_animation.dart';
 import 'package:fluttery_dart2/gestures.dart';
 
-import 'package:flutter_uis/Widgets/Screen/Screen.dart';
+import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/Utils.dart';
-import 'package:simple_animations/simple_animations/controlled_animation.dart';
+
+import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 
 import '../../configs/theme.dart' as theme;
 import '../../models/ETCTimer.dart';
@@ -162,23 +163,26 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
               builder: (context, animation) {
                 return Opacity(
                   opacity: animation,
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: ETCHomeScreenButton(
-                          label: App.translate(ETCHomeScreenMessages.restart),
-                          icon: Icons.refresh,
-                          onPress: this.timer.restart,
+                  child: Container(
+                    width: AppDimensions.miniContainerWidth,
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: ETCHomeScreenButton(
+                            label: App.translate(ETCHomeScreenMessages.restart),
+                            icon: Icons.refresh,
+                            onPress: this.timer.restart,
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: ETCHomeScreenButton(
-                          label: App.translate(ETCHomeScreenMessages.reset),
-                          icon: Icons.arrow_back,
-                          onPress: this.timer.reset,
+                        Expanded(
+                          child: ETCHomeScreenButton(
+                            label: App.translate(ETCHomeScreenMessages.reset),
+                            icon: Icons.arrow_back,
+                            onPress: this.timer.reset,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               },
@@ -189,11 +193,17 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
               duration: Duration(milliseconds: 280),
               builder: (context, animation) {
                 return Container(
+                  width: AppDimensions.miniContainerWidth,
                   transform: Matrix4.identity()
                     ..translate(
                       0.0,
                       Utils.rangeMap(
-                          animation, 0.0, 1.0, AppDimensions.ratio * 16, 0),
+                        animation,
+                        0.0,
+                        1.0,
+                        AppDimensions.ratio * 16,
+                        0,
+                      ),
                     ),
                   child: Opacity(
                     opacity: animation,

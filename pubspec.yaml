@@ -80,36 +80,6 @@ flutter:
     - assets/ma-hab/
     - assets/ma-asc/
 
-    # - assets/ma-hab/bubbles-bg.png
-    # - assets/ma-hab/balloon.png
-    # - assets/ma-hab/balloon-shadow.png
-    # - assets/ma-hab/mountains.jpg
-    # - assets/ma-sk/mercury.png
-    # - assets/ma-sk/venus.png
-    # - assets/ma-sk/mars.png
-    # - assets/ma-sk/earth.png
-    # - assets/ma-sk/jupiter.png
-    # - assets/ma-sk/andromeda.png
-    # - assets/ma-sk/hubble-space-telescope.png
-    # - assets/ma-sk/international-space-station.png
-    # - assets/ma-sk/stars-bg.jpg
-    # - assets/ma-sk/gradient-path.png
-    # - assets/ma-asc/Asics_Logo_1.png
-    # - assets/ma-asc/Asics_Logo_2.png
-    # - assets/ma-asc/Asics_Logo_3.png
-    # - assets/ma-asc/blue.png
-    # - assets/ma-asc/yellow.png
-    # - assets/ma-asc/red.png
-
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
   fonts:
     - family: Nunito
       fonts:
