@@ -76,43 +76,30 @@ flutter:
     - assets/thumbnails/
 
     - assets/ma-hfd/
-    # - assets/ma-hfd/item-2.jpg
-    # - assets/ma-hfd/item-3.jpg
-    # - assets/ma-hfd/item-4.jpg
-    # - assets/ma-hfd/item-5.jpg
-    # - assets/ma-hfd/item-6.jpg
-    # - assets/ma-hfd/item-7.jpg
-    # - assets/ma-hfd/item-8.jpg
-    # - assets/ma-hfd/item-9.jpg
-    # - assets/ma-hfd/resturant-1.jpg
-    # - assets/ma-hfd/resturant-2.jpg
-    # - assets/ma-hfd/resturant-3.jpg
-    # - assets/ma-hfd/resturant-4.jpg
-    # - assets/ma-hfd/resturant-5.jpg
+    - assets/ma-skv/
+    - assets/ma-hab/
+    - assets/ma-asc/
 
-    - assets/ma-hab/bubbles-bg.png
-    - assets/ma-hab/balloon.png
-    - assets/ma-hab/balloon-shadow.png
-    - assets/ma-hab/mountains.jpg
-
-    # - assets/ma-sk/
-    - assets/ma-sk/mercury.png
-    - assets/ma-sk/venus.png
-    - assets/ma-sk/mars.png
-    - assets/ma-sk/earth.png
-    - assets/ma-sk/jupiter.png
-    - assets/ma-sk/andromeda.png
-    - assets/ma-sk/hubble-space-telescope.png
-    - assets/ma-sk/international-space-station.png
-    - assets/ma-sk/stars-bg.jpg
-    - assets/ma-sk/gradient-path.png
-
-    - assets/ma-asc/Asics_Logo_1.png
-    - assets/ma-asc/Asics_Logo_2.png
-    - assets/ma-asc/Asics_Logo_3.png
-    - assets/ma-asc/blue.png
-    - assets/ma-asc/yellow.png
-    - assets/ma-asc/red.png
+    # - assets/ma-hab/bubbles-bg.png
+    # - assets/ma-hab/balloon.png
+    # - assets/ma-hab/balloon-shadow.png
+    # - assets/ma-hab/mountains.jpg
+    # - assets/ma-sk/mercury.png
+    # - assets/ma-sk/venus.png
+    # - assets/ma-sk/mars.png
+    # - assets/ma-sk/earth.png
+    # - assets/ma-sk/jupiter.png
+    # - assets/ma-sk/andromeda.png
+    # - assets/ma-sk/hubble-space-telescope.png
+    # - assets/ma-sk/international-space-station.png
+    # - assets/ma-sk/stars-bg.jpg
+    # - assets/ma-sk/gradient-path.png
+    # - assets/ma-asc/Asics_Logo_1.png
+    # - assets/ma-asc/Asics_Logo_2.png
+    # - assets/ma-asc/Asics_Logo_3.png
+    # - assets/ma-asc/blue.png
+    # - assets/ma-asc/yellow.png
+    # - assets/ma-asc/red.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

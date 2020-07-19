@@ -88,7 +88,7 @@ class SKVDetailScreenOrbit extends StatelessWidget {
         child: Transform.translate(
           offset: Offset(xOffset, 0),
           child: Image.asset(
-            "assets/ma-sk/gradient-path.png",
+            "assets/ma-skv/gradient-path.png",
             alignment: Alignment.center,
           ),
         ),

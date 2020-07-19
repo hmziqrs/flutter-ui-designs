@@ -47,7 +47,7 @@ class SKVDetailScreenSpaceBackground extends StatelessWidget {
                     ..rotateY(index % 2 == 1 ? 0.0 : math.pi),
                   alignment: FractionalOffset.center,
                   child: Image.asset(
-                    "assets/ma-sk/stars-bg.jpg",
+                    "assets/ma-skv/stars-bg.jpg",
                     fit: BoxFit.fitHeight,
                   ),
                 ),
