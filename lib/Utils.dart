@@ -25,6 +25,24 @@ class Utils {
     return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
   }
 
+  static double rangeL2LMap(
+    double number,
+    double inMin,
+    double inMid,
+    double inMax,
+    double outMin,
+    double outMid,
+    double outMax,
+  ) {
+    double parsed = Utils.rangeMap(number, inMin, inMid, outMin, outMid);
+
+    if (parsed > outMid) {
+      parsed = Utils.rangeMap(number, inMid, inMax, outMid, outMax);
+    }
+
+    return parsed;
+  }
+
   static launchUrl(link) async {
     try {
       if (Platform.isLinux || Platform.isWindows) {
@@ -66,6 +84,10 @@ class Utils {
     } else if (platform == 'linkedin') {
       return "$base/linkedin.com/in/$username";
     }
+  }
+
+  static launchSocialLink(username, platform) {
+    Utils.launchUrl(Utils.socialLink(username, platform));
   }
 
   static EdgeInsetsGeometry safePaddingUnit(

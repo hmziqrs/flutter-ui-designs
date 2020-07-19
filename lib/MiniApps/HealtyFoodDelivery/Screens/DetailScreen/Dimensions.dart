@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
 
 class Dimensions {
   static double coverImageHeight;
   static double contentHeight;
 
   static init(BuildContext context) {
-    AppDimensions.init(context);
+    App.init(context);
 
     final height = AppDimensions.size.height;
     coverImageHeight = height * 0.60;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
 
 class Dimensions {
   static double chipsContainerWidth;
@@ -12,12 +13,12 @@ class Dimensions {
 
   static double categoryBaseSize;
 
-  static double resturantContainerHeight;
-  static double resturantCardBaseWidth;
+  static double restaurantContainerHeight;
+  static double restaurantCardBaseWidth;
   // static double chipsContainerWidth;
 
   static init(BuildContext context) {
-    AppDimensions.init(context);
+    App.init(context);
 
     chipsContainerWidth = 480;
 
@@ -25,7 +26,7 @@ class Dimensions {
 
     categoryBaseSize = 30 + AppDimensions.ratio * 15;
 
-    initResturantSize();
+    initRestaurantsize();
   }
 
   static initItemSize() {
@@ -42,20 +43,20 @@ class Dimensions {
     itemContentWidth = itemBaseWidth * 0.8;
   }
 
-  static initResturantSize() {
-    resturantCardBaseWidth = 250 + AppDimensions.ratio * 100;
+  static initRestaurantsize() {
+    restaurantCardBaseWidth = 250 + AppDimensions.ratio * 100;
 
     double safeBaseWidth = AppDimensions.size.width * 0.80;
-    if (resturantCardBaseWidth > safeBaseWidth) {
-      resturantCardBaseWidth = safeBaseWidth;
+    if (restaurantCardBaseWidth > safeBaseWidth) {
+      restaurantCardBaseWidth = safeBaseWidth;
     }
 
-    resturantContainerHeight = resturantCardBaseWidth * 0.6;
+    restaurantContainerHeight = restaurantCardBaseWidth * 0.6;
 
     double safeBaseHeight = AppDimensions.size.height * 0.75;
-    if (resturantContainerHeight > safeBaseHeight) {
-      resturantContainerHeight = safeBaseHeight * 0.9;
-      resturantCardBaseWidth = safeBaseHeight * 1.4;
+    if (restaurantContainerHeight > safeBaseHeight) {
+      restaurantContainerHeight = safeBaseHeight * 0.9;
+      restaurantCardBaseWidth = safeBaseHeight * 1.4;
     }
   }
 }

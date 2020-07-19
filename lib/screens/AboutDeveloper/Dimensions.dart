@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_uis/UI.dart';
-
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
+import 'package:flutter_uis/UI.dart';
 
 class Dimensions {
   static double redBackground;
   static double avatarSize;
 
   static init(BuildContext context) {
-    AppDimensions.init(context);
+    App.init(context);
 
     redBackground = AppDimensions.ratio * 60;
     avatarSize = AppDimensions.ratio * 60;

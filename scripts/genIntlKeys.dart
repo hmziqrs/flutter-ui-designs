@@ -2,6 +2,8 @@ import 'dart:io';
 import 'dart:isolate';
 import 'package:glob/glob.dart';
 
+import 'utils.dart';
+
 // This file for generating keys for message files
 
 main(List<String> args) async {
@@ -10,7 +12,7 @@ main(List<String> args) async {
   List<FileSystemEntity> files = dartFile.listSync();
 
   for (var entity in files) {
-    if (entity.path.contains("/messages/strings.dart")) {
+    if (entity.path.contains(normalize("/messages/strings.dart"))) {
       final keysFile = new File(entity.path.replaceAll('strings', 'keys'));
       ReceivePort port = new ReceivePort();
       final raw = await getMessagesViaIsolate(entity, port);
@@ -37,7 +39,7 @@ Future<Map> getMessagesViaIsolate(
   ReceivePort port,
 ) async {
   await Isolate.spawnUri(
-    Uri.parse(entity.resolveSymbolicLinksSync()),
+    Uri.parse(entity.resolveSymbolicLinksSync().replaceAll("\\", "/")),
     null,
     port.sendPort,
   );

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/UI.dart';
+import 'package:flutter_uis/configs/App.dart';
+import 'package:flutter_uis/configs/AppDimensions.dart';
 
 class Dimensions {
-  static Size size;
-
-  static double padding;
   static double flightCardWidth;
 
   static Matrix4 shapeTransform;
@@ -16,29 +15,29 @@ class Dimensions {
   static Offset balloonOffset;
   static Offset balloonShadowOffset;
 
-  static init(
-    BuildContext context, {
-    Orientation orientation = Orientation.portrait,
-  }) {
-    size = MediaQuery.of(context).size;
-    final bool isLandscape = Orientation.landscape == orientation;
+  static init(BuildContext context) {
+    App.init(context);
+    final bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
 
-    padding = UI.vertical;
-    flightCardWidth = UI.horizontal * 40;
+    flightCardWidth = 60 + AppDimensions.ratio * 50;
 
     shapeTransform = Matrix4.translationValues(
-        -UI.horizontal * 17, Dimensions.padding * 10, 0.0)
-      ..scale(1.6);
+      -UI.horizontal * 17,
+      AppDimensions.padding * 10,
+      0.0,
+    )..scale(1.6);
 
     balloonSize = Size(UI.horizontal * 100, UI.vertical * 80);
     balloonOffset = Offset(-UI.horizontal * 17, -UI.vertical * 12);
+
     balloonShadowSize = Size(UI.horizontal * 100, UI.vertical * 90);
-    balloonShadowOffset = Offset(-UI.horizontal * 34, -UI.vertical * 2);
+    balloonShadowOffset = Offset(
+      balloonOffset.dx * 2.2,
+      balloonOffset.dx * 0.1,
+    );
 
     if (isLandscape) {
-      padding = UI.horizontal;
-      flightCardWidth = UI.horizontal * 26;
-
       shapeTransform = Matrix4.translationValues(
         -UI.horizontal * 55,
         UI.vertical * 16,
@@ -46,35 +45,10 @@ class Dimensions {
       )..scale(2.2);
 
       balloonOffset = Offset(-UI.horizontal * 25, -UI.vertical * 12);
-      balloonShadowOffset = Offset(-UI.horizontal * 33, -UI.vertical * 4);
+      balloonShadowOffset = Offset(
+        balloonOffset.dx * 1.4,
+        balloonOffset.dx * 0.15,
+      );
     }
-
-    if (UI.isTablet) {
-      padding = UI.vertical * 0.9;
-      flightCardWidth = UI.horizontal * 30;
-
-      if (isLandscape) {
-        padding = UI.horizontal * 0.9;
-        flightCardWidth = UI.horizontal * 20;
-      }
-
-      if (UI.diagonal > 1250) {
-        padding = UI.vertical * 0.8;
-
-        flightCardWidth = UI.horizontal * 22;
-
-        if (isLandscape) {
-          padding = UI.horizontal * 0.8;
-          flightCardWidth = UI.horizontal * 16;
-        }
-      }
-    }
-  }
-
-  static Size getSize() {
-    if (size != null) {
-      return size;
-    }
-    return UI.mediaQuery().size;
   }
 }

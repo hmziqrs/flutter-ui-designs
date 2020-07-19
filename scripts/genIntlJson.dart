@@ -4,38 +4,76 @@ import 'dart:isolate';
 import 'package:glob/glob.dart';
 import 'package:translator/translator.dart';
 
-main(List<String> args) async {
-  print("GENERATE BUNDLED JSON FOR YOUR LOCALIZE MESSAGES");
-  final dartFile = new Glob("lib/**/**.dart");
-  List<FileSystemEntity> files = dartFile.listSync();
+import './utils.dart';
 
-  final Map<String, String> rootMessages = {};
+main(List<String> args) async {
+  print("\n\n\nGENERATE BUNDLED JSON FOR YOUR LOCALIZE MESSAGES");
+  final dartFile = new Glob("lib/**/**.dart");
   final translator = new GoogleTranslator();
 
+  final List<FileSystemEntity> files = dartFile.listSync();
+  final Map<String, String> defaultMessages = {};
+  final Map<String, Map<String, String>> defaultLocaleMessages = {};
+  final JsonEncoder jsonEncoder = JsonEncoder.withIndent('     ');
+
   for (var entity in files) {
-    if (entity.path.contains("/messages/strings.dart")) {
+    if (entity.path.contains(normalize("/messages/strings.dart"))) {
       ReceivePort port = new ReceivePort();
       final raw = await getMessagesViaIsolate(entity, port);
       final Map messages = raw["strings"].cast<String, String>();
-      rootMessages.addAll(messages);
+
+      final localesDirectory = new Directory(
+        entity.path.replaceFirst(r'strings.dart', r'locales').toString(),
+      );
+      // print("dlkasdhaskjhd $localesDirectory");
+      if (localesDirectory.existsSync()) {
+        // print("$localesDirectory EXISSITS");
+
+        // await localesDirectory.list().forEach((localeFile) async {});
+        for (final localeFile in localesDirectory.listSync()) {
+          final localeCode =
+              localeFile.path.split(normalize("/")).last.split(".").first;
+          final localeRaw = await getMessagesViaIsolate(
+            localeFile,
+            new ReceivePort(),
+          );
+          final Map localeMessages = localeRaw.cast<String, String>();
+          if (defaultLocaleMessages[localeCode] == null) {
+            defaultLocaleMessages[localeCode] = {};
+          }
+          defaultLocaleMessages[localeCode].addAll(localeMessages);
+        }
+      }
+
+      defaultMessages.addAll(messages);
     }
   }
 
-  final directory = new Directory("./assets/langs");
+  final directory = new Directory(normalize("./assets/langs"));
+
   await directory.list().forEach((element) async {
     final file = new File(element.path);
     final Map parsed =
         json.decode(file.readAsStringSync()).cast<String, String>();
 
     if (file.path.contains('en.json')) {
-      parsed.addAll(rootMessages);
-      final newJson = json.encode(parsed);
+      parsed.addAll(defaultMessages);
+
+      final newJson = jsonEncoder.convert(parsed);
+
       file.writeAsStringSync(newJson);
     } else {
-      final langCode = file.path.split('/').last.split('.').first;
-      final Map<String, dynamic> newObj = {...rootMessages, ...parsed};
+      final langCode = file.path.split(normalize('/')).last.split('.').first;
+      final Map<String, dynamic> newObj = {...defaultMessages, ...parsed};
+      final localeMessages = defaultLocaleMessages[langCode];
+
       for (final key in newObj.keys) {
-        final String rootVal = rootMessages[key];
+        if (localeMessages != null && localeMessages[key] != null) {
+          newObj[key] = localeMessages[key];
+          continue;
+        }
+
+        final String rootVal = defaultMessages[key];
         final String parsedVal = parsed[key];
         // if (langCode == "zh") {
         //   print("key $key");
@@ -52,7 +90,9 @@ main(List<String> args) async {
           );
         }
       }
-      final newJson = json.encode(newObj);
+
+      final newJson = jsonEncoder.convert(newObj);
+
       file.writeAsStringSync(newJson);
     }
   });
@@ -63,7 +103,7 @@ Future<Map> getMessagesViaIsolate(
   ReceivePort port,
 ) async {
   await Isolate.spawnUri(
-    Uri.parse(entity.resolveSymbolicLinksSync()),
+    Uri.parse(entity.resolveSymbolicLinksSync().replaceAll("\\", "/")),
     null,
     port.sendPort,
   );

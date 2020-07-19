@@ -1,52 +1,54 @@
-import 'SpaceObject.dart';
-export 'SpaceObject.dart';
+import '../models/SKVObject.dart';
+export '../models/SKVObject.dart';
 
-final List<SpaceObject> objectList = [
-  new SpaceObject(
+import '../messages/keys.dart';
+
+final List<SKVObject> objectList = [
+  new SKVObject(
     "MERCURY",
-    "The Swiftest Planet",
-    "Fourth planet From the sun",
-    "assets/ma-sk/mercury.png",
+    SKVRootMessages.objectMercuryNick,
+    SKVRootMessages.objectMercuryPosition,
+    "assets/ma-skv/mercury.png",
     distanceInKm: "54.600.00 km away",
     distanceFromSun: "36,116,057",
     lightTimeFromSun: "3.231326",
     lengthOfYears: "88",
   ),
-  new SpaceObject(
+  new SKVObject(
     "VENUS",
-    "Palnetary Hot Spot",
-    "Second planet from the sun",
-    "assets/ma-sk/venus.png",
+    SKVRootMessages.objectVenusNick,
+    SKVRootMessages.objectVenusPosition,
+    "assets/ma-skv/venus.png",
     distanceInKm: "54.600.00 km away",
     distanceFromSun: "246,970,045",
     lightTimeFromSun: "13.730062",
     lengthOfYears: "687",
   ),
-  new SpaceObject(
+  new SKVObject(
     "EARTH",
-    "Our Home Planet",
-    "Second planet from the sun",
-    "assets/ma-sk/earth.png",
+    SKVRootMessages.objectEarthNick,
+    SKVRootMessages.objectEarthPosition,
+    "assets/ma-skv/earth.png",
     distanceInKm: "54.600.00 km away",
     distanceFromSun: "246,970,045",
     lightTimeFromSun: "13.730062",
     lengthOfYears: "687",
   ),
-  new SpaceObject(
+  new SKVObject(
     "MARS",
-    "Red Planet",
-    "Fourth planet From the sun",
-    "assets/ma-sk/mars.png",
+    SKVRootMessages.objectMarsNick,
+    SKVRootMessages.objectMarsPosition,
+    "assets/ma-skv/mars.png",
     distanceInKm: "54.600.00 km away",
     distanceFromSun: "246,970,045",
     lightTimeFromSun: "13.730062",
     lengthOfYears: "687",
   ),
-  new SpaceObject(
+  new SKVObject(
     "JUPITER",
-    "Massive planet",
-    "Fourth planet From the sun",
-    "assets/ma-sk/jupiter.png",
+    SKVRootMessages.objectJupiterNick,
+    SKVRootMessages.objectJupiterPosition,
+    "assets/ma-skv/jupiter.png",
     distanceInKm: "54.600.00 km away",
     distanceFromSun: "246,970,045",
     lightTimeFromSun: "13.730062",

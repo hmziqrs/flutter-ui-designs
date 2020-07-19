@@ -11,8 +11,8 @@ import './screens/Home/Home.dart';
 import './screens/Download/Download.dart';
 import './screens/AboutApp/AboutApp.dart';
 import './screens/AboutDeveloper/AboutDeveloper.dart';
-import './screens/UiList/UiList.dart';
-import './screens/UiDetail/UIDetail.dart';
+import './screens/UIList/UIList.dart';
+import './screens/UIDetail/UIDetail.dart';
 import './screens/DesignerProfile/DesignerProfile.dart';
 
 import './MiniApps/HealtyFoodDelivery/Screens/HomeScreen/HFDHomeScreen.dart';
@@ -21,12 +21,13 @@ import './MiniApps/HealtyFoodDelivery/Screens/DetailScreen/HFDDetailScreen.dart'
 import './MiniApps/HotAirBalloons/Screens/HomeScreen/HABHomeScreen.dart';
 // import './MiniApps/HotAirBalloons/Screens/DetailScreen/HABDetailScreen.dart';
 
-import './MiniApps/SkyView/Screens/HomeScreen/SKHomeScreen.dart';
-import './MiniApps/SkyView/Screens/DetailScreen/SKDetailScreen.dart';
+import 'MiniApps/SkyView/Screens/HomeScreen/SKVHomeScreen.dart';
+import 'MiniApps/SkyView/Screens/DetailScreen/SKVDetailScreen.dart';
 
 import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/ASCHomeScreen.dart';
 
-import 'MiniApps/EggTimerConcept/Screens/HomeScreen/EggTimerConcept.dart';
+import 'MiniApps/EggTimerConcept/Screens/HomeScreen/ETCHomeScreen.dart';
+
 import 'Providers/AppProvider.dart';
 
 bool isAlt = false;
@@ -92,7 +93,7 @@ class AppNavigator extends StatelessWidget {
               navigatorObservers: observers,
               home: HomeScreen(),
               onGenerateRoute: (settings) {
-                final index = ["skDetail", "hfdDetail"].indexOf(settings.name);
+                final index = ["skvDetail", "hfdDetail"].indexOf(settings.name);
                 if (index > -1) {
                   return PageRouteBuilder(
                     settings: settings,
@@ -100,7 +101,7 @@ class AppNavigator extends StatelessWidget {
                       if (index == 1) {
                         return HFDDetailScreen();
                       }
-                      return SKDetailScreen(settings.arguments);
+                      return SKVDetailScreen(settings.arguments);
                     },
                     transitionsBuilder: (_, anim, __, child) {
                       return FadeTransition(opacity: anim, child: child);
@@ -114,8 +115,8 @@ class AppNavigator extends StatelessWidget {
                 "about": (ctx) => new AboutAppScreen(),
                 "aboutDeveloper": (ctx) => new AboutDeveloperScreen(),
                 "download": (ctx) => new DownloadScreen(),
-                "uiList": (ctx) => new UiListScreen(),
-                "uiDetail": (ctx) => new UiDetailScreen(),
+                "uiList": (ctx) => new UIListScreen(),
+                "uiDetail": (ctx) => new UIDetailScreen(),
                 "designerProfile": (ctx) => new DesignerProfileScreen(),
 
                 // Healthy Food Delivery
@@ -126,8 +127,11 @@ class AppNavigator extends StatelessWidget {
                 "habHome": (ctx) => new HABHomeScreen(),
 
                 // Sky View
-                "skHome": (ctx) => new SKHomeScreen(),
-                // "skDetail": (ctx) => new SKDetailScreen(),
+                "skvHome": (ctx) => new SKVHomeScreen(),
+                "skvDetail": (ctx) {
+                  final int index = ModalRoute.of(ctx).settings.arguments;
+                  return SKVDetailScreen(index);
+                },
 
                 "ascHome": (ctx) => new ASCHomeScreen(),
 

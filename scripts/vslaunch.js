@@ -11,8 +11,8 @@ async function main() {
   try {
     const { stdout } = await exec('flutter devices');
     const raw = stdout.split('\n');
-    const devices = raw.slice(2, raw.length - 1).map(result => {
-      const [name, deviceId] = result.split('•').map(str => str.trim());
+    const devices = raw.slice(2, raw.length - 1).map((result) => {
+      const [name, deviceId] = result.split('•').map((str) => str.trim());
       const obj = {
         name,
         deviceId,
@@ -20,7 +20,7 @@ async function main() {
         request: 'launch',
       };
       if (
-        desktopFilters.filter(str => deviceId.toLowerCase().includes(str))
+        desktopFilters.filter((str) => deviceId.toLowerCase().includes(str))
           .length === 0
       ) {
         obj.args = ['-t', 'lib/main.mobile.dart'];
@@ -41,11 +41,10 @@ async function main() {
       compounds: [
         {
           name: 'current',
-          configurations: devices.map(obj => obj.name),
+          configurations: devices.map((obj) => obj.name),
         },
       ],
     };
-    fs.dir;
     console.log(newConfig);
     await utils.mkDir('.vscode');
     fs.writeFileSync(

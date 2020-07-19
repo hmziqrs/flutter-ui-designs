@@ -1,46 +1,29 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/UI.dart';
+import 'package:flutter_uis/configs/App.dart';
+import 'package:flutter_uis/configs/AppDimensions.dart';
 
 class Dimensions {
-  static Size size;
-
-  static double padding;
-  static double headerSpace;
+  static double borderCliping;
   static double backgroudImageHeight;
+  static int noOfImages = 1;
 
-  static init(
-    BuildContext context, {
-    Orientation orientation = Orientation.portrait,
-  }) {
-    size = MediaQuery.of(context).size;
-    final bool isLandscape = Orientation.landscape == orientation;
+  static init(BuildContext context) {
+    App.init(context);
 
-    padding = UI.vertical;
-    headerSpace = UI.vertical * 6;
-    backgroudImageHeight = UI.vertical * 30;
+    backgroudImageHeight = 100 + AppDimensions.ratio * 80;
+    borderCliping = 30.0;
 
-    if (isLandscape) {
-      padding = UI.horizontal;
-      headerSpace = UI.vertical * 4;
-      backgroudImageHeight = UI.vertical * 60;
+    if (UI.width > UI.height) {
+      backgroudImageHeight = 80 + AppDimensions.ratio * 60;
     }
 
-    if (UI.isTablet) {
-      padding = UI.vertical * 0.9;
-
-      if (isLandscape) {
-        backgroudImageHeight = UI.vertical * 70;
-
-        padding = UI.horizontal * 0.8;
-      }
+    if (UI.md) {
+      noOfImages = 2;
     }
-  }
-
-  static Size getSize() {
-    if (size != null) {
-      return size;
+    if (UI.xlg) {
+      noOfImages = 3;
     }
-    return UI.mediaQuery().size;
   }
 }

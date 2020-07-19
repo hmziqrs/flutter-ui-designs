@@ -1,41 +1,43 @@
-import 'SpaceStory.dart';
-export 'SpaceStory.dart';
+import '../models/SKVStory.dart';
+export '../models/SKVStory.dart';
+
+import '../messages/keys.dart';
 
 final storyList = [
-  new SpaceStory(
-    "Andromeda",
+  new SKVStory(
+    SKVRootMessages.story1Title,
     5.0,
-    "The Andromeda Galaxy also known as Messier 31, M31, or NGC 224 and originally the Andromeda Nebula",
-    "assets/ma-sk/andromeda.png",
+    SKVRootMessages.story1Desc,
+    "assets/ma-skv/andromeda.png",
   ),
-  new SpaceStory(
-    "Hubble Space Telescope",
+  new SKVStory(
+    SKVRootMessages.story2Title,
     4.0,
-    "Breathtaking photos and science-changing discoveries from 25 years of exploration.",
-    "assets/ma-sk/hubble-space-telescope.png",
+    SKVRootMessages.story2Desc,
+    "assets/ma-skv/hubble-space-telescope.png",
   ),
-  new SpaceStory(
-    "International Space Station",
+  new SKVStory(
+    SKVRootMessages.story3Title,
     5.0,
-    "The International Space Station (ISS) is a space station (habitable artificial satellite) in low Earth orbit.",
-    "assets/ma-sk/international-space-station.png",
+    SKVRootMessages.story3Desc,
+    "assets/ma-skv/international-space-station.png",
   ),
-  new SpaceStory(
-    "Andromeda",
+  new SKVStory(
+    SKVRootMessages.story1Title,
     5.0,
-    "The Andromeda Galaxy also known as Messier 31, M31, or NGC 224 and originally the Andromeda Nebula",
-    "assets/ma-sk/andromeda.png",
+    SKVRootMessages.story1Desc,
+    "assets/ma-skv/andromeda.png",
   ),
-  new SpaceStory(
-    "Hubble Space Telescope",
+  new SKVStory(
+    SKVRootMessages.story2Title,
     4.0,
-    "Breathtaking photos and science-changing discoveries from 25 years of exploration.",
-    "assets/ma-sk/hubble-space-telescope.png",
+    SKVRootMessages.story2Desc,
+    "assets/ma-skv/hubble-space-telescope.png",
   ),
-  new SpaceStory(
-    "International Space Station",
+  new SKVStory(
+    SKVRootMessages.story3Title,
     5.0,
-    "The International Space Station (ISS) is a space station (habitable artificial satellite) in low Earth orbit.",
-    "assets/ma-sk/international-space-station.png",
+    SKVRootMessages.story3Desc,
+    "assets/ma-skv/international-space-station.png",
   ),
 ];

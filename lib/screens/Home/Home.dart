@@ -59,8 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print("test");
-
     return Screen(
       Dimensions.init,
       scaffoldBackgroundColor: Colors.white,

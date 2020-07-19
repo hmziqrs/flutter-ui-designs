@@ -32,7 +32,7 @@ final desktopLinks = [
     "url":
         "https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/windows-release.zip",
     "name": "Windows",
-    "icon": MaterialCommunityIcons.apple,
+    "icon": MaterialCommunityIcons.windows,
   },
 ];
 

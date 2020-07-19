@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_uis/Utils.dart';
-import 'package:flutter_uis/UI.dart';
-
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/UI.dart';
 
 import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 import 'package:flutter_uis/Mixins/HoverWidget.dart';
-import 'Widgets/Content.dart';
+import 'widgets/ASCHomeScreenContent.dart';
 
+import 'widgets/ASCHomeScreenHeader.dart';
+import 'widgets/ASCHomeScreenShoe.dart';
 import '../../data/data.dart' as data;
 import 'Dimensions.dart';
 
@@ -123,22 +123,23 @@ class _ASCHomeScreenState extends State<ASCHomeScreen>
               itemCount: data.list.length,
               itemBuilder: (itemCtx, index) {
                 final item = data.list[index];
-                double ratio = this.offset - (AppDimensions.size.width * index);
+                double parallax =
+                    this.offset - (AppDimensions.size.width * index);
 
-                double uiRatio = ratio / 100;
+                double uiParallax = parallax / 100;
 
-                if (uiRatio < 0) {
-                  uiRatio *= -1.0;
+                if (uiParallax < 0) {
+                  uiParallax *= -1.0;
                 }
 
                 if (UI.xmd) {
-                  uiRatio *= 0.65;
+                  uiParallax *= 0.65;
                 }
                 if (UI.lg) {
-                  uiRatio *= 0.7;
+                  uiParallax *= 0.7;
                 }
                 if (UI.xlg) {
-                  uiRatio *= 0.8;
+                  uiParallax *= 0.8;
                 }
 
                 return Container(
@@ -149,139 +150,22 @@ class _ASCHomeScreenState extends State<ASCHomeScreen>
                       children: [
                         Column(
                           children: [
-                            this.buildHeader(item, ratio),
-                            Content(
+                            ASCHomeScreenHeader(item: item, parallax: parallax),
+                            ASCHomeScreenContent(
                               item: item,
-                              uiRatio: uiRatio,
+                              uiParallax: uiParallax,
                               changeColor: this.changeColor,
                               activeColor: this.activeColor.value,
                               activeColorIndex: this.activeColorIndex,
                             ),
                           ],
                         ),
-                        this.buildShoe(item, ratio, uiRatio),
+                        ASCHomeScreenShoe(item: item, uiParallax: uiParallax),
                       ],
                     ),
                   ),
                 );
               },
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildHeader(data.ASCItem item, double ratio) {
-    return Container(
-      alignment: Alignment.topCenter,
-      height: Dimensions.headerHeight,
-      padding: EdgeInsets.all(AppDimensions.padding * 2),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [item.colors[0], item.colors[1], item.colors[2]]
-              .reversed
-              .toList(),
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-      ),
-      child: Container(
-        width: AppDimensions.maxContainerWidth,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Utils.safePadding(context, "top"),
-            Container(
-              height: Dimensions.logoHeight,
-              margin: EdgeInsets.only(left: AppDimensions.padding * 1),
-              child: Image.asset(item.logoLink),
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                top: AppDimensions.padding * 1,
-                left: AppDimensions.padding * 2,
-              ),
-              transform: Matrix4.identity()..translate(ratio * -0.9),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    item.headerHeading,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 8 + AppDimensions.ratio * 8,
-                    ),
-                  ),
-                  Container(height: AppDimensions.padding * 1),
-                  Text(
-                    item.headerDescription,
-                    maxLines: 3,
-                    style: TextStyle(
-                      color: Colors.white,
-                      // fontSize: 7 + AppDimensions.ratio * 4,
-                      fontSize: 5 + AppDimensions.ratio * 5,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildShoe(data.ASCItem item, double ratio, double uiRatio) {
-    double width = Dimensions.shoeWidth;
-    double height = Dimensions.shoeHeight;
-
-    final scale = uiRatio * -0.12;
-    final opacity = uiRatio * 0.15;
-
-    return Positioned(
-      top: Dimensions.shoeTop,
-      // left: (AppDimensions.size.width / 2) - width * 0.4,
-      left: (AppDimensions.size.width / 2) - width * 0.45,
-      child: Transform(
-        transform: Matrix4.identity()
-          ..rotateZ((24 + (uiRatio * 15)) * 3.1415927 / 180)
-          ..scale(1 + scale, 1 + scale)
-          ..translate(uiRatio * -35),
-        origin: Offset(width / 2, height / 2),
-        child: Opacity(
-          opacity: (1 - opacity).clamp(0.0, 1.0),
-          child: Container(
-            width: width,
-            height: height,
-            // color: Colors.red,
-            alignment: Alignment.center,
-            child: Stack(
-              fit: StackFit.expand,
-              children: <Widget>[
-                Positioned(
-                  bottom: Dimensions.shoeHeight * 0.08,
-                  // bottom: AppDimensions.ratio * 12,
-                  left: AppDimensions.ratio * 10,
-                  right: AppDimensions.ratio * 10,
-                  child: Container(
-                    height: AppDimensions.ratio * 1,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 30,
-                          spreadRadius: 16,
-                          color: Colors.black.withOpacity(0.55),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  child: Image.asset(item.shoeImage),
-                ),
-              ],
             ),
           ),
         ),

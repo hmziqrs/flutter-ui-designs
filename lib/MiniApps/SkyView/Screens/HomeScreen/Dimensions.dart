@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/UI.dart';
 
 class Dimensions {
@@ -15,7 +16,7 @@ class Dimensions {
   static double storyBaseWidth;
 
   static init(BuildContext context) {
-    AppDimensions.init(context);
+    App.init(context);
 
     searchBarHeight = 25 + AppDimensions.ratio * 15;
 
