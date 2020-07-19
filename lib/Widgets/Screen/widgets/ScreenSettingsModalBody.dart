@@ -91,6 +91,14 @@ class ScreenSettingsModalBody extends StatelessWidget {
                         ),
                       ),
                       Container(height: AppDimensions.padding),
+                      Text(
+                        "All the translatable messages are translated by an automated google translator script that's why you may see translation errors if you choose any language other than English And I won't improve translation since this is just an experimintal application also I work alone on this project. If you wish to improve translation do contact me, I'll mention your contribution in appllication and github repository.",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Container(height: AppDimensions.padding),
                       ...[
                         null,
                         ...AppProvider.locales,
