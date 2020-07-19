@@ -1,20 +1,21 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/Widgets/Screen/Screen.dart';
-import 'package:flutter_uis/configs/AppDimensions.dart';
 
+import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_uis/UI.dart';
+
+import 'package:flutter_uis/Widgets/Screen/Screen.dart';
+
+import '../../configs/theme.dart' as theme;
+import '../../data/data.dart' as data;
+import 'Dimensions.dart';
 
 import 'widgets/SKVDetailScreenSpaceBackground.dart';
 import 'widgets/SKVDetailScreenTextContent.dart';
 import 'widgets/SKVDetailScreenPlanet.dart';
 import 'widgets/SKVDetailScreenOrbit.dart';
-import '../../configs/theme.dart' as theme;
-import '../../data/data.dart' as data;
-import 'Dimensions.dart';
 
 class SKVDetailScreen extends StatefulWidget {
   final int index;
@@ -84,7 +85,7 @@ class _SKVDetailScreenState extends State<SKVDetailScreen>
     UI.init(context);
     Dimensions.init(context);
 
-    final fontStyle = Theme.of(context).textTheme.body1.copyWith(
+    final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
           fontFamily: 'Montserrat',
         );
 

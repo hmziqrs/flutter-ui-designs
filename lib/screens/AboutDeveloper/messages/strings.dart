@@ -10,7 +10,7 @@ const Map strings = {
   '$scope/skillSet': 'My skill set',
   '$scope/letsChat': "Let's Chat !",
   '$scope/note':
-      "NOTE: These contact links are not any kind of flutter helpline. I shared my contacts only for buisness related inquiries.\n\nAny help related query will not be entertain. For any help or answer follow docs and post your query on stackoverflow and community group.",
+      "NOTE: These contact links are not any kind of flutter helpline. I shared my contacts only for buisness related inquiries.\n\n For any help or answer follow docs and post your query on stackoverflow and facebook community group.",
   '$scope/support': 'Show Support',
   '$scope/supportDescription':
       'If you like the project and want to appreciate my effort. Then click any of these links below and perform the action.',

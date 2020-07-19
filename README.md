@@ -20,6 +20,9 @@
 
   <dt>Open Source</dt>
   <dd>Any piece of code is free to use anywhere except UI Designs you've to ask permission from relevant designers. Designer's information can be found in app.</dd>
+
+  <dt>Multi Language</dt>
+  <dd>Available 3 in languages at the moment.</dd>
 </dl>
 
 ## Requirements to run locally
@@ -30,7 +33,7 @@
 
 > I did spent some time to integrate <a href="https://github.com/leoafarias/fvm">FVM</a> in `Windows` but I ran into some sorts of errors. After spending some hours to solve the issue & not getting any success I parked the idea on side as currently using master branch directly is much easier & stable solution.
 
-- Flutter master channel & Framework • revision `4df8fdb7df`
+- Flutter master channel & Framework • revision `54c9441723`
   - Run `flutter --version` to check it
 - Dart VM version: 2.7.1
   - Run `dart --version` to check it
@@ -52,7 +55,6 @@
 - There are 2 entry files for this project `main.dart` & `main.mobile.dart`. It was necessary because I'm using Firebase analytics and crashlytics and there isn't desktop support for Firebase yet.
 - `Navigator.dart` is responsible for managing routes, handles custom transition, pass parameter in screens and control navigation with keyboard shortcuts.
 - `UI.dart` provides constant for building responsive UI.
-- `blocs/` Initially I was going to implement Rest APIs but that seemed unnecessary & a lot of work So I'll probably remove `blocs/` in future.
 - `configs/AppDimensions.dart` this is the magical file. It provides the app with:
   - My custom size unit based on device's width, height & pixel density.
   - Responsive containers.
@@ -91,8 +93,8 @@
 > **If you like the project and want to appreciate my effort. Then please perform any of these steps :)**
 
 - Star this repository.
-- Rate the app on <a href="https://play.google.com/store/apps/details?id=com.onemdev.flutter_ui_challenges" target="_playstore">Play Store</a>.
-- Endorse my skills on my <a href="https://www.linkedin.com/in/hackerhgl" target="linkedin">linkedin Profile</a>.
+- Rate the app on <a href="https://play.google.com/store/apps/details?id=com.onemdev.flutter_ui_challenges" target="playstore">Play Store</a>.
+- Endorse my skills on my <a href="https://www.linkedin.com/in/hackerhgl" target="linkedin">Linkedin Profile</a>.
 - Favorite my gigs on <a href="https://www.fiverr.com/hackerhgl" target="fiver">Fiverr</a>.
 - Give a recommendation on <a href="https://www.freelancer.com/u/hackerhgl" target="freelance">Freelancer</a>.
 

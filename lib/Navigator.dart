@@ -91,8 +91,7 @@ class AppNavigator extends StatelessWidget {
                 ),
               ),
               navigatorObservers: observers,
-              // home: SKVHomeScreen(),
-              home: ETCHomeScreen(),
+              home: HomeScreen(),
               onGenerateRoute: (settings) {
                 final index = ["skvDetail", "hfdDetail"].indexOf(settings.name);
                 if (index > -1) {
