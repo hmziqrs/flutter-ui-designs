@@ -3,8 +3,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
-class TickPainter extends CustomPainter {
-  TickPainter({
+class ETCHomeScreenTickPainter extends CustomPainter {
+  ETCHomeScreenTickPainter({
     this.tickCount,
     this.ticksPerSection,
     this.tickInset = 0.0,
@@ -90,8 +90,8 @@ class TickPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(TickPainter oldDelegate) => true;
+  bool shouldRepaint(ETCHomeScreenTickPainter oldDelegate) => true;
 
   @override
-  bool shouldRebuildSemantics(TickPainter oldDelegate) => true;
+  bool shouldRebuildSemantics(ETCHomeScreenTickPainter oldDelegate) => true;
 }

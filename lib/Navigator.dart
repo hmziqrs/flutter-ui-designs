@@ -26,7 +26,7 @@ import 'MiniApps/SkyView/Screens/DetailScreen/SKVDetailScreen.dart';
 
 import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/ASCHomeScreen.dart';
 
-import 'MiniApps/EggTimerConcept/Screens/HomeScreen/EggTimerConcept.dart';
+import 'MiniApps/EggTimerConcept/Screens/HomeScreen/ETCHomeScreen.dart';
 
 import 'Providers/AppProvider.dart';
 
@@ -92,7 +92,7 @@ class AppNavigator extends StatelessWidget {
               ),
               navigatorObservers: observers,
               // home: SKVHomeScreen(),
-              home: ASCHomeScreen(),
+              home: ETCHomeScreen(),
               onGenerateRoute: (settings) {
                 final index = ["skvDetail", "hfdDetail"].indexOf(settings.name);
                 if (index > -1) {

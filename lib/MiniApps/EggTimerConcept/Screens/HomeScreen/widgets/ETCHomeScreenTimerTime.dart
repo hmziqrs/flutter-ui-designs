@@ -1,32 +1,38 @@
-import 'package:flutter_uis/Mixins/HoverWidget.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 import 'package:flutter_uis/Utils.dart';
 
-import '../../../data/data.dart' as data;
+import '../../../models/ETCTimer.dart';
 
-class TimerTime extends StatefulWidget {
-  TimerTime(this.timer);
+class ETCHomeScreenTimerTime extends StatefulWidget {
+  ETCHomeScreenTimerTime(this.timer);
 
-  final data.Timer timer;
+  final ETCTimer timer;
 
   @override
-  _TimerTimeState createState() => _TimerTimeState();
+  _ETCHomeScreenTimerTimeState createState() => _ETCHomeScreenTimerTimeState();
 }
 
-class _TimerTimeState extends State<TimerTime> {
+class _ETCHomeScreenTimerTimeState extends State<ETCHomeScreenTimerTime> {
   String format(String str, Duration duration) {
     final dateFormat = DateFormat(str);
-    final dateTime =
-        DateTime(DateTime.now().year, 0, 0, 0, 0, duration.inSeconds);
+    final dateTime = DateTime(
+      DateTime.now().year,
+      0,
+      0,
+      0,
+      0,
+      duration.inSeconds,
+    );
     return dateFormat.format(dateTime);
   }
 
   @override
   Widget build(BuildContext context) {
-    final isReady = this.widget.timer.state == data.TimerState.ready;
+    final isReady = this.widget.timer.state == ETCTimerState.ready;
 
     final style = TextStyle(
       fontSize: 35 + AppDimensions.ratio * 35,

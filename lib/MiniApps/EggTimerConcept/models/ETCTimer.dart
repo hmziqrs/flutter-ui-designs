@@ -1,45 +1,51 @@
 import 'dart:async' as aSync;
 
-class Timer {
-  Timer({this.maxTime, this.onTimerUpdate});
+enum ETCTimerState {
+  ready,
+  running,
+  paused,
+}
+
+class ETCTimer {
+  ETCTimer({this.maxTime, this.onTimerUpdate});
 
   final Duration maxTime;
   aSync.Timer internalTimer;
   final Function onTimerUpdate;
   final Stopwatch stopwatch = Stopwatch();
 
-  TimerState state = TimerState.ready;
+  ETCTimerState state = ETCTimerState.ready;
   Duration currentTime = Duration(minutes: 0);
   Duration lastStartTime = Duration(minutes: 0);
   Duration cache4Reset = Duration(minutes: 0);
 
   setCurrentTime(time) {
-    if (state == TimerState.ready) {
+    if (state == ETCTimerState.ready) {
       currentTime = time;
       lastStartTime = currentTime;
     }
   }
 
   resume() {
-    if (state == TimerState.running) {
+    if (state == ETCTimerState.running) {
       return;
     }
-    if (state == TimerState.ready) {
+    if (state == ETCTimerState.ready) {
       currentTime = Duration(minutes: (currentTime.inSeconds / 60).round());
       lastStartTime = currentTime;
     }
-    state = TimerState.running;
+    state = ETCTimerState.running;
 
     stopwatch.start();
     tick();
   }
 
   pause() {
-    if (state != TimerState.running) {
+    if (state != ETCTimerState.running) {
       return;
     }
 
-    state = TimerState.paused;
+    state = ETCTimerState.paused;
     stopwatch.stop();
 
     if (onTimerUpdate != null) {
@@ -48,10 +54,10 @@ class Timer {
   }
 
   restart() {
-    if (state != TimerState.paused) {
+    if (state != ETCTimerState.paused) {
       return;
     }
-    state = TimerState.running;
+    state = ETCTimerState.running;
     currentTime = lastStartTime;
 
     stopwatch.reset();
@@ -61,11 +67,11 @@ class Timer {
   }
 
   reset() {
-    if (state != TimerState.paused) {
+    if (state != ETCTimerState.paused) {
       return;
     }
 
-    state = TimerState.ready;
+    state = ETCTimerState.ready;
     currentTime = Duration(seconds: 0);
     lastStartTime = currentTime;
     stopwatch.reset();
@@ -84,20 +90,14 @@ class Timer {
     if (currentTime.inSeconds > 0) {
       internalTimer = aSync.Timer(
         Duration(seconds: 1),
-        () => state == TimerState.running ? tick() : null,
+        () => state == ETCTimerState.running ? tick() : null,
       );
     } else {
-      state = TimerState.ready;
+      state = ETCTimerState.ready;
     }
   }
 
   dispose() {
     internalTimer?.cancel();
   }
-}
-
-enum TimerState {
-  ready,
-  running,
-  paused,
 }

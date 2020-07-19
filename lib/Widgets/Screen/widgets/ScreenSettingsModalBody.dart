@@ -46,96 +46,109 @@ class ScreenSettingsModalBody extends StatelessWidget {
     final appState = Provider.of<AppProvider>(context, listen: false);
     final state = Provider.of<ScreenStateProvider>(context, listen: false);
 
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: AppDimensions.padding * 4,
-        vertical: AppDimensions.padding * 2,
-      ),
+    return SafeArea(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(height: AppDimensions.padding),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                App.translate(ScreenWidgetMessages.smTitle),
-                style: TextStyles.heading1,
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppDimensions.padding * 4,
+                ),
+                child: Text(
+                  App.translate(ScreenWidgetMessages.smTitle),
+                  style: TextStyles.heading1,
+                ),
               ),
-              IconButton(
-                icon: Icon(Icons.close),
-                onPressed: () => this.runAnimation(
-                  begin: state.offset,
-                  end: state.baseOffset,
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppDimensions.padding,
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: () => this.runAnimation(
+                    begin: state.offset,
+                    end: state.baseOffset,
+                  ),
                 ),
               )
             ],
           ),
-          Container(
-            alignment: Alignment.topLeft,
-            margin: EdgeInsets.only(top: AppDimensions.padding),
-            child: GestureDetector(
-              onDoubleTap: () {},
-              onVerticalDragStart: (_) {},
-              onVerticalDragUpdate: (_) {},
-              child: SingleChildScrollView(
-                child: Material(
-                  color: Colors.transparent,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        App.translate(ScreenWidgetMessages.smSelectLanguage),
-                        style: TextStyles.heading3.copyWith(
-                          color: theme.primary,
+          Flexible(
+            child: SingleChildScrollView(
+              child: Container(
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.only(
+                  top: AppDimensions.padding,
+                  left: AppDimensions.padding * 4,
+                  right: AppDimensions.padding * 4,
+                ),
+                child: GestureDetector(
+                  onDoubleTap: () {},
+                  // onVerticalDragStart: (_) {},
+                  // onVerticalDragUpdate: (_) {},
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          App.translate(ScreenWidgetMessages.smSelectLanguage),
+                          style: TextStyles.heading3.copyWith(
+                            color: theme.primary,
+                          ),
                         ),
-                      ),
-                      Container(height: AppDimensions.padding),
-                      Text(
-                        "All the translatable messages are translated by an automated google translator script that's why you may see translation errors if you choose any language other than English And I won't improve translation since this is just an experimintal application also I work alone on this project. If you wish to improve translation do contact me, I'll mention your contribution in appllication and github repository.",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
+                        Container(height: AppDimensions.padding),
+                        Text(
+                          "All the translatable messages are translated by an automated google translator script that's why you may see translation errors if you choose any language other than English And I won't improve translation since this is just an experimintal application also I work alone on this project. If you wish to improve translation do contact me, I'll mention your contribution in appllication and github repository.",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                      Container(height: AppDimensions.padding),
-                      ...[
-                        null,
-                        ...AppProvider.locales,
-                      ].map(
-                        (locale) {
-                          final key = locale?.languageCode ?? 'def';
-                          return ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Container(
-                              // color: Colors.blue,
-                              width: double.infinity,
-                              margin: EdgeInsets.symmetric(
-                                vertical: AppDimensions.padding * 1,
-                              ),
-                              child: InkWell(
-                                onTap: () => appState.activeLocale = locale,
-                                splashColor: Colors.transparent,
-                                child: Padding(
-                                  padding: EdgeInsets.all(
-                                    AppDimensions.padding * 2.4,
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Text(map[key]["emoji"]),
-                                      Container(width: AppDimensions.padding),
-                                      Text(map[key]["label"]),
-                                      Text(" - "),
-                                      Text(App.translate(map[key]["trans"])),
-                                    ],
+                        Container(height: AppDimensions.padding),
+                        ...[
+                          null,
+                          ...AppProvider.locales,
+                        ].map(
+                          (locale) {
+                            final key = locale?.languageCode ?? 'def';
+                            return ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Container(
+                                // color: Colors.blue,
+                                width: double.infinity,
+                                margin: EdgeInsets.symmetric(
+                                  vertical: AppDimensions.padding * 1,
+                                ),
+                                child: InkWell(
+                                  onTap: () => appState.activeLocale = locale,
+                                  splashColor: Colors.transparent,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(
+                                      AppDimensions.padding * 2.4,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Text(map[key]["emoji"]),
+                                        Container(width: AppDimensions.padding),
+                                        Text(map[key]["label"]),
+                                        Text(" - "),
+                                        Text(App.translate(map[key]["trans"])),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          );
-                        },
-                      ).toList()
-                    ],
+                            );
+                          },
+                        ).toList()
+                      ],
+                    ),
                   ),
                 ),
               ),

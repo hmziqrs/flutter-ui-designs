@@ -125,7 +125,7 @@ class _ScreenSettingsModalState extends State<ScreenSettingsModal>
                   opacity: opacity,
                   child: Container(
                     color: Colors.white,
-                    height: UI.safeHeight,
+                    height: UI.height,
                     width: double.infinity,
                     child: ScreenSettingsModalBody(
                       runAnimation: this.runAnimation,

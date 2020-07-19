@@ -2,8 +2,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
-class ArrowPainter extends CustomPainter {
-  ArrowPainter({this.rotationPercent})
+class ETCHomeScreenArrowPainter extends CustomPainter {
+  ETCHomeScreenArrowPainter({this.rotationPercent})
       : arrowSize = AppDimensions.ratio * 10,
         arrowPaint = Paint() {
     arrowPaint.color = Colors.black;
@@ -34,8 +34,8 @@ class ArrowPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(ArrowPainter oldDelegate) => true;
+  bool shouldRepaint(ETCHomeScreenArrowPainter oldDelegate) => true;
 
   @override
-  bool shouldRebuildSemantics(ArrowPainter oldDelegate) => true;
+  bool shouldRebuildSemantics(ETCHomeScreenArrowPainter oldDelegate) => true;
 }
