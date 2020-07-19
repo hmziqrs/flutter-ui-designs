@@ -1,7 +1,7 @@
 import 'package:pigment/pigment.dart';
 
-import 'ASCItem.dart';
-export 'ASCItem.dart';
+import '../ models/ASCItem.dart';
+export '../ models/ASCItem.dart';
 
 final List<ASCItem> list = [
   ASCItem(
