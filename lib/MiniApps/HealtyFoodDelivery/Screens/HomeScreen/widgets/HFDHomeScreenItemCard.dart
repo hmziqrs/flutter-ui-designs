@@ -28,7 +28,136 @@ class _HFDHomeScreenItemCardState extends State<HFDHomeScreenItemCard>
         child: Stack(
           fit: StackFit.expand,
           children: <Widget>[
-            this.buildBase(),
+            Positioned(
+              top: 0,
+              bottom: 0,
+              left: AppDimensions.padding * 3,
+              right: Dimensions.itemDiscountSize * 0.4,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16.0),
+                child: this.buildInkWell(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(
+                      "hfdDetail",
+                      arguments: widget.item,
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(widget.item.image),
+                      ),
+                    ),
+                    child: Container(
+                      alignment: Alignment.bottomCenter,
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(
+                          Utils.rangeMap(animation.value, 0.0, 1.0, 0.3, 0.0),
+                        ),
+                      ),
+                      child: Container(
+                        height: 130,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.withOpacity(
+                            Utils.rangeMap(
+                                animation.value, 0.0, 1.0, 0.0, 0.20),
+                          ),
+                        ),
+                        child: ClipRRect(
+                          child: BackdropFilter(
+                            filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.all(
+                                    AppDimensions.padding * 3,
+                                  ).copyWith(
+                                    right: Dimensions.itemDiscountSize * 0.5,
+                                    bottom: 0,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        widget.item.name,
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.white.withOpacity(
+                                            0.88,
+                                          ),
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      Text(
+                                        widget.item.description,
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                          color: Colors.white.withOpacity(0.6),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Flexible(child: Container()),
+                                Container(
+                                  padding: EdgeInsets.only(
+                                    right: AppDimensions.padding * 3,
+                                    left: AppDimensions.padding * 3,
+                                    bottom: AppDimensions.padding * 2,
+                                  ),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Icon(
+                                        MaterialCommunityIcons.star,
+                                        color: theme.primary,
+                                        size: 18.0,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          top: 1.0,
+                                          left: AppDimensions.padding,
+                                        ),
+                                        child: Text(
+                                          widget.item.stars.toStringAsFixed(2),
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(child: Container()),
+                                      Icon(
+                                        MaterialCommunityIcons
+                                            .map_marker_outline,
+                                        color: Colors.white,
+                                        size: 16.0,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          left: AppDimensions.padding,
+                                        ),
+                                        child: Text(
+                                          "${widget.item.location.toStringAsFixed(2)} km",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
             Positioned(
               bottom: Dimensions.itemDiscountSize * 0.8,
               right: 0,
@@ -51,136 +180,6 @@ class _HFDHomeScreenItemCardState extends State<HFDHomeScreenItemCard>
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildBase() {
-    return Positioned(
-      top: 0,
-      bottom: 0,
-      left: AppDimensions.padding * 3,
-      right: Dimensions.itemDiscountSize * 0.4,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(16.0),
-        child: this.buildInkWell(
-          onTap: () {
-            Navigator.of(context).pushNamed(
-              "hfdDetail",
-              arguments: widget.item,
-            );
-          },
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(widget.item.image),
-              ),
-            ),
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(
-                  Utils.rangeMap(animation.value, 0.0, 1.0, 0.3, 0.0),
-                ),
-              ),
-              child: Container(
-                height: 130,
-                decoration: BoxDecoration(
-                  color: Colors.grey.withOpacity(
-                    Utils.rangeMap(animation.value, 0.0, 1.0, 0.0, 0.20),
-                  ),
-                ),
-                child: ClipRRect(
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.all(
-                            AppDimensions.padding * 3,
-                          ).copyWith(
-                            right: Dimensions.itemDiscountSize * 0.5,
-                            bottom: 0,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                widget.item.name,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white.withOpacity(
-                                    0.88,
-                                  ),
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              Text(
-                                widget.item.description,
-                                maxLines: 2,
-                                style: TextStyle(
-                                  color: Colors.white.withOpacity(0.6),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Flexible(child: Container()),
-                        Container(
-                          padding: EdgeInsets.only(
-                            right: AppDimensions.padding * 3,
-                            left: AppDimensions.padding * 3,
-                            bottom: AppDimensions.padding * 2,
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              Icon(
-                                MaterialCommunityIcons.star,
-                                color: theme.primary,
-                                size: 18.0,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  top: 1.0,
-                                  left: AppDimensions.padding,
-                                ),
-                                child: Text(
-                                  widget.item.stars.toStringAsFixed(2),
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              Flexible(child: Container()),
-                              Icon(
-                                MaterialCommunityIcons.map_marker_outline,
-                                color: Colors.white,
-                                size: 16.0,
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  left: AppDimensions.padding,
-                                ),
-                                child: Text(
-                                  "${widget.item.location.toStringAsFixed(2)} km",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
         ),
       ),
     );
