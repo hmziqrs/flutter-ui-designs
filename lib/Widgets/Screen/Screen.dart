@@ -43,6 +43,8 @@ class ScreenState extends State<Screen> with AnimationControllerMixin {
   bool mounted = false;
   String popUpTitle;
   String popUpMessage;
+  final GlobalKey<ScreenSettingsModalState> settingsModalKey =
+      GlobalKey<ScreenSettingsModalState>();
 
   @override
   void initState() {
@@ -158,7 +160,7 @@ class ScreenState extends State<Screen> with AnimationControllerMixin {
                   ),
                   ChangeNotifierProvider<ScreenStateProvider>(
                     create: (_) => ScreenStateProvider(),
-                    child: ScreenSettingsModal(),
+                    child: ScreenSettingsModal(this.settingsModalKey),
                   ),
                 ],
               ),

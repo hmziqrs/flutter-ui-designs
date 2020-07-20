@@ -1,23 +1,21 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_uis/configs/TextStyles.dart';
+import 'package:flutter_uis/Utils.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
-import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/TextStyles.dart';
 
 import 'package:flutter_uis/Widgets/Screen/Screen.dart';
-import 'package:flutter_uis/screens/Home/Widgets/HomeSettingsModal.dart';
-import 'package:flutter_uis/screens/Home/messages/keys.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import 'messages/keys.dart';
 import 'data.dart' as data;
 import 'Dimensions.dart';
 
-import 'Widgets/HomeBuildVersion.dart';
-import 'Widgets/HomeAlertModal.dart';
+import 'widgets/HomeBuildVersion.dart';
+import 'widgets/HomeAlertModal.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -30,6 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   bool desktopPopUpMounted = false;
   double desktopPopUpOpacity = 0;
+
+  final GlobalKey<ScreenState> screenKey = GlobalKey<ScreenState>();
 
   @override
   void initState() {
@@ -44,12 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void handlePath(String path) {
     if (path == "settings") {
-      showMaterialModalBottomSheet(
-        expand: false,
-        context: context,
-        backgroundColor: Colors.transparent,
-        builder: (_, __) => HomeSettingsModal(),
-      );
+      this.screenKey.currentState.settingsModalKey.currentState.openModal();
     } else {
       Navigator.of(context).pushNamed(
         path,
@@ -61,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Screen(
       Dimensions.init,
+      key: this.screenKey,
       scaffoldBackgroundColor: Colors.white,
       builder: (_) => SafeArea(
         child: Stack(

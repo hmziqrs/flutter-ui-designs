@@ -8,11 +8,13 @@ import 'package:provider/provider.dart';
 import 'ScreenSettingsModalBody.dart';
 
 class ScreenSettingsModal extends StatefulWidget {
+  ScreenSettingsModal(Key key) : super(key: key);
+
   @override
-  _ScreenSettingsModalState createState() => _ScreenSettingsModalState();
+  ScreenSettingsModalState createState() => ScreenSettingsModalState();
 }
 
-class _ScreenSettingsModalState extends State<ScreenSettingsModal>
+class ScreenSettingsModalState extends State<ScreenSettingsModal>
     with SingleTickerProviderStateMixin {
   AnimationController controller;
   Animation<double> animation;
@@ -42,6 +44,11 @@ class _ScreenSettingsModalState extends State<ScreenSettingsModal>
     this.animation = this.controller.drive(Tween(begin: begin, end: end));
     this.controller.reset();
     this.controller.forward();
+  }
+
+  void openModal() {
+    final state = Provider.of<ScreenStateProvider>(context, listen: false);
+    this.runAnimation(begin: state.offset, end: 0.0);
   }
 
   void onVerticalDragStart(
