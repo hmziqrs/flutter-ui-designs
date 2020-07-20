@@ -14,9 +14,12 @@ jobs:
           cd flutter
           git checkout 54c9441723
       - run: echo ::add-path::`pwd`"/flutter/bin"
+      # - run: flutter doctor
       - uses: actions/checkout@v2
         with:
           path: 'app'
+      - name: Install required build tools for linux
+        run: sudo apt-get update && sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev
       - run: |
           cd app
           flutter config --enable-linux-desktop
@@ -27,7 +30,7 @@ jobs:
       - name: Create linux Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'app/build/linux/linux-release.zip'
+          artifacts: 'app/build/linux/release/linux-release.zip'
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
 

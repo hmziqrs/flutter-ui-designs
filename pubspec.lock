@@ -29,6 +29,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.0"
+  bloc:
+    dependency: "direct main"
+    description:
+      name: bloc
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   carousel_slider:
     dependency: "direct main"
     description:
@@ -106,13 +113,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.0+3"
-  emojis:
-    dependency: "direct main"
-    description:
-      name: emojis
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.8.1"
   equatable:
     dependency: "direct main"
     description:
@@ -181,6 +181,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_bloc:
+    dependency: "direct main"
+    description:
+      name: flutter_bloc
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.0"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -311,7 +318,7 @@ packages:
     source: hosted
     version: "1.9.3"
   path:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: path
       url: "https://pub.dartlang.org"
@@ -373,6 +380,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.23.1"
   simple_animations:
     dependency: "direct main"
     description:
