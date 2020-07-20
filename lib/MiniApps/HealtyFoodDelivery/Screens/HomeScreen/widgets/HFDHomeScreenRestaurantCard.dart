@@ -87,7 +87,7 @@ class _HFDHomeScreenRestaurantCardState
                           0.0,
                           1.0,
                           AppDimensions.padding,
-                          Dimensions.restaurantContainerHeight * 0.2,
+                          AppDimensions.ratio * 22,
                         ),
                         child: Padding(
                           padding: EdgeInsets.symmetric(
@@ -109,8 +109,8 @@ class _HFDHomeScreenRestaurantCardState
                           this.animation.value,
                           0.0,
                           1.0,
-                          -Dimensions.restaurantContainerHeight * 0.20,
-                          Dimensions.restaurantContainerHeight * 0.04,
+                          -AppDimensions.ratio * 16,
+                          AppDimensions.ratio * 4,
                         ),
                         child: ControlledAnimation(
                           tween: Tween(begin: 0.0, end: 1.0),
@@ -136,7 +136,7 @@ class _HFDHomeScreenRestaurantCardState
                                           height: 1.26,
                                           fontWeight: FontWeight.w300,
                                           color: Colors.white.withOpacity(0.55),
-                                          fontSize: 8 + AppDimensions.ratio * 4,
+                                          fontSize: 6 + AppDimensions.ratio * 4,
                                         ),
                                       ),
                                     ),
