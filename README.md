@@ -40,7 +40,7 @@
 - Follow these step to use correct revision version
   - Run `cd \$FLUTTER_HOME` (or the path where your flutter is installed)
   - Run `git checkout master`
-  - Run `git checkout 4df8fdb7df`
+  - Run `git checkout 54c9441723`
 - To enable desktop & web builds run the relevant command
   - Run `flutter --enable-web`
   - Run `flutter --enable-macos-desktop`

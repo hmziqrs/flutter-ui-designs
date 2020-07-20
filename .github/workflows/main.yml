@@ -128,11 +128,11 @@ jobs:
           flutter config --enable-windows-desktop
           flutter pub get
           flutter build windows --release
-          cd build\windows\x64\Release
-          Compress-Archive -Path Runner -DestinationPath windows-release.zip
+          cd build\windows\runner
+          Compress-Archive -Path Release -DestinationPath windows-release.zip
       - name: Windows release build for github
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'app\build\windows\x64\Release\windows-release.zip'
+          artifacts: 'app\build\windows\runner\windows-release.zip'
           token: ${{ secrets.TOKEN }}
           allowUpdates: true

@@ -1,34 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_uis/AppLocalizations.dart';
 import 'package:provider/provider.dart';
-// import 'package:firebase/firebase.dart' as firebase;
 
 import './configs/Theme.dart' as theme;
 import 'package:flutter_uis/io/io.dart';
 
-import './screens/Home/Home.dart';
-import './screens/Download/Download.dart';
-import './screens/AboutApp/AboutApp.dart';
-import './screens/AboutDeveloper/AboutDeveloper.dart';
-import './screens/UIList/UIList.dart';
-import './screens/UIDetail/UIDetail.dart';
-import './screens/DesignerProfile/DesignerProfile.dart';
+import 'package:flutter_uis/AppLocalizations.dart';
+import 'Providers/AppProvider.dart';
 
-import './MiniApps/HealtyFoodDelivery/Screens/HomeScreen/HFDHomeScreen.dart';
-import './MiniApps/HealtyFoodDelivery/Screens/DetailScreen/HFDDetailScreen.dart';
+import 'screens/Home/Home.dart';
+import 'screens/Download/Download.dart';
+import 'screens/AboutApp/AboutApp.dart';
+import 'screens/AboutDeveloper/AboutDeveloper.dart';
+import 'screens/UIList/UIList.dart';
+import 'screens/UIDetail/UIDetail.dart';
+import 'screens/DesignerProfile/DesignerProfile.dart';
 
-import './MiniApps/HotAirBalloons/Screens/HomeScreen/HABHomeScreen.dart';
+import 'MiniApps/HealtyFoodDelivery/Screens/HomeScreen/HFDHomeScreen.dart';
+import 'MiniApps/HealtyFoodDelivery/Screens/DetailScreen/HFDDetailScreen.dart';
+
+import 'MiniApps/HotAirBalloons/Screens/HomeScreen/HABHomeScreen.dart';
 // import './MiniApps/HotAirBalloons/Screens/DetailScreen/HABDetailScreen.dart';
 
 import 'MiniApps/SkyView/Screens/HomeScreen/SKVHomeScreen.dart';
 import 'MiniApps/SkyView/Screens/DetailScreen/SKVDetailScreen.dart';
 
-import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/ASCHomeScreen.dart';
+import 'MiniApps/AsicsShoesConcept/Screens/HomeScreen/ASCHomeScreen.dart';
 
 import 'MiniApps/EggTimerConcept/Screens/HomeScreen/ETCHomeScreen.dart';
-
-import 'Providers/AppProvider.dart';
 
 bool isAlt = false;
 
