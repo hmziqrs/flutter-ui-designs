@@ -79,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       App.translate(
                         HomeScreenMessages.title,
                       ),
+                      key: Key("title"),
                       style: TextStyles.heading1,
                     ),
                     Text(
