@@ -54,11 +54,11 @@ dependencies:
   color: ^2.1.1
 
   # Highly experimental plugins
-  window_size:
-    git:
-      url: git://github.com/google/flutter-desktop-embedding.git
-      path: plugins/window_size
-      ref: 9e9b68b67c2a2c0b82eed2224f709aff2ccbab7c
+  # window_size:
+  #   git:
+  #     url: git://github.com/google/flutter-desktop-embedding.git
+  #     path: plugins/window_size
+  # ref: 9e9b68b67c2a2c0b82eed2224f709aff2ccbab7c
 
 dev_dependencies:
   glob: 1.2.0

@@ -98,6 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           (item) => Container(
                             width: double.infinity,
                             child: OutlineButton(
+                              key: Key(item["key"]),
                               textColor: theme.primary,
                               borderSide: BorderSide(
                                 width: 1.5,
@@ -146,9 +147,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               mount: this.webPopUpMounted,
               opacity: this.webPopUpOpacity,
+              onEnd: () => setState(() => (this.webPopUpMounted = false)),
               onPrimary: () => Navigator.of(context).pushNamed("download"),
               onSecondary: () => setState(() => (this.webPopUpOpacity = 0)),
-              onEnd: () => setState(() => (this.webPopUpMounted = false)),
             ),
             HomeAlertModal(
               title: App.translate(
