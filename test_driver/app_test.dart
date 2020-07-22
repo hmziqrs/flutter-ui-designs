@@ -3,30 +3,40 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'package:flutter_uis/screens/Home/TestKeys.dart';
 import 'package:test/test.dart';
 
+import 'screenshot.dart';
+import 'actions.dart';
+import 'utils.dart';
+
 void main() async {
   group('Counter App', () {
-    final titleTextFinder = find.byValueKey('title');
-
     FlutterDriver driver;
 
-    // Connect to the Flutter driver before running any tests.
     setUpAll(() async {
       driver = await FlutterDriver.connect();
+
+      final platform = await driver.requestData("platform");
+
+      Actions.driver = driver;
+      Screenshot.driver = driver;
+
+      Screenshot.platform = platform;
+      Utils.init(platform);
+
       await driver.clearTimeline();
     });
 
     // Close the connection to the driver after the tests have completed.
     tearDownAll(() async {
-      if (driver != null) {
-        driver.close();
-      }
+      driver?.close();
     });
 
-    test('starts at 0', () async {
-      // Use the `driver.getText` method to verify the counter starts at 0.
-      driver.runUnsynchronized(() async {
-        expect(await driver.getText(titleTextFinder), "Welcome");
-        await driver.tap(find.byValueKey(HomeScreenTestKeys.modalContinueBtn));
+    test('Home Screen', () async {
+      await driver.runUnsynchronized(() async {
+        if (Utils.isDesktop || Utils.isWeb) {
+          await Screenshot.screenshot("Home-Screen-Modal");
+          await Actions.tap(HomeScreenTestKeys.modalContinueBtn);
+        }
+        await Screenshot.screenshot("Home-Screen");
       });
     });
   });

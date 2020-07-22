@@ -1,11 +1,26 @@
 import 'package:flutter_driver/driver_extension.dart';
+import 'package:flutter_uis/io/io.dart';
 import 'package:flutter_uis/main.dart' as app;
 
 void main() {
-  // This line enables the extension.
-  enableFlutterDriverExtension();
+  enableFlutterDriverExtension(handler: (data) async {
+    if (data == "platform") {
+      if (Platform.isLinux) {
+        return "linux";
+      } else if (Platform.isAndroid) {
+        return "android";
+      } else if (Platform.isIOS) {
+        return "ios";
+      } else if (Platform.isWindows) {
+        return "windows";
+      } else if (Platform.isMacOS) {
+        return "macos";
+      } else {
+        return "web";
+      }
+    }
+    return "enableFlutterDriverExtension";
+  });
 
-  // Call the `main()` function of the app, or call `runApp` with
-  // any widget you are interested in testing.
   app.main();
 }

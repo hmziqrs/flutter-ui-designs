@@ -6,7 +6,6 @@ import './configs/Theme.dart' as theme;
 import 'package:flutter_uis/io/io.dart';
 
 import 'package:flutter_uis/AppLocalizations.dart';
-import 'Dummy.dart';
 import 'Providers/AppProvider.dart';
 
 import 'screens/Home/Home.dart';

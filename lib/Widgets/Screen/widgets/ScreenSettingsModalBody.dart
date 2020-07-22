@@ -25,7 +25,7 @@ final Map<String, Map<String, String>> map = {
     "emoji": Emojis.flagChina,
   },
   "ar": {
-    "label": "صينى",
+    "label": "عربى",
     "trans": ScreenWidgetMessages.smArabic,
     "emoji": Emojis.flagSaudiArabia,
   },
