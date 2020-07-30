@@ -34,9 +34,14 @@ void main() async {
       await driver.runUnsynchronized(() async {
         if (Utils.isDesktop || Utils.isWeb) {
           await Screenshot.screenshot("Home-Screen-Modal");
+
+          await Actions.delay(1000);
           await Actions.tap(HomeScreenTestKeys.modalContinueBtn);
+          await Actions.delay(1000);
         }
         await Screenshot.screenshot("Home-Screen");
+
+        await Actions.delay(1000);
       });
     });
   });
