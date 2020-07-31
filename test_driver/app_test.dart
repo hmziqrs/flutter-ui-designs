@@ -16,12 +16,13 @@ void main() async {
 
       final platform = await driver.requestData("platform");
 
+      Utils.driver = driver;
       Actions.driver = driver;
       Screenshot.driver = driver;
-
       Screenshot.platform = platform;
-      Utils.init(platform);
 
+      await Utils.init(platform);
+      await Actions.delay(1000);
       await driver.clearTimeline();
     });
 
