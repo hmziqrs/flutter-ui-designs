@@ -1,2 +1,12 @@
 # Flutter drivers
 flutter drive -t test_driver/app.dart -d windows
+
+flutter run -t .\lib\main.dart -d windows --device-vmservice-port 8999 --host-vmservice-port 8998
+
+# Windows Native Libraries
+.\test_driver\libs\cmdow.exe flutter_uis /MAX
+.\test_driver\libs\cmdow.exe 0x02608B4 /MAX
+.\test_driver\libs\cmdow.exe | findstr flutter
+
+call .\test_driver\libs\windowMode.bat -pid 7548 -mode maximized [CMD]
+cmd.exe /c "call .\test_driver\libs\windowMode.bat -pid 7548 -mode maximized" [PS]

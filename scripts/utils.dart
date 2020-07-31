@@ -23,3 +23,26 @@ dynamic mkDir(String path, {bool logs = false}) {
     throw e;
   }
 }
+
+// Doesn't work wasted loads of time
+void setEnv(String key, String value) {
+  if (Platform.isWindows) {
+    final result = Process.runSync(
+      "SET",
+      [key, "=", value, "&", "echo", "%$key%"],
+      // "\$env:$key=\"$value\"",
+      // [";", "\$env:$key"],
+      runInShell: true,
+    );
+    final resulta = Process.runSync(
+      "\$env:$key",
+      [],
+      runInShell: true,
+    );
+    print(result.stdout);
+    print("ERROR");
+    print(result.stderr);
+  } else {
+    Process.runSync("export", ["$key=$value"]);
+  }
+}
