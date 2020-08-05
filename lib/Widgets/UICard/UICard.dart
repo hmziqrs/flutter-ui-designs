@@ -139,6 +139,7 @@ class _UICardState extends State<UICard> with AnimationControllerMixin {
               right: this.widget.padding,
               left: this.widget.padding,
               child: InkWell(
+                key: Key(this.widget.item.testKey),
                 hoverColor: Colors.transparent,
                 focusColor: Colors.transparent,
                 highlightColor: Colors.transparent,

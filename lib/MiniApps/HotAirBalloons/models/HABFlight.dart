@@ -4,6 +4,7 @@ class HABFlight {
   HABFlight({
     this.id,
     this.name,
+    this.testKey,
     this.people,
     this.basketSize,
     this.shortDesc,
@@ -18,6 +19,7 @@ class HABFlight {
 
   final int id;
   final String name;
+  final String testKey;
   final String people;
   final String basketSize;
   final String shortDesc;

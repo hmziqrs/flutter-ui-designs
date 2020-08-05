@@ -12,6 +12,7 @@ import 'package:flutter_uis/configs/TextStyles.dart';
 import 'package:flutter_uis/configs/Theme.dart' as theme;
 
 import '../messages/keys.dart';
+import '../TestKeys.dart';
 
 final Map<String, Map<String, String>> map = {
   "en": {
@@ -69,6 +70,7 @@ class ScreenSettingsModalBody extends StatelessWidget {
                   horizontal: AppDimensions.padding,
                 ),
                 child: IconButton(
+                  key: Key(ScreenWidgetTestKeys.close),
                   icon: Icon(Icons.close),
                   onPressed: () => this.runAnimation(
                     begin: state.offset,

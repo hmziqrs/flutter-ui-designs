@@ -7,6 +7,8 @@ import '../../models/HFDRestaurant.dart';
 import '../../models/HFDFoodItem.dart';
 import '../../models/HFDCategory.dart';
 
+import 'TestKeys.dart';
+
 export '../../models/HFDRestaurant.dart';
 export '../../models/HFDFoodItem.dart';
 export '../../models/HFDCategory.dart';
@@ -33,6 +35,10 @@ final restaurants = [
         id: entry.key,
         name: entry.value,
         image: "assets/ma-hfd/restaurant-${entry.key + 1}.jpg",
+        testKey: HFDHomeScreenTestKeys.restaurant1.replaceFirst(
+          "restaurant1",
+          "restaurant${entry.key + 1}",
+        ),
       ),
     )
     .toList();
@@ -69,6 +75,10 @@ final List<HFDFoodItem> items = List.generate(
     return new HFDFoodItem(
       id: index,
       name: "Healthy Food",
+      testKey: HFDHomeScreenTestKeys.foodItem1.replaceFirst(
+        "Item1",
+        "Item${index + 1}",
+      ),
       description: "$_description $_description $_description $_description",
       stars: (r.nextInt(5) + r.nextDouble()),
       location: (r.nextInt(32) + r.nextDouble()),

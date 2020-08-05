@@ -3,6 +3,7 @@ import 'package:simple_animations/simple_animations.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
+import '../TestKeys.dart';
 import '../data.dart' as data;
 
 import 'HFDHomeScreenRestaurantCard.dart';
@@ -46,6 +47,7 @@ class _HFDHomeScreenRestaurantSliderState
         controller: this.pageController,
         scrollDirection: Axis.horizontal,
         itemCount: data.restaurants.length,
+        key: Key(HFDHomeScreenTestKeys.restaurantScroll),
         itemBuilder: (ctx, index) {
           final restaurant = data.restaurants[index];
           return HFDHomeScreenRestaurantCard(restaurant);

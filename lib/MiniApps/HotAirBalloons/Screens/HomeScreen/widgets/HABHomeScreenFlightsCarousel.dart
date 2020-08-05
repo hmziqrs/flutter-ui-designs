@@ -54,6 +54,7 @@ class _HABHomeScreenFlightsCarouselState
                   return MapEntry(
                     index,
                     GestureDetector(
+                      key: Key(item.testKey),
                       onTap: () => this.setActiveIndex(index),
                       child: Container(
                         width: Dimensions.flightCardWidth,

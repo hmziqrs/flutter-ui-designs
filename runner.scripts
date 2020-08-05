@@ -1,5 +1,6 @@
 # Flutter drivers
 flutter drive -t test_driver/app.dart -d windows
+flutter drive -t test_driver/app.dart -d windows --dart-define="PLATFORM=windows"
 
 flutter run -t .\lib\main.dart -d windows --device-vmservice-port 8999 --host-vmservice-port 8998
 

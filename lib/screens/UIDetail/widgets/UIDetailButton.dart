@@ -10,12 +10,13 @@ import '../Dimensions.dart';
 class UIDetailButton extends StatelessWidget {
   UIDetailButton({
     @required this.callback,
-    // @required this.callback,
+    @required this.testKey,
     @required this.text,
   });
 
-  final VoidCallback callback;
   final String text;
+  final String testKey;
+  final VoidCallback callback;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,7 @@ class UIDetailButton extends StatelessWidget {
       maxWidth: 200,
       onPressed: callback,
       color: theme.primary,
+      testKey: this.testKey,
       width: Dimensions.buttonWidth,
       child: Text(
         text,

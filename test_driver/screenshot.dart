@@ -7,6 +7,7 @@ abstract class Screenshot {
   static FlutterDriver driver;
 
   static Future<void> screenshot(String label) async {
+    await Future.delayed(Duration(seconds: 1));
     switch (platform) {
       case "linux":
         await screenshotLinux(label);
@@ -16,6 +17,7 @@ abstract class Screenshot {
         break;
       default:
     }
+    await Future.delayed(Duration(seconds: 1));
   }
 
   static Future<void> screenshotLinux(String label) async {

@@ -36,6 +36,7 @@ class _HFDHomeScreenItemCardState extends State<HFDHomeScreenItemCard>
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16.0),
                 child: this.buildInkWell(
+                  key: Key(this.widget.item.testKey),
                   onTap: () {
                     Navigator.of(context).pushNamed(
                       "hfdDetail",

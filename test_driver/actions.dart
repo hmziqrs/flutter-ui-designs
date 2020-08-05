@@ -1,6 +1,6 @@
 import 'package:flutter_driver/flutter_driver.dart';
 
-abstract class Actions {
+abstract class TestActions {
   static FlutterDriver driver;
 
   static Future<void> tap(String key) async {

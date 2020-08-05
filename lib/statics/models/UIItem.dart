@@ -7,6 +7,7 @@ class UIItem {
   String miniApp;
   String link;
   String thumbnail;
+  String testKey;
   bool tabletSupport;
   bool webSupport;
   bool landscapeSupport;
@@ -21,6 +22,7 @@ class UIItem {
     this.miniApp,
     this.link,
     this.thumbnail,
+    this.testKey,
     this.landscapeSupport = false,
     this.tabletSupport = false,
     this.webSupport = false,

@@ -6,6 +6,7 @@ import 'package:flutter_uis/UI.dart';
 import 'package:flutter_uis/Widgets/BackButton4Stack/BackButton4Stack.dart';
 import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 
+import 'TestKeys.dart';
 import 'widgets/HABDetailScreenFlightHeader.dart';
 import 'widgets/HABDetailScreenFlightView.dart';
 import '../../configs/theme.dart' as theme;
@@ -154,6 +155,7 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
                 itemCount: data.flights.length,
                 scrollDirection: Axis.horizontal,
                 onPageChanged: this.setActivePage,
+                key: Key(HABDetailScreenTestKeys.rootPageView),
                 itemBuilder: (context, index) {
                   final flight = data.flights[index];
                   return HABDetailScreenFlightView(flight, fontStyle);

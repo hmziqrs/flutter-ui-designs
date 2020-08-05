@@ -65,8 +65,10 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
     Color highlightColor,
     Color splashColor,
     bool isButton = false,
+    Key key,
   }) {
     return InkWell(
+      key: key,
       child: child,
       onDoubleTap: onDoubleTap,
       onLongPress: onLongPress,
