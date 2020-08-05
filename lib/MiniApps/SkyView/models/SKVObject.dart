@@ -4,6 +4,7 @@ class SKVObject {
     this.nickname,
     this.positionInSystem,
     this.image, {
+    this.testKey,
     this.distanceInKm,
     this.distanceFromSun,
     this.lightTimeFromSun,
@@ -14,6 +15,7 @@ class SKVObject {
   String nickname;
   String positionInSystem;
   String image;
+  String testKey;
   String distanceInKm;
   String distanceFromSun;
   String lightTimeFromSun;

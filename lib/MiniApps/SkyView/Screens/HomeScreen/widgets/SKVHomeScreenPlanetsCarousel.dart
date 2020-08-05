@@ -6,8 +6,10 @@ import 'package:flutter_uis/Utils.dart';
 
 import '../../../configs/theme.dart' as theme;
 import '../../../data/data.dart' as data;
-import 'SKVHomeScreenStarField.dart';
 import '../Dimensions.dart';
+import '../TestKeys.dart';
+
+import 'SKVHomeScreenStarField.dart';
 
 class SKVHomeScreenPlanetsCarousel extends StatefulWidget {
   final double scrollOffset;
@@ -47,6 +49,7 @@ class _SKVHomeScreenPlanetsCarouselState
       child: NotificationListener<ScrollNotification>(
         onNotification: this.onScrollNotification,
         child: ListView.builder(
+          key: Key(SKVHomeScreenTestKeys.planetsScroll),
           padding: Utils.safePaddingUnit(context, 'horizontal').add(
             EdgeInsets.symmetric(horizontal: AppDimensions.padding * 3),
           ),
@@ -55,6 +58,7 @@ class _SKVHomeScreenPlanetsCarouselState
           itemBuilder: (BuildContext context, int index) {
             final item = data.objectList[index];
             return GestureDetector(
+              key: Key(item.testKey),
               onTap: () => this.onTap(index),
               child: Container(
                 margin: EdgeInsets.only(right: AppDimensions.padding * 2),

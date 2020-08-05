@@ -11,6 +11,7 @@ import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 import '../../configs/theme.dart' as theme;
 import '../../data/data.dart' as data;
 import 'Dimensions.dart';
+import 'TestKeys.dart';
 
 import 'widgets/SKVDetailScreenSpaceBackground.dart';
 import 'widgets/SKVDetailScreenTextContent.dart';
@@ -51,13 +52,15 @@ class _SKVDetailScreenState extends State<SKVDetailScreen>
 
       if (starsWidget != null) {
         final starsOffset = starsWidget.size.width - screenWidth;
-        this.starsController.jumpTo(Utils.rangeMap(
-              offset,
-              0,
-              totalScroll,
-              0,
-              starsOffset,
-            ));
+        this.starsController.jumpTo(
+              Utils.rangeMap(
+                offset,
+                0,
+                totalScroll,
+                0,
+                starsOffset,
+              ),
+            );
         setState(() {});
       }
     });
@@ -136,6 +139,7 @@ class _SKVDetailScreenState extends State<SKVDetailScreen>
               ),
               Positioned.fill(
                 child: PageView.builder(
+                  key: Key(SKVDetailScreenTestKeys.rootScroll),
                   controller: this.pageController,
                   itemCount: data.objectList.length,
                   scrollDirection: Axis.horizontal,
