@@ -6,13 +6,15 @@ import 'package:flutter_uis/Utils.dart';
 
 import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 
-import 'widgets/SKVHomeScreenPlanetsCarousel.dart';
-import 'widgets/SKVHomeScreenSearchBar.dart';
 import '../../configs/theme.dart' as theme;
-import 'widgets/SKVHomeScreenStory.dart';
 import '../../data/data.dart' as data;
 import 'messages/keys.dart';
 import 'Dimensions.dart';
+import 'TestKeys.dart';
+
+import 'widgets/SKVHomeScreenPlanetsCarousel.dart';
+import 'widgets/SKVHomeScreenSearchBar.dart';
+import 'widgets/SKVHomeScreenStory.dart';
 
 class SKVHomeScreen extends StatefulWidget {
   SKVHomeScreen({Key key}) : super(key: key);
@@ -25,7 +27,7 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
   TabController tabController;
   double scrollOffset = 0.0;
   double previousOffset = 0.0;
-  Key pageScrollKey = GlobalKey(debugLabel: "pageScroll");
+  // Key pageScrollKey = GlobalKey(debugLabel: "pageScroll");
 
   final List<String> tabs = [
     SKVHomeScreenMessages.planets,
@@ -86,7 +88,7 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
           child: NotificationListener<ScrollNotification>(
             onNotification: this.onScrollNotification,
             child: SingleChildScrollView(
-              key: this.pageScrollKey,
+              key: Key(SKVHomeScreenTestKeys.rootScroll),
               physics: ClampingScrollPhysics(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
