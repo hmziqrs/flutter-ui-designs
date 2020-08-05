@@ -1,6 +1,8 @@
 import '../models/UIItem.dart';
 export '../models/UIItem.dart';
 
+import 'uiListTestKeys.dart';
+
 List<UIItem> uilist = [
   new UIItem(
     id: 1,
@@ -9,6 +11,7 @@ List<UIItem> uilist = [
     // "designer": "designer",
     source: "dribbble",
     miniApp: "hfdHome",
+    testKey: UIListDataTestKeys.hfd,
     link: "https://dribbble.com/shots/6790111-Healthy-Food-Delivery",
     thumbnail: "assets/thumbnails/healthy_food_delivery.jpg",
     tabletSupport: true,
@@ -23,6 +26,7 @@ List<UIItem> uilist = [
     // "designer": "designer",
     source: "dribbble",
     miniApp: "habHome",
+    testKey: UIListDataTestKeys.hab,
     link: "https://designkes.live/designs/mobile/hot-air-balloon/",
     thumbnail: "assets/thumbnails/hot_air_balloon.jpg",
     tabletSupport: true,
@@ -35,6 +39,7 @@ List<UIItem> uilist = [
     // "designer": "designer",
     source: "dribbble",
     miniApp: "skvHome",
+    testKey: UIListDataTestKeys.skv,
     link: "https://designkes.live/designs/mobile/skyview-mars/",
     thumbnail: "assets/thumbnails/sky_view.jpg",
     tabletSupport: true,
@@ -49,6 +54,7 @@ List<UIItem> uilist = [
     // "designer": "designer",
     source: "youtube",
     miniApp: "ascHome",
+    testKey: UIListDataTestKeys.asc,
     link: "https://www.youtube.com/watch?v=PYLHeRTNLWE",
     thumbnail: "assets/thumbnails/asics_shoes_concept.jpg",
     tabletSupport: true,
@@ -64,6 +70,7 @@ List<UIItem> uilist = [
         "This UI was pirmarly built by fluttery youtube channel. But for some reasons all the resources published by him was removed from every online platform. Someone saved his video tutorials on google drive so I found those videos and build this one master piece with my code style",
     source: "dribbble",
     miniApp: "etcHome",
+    testKey: UIListDataTestKeys.etc,
     link:
         "https://dribbble.com/shots/2764686-Original-timer-app-UX-interaction",
     thumbnail: "assets/thumbnails/egg_timer_concept.jpg",

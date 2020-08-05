@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/MiniApps/HotAirBalloons/Screens/DetailScreen/TestKeys.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -33,6 +34,13 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
     HABDetailScreenMessages.tabPreFlightInfo,
     HABDetailScreenMessages.tabInFlightInfo,
     HABDetailScreenMessages.tabPostFlightInfo,
+  ];
+
+  final tabsTestKeys = [
+    HABDetailScreenTestKeys.tabFlightDetails,
+    HABDetailScreenTestKeys.tabPreFlightInfo,
+    HABDetailScreenTestKeys.tabInFlightInfo,
+    HABDetailScreenTestKeys.tabPostFlightInfo,
   ];
 
   @override
@@ -122,6 +130,7 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
                   controller: this.tabController,
                   indicatorColor: Colors.transparent,
                   unselectedLabelColor: Colors.black,
+                  unselectedLabelStyle: tabBarFontStyle,
                   tabs: this
                       .tabs
                       .asMap()
@@ -129,6 +138,7 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
                         (index, tab) => MapEntry(
                           index,
                           GestureDetector(
+                            key: Key(this.tabsTestKeys[index]),
                             child: Container(
                               child: Text(App.translate(tab)),
                               padding: EdgeInsets.only(bottom: 3),

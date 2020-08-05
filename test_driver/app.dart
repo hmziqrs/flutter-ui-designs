@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_driver/driver_extension.dart';
 import 'package:flutter_uis/io/io.dart';
 import 'package:flutter_uis/main.dart' as app;
@@ -5,8 +6,18 @@ import 'package:flutter_uis/main.dart' as app;
 import 'utils.dart';
 
 void main(List<String> args) async {
+  final navigationObserver = NavigatorObserver();
+
   enableFlutterDriverExtension(
     handler: (data) async {
+      if (data == "nav_go_back") {
+        navigationObserver.navigator.pop();
+        return "";
+      }
+      if (data == "dimensions") {
+        final size = MediaQuery.of(navigationObserver.navigator.context).size;
+        return "${size.width},${size.height}";
+      }
       if (data == "platform") {
         if (Platform.isLinux) {
           return "linux";
@@ -26,7 +37,7 @@ void main(List<String> args) async {
     },
   );
 
-  app.main();
+  app.mainTest(navigationObserver);
 
   // When I maximize windows after test driver connects with the app.
   // It wasn't working my actions were failing.
@@ -39,5 +50,5 @@ void main(List<String> args) async {
     Utils.initMaxWindowsCmdow();
   }
   // This is for safety so app is rendered properly before test driver connects with the app instance
-  Future.delayed(Duration(seconds: 10));
+  Future.delayed(Duration(seconds: 8));
 }

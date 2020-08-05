@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/MiniApps/HealtyFoodDelivery/Screens/HomeScreen/TestKeys.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -89,6 +90,7 @@ class _HFDHomeScreenState extends State<HFDHomeScreen> {
         builder: (_) => SafeArea(
           top: false,
           child: ListView(
+            key: Key(HFDHomeScreenTestKeys.rootScroll),
             children: <Widget>[
               // Header
               Padding(
@@ -121,11 +123,15 @@ class _HFDHomeScreenState extends State<HFDHomeScreen> {
                 // height: 340,
                 height: Dimensions.itemBaseHeight,
                 child: ListView.builder(
+                  key: Key(HFDHomeScreenTestKeys.foodItemsScroll),
                   itemCount: data.items.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (ctx, index) {
                     final item = data.items[index];
-                    return HFDHomeScreenItemCard(item);
+
+                    return HFDHomeScreenItemCard(
+                      item,
+                    );
                   },
                 ),
               ),

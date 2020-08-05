@@ -28,6 +28,7 @@ class _HFDHomeScreenRestaurantCardState
       padding: EdgeInsets.all(AppDimensions.padding * 2),
       child: Align(
         child: this.buildInkWell(
+          key: Key(this.widget.resrutant.testKey),
           child: Container(
             width: Dimensions.restaurantCardBaseWidth,
             decoration: BoxDecoration(

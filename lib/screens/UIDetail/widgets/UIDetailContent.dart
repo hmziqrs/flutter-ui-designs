@@ -11,6 +11,7 @@ import 'UIDetailSupport.dart';
 import 'UIDetailMoreUIs.dart';
 import 'UIDetailButton.dart';
 import '../Dimensions.dart';
+import '../TestKeys.dart';
 
 class UIDetailContent extends StatelessWidget {
   UIDetailContent({
@@ -86,12 +87,14 @@ class UIDetailContent extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UIDetailButton(
+                  testKey: UIDetailScreenTestKeys.openApp,
                   text: App.translate(UIDetailScreenMessages.openApp),
                   callback: () => Navigator.of(context).pushNamed(
                     uiItem.miniApp,
                   ),
                 ),
                 UIDetailButton(
+                  testKey: UIDetailScreenTestKeys.viewSource,
                   text: App.translate(UIDetailScreenMessages.viewSource),
                   callback: () async {
                     bool link = await Utils.launchUrl(uiItem.link);
@@ -107,6 +110,7 @@ class UIDetailContent extends StatelessWidget {
             UIDetailMoreUIs(uiItem: uiItem),
             uiItem.designer != "anonymous"
                 ? UIDetailButton(
+                    testKey: UIDetailScreenTestKeys.viewDesigner,
                     text:
                         "${App.translate(UIDetailScreenMessages.contact)} ${uiItem.designer}",
                     callback: () => Navigator.of(context).pushNamed(

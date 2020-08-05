@@ -8,6 +8,7 @@ class BorderButton extends StatelessWidget {
     this.child,
     this.color,
     this.onPressed,
+    this.testKey,
     this.width = double.infinity,
     this.maxWidth = double.infinity,
   }) : this.margin = margin ?? EdgeInsets.all(AppDimensions.padding);
@@ -16,6 +17,7 @@ class BorderButton extends StatelessWidget {
   final double width;
   final Widget child;
   final double maxWidth;
+  final String testKey;
   final Function onPressed;
   final EdgeInsetsGeometry margin;
 
@@ -27,10 +29,11 @@ class BorderButton extends StatelessWidget {
       constraints: BoxConstraints(maxWidth: this.maxWidth),
       child: RaisedButton(
         elevation: 0.0,
-        hoverElevation: 0.0,
-        highlightElevation: 0.0,
         color: Colors.white,
+        hoverElevation: 0.0,
         textColor: this.color,
+        key: Key(this.testKey),
+        highlightElevation: 0.0,
         disabledColor: Colors.transparent,
         padding: EdgeInsets.symmetric(
           vertical: 12.0,
