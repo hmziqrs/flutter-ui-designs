@@ -1,10 +1,12 @@
 // Imports the Flutter Driver API.
 import 'package:flutter_driver/flutter_driver.dart';
+import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/TestKeys.dart';
 import 'package:flutter_uis/MiniApps/HotAirBalloons/Screens/DetailScreen/TestKeys.dart';
 import 'package:flutter_uis/MiniApps/HotAirBalloons/data/TestKeys.dart';
 import 'package:flutter_uis/MiniApps/SkyView/Screens/DetailScreen/TestKeys.dart';
 import 'package:flutter_uis/MiniApps/SkyView/Screens/HomeScreen/TestKeys.dart';
 import 'package:flutter_uis/MiniApps/SkyView/data/TestKeys.dart';
+import 'package:flutter_uis/screens/UIList/TestKeys.dart';
 import 'package:test/test.dart';
 
 import 'package:flutter_uis/screens/Home/TestKeys.dart';
@@ -213,8 +215,37 @@ void main() async {
             Duration(milliseconds: 400),
           );
           await Screenshot.screenshot("SKV-Detail-Screen-3");
-
+          await driver.requestData("nav_go_back");
+          await driver.requestData("nav_go_back");
+          await driver.requestData("nav_go_back");
           print("Mini App SKV Complete");
+
+          // Mini App ASC Home Screen
+          await TestActions.scrollUntil(
+            scroller: UIListScreenTestKeys.rootScroll,
+            item: UIListDataTestKeys.asc,
+            y: -160,
+          );
+          await TestActions.tap(UIListDataTestKeys.asc);
+          await TestActions.tap(UIDetailScreenTestKeys.openApp);
+          await TestActions.tap(ASCHomeScreenTestKeys.getColor(0, 3));
+          await Screenshot.screenshot("ASC-Home-Screen-1");
+          await TestActions.scroll(
+            scroller: ASCHomeScreenTestKeys.rootScroll,
+            x: -width,
+          );
+          await TestActions.delay(8000);
+          await TestActions.tap(ASCHomeScreenTestKeys.getColor(1, 1));
+          await TestActions.tap(ASCHomeScreenTestKeys.getSize(1, 2));
+          await Screenshot.screenshot("ASC-Home-Screen-2");
+          await TestActions.scroll(
+            scroller: ASCHomeScreenTestKeys.rootScroll,
+            x: -width,
+          );
+          await TestActions.tap(ASCHomeScreenTestKeys.getColor(2, 4));
+          await TestActions.tap(ASCHomeScreenTestKeys.getSize(2, 2));
+          await Screenshot.screenshot("ASC-Home-Screen-3");
+          print("Mini App ASC Complete");
 
           await TestActions.delay(2000);
         });

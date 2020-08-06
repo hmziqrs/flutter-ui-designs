@@ -9,6 +9,7 @@ import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 import 'package:flutter_uis/Widgets/UICard/UICard.dart';
 
 import 'Dimensions.dart';
+import 'TestKeys.dart';
 
 class UIListScreen extends StatefulWidget {
   @override
@@ -78,6 +79,7 @@ class _UIListScreenState extends State<UIListScreen>
           child: NotificationListener<ScrollNotification>(
             onNotification: this.onScrollNotification,
             child: CustomScrollView(
+              key: Key(UIListScreenTestKeys.rootScroll),
               physics: BouncingScrollPhysics(),
               slivers: <Widget>[
                 Utils.safePadding(context, 'top', true),
@@ -108,19 +110,24 @@ class _UIListScreenState extends State<UIListScreen>
                 SliverPadding(
                   padding: EdgeInsets.all(AppDimensions.padding),
                   sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate((ctx, index) {
-                      return Row(
-                        children: chunked[index]
-                            .map((ui) => UICard(
+                    delegate: SliverChildBuilderDelegate(
+                      (ctx, index) {
+                        return Row(
+                          children: chunked[index]
+                              .map(
+                                (ui) => UICard(
                                   ui,
                                   prespectiveScale: this.offset,
                                   cardWidth: Dimensions.cardWidth,
                                   cardHeight: Dimensions.cardHeight,
                                   padding: AppDimensions.padding * 2,
-                                ))
-                            .toList(),
-                      );
-                    }, childCount: chunked.length),
+                                ),
+                              )
+                              .toList(),
+                        );
+                      },
+                      childCount: chunked.length,
+                    ),
                   ),
                 ),
                 SliverPadding(
