@@ -8,17 +8,20 @@ import 'package:flutter_uis/Utils.dart';
 import '../../../ models/ASCItem.dart';
 import '../messages/keys.dart';
 import '../Dimensions.dart';
+import '../TestKeys.dart';
 
 class ASCHomeScreenContentColorFilters extends StatelessWidget {
   ASCHomeScreenContentColorFilters({
-    @required this.uiParallax,
-    @required this.activeColor,
     @required this.item,
-    @required this.activeColorIndex,
+    @required this.uiParallax,
+    @required this.activePage,
+    @required this.activeColor,
     @required this.changeColor,
+    @required this.activeColorIndex,
   });
 
   final ASCItem item;
+  final int activePage;
   final double uiParallax;
   final Color activeColor;
   final int activeColorIndex;
@@ -48,8 +51,16 @@ class ASCHomeScreenContentColorFilters extends StatelessWidget {
                 (color) {
                   final index = this.item.colors.indexOf(color);
                   final offset = Dimensions.colorRadius / 2;
+                  // final key = ASCHomeScreenTestKeys.color +
+                  //     "${this.activePage}-${index + 1}";
 
                   return GestureDetector(
+                    key: Key(
+                      ASCHomeScreenTestKeys.getColor(
+                        this.activePage,
+                        index + 1,
+                      ),
+                    ),
                     onTap: () => this.changeColor(color, index),
                     child: ControlledAnimation(
                       tween: Tween(begin: 0.0, end: 1.0),

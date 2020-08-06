@@ -15,12 +15,14 @@ import '../messages/keys.dart';
 class ASCHomeScreenContent extends StatefulWidget {
   ASCHomeScreenContent({
     this.item,
+    this.activePage,
     this.uiParallax,
     this.changeColor,
     this.activeColor,
     this.activeColorIndex,
   });
 
+  final int activePage;
   final double uiParallax;
   final data.ASCItem item;
   final Color activeColor;
@@ -106,6 +108,7 @@ class _ASCHomeScreenContentState extends State<ASCHomeScreenContent> {
             sizes: this.sizes,
             setSize: this.setSize,
             activeSize: this.activeSize,
+            activePage: widget.activePage,
             uiParallax: widget.uiParallax,
             activeColor: widget.activeColor,
           ),
@@ -115,6 +118,7 @@ class _ASCHomeScreenContentState extends State<ASCHomeScreenContent> {
             children: <Widget>[
               ASCHomeScreenContentColorFilters(
                 item: widget.item,
+                activePage: widget.activePage,
                 changeColor: widget.changeColor,
                 uiParallax: widget.uiParallax,
                 activeColor: widget.activeColor,

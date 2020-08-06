@@ -5,12 +5,14 @@ import 'package:flutter_uis/UI.dart';
 
 import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 import 'package:flutter_uis/Mixins/HoverWidget.dart';
-import 'widgets/ASCHomeScreenContent.dart';
 
-import 'widgets/ASCHomeScreenHeader.dart';
-import 'widgets/ASCHomeScreenShoe.dart';
 import '../../data/data.dart' as data;
 import 'Dimensions.dart';
+import 'TestKeys.dart';
+
+import 'widgets/ASCHomeScreenContent.dart';
+import 'widgets/ASCHomeScreenHeader.dart';
+import 'widgets/ASCHomeScreenShoe.dart';
 
 class ASCHomeScreen extends StatefulWidget {
   @override
@@ -111,6 +113,7 @@ class _ASCHomeScreenState extends State<ASCHomeScreen>
             builder: (_) => PageView.builder(
               physics: ClampingScrollPhysics(),
               controller: this.pageController,
+              key: Key(ASCHomeScreenTestKeys.rootScroll),
               onPageChanged: (index) => setState(() {
                 this.activePage = index;
                 final color = data.list[index].colors[0];
@@ -154,6 +157,7 @@ class _ASCHomeScreenState extends State<ASCHomeScreen>
                             ASCHomeScreenContent(
                               item: item,
                               uiParallax: uiParallax,
+                              activePage: this.activePage,
                               changeColor: this.changeColor,
                               activeColor: this.activeColor.value,
                               activeColorIndex: this.activeColorIndex,
