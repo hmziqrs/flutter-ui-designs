@@ -36,6 +36,15 @@ abstract class TestActions {
     );
   }
 
+  static Future<void> goBack([int times = 1]) async {
+    int count = 0;
+    while (count < times) {
+      print("GOBACK $count");
+      await driver.requestData("nav_go_back");
+      count++;
+    }
+  }
+
   static Future<void> delay([int milliseconds = 1000]) async {
     await Future.delayed(Duration(milliseconds: milliseconds));
   }
