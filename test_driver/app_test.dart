@@ -80,21 +80,21 @@ void main() async {
           await TestActions.delay(1000);
           await TestActions.tap(HomeScreenTestKeys.downloadBtn);
           await Screenshot.screenshot("Download-Screen");
-          await driver.requestData("nav_go_back");
+          await TestActions.goBack();
           print("Download Screen Complete");
 
           // About Developer Screen
           await TestActions.delay(1000);
           await TestActions.tap(HomeScreenTestKeys.aboutDeveloperBtn);
           await Screenshot.screenshot("AboutDeveloper-Screen");
-          await driver.requestData("nav_go_back");
+          await TestActions.goBack();
           print("About Developer Complete");
 
           // About App Screen
           await TestActions.delay(1000);
           await TestActions.tap(HomeScreenTestKeys.aboutBtn);
           await Screenshot.screenshot("AboutApp-Screen");
-          await driver.requestData("nav_go_back");
+          await TestActions.goBack();
           print("About App Complete");
 
           // Explore UIs Screen
@@ -132,14 +132,13 @@ void main() async {
           // Mini App HFD Detail Screen
           await TestActions.tap(HFDHomeScreenTestKeys.foodItem9);
           await Screenshot.screenshot("HFD-Detail-Screen");
-          await driver.requestData("nav_go_back");
-          await driver.requestData("nav_go_back");
-          await driver.requestData("nav_go_back");
+          await TestActions.goBack(3);
           print("Mini App HFD Complete");
 
           // Mini App HAB Home Screen
           await TestActions.tap(UIListDataTestKeys.hab);
           await TestActions.tap(UIDetailScreenTestKeys.openApp);
+          await TestActions.delay();
           await Screenshot.screenshot("HAB-Home-Screen");
 
           // Mini App HAB Detail Screen
@@ -165,10 +164,9 @@ void main() async {
           TestActions.tap(HABDetailScreenTestKeys.tabPostFlightInfo);
           await Screenshot.screenshot("HAB-Detail-Screen-4");
           TestActions.tap(HABDetailScreenTestKeys.tabInFlightInfo);
-          await driver.requestData("nav_go_back");
-          await driver.requestData("nav_go_back");
-          await driver.requestData("nav_go_back");
           print("Mini App HAB Complete");
+
+          await TestActions.goBack(3);
 
           // Mini App SKV Home Screen
           await TestActions.tap(UIListDataTestKeys.skv);
@@ -215,10 +213,9 @@ void main() async {
             Duration(milliseconds: 400),
           );
           await Screenshot.screenshot("SKV-Detail-Screen-3");
-          await driver.requestData("nav_go_back");
-          await driver.requestData("nav_go_back");
-          await driver.requestData("nav_go_back");
           print("Mini App SKV Complete");
+
+          await TestActions.goBack(3);
 
           // Mini App ASC Home Screen
           await TestActions.scrollUntil(
@@ -234,7 +231,7 @@ void main() async {
             scroller: ASCHomeScreenTestKeys.rootScroll,
             x: -width,
           );
-          await TestActions.delay(8000);
+          await TestActions.delay();
           await TestActions.tap(ASCHomeScreenTestKeys.getColor(1, 1));
           await TestActions.tap(ASCHomeScreenTestKeys.getSize(1, 2));
           await Screenshot.screenshot("ASC-Home-Screen-2");
@@ -242,8 +239,9 @@ void main() async {
             scroller: ASCHomeScreenTestKeys.rootScroll,
             x: -width,
           );
-          await TestActions.tap(ASCHomeScreenTestKeys.getColor(2, 4));
-          await TestActions.tap(ASCHomeScreenTestKeys.getSize(2, 2));
+          await TestActions.delay();
+          await TestActions.tap(ASCHomeScreenTestKeys.getColor(2, 3));
+          await TestActions.tap(ASCHomeScreenTestKeys.getSize(2, 4));
           await Screenshot.screenshot("ASC-Home-Screen-3");
           print("Mini App ASC Complete");
 
