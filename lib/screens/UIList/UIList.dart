@@ -76,66 +76,62 @@ class _UIListScreenState extends State<UIListScreen>
         return SafeArea(
           bottom: false,
           top: false,
-          child: NotificationListener<ScrollNotification>(
-            onNotification: this.onScrollNotification,
-            child: CustomScrollView(
-              key: Key(UIListScreenTestKeys.rootScroll),
-              physics: BouncingScrollPhysics(),
-              slivers: <Widget>[
-                Utils.safePadding(context, 'top', true),
-                SliverPadding(
-                  padding: EdgeInsets.all(AppDimensions.padding),
-                ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: AppDimensions.padding * 3,
-                    ),
-                    child: Text(
-                      "Explore UIs",
-                      style: TextStyle(
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.w700,
-                      ),
+          child: CustomScrollView(
+            key: Key(UIListScreenTestKeys.rootScroll),
+            slivers: [
+              Utils.safePadding(context, 'top', true),
+              SliverPadding(
+                padding: EdgeInsets.all(AppDimensions.padding),
+              ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppDimensions.padding * 3,
+                  ),
+                  child: Text(
+                    "Explore UIs",
+                    style: TextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: AppDimensions.padding * 3,
-                    ),
+              ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppDimensions.padding * 3,
                   ),
                 ),
-                SliverPadding(
-                  padding: EdgeInsets.all(AppDimensions.padding),
-                  sliver: SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (ctx, index) {
-                        return Row(
-                          children: chunked[index]
-                              .map(
-                                (ui) => UICard(
-                                  ui,
-                                  prespectiveScale: this.offset,
-                                  cardWidth: Dimensions.cardWidth,
-                                  cardHeight: Dimensions.cardHeight,
-                                  padding: AppDimensions.padding * 2,
-                                ),
-                              )
-                              .toList(),
-                        );
-                      },
-                      childCount: chunked.length,
-                    ),
+              ),
+              SliverPadding(
+                padding: EdgeInsets.all(AppDimensions.padding),
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (ctx, index) {
+                      return Row(
+                        children: chunked[index]
+                            .map(
+                              (ui) => UICard(
+                                ui,
+                                prespectiveScale: 0.0,
+                                cardWidth: Dimensions.cardWidth,
+                                cardHeight: Dimensions.cardHeight,
+                                padding: AppDimensions.padding * 2,
+                              ),
+                            )
+                            .toList(),
+                      );
+                    },
+                    childCount: chunked.length,
                   ),
                 ),
-                SliverPadding(
-                  padding: EdgeInsets.all(AppDimensions.padding * 3),
-                ),
-                Utils.safePadding(context, 'bottom', true),
-              ],
-            ),
+              ),
+              SliverPadding(
+                padding: EdgeInsets.all(AppDimensions.padding * 3),
+              ),
+              Utils.safePadding(context, 'bottom', true),
+            ],
           ),
         );
       },
