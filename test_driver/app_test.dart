@@ -1,6 +1,7 @@
 // Imports the Flutter Driver API.
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/TestKeys.dart';
+import 'package:flutter_uis/MiniApps/EggTimerConcept/Screens/HomeScreen/TestKeys.dart';
 import 'package:flutter_uis/MiniApps/HotAirBalloons/Screens/DetailScreen/TestKeys.dart';
 import 'package:flutter_uis/MiniApps/HotAirBalloons/data/TestKeys.dart';
 import 'package:flutter_uis/MiniApps/SkyView/Screens/DetailScreen/TestKeys.dart';
@@ -244,6 +245,30 @@ void main() async {
           await TestActions.tap(ASCHomeScreenTestKeys.getSize(2, 4));
           await Screenshot.screenshot("ASC-Home-Screen-3");
           print("Mini App ASC Complete");
+
+          await TestActions.goBack(2);
+
+          // Mini App ETC Home Screen
+          await TestActions.delay();
+          await TestActions.scrollUntil(
+            scroller: UIListScreenTestKeys.rootScroll,
+            item: UIListDataTestKeys.etc,
+            y: -160,
+          );
+          await TestActions.tap(UIListDataTestKeys.etc);
+          await TestActions.tap(UIDetailScreenTestKeys.openApp);
+          await Screenshot.screenshot("ETC-Home-Screen-1");
+          await driver.scroll(
+            find.byValueKey(ETCHomeScreenTestKeys.radiusBase),
+            -100.0,
+            0.0,
+            Duration(milliseconds: 400),
+          );
+          await Screenshot.screenshot("ETC-Home-Screen-2");
+          await TestActions.tap(ETCHomeScreenTestKeys.playPauseBtn);
+          await Screenshot.screenshot("ETC-Home-Screen-3");
+          await TestActions.tap(ETCHomeScreenTestKeys.resetBtn);
+          await Screenshot.screenshot("ETC-Home-Screen-4");
 
           await TestActions.delay(2000);
         });
