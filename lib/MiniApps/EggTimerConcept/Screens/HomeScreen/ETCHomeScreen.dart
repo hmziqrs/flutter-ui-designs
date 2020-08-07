@@ -11,6 +11,7 @@ import 'package:flutter_uis/Widgets/Screen/Screen.dart';
 
 import '../../configs/theme.dart' as theme;
 import '../../models/ETCTimer.dart';
+import 'TestKeys.dart';
 import 'messages/keys.dart';
 
 import 'widgets/ETCHomeScreenTimerTime.dart';
@@ -169,6 +170,7 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                       children: <Widget>[
                         Expanded(
                           child: ETCHomeScreenButton(
+                            testKey: Key(ETCHomeScreenTestKeys.restartBtn),
                             label: App.translate(ETCHomeScreenMessages.restart),
                             icon: Icons.refresh,
                             onPress: this.timer.restart,
@@ -176,6 +178,7 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                         ),
                         Expanded(
                           child: ETCHomeScreenButton(
+                            testKey: Key(ETCHomeScreenTestKeys.resetBtn),
                             label: App.translate(ETCHomeScreenMessages.reset),
                             icon: Icons.arrow_back,
                             onPress: this.timer.reset,
@@ -208,6 +211,7 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                   child: Opacity(
                     opacity: animation,
                     child: ETCHomeScreenButton(
+                      testKey: Key(ETCHomeScreenTestKeys.playPauseBtn),
                       label: App.translate(
                         isRunning
                             ? ETCHomeScreenMessages.pause

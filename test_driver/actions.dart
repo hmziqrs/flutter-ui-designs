@@ -39,7 +39,6 @@ abstract class TestActions {
   static Future<void> goBack([int times = 1]) async {
     int count = 0;
     while (count < times) {
-      print("GOBACK $count");
       await driver.requestData("nav_go_back");
       count++;
     }

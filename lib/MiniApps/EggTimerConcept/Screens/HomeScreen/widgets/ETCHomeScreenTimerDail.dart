@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
+import '../Dimensions.dart';
+import '../TestKeys.dart';
+
 import 'ETCHomeScreenArrowPainter.dart';
 import 'ETCHomeScreenTickPainter.dart';
-import '../Dimensions.dart';
 
 class ETCHomeScreenTimerDail extends StatefulWidget {
   ETCHomeScreenTimerDail(
@@ -36,6 +38,7 @@ class _ETCHomeScreenTimerDailState extends State<ETCHomeScreenTimerDail> {
     );
 
     return Container(
+      key: Key(ETCHomeScreenTestKeys.radiusBase),
       width: Dimensions.radius,
       height: Dimensions.radius,
       decoration: BoxDecoration(
