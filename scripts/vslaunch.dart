@@ -14,17 +14,16 @@ void main(List<String> args) async {
     print(err.toString());
   });
   final List<String> raw = result.stdout.split('\n');
-  final filteredDevices = raw.sublist(2, raw.length - 1);
+  final splitter = Platform.isWindows ? 'â€¢' : '•';
 
-  print("filteredDevices: $filteredDevices");
+  final filteredDevices = raw
+      .map((String unparsed) => unparsed.split(splitter))
+      .toList()
+      .where((subList) => subList.length > 1);
 
-  final devices = filteredDevices.map((result) {
-    final splitter = Platform.isWindows ? 'â€¢' : '•';
-    final List<String> arr =
-        result.split(splitter).map((str) => str.trim()).toList();
-    final String name = arr[0];
-    final String deviceId = arr[1];
-
+  final devices = filteredDevices.map((array) {
+    final String name = array[0].trim();
+    final String deviceId = array[1].trim();
     final Map<String, dynamic> obj = {
       "name": name,
       "deviceId": deviceId,
