@@ -20,6 +20,10 @@ abstract class Screenshot {
       case "windows":
         screenshotWindows(label);
         break;
+
+      case "android":
+        await screenshotAndroid(label);
+        break;
       default:
     }
     await Future.delayed(Duration(milliseconds: defaultDelay + post));
@@ -46,5 +50,22 @@ abstract class Screenshot {
     } catch (e) {
       print("ERROR CAN'T TAKE $label screenshot");
     }
+  }
+
+  static Future<void> screenshotAndroid(String label) async {
+    try {
+      final bytes = await driver.screenshot();
+      final file = File(normalize("screenshots/windows/$label.png"));
+      await file.writeAsBytes(bytes);
+    } catch (e) {
+      print("ERROR CAN'T TAKE $label screenshot");
+    }
+  }
+
+  static String normalize(String path) {
+    if (Platform.isWindows) {
+      return path.replaceAll("/", "\\");
+    }
+    return path;
   }
 }

@@ -16,10 +16,21 @@ abstract class Utils {
     isDesktop = ["linux", "windows", "macos"].contains(platform);
     isWeb = !isMobile && !isDesktop;
 
-    return;
-    if (newPlatform == "windows") {
-      Utils.initMaxWindowsMode();
-    }
+    // await initDirectories();
+  }
+
+  static initDirectories() {
+    final dirs = ["android", "ios", "linux", "windows", "macos"];
+    dirs.forEach((name) async {
+      final path = "screenshots/$name";
+      final dir = Directory(path);
+
+      final check = await dir.exists();
+
+      if (!check) {
+        await dir.create();
+      }
+    });
   }
 
   static initMaxWindowsCmdow() async {
