@@ -17,7 +17,6 @@ class App {
   }
 
   static translate(String key) {
-    return key;
     return AppLocalizations.of(App.ctx).translate(key) ?? key;
   }
 }
