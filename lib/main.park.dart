@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart'
 import 'package:flutter_uis/Navigator.dart';
 import 'package:flutter_uis/io/io.dart';
 
+import 'FKNNAPP.dart';
+
 void main(List<String> args) {
   _main(null);
 }
@@ -24,5 +26,5 @@ void _main(NavigatorObserver observer) {
     observers.add(observer);
   }
 
-  runApp(AppNavigator(observers));
+  runApp(Navigator());
 }

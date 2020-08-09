@@ -10,20 +10,26 @@ class AppLocalizations {
 
   // Helper method to keep the code in the widgets concise
   // Localizations are accessed using an InheritedWidget "of" syntax
-  static const LocalizationsDelegate<AppLocalizations> delegate =
+  static LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
+  static LocalizationsDelegate<AppLocalizations> getDelegate() =>
       _AppLocalizationsDelegate();
 
   static AppLocalizations of(BuildContext context) {
+    print("AppLocalizations of(BuildContext context) {");
+    print(context);
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
   Map<String, String> _localizedStrings;
 
   Future<bool> load() async {
+    print("PRE LOAD");
     // Load the language JSON file from the "lang" folder
     String jsonString = await rootBundle.loadString(
       'assets/langs/${locale.languageCode}.json',
     );
+    print("POST LOAD");
     Map<String, dynamic> jsonMap = json.decode(jsonString);
     _localizedStrings = jsonMap.map((key, value) {
       return MapEntry(key, value.toString());
