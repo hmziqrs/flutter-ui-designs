@@ -16,21 +16,17 @@ class AppLocalizations {
       _AppLocalizationsDelegate();
 
   static AppLocalizations of(BuildContext context) {
-    print("AppLocalizations of(BuildContext context) {");
-    print(context);
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
   Map<String, String> _localizedStrings;
 
   Future<bool> load() async {
-    print("PRE LOAD");
-    // Load the language JSON file from the "lang" folder
-    String jsonString = await rootBundle.loadString(
-      'assets/langs/${locale.languageCode}.json',
-    );
-    print("POST LOAD");
-    Map<String, dynamic> jsonMap = json.decode(jsonString);
+    final ByteData file =
+        await rootBundle.load('assets/langs/${locale.languageCode}.json');
+    final raw = file.buffer.asUint8List(file.offsetInBytes, file.lengthInBytes);
+    final string = utf8.decode(raw);
+    Map<String, dynamic> jsonMap = json.decode(string);
     _localizedStrings = jsonMap.map((key, value) {
       return MapEntry(key, value.toString());
     });
