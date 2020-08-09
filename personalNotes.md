@@ -2,10 +2,51 @@
 
 ---
 
-## 10:49AM GMT+5 7-31-2020.
+## 09:08AM GMT+5 august-09-2020.
 
-So I was about to giving up the whole automate testing with full window screenshots idea for desktop apps.
-Because I wasn't getting anywhere with it & results for problems were very bad or not very clear.
+> So I've been trying to run test driver on android devices for almost 3 days & was just able to solve it a few minutes ago.
+> I was about to implement a very horrible solution which could've made my life a living hell.
+
+### Some technical reasons:
+
+- My main reason to implement test driver was to take screenshots of every supported platform via github actions.
+- That would help me see state of every integrated screen.
+- I can showcase key screens on github readme which I don't have update by myself every time.
+- Now I successfully integrated the complete test driver with screenshot flow for windows app.
+- But when I get started on android it didn't worked & got the `taking too much time on load` error.
+- I got the idea that something is blocking the rendering that's why driver wasn't able to find widgets by keys.
+- So I started stripping the `app_test.dart` to only bare chunk testing.
+- But only if development was that easy.
+- Then I started stripping `app.dart` to basic boilerplate which we mostly see in examples.
+- Again only if development was that easy.
+- Then I thought it may have something to do with flutter sdk version.
+- But that didn't worked either.
+- Then I thought some thing in the realm of native android is causing that.
+- I upgraded gradle, buildSdkVersion & native libraries. But still no success.
+- It came to my mind that may be native firebase or crashlytics could be the hidden cause of conflict.
+- So I built a new basic project & added test deriver & added so basic taps & it worked.
+- Now I my doubt was strong but not that much confirmed.
+- I added the basic app & test to my app which was bundled with firebase or crashlytics. It worked.
+- My doubt was clear that those libraries aren't the cause of error. Theres something in my dart which is working weird in android.
+- So I started stripping down my `Navigator.dart` to just `Material(home: HomeScreen())` & boom it worked.
+- Now it's confirmed that `Navigator.dart` is the home of hidden error.
+- I started adding code back chunk by chunk in `Navigator.dart` & found out the cause.
+- Error was produced when I attached my `AppLocalizations.delegate`.
+- I started adding logs & stripping code in `AppLocalizations.dart`. Found `AppLocalizations.load()` was the issue.
+- In android app couldn't get past `rootBundle.loadString()`.
+- In this <a href="https://github.com/flutter/flutter/issues/24703" target="_link6">github issue</a> it mentions that `loadString()` use `compute()` method. which basically spawns a new isolate(sort of new thread in dart).
+- According to the theory I came up in this journey is App basically runs as isolate & when the app spawns a new isolate then it cause some sync conflict with driver as driver is connected to main isolate (the App) & isn't aware of the existence or depends on any other isolates spawn by app.
+- Now changing `rootBundle.loadString()` to `rootBundle.load()` & doing my custom parsing did solve the issue.
+- It all could've been avoided if documentation had notes about it.
+- If you're wondering why It worked on windows & linux not on android my theory is in desktop environment `compute()` must've done operation so fast that It didn't left the main isolate hanging because native desktop apps running on OS are way faster than android app running on device or emulator.
+- Or another theory is that's how code behave differently on `x86/x64` & `arm32/arm64`.
+
+---
+
+## 10:49AM GMT+5 july-31-2020.
+
+> So I was about to giving up the whole automate testing with full window screenshots idea for desktop apps.
+> Because I wasn't getting anywhere with it & results for problems were very bad or not very clear.
 
 ### Some technical reasons:
 
