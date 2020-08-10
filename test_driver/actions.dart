@@ -5,16 +5,25 @@ import 'package:flutter_driver/flutter_driver.dart';
 abstract class TestActions {
   static FlutterDriver driver;
 
+  static bool tapLogs = true;
+  static bool scrollLogs = true;
+
   static Future<void> tap(String key) async {
+    if (tapLogs) {
+      print("TAP: $key");
+    }
     await driver.tap(find.byValueKey(key));
   }
 
   static Future<void> scrollUntil({
     String scroller,
     String item,
-    double x,
-    double y,
+    double x = 0.0,
+    double y = 0.0,
   }) async {
+    if (scrollLogs) {
+      print("SCROLL until: $item visible on $scroller (x: $x, y: $y)");
+    }
     await driver.scrollUntilVisible(
       find.byValueKey(scroller),
       find.byValueKey(item),
@@ -30,6 +39,9 @@ abstract class TestActions {
     double y = 0.0,
     int duration = 400,
   }) async {
+    if (scrollLogs) {
+      print("SCROLL $scroller (x: $x, y: $y)");
+    }
     await driver.scroll(
       find.byValueKey(scroller),
       x,

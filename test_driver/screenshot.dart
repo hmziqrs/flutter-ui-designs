@@ -54,6 +54,26 @@ abstract class Screenshot {
 
   static Future<void> screenshotAndroid(String label) async {
     try {
+      // adb exec-out screencap -p > screen.png
+      final arguments = [
+        "exec-out",
+        "screencap",
+        "-p",
+        ">",
+        normalize("screenshots/android/$label.png"),
+      ];
+      Process.runSync(
+        "adb",
+        arguments,
+        runInShell: Platform.isWindows,
+      );
+    } catch (e) {
+      print("ERROR CAN'T TAKE $label screenshot");
+    }
+  }
+
+  static Future<void> screenshotAndroidNotUsed(String label) async {
+    try {
       final bytes = await driver.screenshot();
       final file = File(normalize("screenshots/windows/$label.png"));
       await file.writeAsBytes(bytes);
