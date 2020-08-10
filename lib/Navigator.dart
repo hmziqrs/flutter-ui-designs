@@ -59,7 +59,6 @@ class AppNavigator extends StatelessWidget {
       child: ChangeNotifierProvider<AppProvider>(
         create: (_) => AppProvider(),
         child: Consumer<AppProvider>(
-          // stream: null,
           builder: (context, value, _) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,

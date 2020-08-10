@@ -34,6 +34,7 @@ class ASCHomeScreenContentColorFilters extends StatelessWidget {
     return Opacity(
       opacity: (1.0 - opacity).clamp(0.0, 1.0),
       child: Container(
+        key: Key(ASCHomeScreenTestKeys.colorsBase),
         transform: Matrix4.identity()..translate(translate, translate),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

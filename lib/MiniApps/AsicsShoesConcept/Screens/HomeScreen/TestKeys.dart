@@ -2,6 +2,7 @@ const String scope = "ASCHomeScreen";
 
 abstract class ASCHomeScreenTestKeys {
   static final String rootScroll = "$scope/rootScroll";
+  static final String colorsBase = "$scope/colorsBase";
 
   // static final String color = "$scope/color";
 

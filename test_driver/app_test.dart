@@ -1,20 +1,20 @@
-// Imports the Flutter Driver API.
 import 'package:flutter_driver/flutter_driver.dart';
+import 'package:test/test.dart';
+
+import 'package:flutter_uis/MiniApps/HealtyFoodDelivery/Screens/HomeScreen/TestKeys.dart';
 import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/TestKeys.dart';
 import 'package:flutter_uis/MiniApps/EggTimerConcept/Screens/HomeScreen/TestKeys.dart';
 import 'package:flutter_uis/MiniApps/HotAirBalloons/Screens/DetailScreen/TestKeys.dart';
-import 'package:flutter_uis/MiniApps/HotAirBalloons/data/TestKeys.dart';
 import 'package:flutter_uis/MiniApps/SkyView/Screens/DetailScreen/TestKeys.dart';
 import 'package:flutter_uis/MiniApps/SkyView/Screens/HomeScreen/TestKeys.dart';
+import 'package:flutter_uis/MiniApps/HotAirBalloons/data/TestKeys.dart';
 import 'package:flutter_uis/MiniApps/SkyView/data/TestKeys.dart';
 import 'package:flutter_uis/screens/UIList/TestKeys.dart';
-import 'package:test/test.dart';
 
 import 'package:flutter_uis/screens/Home/TestKeys.dart';
 import 'package:flutter_uis/Widgets/Screen/TestKeys.dart';
 import 'package:flutter_uis/screens/UIDetail/TestKeys.dart';
 import 'package:flutter_uis/statics/data/uiListTestKeys.dart';
-import 'package:flutter_uis/MiniApps/HealtyFoodDelivery/Screens/HomeScreen/TestKeys.dart';
 
 import 'screenshot.dart';
 import 'actions.dart';
@@ -48,13 +48,15 @@ void main() async {
 
     // Close the connection to the driver after the tests have completed.
     tearDownAll(() async {
+      await TestActions.delay(8000);
+
       driver?.close();
     });
 
     // test('Chunk testing', () async {
     //   await driver.runUnsynchronized(() async {
+    //     await TestActions.delay(4000);
     //     print("CHUNK TESTING");
-
     //   });
     // }, timeout: Timeout.none);
     // return;
@@ -112,22 +114,22 @@ void main() async {
 
           // Mini App HFD Home Screen
           await Screenshot.screenshot("HFD-Home-Screen-1");
-          await driver.scrollUntilVisible(
-            find.byValueKey(HFDHomeScreenTestKeys.foodItemsScroll),
-            find.byValueKey(HFDHomeScreenTestKeys.foodItem9),
-            dxScroll: -140,
-            dyScroll: 0.0,
-            timeout: Duration(seconds: 30),
+          await TestActions.scrollUntil(
+            scroller: HFDHomeScreenTestKeys.foodItemsScroll,
+            item: HFDHomeScreenTestKeys.foodItem9,
+            x: -140.0,
           );
           await Screenshot.screenshot("HFD-Home-Screen-2");
-          await driver.scrollUntilVisible(
-            find.byValueKey(HFDHomeScreenTestKeys.restaurantScroll),
-            find.byValueKey(HFDHomeScreenTestKeys.restaurant5),
-            dxScroll: -360,
-            dyScroll: 0.0,
-            timeout: Duration(seconds: 30),
+          await TestActions.scrollUntil(
+            scroller: HFDHomeScreenTestKeys.rootScroll,
+            item: HFDHomeScreenTestKeys.restaurantScroll,
+            y: -100.0,
           );
-          await TestActions.tap(HFDHomeScreenTestKeys.restaurant5);
+          await TestActions.scrollUntil(
+            scroller: HFDHomeScreenTestKeys.restaurantScroll,
+            item: HFDHomeScreenTestKeys.restaurant5,
+            x: -360.0,
+          );
           await Screenshot.screenshot("HFD-Home-Screen-3");
 
           // Mini App HFD Detail Screen
@@ -145,26 +147,41 @@ void main() async {
           // Mini App HAB Detail Screen
           await TestActions.tap(HABRootTestKeys.standard);
           await Screenshot.screenshot("HAB-Detail-Screen-1");
-          await driver.scroll(
-            find.byValueKey(HABDetailScreenTestKeys.rootPageView),
-            -width * 0.9,
-            0.0,
-            Duration(milliseconds: 400),
+          await TestActions.scroll(
+            scroller: HABDetailScreenTestKeys.rootPageView,
+            x: -width,
           );
-          await TestActions.delay(1000);
+          await TestActions.delay();
           await Screenshot.screenshot("HAB-Detail-Screen-2");
-          await driver.scroll(
-            find.byValueKey(HABDetailScreenTestKeys.rootPageView),
-            -width * 0.9,
-            0.0,
-            Duration(milliseconds: 400),
+          await TestActions.scroll(
+            scroller: HABDetailScreenTestKeys.rootPageView,
+            x: -width,
           );
-          await TestActions.delay(1000);
-          TestActions.tap(HABDetailScreenTestKeys.tabPreFlightInfo);
+          await TestActions.delay();
+          await TestActions.scrollUntil(
+            scroller: HABDetailScreenTestKeys.tabsScroll,
+            item: HABDetailScreenTestKeys.tabPreFlightInfo,
+            x: -80.0,
+          );
+          await TestActions.delay();
+          await TestActions.tap(HABDetailScreenTestKeys.tabPreFlightInfo);
           await Screenshot.screenshot("HAB-Detail-Screen-3");
-          TestActions.tap(HABDetailScreenTestKeys.tabPostFlightInfo);
+          await TestActions.scrollUntil(
+            scroller: HABDetailScreenTestKeys.tabsScroll,
+            item: HABDetailScreenTestKeys.tabInFlightInfo,
+            x: -80.0,
+          );
+          await TestActions.delay();
+          await TestActions.tap(HABDetailScreenTestKeys.tabInFlightInfo);
           await Screenshot.screenshot("HAB-Detail-Screen-4");
-          TestActions.tap(HABDetailScreenTestKeys.tabInFlightInfo);
+          await TestActions.scrollUntil(
+            scroller: HABDetailScreenTestKeys.tabsScroll,
+            item: HABDetailScreenTestKeys.tabPostFlightInfo,
+            x: -80.0,
+          );
+          await TestActions.delay();
+          await TestActions.tap(HABDetailScreenTestKeys.tabPostFlightInfo);
+          await Screenshot.screenshot("HAB-Detail-Screen-5");
           print("Mini App HAB Complete");
 
           await TestActions.goBack(3);
@@ -172,46 +189,38 @@ void main() async {
           // Mini App SKV Home Screen
           await TestActions.tap(UIListDataTestKeys.skv);
           await TestActions.tap(UIDetailScreenTestKeys.openApp);
+          await TestActions.delay();
           await Screenshot.screenshot("SKV-Home-Screen-1");
-          await driver.scrollUntilVisible(
-            find.byValueKey(SKVHomeScreenTestKeys.planetsScroll),
-            find.byValueKey(SKVRootTestKeys.jupiter),
-            dxScroll: -160,
-            dyScroll: 0.0,
-            timeout: Duration(seconds: 30),
+          await TestActions.scrollUntil(
+            scroller: SKVHomeScreenTestKeys.planetsScroll,
+            item: SKVRootTestKeys.jupiter,
+            x: -160.0,
           );
           await Screenshot.screenshot("SKV-Home-Screen-2");
-          await driver.scrollUntilVisible(
-            find.byValueKey(SKVHomeScreenTestKeys.rootScroll),
-            find.byValueKey(SKVRootTestKeys.story6),
-            dxScroll: 0.0,
-            dyScroll: -200.0,
-            timeout: Duration(seconds: 30),
+          await TestActions.scrollUntil(
+            scroller: SKVHomeScreenTestKeys.rootScroll,
+            item: SKVRootTestKeys.story6,
+            y: -200.0,
           );
           await Screenshot.screenshot("SKV-Home-Screen-3");
-          await driver.scroll(
-            find.byValueKey(SKVHomeScreenTestKeys.rootScroll),
-            0.0,
-            2000.0,
-            Duration(milliseconds: 400),
+          await TestActions.scrollUntil(
+            scroller: SKVHomeScreenTestKeys.rootScroll,
+            item: SKVHomeScreenTestKeys.planetsScroll,
+            y: -200.0,
           );
-          TestActions.delay(2000);
+          TestActions.delay();
+          await TestActions.tap(SKVRootTestKeys.jupiter);
 
           // Mini App SKV Detail Screen
-          await TestActions.tap(SKVRootTestKeys.jupiter);
           await Screenshot.screenshot("SKV-Detail-Screen-1", pre: 1000);
-          await driver.scroll(
-            find.byValueKey(SKVDetailScreenTestKeys.rootScroll),
-            width,
-            0.0,
-            Duration(milliseconds: 400),
+          await TestActions.scroll(
+            scroller: SKVDetailScreenTestKeys.rootScroll,
+            x: width,
           );
           await Screenshot.screenshot("SKV-Detail-Screen-2");
-          await driver.scroll(
-            find.byValueKey(SKVDetailScreenTestKeys.rootScroll),
-            width,
-            0.0,
-            Duration(milliseconds: 400),
+          await TestActions.scroll(
+            scroller: SKVDetailScreenTestKeys.rootScroll,
+            x: width,
           );
           await Screenshot.screenshot("SKV-Detail-Screen-3");
           print("Mini App SKV Complete");
@@ -222,10 +231,15 @@ void main() async {
           await TestActions.scrollUntil(
             scroller: UIListScreenTestKeys.rootScroll,
             item: UIListDataTestKeys.asc,
-            y: -160,
+            y: -160.0,
           );
           await TestActions.tap(UIListDataTestKeys.asc);
           await TestActions.tap(UIDetailScreenTestKeys.openApp);
+          await TestActions.scrollUntil(
+            scroller: ASCHomeScreenTestKeys.rootScroll,
+            item: ASCHomeScreenTestKeys.colorsBase,
+            y: -140.0,
+          );
           await TestActions.tap(ASCHomeScreenTestKeys.getColor(0, 3));
           await Screenshot.screenshot("ASC-Home-Screen-1");
           await TestActions.scroll(
@@ -233,6 +247,11 @@ void main() async {
             x: -width,
           );
           await TestActions.delay();
+          await TestActions.scrollUntil(
+            scroller: ASCHomeScreenTestKeys.rootScroll,
+            item: ASCHomeScreenTestKeys.colorsBase,
+            y: -140.0,
+          );
           await TestActions.tap(ASCHomeScreenTestKeys.getColor(1, 1));
           await TestActions.tap(ASCHomeScreenTestKeys.getSize(1, 2));
           await Screenshot.screenshot("ASC-Home-Screen-2");
@@ -241,6 +260,11 @@ void main() async {
             x: -width,
           );
           await TestActions.delay();
+          await TestActions.scrollUntil(
+            scroller: ASCHomeScreenTestKeys.rootScroll,
+            item: ASCHomeScreenTestKeys.colorsBase,
+            y: -140.0,
+          );
           await TestActions.tap(ASCHomeScreenTestKeys.getColor(2, 3));
           await TestActions.tap(ASCHomeScreenTestKeys.getSize(2, 4));
           await Screenshot.screenshot("ASC-Home-Screen-3");
@@ -253,7 +277,7 @@ void main() async {
           await TestActions.scrollUntil(
             scroller: UIListScreenTestKeys.rootScroll,
             item: UIListDataTestKeys.etc,
-            y: -160,
+            y: -160.0,
           );
           await TestActions.tap(UIListDataTestKeys.etc);
           await TestActions.tap(UIDetailScreenTestKeys.openApp);

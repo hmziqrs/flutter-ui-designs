@@ -6,8 +6,9 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter_uis/Navigator.dart';
 
 void main() {
-  final analyticsObeserver =
-      FirebaseAnalyticsObserver(analytics: FirebaseAnalytics());
+  final analyticsObeserver = FirebaseAnalyticsObserver(
+    analytics: FirebaseAnalytics(),
+  );
   // Crashlytics.instance.enableInDevMode = true;
 
   FlutterError.onError = (FlutterErrorDetails err) {

@@ -2,6 +2,7 @@ const String scope = "HABDetailScreen";
 
 abstract class HABDetailScreenTestKeys {
   static final String rootPageView = "$scope/rootPageView";
+  static final String tabsScroll = "$scope/tabsScroll";
 
   // Tabs
   static final String tabFlightDetails = "$scope/tabFlightDetails";
