@@ -31,8 +31,24 @@ abstract class Screenshot {
 
   static Future<void> screenshotLinux(String label) async {
     try {
-      print("screenName $label");
-    } catch (e) {}
+      final libPath = "./../../test_driver/libs/screenshot-linux";
+      final directory = "screenshots/linux";
+
+      final obj = Process.runSync("pwd", []);
+
+      print("PWD: ${obj.stdout}");
+      print("ERROR");
+      print(obj.stderr);
+
+      Process.runSync(
+        libPath,
+        [label],
+        workingDirectory: directory,
+      );
+    } catch (e) {
+      print(e.toString());
+      print("ERROR CAN'T TAKE $label screenshot");
+    }
   }
 
   static void screenshotWindows(String label) {

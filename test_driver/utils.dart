@@ -16,10 +16,15 @@ abstract class Utils {
     isDesktop = ["linux", "windows", "macos"].contains(platform);
     isWeb = !isMobile && !isDesktop;
 
-    // await initDirectories();
+    await initDirectories();
   }
 
   static initDirectories() {
+    final root = Directory("screenshots");
+    if (!root.existsSync()) {
+      root.createSync();
+    }
+
     final dirs = ["android", "ios", "linux", "windows", "macos"];
     dirs.forEach((name) async {
       final path = "screenshots/$name";

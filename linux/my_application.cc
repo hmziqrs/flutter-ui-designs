@@ -19,7 +19,8 @@ static void my_application_activate(GApplication* application) {
   gtk_header_bar_set_title(header_bar, "flutter_uis");
   gtk_header_bar_set_show_close_button(header_bar, TRUE);
   gtk_window_set_titlebar(window, GTK_WIDGET(header_bar));
-  gtk_window_set_default_size(window, 300, 720);
+  // gtk_window_set_default_size(window, 300, 720);
+  gtk_window_maximize(window);
   // gtk_window_set_resizable(GTK_WINDOW(window), FALSE);
   gtk_widget_show(GTK_WIDGET(window));
 

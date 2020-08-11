@@ -1,6 +1,7 @@
 # Flutter drivers
 flutter drive -t test_driver/app.dart -d windows
 flutter drive -t test_driver/app.dart -d windows --dart-define="PLATFORM=windows"
+flutter drive -t test_driver/app.dart -d linux --dart-define="PLATFORM=linux"
 flutter drive -t test_driver/app.dart -d emulator-5554 --dart-define="PLATFORM=android"
 flutter drive -t test_driver/app.dart -d CB5A27Y1RN --dart-define="PLATFORM=android"
 
