@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_uis/UI.dart';
@@ -79,24 +80,24 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
   }
 
   void onKeyHandler(RawKeyEvent event) {
-    final key = event.logicalKey.debugName;
-    final rightKeys = ['Key K', 'Arrow Right'];
-    final leftKeys = ['Key I', 'Arrow Left'];
+    if (event.runtimeType == RawKeyDownEvent) {
+      return;
+    }
 
-    if (event.runtimeType.toString() == 'RawKeyUpEvent') {
-      if (rightKeys.contains(key) && activePage < data.flights.length - 1) {
-        this.pageController.animateToPage(
-              this.activePage + 1,
-              duration: Duration(milliseconds: 280),
-              curve: Curves.easeIn,
-            );
-      } else if (leftKeys.contains(key) && activePage > 0) {
-        this.pageController.animateToPage(
-              this.activePage - 1,
-              duration: Duration(milliseconds: 280),
-              curve: Curves.easeIn,
-            );
-      }
+    if (event.logicalKey == LogicalKeyboardKey.arrowRight &&
+        activePage < data.flights.length - 1) {
+      this.pageController.animateToPage(
+            this.activePage + 1,
+            duration: Duration(milliseconds: 280),
+            curve: Curves.easeIn,
+          );
+    }
+    if (event.logicalKey == LogicalKeyboardKey.arrowLeft && activePage > 0) {
+      this.pageController.animateToPage(
+            this.activePage - 1,
+            duration: Duration(milliseconds: 280),
+            curve: Curves.easeIn,
+          );
     }
   }
 

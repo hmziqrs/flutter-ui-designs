@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/UI.dart';
@@ -65,34 +66,37 @@ class _ASCHomeScreenState extends State<ASCHomeScreen>
     ]);
   }
 
+  void onKeyHandler(RawKeyEvent event) {
+    final duration =
+        (AppDimensions.size.width * 0.5).clamp(500.0, 800.0).toInt();
+
+    if (event.runtimeType == RawKeyDownEvent) {
+      return;
+    }
+    if (event.logicalKey == LogicalKeyboardKey.arrowRight &&
+        this.activePage < data.list.length - 1) {
+      this.pageController.animateToPage(
+            this.activePage + 1,
+            duration: Duration(milliseconds: duration),
+            curve: Curves.linear,
+          );
+    }
+    if (event.logicalKey == LogicalKeyboardKey.arrowLeft &&
+        this.activePage > 0) {
+      this.pageController.animateToPage(
+            this.activePage - 1,
+            duration: Duration(milliseconds: duration),
+            curve: Curves.linear,
+          );
+    }
+  }
+
   @override
   Widget build(BuildContext buildCtx) {
     return RawKeyboardListener(
       autofocus: true,
       focusNode: FocusNode(),
-      onKey: (event) {
-        final key = event.logicalKey.debugName;
-        final rightKeys = ['Key K', 'Arrow Right'];
-        final leftKeys = ['Key I', 'Arrow Left'];
-        final duration =
-            (AppDimensions.size.width * 0.5).clamp(500.0, 800.0).toInt();
-
-        if (event.runtimeType.toString() == 'RawKeyUpEvent') {
-          if (rightKeys.contains(key) && activePage < data.list.length - 1) {
-            this.pageController.animateToPage(
-                  this.activePage + 1,
-                  duration: Duration(milliseconds: duration),
-                  curve: Curves.linear,
-                );
-          } else if (leftKeys.contains(key) && activePage > 0) {
-            this.pageController.animateToPage(
-                  this.activePage - 1,
-                  duration: Duration(milliseconds: duration),
-                  curve: Curves.linear,
-                );
-          }
-        }
-      },
+      onKey: this.onKeyHandler,
       child: NotificationListener<SizeChangedLayoutNotification>(
         onNotification: (SizeChangedLayoutNotification notification) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
