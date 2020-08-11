@@ -2,6 +2,26 @@
 
 ---
 
+## 02:35PM GMT+5 august-11-2020.
+
+> So during my manual testing I saw keyboard commands (navigate back & left,right) stopped working.
+> This one was something new because Keyboard commands were working fine on debug mode.
+
+- Main reason to implement keyboard commands were to make navigation easy in desktop apps.
+- So it tested debug & release on Windows, Linux & Android (emulator & real device) behavior was same.
+- In logs I found out that in `RawKeyboardListener.onKey(event)` method I was using `event.logicalKey.debugName` to recognize key.
+- And `event.logicalKey.debugName` was `null` in release mode.
+- I thought may be `master` channel had something internal broken.
+- So I followed the the standard brute force debugging like changed channels (master, dev & stable).
+- As expected that didn't worked out.
+- When I downloaded the old build release from my github I was working fine.
+- Then I scrolled through Flutter github issue & stack overflow but couldn't find anything similar to my problem.
+- I post my problem on <a href="https://discord.gg/mxd9889" target="_link7">Flutter Discord</a> with a sample project integrated with `RawKeyboardListener`.
+- Few minutes later a gentleman told me `debugName` property is for debugging only & is null on release. So I've to use static `LogicalKeyboardKey` class to recognize keys.
+- And that's how I solved my problem but this time it only took few hours.
+
+---
+
 ## 09:08AM GMT+5 august-09-2020.
 
 > So I've been trying to run test driver on android devices for almost 3 days & was just able to solve it a few minutes ago.
@@ -34,8 +54,8 @@
 - Error was produced when I attached my `AppLocalizations.delegate`.
 - I started adding logs & stripping code in `AppLocalizations.dart`. Found `AppLocalizations.load()` was the issue.
 - In android app couldn't get past `rootBundle.loadString()`.
-- In this <a href="https://github.com/flutter/flutter/issues/24703" target="_link6">github issue</a> it mentions that `loadString()` use `compute()` method. which basically spawns a new isolate(sort of new thread in dart).
-- According to the theory I came up in this journey is App basically runs as isolate & when the app spawns a new isolate then it cause some sync conflict with driver as driver is connected to main isolate (the App) & isn't aware of the existence or depends on any other isolates spawn by app.
+- In this <a href="https://github.com/flutter/flutter/issues/24703" target="_link6">github issue</a> it mentions that `loadString()` use `compute()` method. Which basically spawns a new isolate(sort of new thread in dart).
+- According to the theory which I came up in this journey is App basically runs as isolate & when the app spawns a new isolate it cause some sync conflict with driver as driver is connected to main isolate (the App) & isn't aware of the existence or depends on any other isolates spawn by app.
 - Now changing `rootBundle.loadString()` to `rootBundle.load()` & doing my custom parsing did solve the issue.
 - It all could've been avoided if documentation had notes about it.
 - If you're wondering why It worked on windows & linux not on android my theory is in desktop environment `compute()` must've done operation so fast that It didn't left the main isolate hanging because native desktop apps running on OS are way faster than android app running on device or emulator.
