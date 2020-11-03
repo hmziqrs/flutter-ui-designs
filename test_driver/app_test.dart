@@ -30,6 +30,7 @@ void main() async {
       driver = await FlutterDriver.connect();
 
       final platform = await driver.requestData("platform");
+      final device = await driver.requestData("device");
       final dimensions = (await driver.requestData("dimensions")).split(",");
 
       width = double.parse(dimensions[0]);
@@ -39,6 +40,7 @@ void main() async {
       TestActions.driver = driver;
       Screenshot.driver = driver;
       Screenshot.platform = platform;
+      Screenshot.device = device;
 
       await Utils.init(platform);
       await TestActions.delay(1000);
@@ -74,6 +76,7 @@ void main() async {
           await TestActions.tap(HomeScreenTestKeys.settingsBtn);
           print("Home Screen Complete");
 
+          return;
           // Settings Modal
           await Screenshot.screenshot("Settings-Modal");
           await TestActions.tap(ScreenWidgetTestKeys.close);

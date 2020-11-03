@@ -10,11 +10,16 @@ import 'utils.dart';
 void main(List<String> args) async {
   final navigationObserver = NavigatorObserver();
 
+  const device = String.fromEnvironment("DEVICE");
+
   enableFlutterDriverExtension(
     handler: (data) async {
       if (data == "nav_go_back") {
         navigationObserver.navigator.pop();
         return "";
+      }
+      if (data == "device") {
+        return device;
       }
       if (data == "dimensions") {
         final size = MediaQuery.of(navigationObserver.navigator.context).size;

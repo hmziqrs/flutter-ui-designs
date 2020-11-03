@@ -26,14 +26,27 @@ abstract class Utils {
     }
 
     final dirs = ["android", "ios", "linux", "windows", "macos"];
+    final devices = ["mobile", "tab7", "tab10"];
+
     dirs.forEach((name) async {
       final path = "screenshots/$name";
       final dir = Directory(path);
-
       final check = await dir.exists();
 
       if (!check) {
         await dir.create();
+      }
+      if (name == "android") {
+        print("UTILS INIT ANDROID");
+
+        devices.forEach((device) async {
+          final dPath = "$path/$device";
+          final dDir = Directory(dPath);
+          final dCheck = await dDir.exists();
+          if (!dCheck) {
+            await dDir.create();
+          }
+        });
       }
     });
   }
