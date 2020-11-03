@@ -4,6 +4,7 @@ import 'package:flutter_driver/flutter_driver.dart';
 
 abstract class Screenshot {
   static String platform;
+  static String device;
   static FlutterDriver driver;
 
   static Future<void> screenshot(
@@ -71,12 +72,24 @@ abstract class Screenshot {
   static Future<void> screenshotAndroid(String label) async {
     try {
       // adb exec-out screencap -p > screen.png
+      final filePath =
+          "screenshots/android/${device != null ? "$device/" : ""}$label.png";
+      if (Platform.isLinux) {
+        final lib = "./test_driver/libs/androidsc.sh";
+        final List<String> arguments = [filePath];
+        Process.runSync(
+          lib,
+          arguments,
+          runInShell: Platform.isWindows,
+        );
+        return;
+      }
       final arguments = [
         "exec-out",
         "screencap",
         "-p",
         ">",
-        normalize("screenshots/android/$label.png"),
+        normalize(filePath),
       ];
       Process.runSync(
         "adb",
