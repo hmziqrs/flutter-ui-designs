@@ -63,13 +63,23 @@ class ASCHomeScreenContentColorFilters extends StatelessWidget {
                       ),
                     ),
                     onTap: () => this.changeColor(color, index),
-                    child: ControlledAnimation(
+                    child: CustomAnimation(
                       tween: Tween(begin: 0.0, end: 1.0),
                       duration: Duration(milliseconds: 180),
-                      playback: this.activeColorIndex == index
-                          ? Playback.PLAY_FORWARD
-                          : Playback.PLAY_REVERSE,
-                      builder: (context, animation) {
+                      control: this.activeColorIndex == index
+                          ? CustomAnimationControl.PLAY
+                          : CustomAnimationControl.PLAY_REVERSE,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: this.activeColor,
+                            width: AppDimensions.ratio * 1,
+                          ),
+                        ),
+                      ),
+                      builder: (context, child, animation) {
                         final innerCircleRadius = Dimensions.colorRadius *
                             Utils.rangeMap(animation, 0.0, 1.0, 0.55, 0.7);
 
@@ -87,16 +97,7 @@ class ASCHomeScreenContentColorFilters extends StatelessWidget {
                                     animation,
                                   ),
                                 origin: Offset(offset, offset),
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: this.activeColor,
-                                      width: AppDimensions.ratio * 1,
-                                    ),
-                                  ),
-                                ),
+                                child: child,
                               ),
                               Center(
                                 child: Container(

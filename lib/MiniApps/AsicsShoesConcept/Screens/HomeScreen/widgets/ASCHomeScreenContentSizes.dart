@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
+import 'package:supercharged/supercharged.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
 import '../Dimensions.dart';
 import '../TestKeys.dart';
+
+enum AniColors { bg, text }
 
 class ASCHomeScreenContentSizes extends StatelessWidget {
   ASCHomeScreenContentSizes({
@@ -25,22 +28,17 @@ class ASCHomeScreenContentSizes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tween = MultiTrackTween([
-      Track("background").add(
-        Duration(milliseconds: 180),
-        ColorTween(
-          begin: Colors.transparent,
-          end: Colors.black.withOpacity(0.35),
-        ),
-      ),
-      Track("text").add(
-        Duration(milliseconds: 180),
-        ColorTween(
-          begin: Colors.black,
-          end: Colors.white,
-        ),
-      ),
-    ]);
+    final tween = MultiTween<AniColors>()
+      ..add(
+        AniColors.bg,
+        Colors.transparent.tweenTo(Colors.black.withOpacity(0.35)),
+        400.milliseconds,
+      )
+      ..add(
+        AniColors.text,
+        Colors.black.tweenTo(Colors.white),
+        250.milliseconds,
+      );
 
     return Row(
       children: this
@@ -60,26 +58,26 @@ class ASCHomeScreenContentSizes extends StatelessWidget {
                     entry.key + 1,
                   ),
                 ),
-                child: ControlledAnimation(
+                child: CustomAnimation<MultiTweenValues<AniColors>>(
                   tween: tween,
                   duration: tween.duration,
-                  playback: this.activeSize == entry.value
-                      ? Playback.PLAY_FORWARD
-                      : Playback.PLAY_REVERSE,
-                  builder: (context, animation) {
+                  control: this.activeSize == entry.value
+                      ? CustomAnimationControl.PLAY
+                      : CustomAnimationControl.PLAY_REVERSE,
+                  builder: (context, child, animation) {
                     return Container(
                       width: Dimensions.sizeRadius,
                       height: Dimensions.sizeRadius,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: animation["background"],
+                        color: animation.get(AniColors.bg),
                       ),
                       child: Text(
                         entry.value.toString(),
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          color: animation["text"],
+                          color: animation.get(AniColors.text),
                         ),
                       ),
                     );
