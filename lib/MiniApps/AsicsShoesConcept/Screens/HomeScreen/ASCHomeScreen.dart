@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:supercharged/supercharged.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/UI.dart';
@@ -20,8 +21,7 @@ class ASCHomeScreen extends StatefulWidget {
   _ASCHomeScreenState createState() => _ASCHomeScreenState();
 }
 
-class _ASCHomeScreenState extends State<ASCHomeScreen>
-    with AnimationControllerMixin {
+class _ASCHomeScreenState extends State<ASCHomeScreen> with AnimationMixin {
   PageController pageController = PageController();
   Animation<Color> activeColor;
   int activeColorIndex = 0;
@@ -31,7 +31,7 @@ class _ASCHomeScreenState extends State<ASCHomeScreen>
   @override
   void initState() {
     final color = data.list[activePage].colors[0];
-
+    this.controller.duration = 280.milliseconds;
     this.activeColor = ColorTween(
       begin: color,
       end: color,
@@ -54,16 +54,8 @@ class _ASCHomeScreenState extends State<ASCHomeScreen>
       begin: this.activeColor.value,
       end: color,
     ).animate(this.controller);
-    this.controller.reset([
-      FromToTask(
-        to: 0.0,
-        duration: Duration(milliseconds: 0),
-      ),
-      FromToTask(
-        to: 1.0,
-        duration: Duration(milliseconds: 280),
-      ),
-    ]);
+    this.controller.duration = 280.milliseconds;
+    this.controller.forward(from: 0.0);
   }
 
   void onKeyHandler(RawKeyEvent event) {
@@ -118,15 +110,9 @@ class _ASCHomeScreenState extends State<ASCHomeScreen>
               physics: ClampingScrollPhysics(),
               controller: this.pageController,
               key: Key(ASCHomeScreenTestKeys.rootScroll),
-              onPageChanged: (index) => setState(() {
-                this.activePage = index;
-                final color = data.list[index].colors[0];
-
-                this.activeColor = ColorTween(
-                  begin: color,
-                  end: color,
-                ).animate(this.controller);
-              }),
+              onPageChanged: (index) {
+                this.changeColor(data.list[index].colors[0], 0);
+              },
               itemCount: data.list.length,
               itemBuilder: (itemCtx, index) {
                 final item = data.list[index];
