@@ -8,7 +8,7 @@ import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/configs/TextStyles.dart';
 
-import 'package:flutter_uis/Widgets/Screen/Screen.dart';
+import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
 import 'messages/keys.dart';
 import 'data.dart' as data;
@@ -29,8 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
   bool desktopPopUpMounted = false;
   double desktopPopUpOpacity = 0;
 
-  final GlobalKey<ScreenState> screenKey = GlobalKey<ScreenState>();
-
   @override
   void initState() {
     this.webPopUpMounted = kIsWeb;
@@ -43,22 +41,17 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void handlePath(String path) {
-    if (path == "settings") {
-      this.screenKey.currentState.settingsModalKey.currentState.openModal();
-    } else {
-      Navigator.of(context).pushNamed(
-        path,
-      );
-    }
+    Navigator.of(context).pushNamed(
+      path,
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    Dimensions.init(context);
     return Screen(
-      Dimensions.init,
-      key: this.screenKey,
       scaffoldBackgroundColor: Colors.white,
-      builder: (_) => SafeArea(
+      child: SafeArea(
         child: Stack(
           fit: StackFit.expand,
           children: <Widget>[

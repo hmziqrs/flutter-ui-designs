@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
 
-import 'package:flutter_uis/Widgets/Screen/Screen.dart';
+import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
 import 'widgets/HABHomeScreenBaloonAnimationWrapper.dart';
 import 'widgets/HABHomeScreenFlightsCarousel.dart';
@@ -14,6 +14,8 @@ import 'Dimensions.dart';
 class HABHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Dimensions.init(context);
+
     final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
           fontFamily: 'Montserrat',
         );
@@ -24,11 +26,10 @@ class HABHomeScreen extends StatelessWidget {
     );
 
     return Screen(
-      Dimensions.init,
       theme: rootTheme,
       textStyle: fontStyle,
       scaffoldBackgroundColor: theme.primary,
-      builder: (_) => Stack(
+      child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
           // Shapes Background

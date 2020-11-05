@@ -5,7 +5,7 @@ import 'package:supercharged/supercharged.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/UI.dart';
 
-import 'package:flutter_uis/Widgets/Screen/Screen.dart';
+import 'package:flutter_uis/widgets/Screen/Screen.dart';
 import 'package:flutter_uis/Mixins/HoverWidget.dart';
 
 import '../../data/data.dart' as data;
@@ -84,7 +84,9 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> with AnimationMixin {
   }
 
   @override
-  Widget build(BuildContext buildCtx) {
+  Widget build(BuildContext context) {
+    Dimensions.init(context);
+
     return RawKeyboardListener(
       autofocus: true,
       focusNode: FocusNode(),
@@ -100,13 +102,12 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> with AnimationMixin {
         },
         child: SizeChangedLayoutNotifier(
           child: Screen(
-            Dimensions.init,
             scaffoldBackgroundColor: Colors.white,
             theme: Theme.of(context).copyWith(
               accentColor: this.activeColor.value,
               primaryColor: this.activeColor.value,
             ),
-            builder: (_) => PageView.builder(
+            child: PageView.builder(
               physics: ClampingScrollPhysics(),
               controller: this.pageController,
               key: Key(ASCHomeScreenTestKeys.rootScroll),

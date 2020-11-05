@@ -16,13 +16,11 @@ import '../TestKeys.dart';
 class UIDetailContent extends StatelessWidget {
   UIDetailContent({
     @required this.uiItem,
-    @required this.onLinkError,
     @required this.scrollOffset,
   });
 
   final UIItem uiItem;
   final double scrollOffset;
-  final VoidCallback onLinkError;
 
   @override
   build(BuildContext context) {
@@ -97,10 +95,7 @@ class UIDetailContent extends StatelessWidget {
                   testKey: UIDetailScreenTestKeys.viewSource,
                   text: App.translate(UIDetailScreenMessages.viewSource),
                   callback: () async {
-                    bool link = await Utils.launchUrl(uiItem.link);
-                    if (!link) {
-                      this.onLinkError();
-                    }
+                    await Utils.launchUrl(uiItem.link);
                   },
                 ),
               ],
