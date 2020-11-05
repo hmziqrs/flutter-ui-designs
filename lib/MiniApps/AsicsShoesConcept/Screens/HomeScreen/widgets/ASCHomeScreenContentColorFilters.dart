@@ -5,7 +5,7 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/Utils.dart';
 
-import '../../../ models/ASCItem.dart';
+import '../../../models/ASCItem.dart';
 import '../messages/keys.dart';
 import '../Dimensions.dart';
 import '../TestKeys.dart';
