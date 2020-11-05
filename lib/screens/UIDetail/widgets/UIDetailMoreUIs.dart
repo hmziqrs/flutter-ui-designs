@@ -5,7 +5,7 @@ import 'package:flutter_uis/statics/data/uiList.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
 
-import 'package:flutter_uis/Widgets/UICard/UICard.dart';
+import 'package:flutter_uis/widgets/UICard/UICard.dart';
 import 'package:flutter_uis/statics/models/UIItem.dart';
 
 import '../messages/keys.dart';

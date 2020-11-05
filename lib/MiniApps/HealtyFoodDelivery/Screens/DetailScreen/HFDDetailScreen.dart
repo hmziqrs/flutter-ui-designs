@@ -5,7 +5,7 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/Utils.dart';
 
-import 'package:flutter_uis/Widgets/Screen/Screen.dart';
+import 'package:flutter_uis/widgets/Screen/Screen.dart';
 import 'package:flutter_uis/Mixins/HoverWidget.dart';
 
 import '../../configs/theme.dart' as theme;
@@ -51,6 +51,8 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
 
   @override
   Widget build(BuildContext context) {
+    Dimensions.init(context);
+
     final HFDFoodItem item = ModalRoute.of(context).settings.arguments;
     final textStyle =
         Theme.of(context).textTheme.bodyText1.copyWith(fontFamily: 'Nunito');
@@ -69,7 +71,6 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
 
     return Container(
       child: Screen(
-        Dimensions.init,
         theme: Theme.of(context).copyWith(
           accentColor: theme.primary,
           primaryColor: theme.primary,

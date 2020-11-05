@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_uis/UI.dart';
 
-import 'package:flutter_uis/Widgets/BackButton4Stack/BackButton4Stack.dart';
-import 'package:flutter_uis/Widgets/Screen/Screen.dart';
+import 'package:flutter_uis/widgets/BackButton4Stack/BackButton4Stack.dart';
+import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
 import 'TestKeys.dart';
 import 'widgets/HABDetailScreenFlightHeader.dart';
@@ -103,6 +103,8 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Dimensions.init(context);
+
     final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
           fontFamily: 'Montserrat',
         );
@@ -116,57 +118,53 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
       focusNode: FocusNode(),
       onKey: this.onKeyHandler,
       child: Screen(
-        Dimensions.init,
         theme: rootTheme,
         textStyle: fontStyle,
         scaffoldBackgroundColor: Colors.white,
-        builder: (_) {
-          return Stack(
-            fit: StackFit.expand,
-            children: [
-              // Parallax Image Background
-              Positioned.fill(
-                bottom: null,
-                child: Container(
-                  height: Dimensions.backgroudImageHeight,
-                  foregroundDecoration: BoxDecoration(
-                    color: theme.background2.withOpacity(0.8),
-                  ),
-                  child: ListView.builder(
-                    itemCount: Dimensions.noOfImages,
-                    scrollDirection: Axis.horizontal,
-                    controller: this.backgroundController,
-                    itemBuilder: (_, i) => Image.asset(
-                      "assets/ma-hab/mountains.jpg",
-                      fit: BoxFit.fitHeight,
-                    ),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            // Parallax Image Background
+            Positioned.fill(
+              bottom: null,
+              child: Container(
+                height: Dimensions.backgroudImageHeight,
+                foregroundDecoration: BoxDecoration(
+                  color: theme.background2.withOpacity(0.8),
+                ),
+                child: ListView.builder(
+                  itemCount: Dimensions.noOfImages,
+                  scrollDirection: Axis.horizontal,
+                  controller: this.backgroundController,
+                  itemBuilder: (_, i) => Image.asset(
+                    "assets/ma-hab/mountains.jpg",
+                    fit: BoxFit.fitHeight,
                   ),
                 ),
               ),
-              // Header
-              HABDetailScreenFlightHeader(
-                activePage: this.activePage,
-                pageViewOffset:
-                    this.rendered ? this.pageController?.offset : 0.0,
-              ),
-              // Horizontal PageView Builder
-              PageView.builder(
-                pageSnapping: true,
-                controller: this.pageController,
-                itemCount: data.flights.length,
-                scrollDirection: Axis.horizontal,
-                onPageChanged: this.setActivePage,
-                key: Key(HABDetailScreenTestKeys.rootPageView),
-                itemBuilder: (context, index) {
-                  final flight = data.flights[index];
-                  return HABDetailScreenFlightView(flight, fontStyle);
-                },
-              ),
-              // Back Button 4 Stack
-              BackButton4Stack(),
-            ],
-          );
-        },
+            ),
+            // Header
+            HABDetailScreenFlightHeader(
+              activePage: this.activePage,
+              pageViewOffset: this.rendered ? this.pageController?.offset : 0.0,
+            ),
+            // Horizontal PageView Builder
+            PageView.builder(
+              pageSnapping: true,
+              controller: this.pageController,
+              itemCount: data.flights.length,
+              scrollDirection: Axis.horizontal,
+              onPageChanged: this.setActivePage,
+              key: Key(HABDetailScreenTestKeys.rootPageView),
+              itemBuilder: (context, index) {
+                final flight = data.flights[index];
+                return HABDetailScreenFlightView(flight, fontStyle);
+              },
+            ),
+            // Back Button 4 Stack
+            BackButton4Stack(),
+          ],
+        ),
       ),
     );
   }

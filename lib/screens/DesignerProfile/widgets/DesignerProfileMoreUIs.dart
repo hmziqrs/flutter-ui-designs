@@ -5,7 +5,7 @@ import 'package:flutter_uis/statics/models/UIDesigner.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/statics/models/UIItem.dart';
 
-import 'package:flutter_uis/Widgets/UICard/UICard.dart';
+import 'package:flutter_uis/widgets/UICard/UICard.dart';
 
 import 'DesignerProfileHeading.dart';
 import '../messages/keys.dart';

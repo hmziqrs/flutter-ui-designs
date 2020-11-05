@@ -7,7 +7,7 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/Utils.dart';
 
-import 'package:flutter_uis/Widgets/Screen/Screen.dart';
+import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
 import '../../configs/theme.dart' as theme;
 import '../../models/ETCTimer.dart';
@@ -99,7 +99,9 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
   }
 
   @override
-  Widget build(BuildContext buildCtx) {
+  Widget build(BuildContext context) {
+    Dimensions.init(context);
+
     final gradient = LinearGradient(
       colors: [theme.light1, theme.light2],
       begin: Alignment.topCenter,
@@ -114,7 +116,6 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
     final isReady = this.timer.state == ETCTimerState.ready;
 
     return Screen(
-      Dimensions.init,
       textStyle: fontStyle,
       scaffoldBackgroundColor: Colors.transparent,
       belowBuilder: (_) => Positioned.fill(
@@ -122,7 +123,7 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
           decoration: BoxDecoration(gradient: gradient),
         ),
       ),
-      builder: (_) => SafeArea(
+      child: SafeArea(
         child: Column(
           children: [
             ETCHomeScreenTimerTime(this.timer),

@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/UI.dart';
 
 class ScreenStateProvider extends ChangeNotifier {
-  double baseOffset = UI.height - 20;
-  double _offset = UI.height - 20;
-  double startOffset = 0.0;
+  bool _isSettingsOpen = false;
+  bool _isSettingsMounted = false;
 
-  double get offset => this._offset;
+  bool get isSettingsOpen => this._isSettingsOpen;
+  bool get isSettingsMounted => this._isSettingsMounted;
 
-  set offset(double newOffset) {
-    this._offset = newOffset;
-    notifyListeners();
-  }
-
-  void reset() {
-    this._offset = this.baseOffset;
-    notifyListeners();
-  }
-
-  void onLayoutChange() {
-    this.baseOffset = UI.height - 20;
-    if (this._offset != 0.0) {
-      this._offset = UI.height - 20;
-      this.startOffset = 0.0;
+  set isSettingsOpen(bool flag) {
+    if (flag == this._isSettingsOpen) {
+      return;
     }
+    this._isSettingsOpen = flag;
+    if (flag) {
+      this._isSettingsMounted = flag;
+    }
+    notifyListeners();
+  }
+
+  set isSettingsMounted(bool flag) {
+    if (flag == this._isSettingsMounted) {
+      return;
+    }
+    this._isSettingsMounted = flag;
+    notifyListeners();
   }
 }

@@ -12,7 +12,7 @@ import 'package:flutter_uis/MiniApps/SkyView/data/TestKeys.dart';
 import 'package:flutter_uis/screens/UIList/TestKeys.dart';
 
 import 'package:flutter_uis/screens/Home/TestKeys.dart';
-import 'package:flutter_uis/Widgets/Screen/TestKeys.dart';
+// import 'package:flutter_uis/Widgets/Screen/TestKeys.dart';
 import 'package:flutter_uis/screens/UIDetail/TestKeys.dart';
 import 'package:flutter_uis/statics/data/uiListTestKeys.dart';
 
@@ -78,9 +78,9 @@ void main() async {
 
           return;
           // Settings Modal
-          await Screenshot.screenshot("Settings-Modal");
-          await TestActions.tap(ScreenWidgetTestKeys.close);
-          print("Settings Modal Complete");
+          // await Screenshot.screenshot("Settings-Modal");
+          // await TestActions.tap(ScreenWidgetTestKeys.close);
+          // print("Settings Modal Complete");
 
           // Download Screen
           await TestActions.delay(1000);

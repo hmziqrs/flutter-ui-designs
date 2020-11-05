@@ -7,7 +7,7 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_uis/UI.dart';
 
-import 'package:flutter_uis/Widgets/Screen/Screen.dart';
+import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
 import '../../configs/theme.dart' as theme;
 import '../../data/data.dart' as data;
@@ -124,63 +124,60 @@ class _SKVDetailScreenState extends State<SKVDetailScreen>
     );
 
     return Screen(
-      Dimensions.init,
       textStyle: fontStyle,
       theme: rootTheme,
-      builder: (_) {
-        return RawKeyboardListener(
-          autofocus: true,
-          focusNode: FocusNode(),
-          onKey: this.onKeyHandler,
-          child: Stack(
-            fit: StackFit.expand,
-            children: <Widget>[
-              SKVDetailScreenSpaceBackground(
-                pageRendered: this.pageRendered,
-                starsWidgetKey: this.starsWidgetKey,
-                starsController: this.starsController,
+      child: RawKeyboardListener(
+        autofocus: true,
+        focusNode: FocusNode(),
+        onKey: this.onKeyHandler,
+        child: Stack(
+          fit: StackFit.expand,
+          children: <Widget>[
+            SKVDetailScreenSpaceBackground(
+              pageRendered: this.pageRendered,
+              starsWidgetKey: this.starsWidgetKey,
+              starsController: this.starsController,
+            ),
+            Positioned.fill(
+              child: PageView.builder(
+                key: Key(SKVDetailScreenTestKeys.rootScroll),
+                controller: this.pageController,
+                itemCount: data.objectList.length,
+                scrollDirection: Axis.horizontal,
+                onPageChanged: (index) =>
+                    setState(() => (this.activePage = index)),
+                pageSnapping: true,
+                physics: this.pageRendered
+                    ? new ClampingScrollPhysics()
+                    : new NeverScrollableScrollPhysics(),
+                itemBuilder: (ctx, index) {
+                  data.SKVObject item = data.objectList[index];
+                  return Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      SKVDetailScreenOrbit(
+                        index: index,
+                        pageRendered: pageRendered,
+                        offset: this.pageController.offset,
+                      ),
+                      SKVDetailScreenPlanet(
+                        item: item,
+                        index: index,
+                        pageRendered: pageRendered,
+                        offset: this.pageController.offset,
+                      ),
+                      SKVDetailScreenTextContent(
+                        item: item,
+                        pageRendered: this.pageRendered,
+                      ),
+                    ],
+                  );
+                },
               ),
-              Positioned.fill(
-                child: PageView.builder(
-                  key: Key(SKVDetailScreenTestKeys.rootScroll),
-                  controller: this.pageController,
-                  itemCount: data.objectList.length,
-                  scrollDirection: Axis.horizontal,
-                  onPageChanged: (index) =>
-                      setState(() => (this.activePage = index)),
-                  pageSnapping: true,
-                  physics: this.pageRendered
-                      ? new ClampingScrollPhysics()
-                      : new NeverScrollableScrollPhysics(),
-                  itemBuilder: (ctx, index) {
-                    data.SKVObject item = data.objectList[index];
-                    return Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        SKVDetailScreenOrbit(
-                          index: index,
-                          pageRendered: pageRendered,
-                          offset: this.pageController.offset,
-                        ),
-                        SKVDetailScreenPlanet(
-                          item: item,
-                          index: index,
-                          pageRendered: pageRendered,
-                          offset: this.pageController.offset,
-                        ),
-                        SKVDetailScreenTextContent(
-                          item: item,
-                          pageRendered: this.pageRendered,
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
-        );
-      },
+            )
+          ],
+        ),
+      ),
     );
   }
 }

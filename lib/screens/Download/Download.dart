@@ -6,7 +6,7 @@ import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/Utils.dart';
 
-import 'package:flutter_uis/Widgets/Screen/Screen.dart';
+import 'package:flutter_uis/widgets/Screen/Screen.dart';
 import 'package:flutter_uis/Mixins/HoverWidget.dart';
 
 import 'Widgets/DownloadPlatformWithLinks.dart';
@@ -17,8 +17,9 @@ import 'Dimensions.dart';
 class DownloadScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Dimensions.init(context);
+
     return Screen(
-      Dimensions.init,
       belowBuilder: (context) => ControlledAnimation(
         tween: ColorTween(
           begin: theme.primary.withOpacity(0.15),
@@ -38,7 +39,7 @@ class DownloadScreen extends StatelessWidget {
           );
         },
       ),
-      builder: (_) => Container(
+      child: Container(
         height: AppDimensions.size.height,
         child: SingleChildScrollView(
           child: Align(

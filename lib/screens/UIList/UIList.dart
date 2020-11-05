@@ -5,8 +5,8 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/statics/data/uiList.dart';
 import 'package:flutter_uis/Utils.dart';
 
-import 'package:flutter_uis/Widgets/Screen/Screen.dart';
-import 'package:flutter_uis/Widgets/UICard/UICard.dart';
+import 'package:flutter_uis/widgets/Screen/Screen.dart';
+import 'package:flutter_uis/widgets/UICard/UICard.dart';
 
 import 'Dimensions.dart';
 import 'TestKeys.dart';
@@ -68,73 +68,70 @@ class _UIListScreenState extends State<UIListScreen>
 
   @override
   Widget build(BuildContext context) {
+    Dimensions.init(context);
+    final chunked = quiver.partition(uilist, Dimensions.chunks).toList();
     return Screen(
-      Dimensions.init,
-      builder: (_) {
-        final chunked = quiver.partition(uilist, Dimensions.chunks).toList();
-
-        return SafeArea(
-          bottom: false,
-          top: false,
-          child: CustomScrollView(
-            key: Key(UIListScreenTestKeys.rootScroll),
-            slivers: [
-              Utils.safePadding(context, 'top', true),
-              SliverPadding(
-                padding: EdgeInsets.all(AppDimensions.padding),
-              ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppDimensions.padding * 3,
-                  ),
-                  child: Text(
-                    "Explore UIs",
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.w700,
-                    ),
+      child: SafeArea(
+        bottom: false,
+        top: false,
+        child: CustomScrollView(
+          key: Key(UIListScreenTestKeys.rootScroll),
+          slivers: [
+            Utils.safePadding(context, 'top', true),
+            SliverPadding(
+              padding: EdgeInsets.all(AppDimensions.padding),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppDimensions.padding * 3,
+                ),
+                child: Text(
+                  "Explore UIs",
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppDimensions.padding * 3,
-                  ),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppDimensions.padding * 3,
                 ),
               ),
-              SliverPadding(
-                padding: EdgeInsets.all(AppDimensions.padding),
-                sliver: SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (ctx, index) {
-                      return Row(
-                        children: chunked[index]
-                            .map(
-                              (ui) => UICard(
-                                ui,
-                                prespectiveScale: 0.0,
-                                cardWidth: Dimensions.cardWidth,
-                                cardHeight: Dimensions.cardHeight,
-                                padding: AppDimensions.padding * 2,
-                              ),
-                            )
-                            .toList(),
-                      );
-                    },
-                    childCount: chunked.length,
-                  ),
+            ),
+            SliverPadding(
+              padding: EdgeInsets.all(AppDimensions.padding),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (ctx, index) {
+                    return Row(
+                      children: chunked[index]
+                          .map(
+                            (ui) => UICard(
+                              ui,
+                              prespectiveScale: 0.0,
+                              cardWidth: Dimensions.cardWidth,
+                              cardHeight: Dimensions.cardHeight,
+                              padding: AppDimensions.padding * 2,
+                            ),
+                          )
+                          .toList(),
+                    );
+                  },
+                  childCount: chunked.length,
                 ),
               ),
-              SliverPadding(
-                padding: EdgeInsets.all(AppDimensions.padding * 3),
-              ),
-              Utils.safePadding(context, 'bottom', true),
-            ],
-          ),
-        );
-      },
+            ),
+            SliverPadding(
+              padding: EdgeInsets.all(AppDimensions.padding * 3),
+            ),
+            Utils.safePadding(context, 'bottom', true),
+          ],
+        ),
+      ),
     );
   }
 }

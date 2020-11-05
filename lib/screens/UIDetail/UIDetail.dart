@@ -4,7 +4,7 @@ import 'package:flutter_uis/statics/data/uiList.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
-import 'package:flutter_uis/Widgets/Screen/Screen.dart';
+import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
 import 'widgets/UIDetailCoverImage.dart';
 import 'widgets/UIDetailContent.dart';
@@ -19,7 +19,6 @@ class _UIDetailScreenState extends State<UIDetailScreen>
     with SingleTickerProviderStateMixin {
   double scrollOffset = 0.0;
   ScrollController scrollController;
-  final screenKey = GlobalKey<ScreenState>();
 
   @override
   void initState() {
@@ -41,46 +40,42 @@ class _UIDetailScreenState extends State<UIDetailScreen>
 
   @override
   Widget build(BuildContext context) {
+    Dimensions.init(context);
     final UIItem uiItem = ModalRoute.of(context).settings.arguments;
 
     return Screen(
-      Dimensions.init,
-      key: this.screenKey,
-      builder: (_) {
-        return SingleChildScrollView(
-          controller: this.scrollController,
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  UIDetailCoverImage(
-                    scrollOffset: this.scrollOffset,
-                    uiItem: uiItem,
-                  ),
-                  UIDetailContent(
-                    uiItem: uiItem,
-                    scrollOffset: this.scrollOffset,
-                    onLinkError: this.screenKey.currentState.showPopUp,
-                  )
-                ],
-              ),
-              Positioned(
-                top: MediaQuery.of(context).padding.top + AppDimensions.padding,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppDimensions.padding,
-                  ),
-                  child: BackButton(
-                    onPressed: () => Navigator.of(context).popUntil(
-                      ModalRoute.withName("uiList"),
-                    ),
+      child: SingleChildScrollView(
+        controller: this.scrollController,
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                UIDetailCoverImage(
+                  scrollOffset: this.scrollOffset,
+                  uiItem: uiItem,
+                ),
+                UIDetailContent(
+                  uiItem: uiItem,
+                  scrollOffset: this.scrollOffset,
+                )
+              ],
+            ),
+            Positioned(
+              top: MediaQuery.of(context).padding.top + AppDimensions.padding,
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppDimensions.padding,
+                ),
+                child: BackButton(
+                  onPressed: () => Navigator.of(context).popUntil(
+                    ModalRoute.withName("uiList"),
                   ),
                 ),
               ),
-            ],
-          ),
-        );
-      },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

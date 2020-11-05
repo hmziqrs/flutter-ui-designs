@@ -4,7 +4,7 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/Utils.dart';
 
-import 'package:flutter_uis/Widgets/Screen/Screen.dart';
+import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
 import '../../configs/theme.dart' as theme;
 import '../../data/data.dart' as data;
@@ -66,6 +66,8 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    Dimensions.init(context);
+
     final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
           fontFamily: 'Montserrat',
         );
@@ -76,131 +78,128 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
     );
 
     return Screen(
-      Dimensions.init,
       theme: rootTheme,
       textStyle: fontStyle,
       scaffoldBackgroundColor: theme.background,
-      builder: (_) {
-        return GestureDetector(
-          onTap: () => FocusScope.of(context).requestFocus(
-            new FocusNode(),
-          ),
-          child: NotificationListener<ScrollNotification>(
-            onNotification: this.onScrollNotification,
-            child: SingleChildScrollView(
-              key: Key(SKVHomeScreenTestKeys.rootScroll),
-              physics: ClampingScrollPhysics(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SafeArea(
-                    bottom: false,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SKVHomeScreenSearchBar(),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            top: AppDimensions.padding * 4,
-                            left: AppDimensions.padding * 3,
-                            right: AppDimensions.padding * 3,
-                          ),
-                          child: Text(
-                            App.translate(SKVHomeScreenMessages.explore),
-                            style: TextStyle(
-                              fontSize: 20 + AppDimensions.ratio * 10,
-                              fontWeight: FontWeight.w800,
-                              color: theme.lightText,
-                            ),
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(
+          new FocusNode(),
+        ),
+        child: NotificationListener<ScrollNotification>(
+          onNotification: this.onScrollNotification,
+          child: SingleChildScrollView(
+            key: Key(SKVHomeScreenTestKeys.rootScroll),
+            physics: ClampingScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SafeArea(
+                  bottom: false,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SKVHomeScreenSearchBar(),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: AppDimensions.padding * 4,
+                          left: AppDimensions.padding * 3,
+                          right: AppDimensions.padding * 3,
+                        ),
+                        child: Text(
+                          App.translate(SKVHomeScreenMessages.explore),
+                          style: TextStyle(
+                            fontSize: 20 + AppDimensions.ratio * 10,
+                            fontWeight: FontWeight.w800,
+                            color: theme.lightText,
                           ),
                         ),
-                        // Tabsbar
-                        Container(
-                          margin: EdgeInsets.symmetric(
-                            vertical: AppDimensions.padding * 3,
+                      ),
+                      // Tabsbar
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          vertical: AppDimensions.padding * 3,
+                          horizontal: AppDimensions.padding * 3,
+                        ),
+                        color: theme.background,
+                        child: TabBar(
+                          isScrollable: true,
+                          labelStyle: fontStyle.copyWith(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          unselectedLabelStyle: fontStyle.copyWith(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          labelColor: Colors.black,
+                          indicatorColor: theme.primary,
+                          controller: this.tabController,
+                          unselectedLabelColor: theme.subText,
+                          indicatorSize: TabBarIndicatorSize.label,
+                          labelPadding: EdgeInsets.symmetric(
+                            vertical: AppDimensions.padding,
                             horizontal: AppDimensions.padding * 3,
                           ),
-                          color: theme.background,
-                          child: TabBar(
-                            isScrollable: true,
-                            labelStyle: fontStyle.copyWith(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            unselectedLabelStyle: fontStyle.copyWith(
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            labelColor: Colors.black,
-                            indicatorColor: theme.primary,
-                            controller: this.tabController,
-                            unselectedLabelColor: theme.subText,
-                            indicatorSize: TabBarIndicatorSize.label,
-                            labelPadding: EdgeInsets.symmetric(
-                              vertical: AppDimensions.padding,
-                              horizontal: AppDimensions.padding * 3,
-                            ),
-                            tabs: this
-                                .tabs
-                                .map((tab) => Text(App.translate(tab)))
-                                .toList(),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SKVHomeScreenPlanetsCarousel(this.scrollOffset),
-                  // Build Stories
-                  Container(
-                    width: double.infinity,
-                    margin: EdgeInsets.only(top: AppDimensions.padding * 3),
-                    padding: Utils.safePaddingUnit(context, 'horizontal').add(
-                      EdgeInsets.all(AppDimensions.padding * 1.5),
-                    ),
-                    decoration: BoxDecoration(
-                      color: theme.secondary,
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(32.0),
-                      ),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                            top: AppDimensions.padding * 4,
-                            bottom: AppDimensions.padding * 2,
-                            left: AppDimensions.padding * 1.5,
-                            right: AppDimensions.padding * 1.5,
-                          ),
-                          child: Text(
-                            App.translate(SKVHomeScreenMessages.popular),
-                            style: TextStyle(
-                              color: theme.lightText,
-                              fontWeight: FontWeight.w800,
-                              fontSize: 20 + AppDimensions.ratio * 10,
-                            ),
-                          ),
-                        ),
-                        Wrap(
-                          children: data.storyList
-                              .map(
-                                (story) => SKVHomeScreenStory(
-                                  story: story,
-                                ),
-                              )
+                          tabs: this
+                              .tabs
+                              .map((tab) => Text(App.translate(tab)))
                               .toList(),
                         ),
-                        Utils.safePadding(context, 'bottom'),
-                      ],
+                      ),
+                    ],
+                  ),
+                ),
+                SKVHomeScreenPlanetsCarousel(this.scrollOffset),
+                // Build Stories
+                Container(
+                  width: double.infinity,
+                  margin: EdgeInsets.only(top: AppDimensions.padding * 3),
+                  padding: Utils.safePaddingUnit(context, 'horizontal').add(
+                    EdgeInsets.all(AppDimensions.padding * 1.5),
+                  ),
+                  decoration: BoxDecoration(
+                    color: theme.secondary,
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(32.0),
                     ),
                   ),
-                ],
-              ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: AppDimensions.padding * 4,
+                          bottom: AppDimensions.padding * 2,
+                          left: AppDimensions.padding * 1.5,
+                          right: AppDimensions.padding * 1.5,
+                        ),
+                        child: Text(
+                          App.translate(SKVHomeScreenMessages.popular),
+                          style: TextStyle(
+                            color: theme.lightText,
+                            fontWeight: FontWeight.w800,
+                            fontSize: 20 + AppDimensions.ratio * 10,
+                          ),
+                        ),
+                      ),
+                      Wrap(
+                        children: data.storyList
+                            .map(
+                              (story) => SKVHomeScreenStory(
+                                story: story,
+                              ),
+                            )
+                            .toList(),
+                      ),
+                      Utils.safePadding(context, 'bottom'),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
