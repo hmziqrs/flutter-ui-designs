@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 import 'package:flutter_uis/configs/App.dart';
 
@@ -24,7 +24,7 @@ class HABDetailScreenPreFlightInfoTab extends StatelessWidget {
         HABDetailScreenRowInfo(
           App.translate(flight.breakFastType),
           App.translate(flight.breakFast),
-          Feather.coffee,
+          MaterialCommunityIcons.coffee_outline,
           fullWidth: true,
         ),
         HABDetailScreenRowInfo(

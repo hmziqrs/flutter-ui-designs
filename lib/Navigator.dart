@@ -49,20 +49,6 @@ class AppNavigator extends StatelessWidget {
             this.navigator.currentState.canPop()) {
           this.navigator.currentState.pop();
         }
-
-        // final runtime = event.runtimeType.toString();
-        // final keyName = event.logicalKey.debugName;
-        // final ctrl = "Unknown Android key code 17";
-
-        // if (Platform.isWindows && keyName == ctrl) {
-        //   isAlt = (runtime == 'RawKeyDownEvent');
-        // }
-        // if (runtime == 'RawKeyUpEvent' &&
-        //     (keyName == 'Backspace' || keyName == 'Digit 1') &&
-        //     (event.isAltPressed || isAlt) &&
-        //     this.navigator.currentState.canPop()) {
-        //   this.navigator.currentState.pop();
-        // }
       },
       child: ChangeNotifierProvider<AppProvider>(
         create: (_) => AppProvider(),

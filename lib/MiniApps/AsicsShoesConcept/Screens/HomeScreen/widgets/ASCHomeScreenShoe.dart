@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
-import '../../../ models/ASCItem.dart';
+import '../../../models/ASCItem.dart';
 import '../Dimensions.dart';
 
 class ASCHomeScreenShoe extends StatelessWidget {

@@ -5,8 +5,7 @@ import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_uis/statics/models/UIItem.dart';
 
-import 'package:simple_animations/simple_animations/animation_controller_x/animation_controller_mixin.dart';
-import 'package:simple_animations/simple_animations/animation_task/from_to_task.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 class UICard extends StatefulWidget {
   const UICard(

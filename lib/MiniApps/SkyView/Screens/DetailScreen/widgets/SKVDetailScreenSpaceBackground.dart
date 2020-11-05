@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 import '../../../data/data.dart' as data;
 import '../Dimensions.dart';

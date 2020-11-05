@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/MiniApps/HealtyFoodDelivery/Screens/HomeScreen/messages/keys.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 import '../../models/HFDRestaurant.dart';
 import '../../models/HFDFoodItem.dart';
