@@ -1,65 +1,31 @@
 import 'package:emojis/emojis.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import 'package:flutter_uis/providers/AppProvider.dart';
+import 'package:flutter_uis/Providers/AppProvider.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/TextStyles.dart';
 import 'package:flutter_uis/configs/App.dart';
 
 import 'ScreenSettingsSelect.dart';
+import 'data.dart';
 
 import '../messages/keys.dart';
 import '../TestKeys.dart';
 
-final Map<String, Map<String, String>> map = {
-  "en": {
-    "label": "English",
-    "trans": ScreenWidgetMessages.smEnglish,
-    "emoji": Emojis.flagUnitedStates,
-  },
-  "zh": {
-    "label": "中文",
-    "trans": ScreenWidgetMessages.smChinese,
-    "emoji": Emojis.flagChina,
-  },
-  "ar": {
-    "label": "عربى",
-    "trans": ScreenWidgetMessages.smArabic,
-    "emoji": Emojis.flagSaudiArabia,
-  },
-  "def": {
-    "label": "System Default",
-    "trans": ScreenWidgetMessages.smSystemDefault,
-    "emoji": Emojis.gear,
-  },
-};
-
-final themeTestKeysMap = {
-  ThemeMode.system: ScreenWidgetTestKeys.systemTheme,
-  ThemeMode.light: ScreenWidgetTestKeys.lightTheme,
-  ThemeMode.dark: ScreenWidgetTestKeys.darkTheme,
-};
-
-final Map themeModeMap = {
-  ThemeMode.system: ScreenWidgetMessages.smSelectTheme,
-  ThemeMode.light: ScreenWidgetMessages.smLightTheme,
-  ThemeMode.dark: ScreenWidgetMessages.smDarkTheme,
-};
-
 class ScreenSettingsModalBody extends StatelessWidget {
   ScreenSettingsModalBody({
     @required this.onClose,
+    @required this.appState,
     @required this.isModalOpen,
   });
 
   final VoidCallback onClose;
+  final AppProvider appState;
   final bool isModalOpen;
 
   @override
   Widget build(BuildContext context) {
-    final appState = Provider.of<AppProvider>(context, listen: false);
 
     return Material(
       textStyle: Theme.of(context).textTheme.bodyText1,
@@ -132,7 +98,7 @@ class ScreenSettingsModalBody extends StatelessWidget {
                     (locale) {
                       final String key = locale?.languageCode ?? 'def';
                       return ScreenSettingsSelect(
-                        onPress: () => appState.activeLocale = locale,
+                        onPress: () => appState.setActiveLocale(locale),
                         isActive: locale == appState.activeLocale,
                         textChild: DefaultTextStyle(
                           style: DefaultTextStyle.of(context).style.copyWith(

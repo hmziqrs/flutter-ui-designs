@@ -30,8 +30,6 @@ import 'MiniApps/AsicsShoesConcept/Screens/HomeScreen/ASCHomeScreen.dart';
 
 import 'MiniApps/EggTimerConcept/Screens/HomeScreen/ETCHomeScreen.dart';
 
-bool isAlt = false;
-
 class AppNavigator extends StatelessWidget {
   AppNavigator(this.observers);
   final List<NavigatorObserver> observers;
@@ -50,89 +48,111 @@ class AppNavigator extends StatelessWidget {
           this.navigator.currentState.pop();
         }
       },
-      child: ChangeNotifierProvider<AppProvider>(
-        create: (_) => AppProvider(),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => AppProvider()),
+        ],
         child: Consumer<AppProvider>(
           builder: (context, value, _) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              locale: value.activeLocale,
-              supportedLocales: AppProvider.locales,
-              localizationsDelegates: [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-              ],
-              localeResolutionCallback: (locale, supportedLocales) {
-                for (var supportedLocale in supportedLocales) {
-                  if (locale != null &&
-                      supportedLocale.languageCode == locale.languageCode &&
-                      supportedLocale.countryCode == locale.countryCode) {
-                    return supportedLocale;
-                  }
-                }
-                return supportedLocales.first;
-              },
+            return MaterialChild(
+              state: value,
+              observers: this.observers,
               navigatorKey: this.navigator,
-              theme: ThemeData(
-                fontFamily: "Muli",
-                primaryColor: theme.primary,
-                accentColor: theme.primary,
-                textTheme: TextTheme(
-                  bodyText2: TextStyle(),
-                ),
-              ),
-              navigatorObservers: observers,
-              home: HomeScreen(),
-              onGenerateRoute: (settings) {
-                final index = ["skvDetail", "hfdDetail"].indexOf(settings.name);
-                if (index > -1) {
-                  return PageRouteBuilder(
-                    settings: settings,
-                    pageBuilder: (_, __, ___) {
-                      if (index == 1) {
-                        return HFDDetailScreen();
-                      }
-                      return SKVDetailScreen(settings.arguments);
-                    },
-                    transitionsBuilder: (_, anim, __, child) {
-                      return FadeTransition(opacity: anim, child: child);
-                    },
-                  );
-                }
-                return MaterialPageRoute(builder: (context) => HomeScreen());
-              },
-              routes: <String, WidgetBuilder>{
-                "home": (ctx) => new HomeScreen(),
-                "about": (ctx) => new AboutAppScreen(),
-                "aboutDeveloper": (ctx) => new AboutDeveloperScreen(),
-                "download": (ctx) => new DownloadScreen(),
-                "uiList": (ctx) => new UIListScreen(),
-                "uiDetail": (ctx) => new UIDetailScreen(),
-                "designerProfile": (ctx) => new DesignerProfileScreen(),
-
-                // Healthy Food Delivery
-                "hfdHome": (ctx) => new HFDHomeScreen(),
-                // "hfdDetail": (ctx) => new HFDDetailScreen(),
-
-                // Hot Air Balloon
-                "habHome": (ctx) => new HABHomeScreen(),
-
-                // Sky View
-                "skvHome": (ctx) => new SKVHomeScreen(),
-                "skvDetail": (ctx) {
-                  final int index = ModalRoute.of(ctx).settings.arguments;
-                  return SKVDetailScreen(index);
-                },
-
-                "ascHome": (ctx) => new ASCHomeScreen(),
-
-                "etcHome": (ctx) => new ETCHomeScreen(),
-              },
             );
           },
         ),
       ),
+    );
+  }
+}
+
+class MaterialChild extends StatelessWidget {
+  MaterialChild({
+    @required this.navigatorKey,
+    @required this.observers,
+    @required this.state,
+  });
+  final List<NavigatorObserver> observers;
+  final GlobalKey<NavigatorState> navigatorKey;
+  final AppProvider state;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      locale: state.activeLocale,
+      supportedLocales: AppProvider.locales,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      localeResolutionCallback: (locale, supportedLocales) {
+        for (var supportedLocale in supportedLocales) {
+          if (locale != null &&
+              supportedLocale.languageCode == locale.languageCode &&
+              supportedLocale.countryCode == locale.countryCode) {
+            return supportedLocale;
+          }
+        }
+        return supportedLocales.first;
+      },
+      navigatorKey: this.navigatorKey,
+      theme: ThemeData(
+        fontFamily: "Muli",
+        primaryColor: theme.primary,
+        accentColor: theme.primary,
+        textTheme: TextTheme(
+          bodyText2: TextStyle(),
+        ),
+      ),
+      navigatorObservers: observers,
+      initialRoute: "home",
+      onGenerateRoute: (settings) {
+        final index = ["skvDetail", "hfdDetail"].indexOf(settings.name);
+        if (index > -1) {
+          return PageRouteBuilder(
+            settings: settings,
+            pageBuilder: (_, __, ___) {
+              if (index == 1) {
+                return HFDDetailScreen();
+              }
+              return SKVDetailScreen(settings.arguments);
+            },
+            transitionsBuilder: (_, anim, __, child) {
+              return FadeTransition(opacity: anim, child: child);
+            },
+          );
+        }
+        return MaterialPageRoute(builder: (context) => HomeScreen());
+      },
+      routes: <String, WidgetBuilder>{
+        "home": (_) => new HomeScreen(),
+        "about": (_) => new AboutAppScreen(),
+        "aboutDeveloper": (_) => new AboutDeveloperScreen(),
+        "download": (_) => new DownloadScreen(),
+        "uiList": (_) => new UIListScreen(),
+        "uiDetail": (_) => new UIDetailScreen(),
+        "designerProfile": (_) => new DesignerProfileScreen(),
+
+        // Healthy Food Delivery
+        "hfdHome": (_) => new HFDHomeScreen(),
+        // "hfdDetail": (_) => new HFDDetailScreen(),
+
+        // Hot Air Balloon
+        "habHome": (_) => new HABHomeScreen(),
+
+        // Sky View
+        "skvHome": (_) => new SKVHomeScreen(),
+        "skvDetail": (context) {
+          final int index = ModalRoute.of(context).settings.arguments;
+          return SKVDetailScreen(index);
+        },
+
+        "ascHome": (_) => new ASCHomeScreen(),
+
+        "etcHome": (_) => new ETCHomeScreen(),
+      },
     );
   }
 }
