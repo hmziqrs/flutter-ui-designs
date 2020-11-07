@@ -37,6 +37,7 @@ class Screen extends StatelessWidget {
     if (this.init != null) {
       this.init(context);
     }
+
     return ChangeNotifierProvider<ScreenStateProvider>(
       create: (_) => ScreenStateProvider(),
       child: Theme(
@@ -59,11 +60,11 @@ class Screen extends StatelessWidget {
                   child: child ?? builder(context),
                 ),
                 this.renderSettings
-                    ? Consumer<ScreenStateProvider>(
-                        builder: (ctx, state, child) {
+                    ? Selector<ScreenStateProvider, bool>(
+                      selector: (_, state) => state.isSettingsOpen,
+                        builder: (ctx, isSettingsOpen, child) {
                           return ScreenSettingsModal(
-                            isSettingsOpen: state.isSettingsOpen,
-                            isSettingsMounted: state.isSettingsMounted,
+                            isSettingsOpen: isSettingsOpen,
                           );
                         },
                       )

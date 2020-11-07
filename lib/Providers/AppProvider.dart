@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AppProvider extends ChangeNotifier {
+  static AppProvider state(BuildContext context, [bool listen = false]) =>
+      Provider.of<AppProvider>(context, listen: listen);
+
   Locale _activeLocale;
 
   static List<Locale> locales = [
@@ -11,8 +15,8 @@ class AppProvider extends ChangeNotifier {
 
   Locale get activeLocale => this._activeLocale;
 
-  set activeLocale(Locale newLocale) {
-    this._activeLocale = newLocale;
+  setActiveLocale(Locale locale) {
+    this._activeLocale = locale;
     notifyListeners();
   }
 }

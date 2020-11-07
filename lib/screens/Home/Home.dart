@@ -49,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
+
     return Screen(
       scaffoldBackgroundColor: Colors.white,
       child: SafeArea(
