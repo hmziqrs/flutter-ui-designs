@@ -239,5 +239,12 @@
   "AboutUserWidget/linkCopied": "link copied",
   "AboutUserWidget/or": "or",
   "AboutUserWidget/developers": "developer's",
-  "AboutUserWidget/profile": "profile"
+  "AboutUserWidget/profile": "profile",
+  "DownloadScreen/desc": "Explore app on a different platform or share the link directly with anyone who might be interested in exploring the app",
+  "DownloadScreen/web": "Web",
+  "DownloadScreen/copy": "Copy",
+  "DownloadScreen/share": "Share",
+  "DownloadScreen/download": "Download",
+  "DownloadScreen/open": "Open",
+  "DownloadScreen/linkCopied": "link copied"
 }

@@ -71,13 +71,13 @@ final showSupport = [
   {
     "label": AboutDeveloperScreenMessages.likeProject1,
     "icon": MaterialCommunityIcons.github_face,
-    "link": MyLinks.invmovieconcept1Github,
+    "link": MyLinks.flutter_uisGithub,
   },
   {
     "platform": "Play Store",
     "label": AboutDeveloperScreenMessages.likeProject2,
     "icon": MaterialCommunityIcons.google_play,
-    "link": MyLinks.invmovieconcept1GooglePlay,
+    "link": MyLinks.flutter_uisGooglePlay,
   },
   {
     "platform": "Linkedin",
@@ -101,12 +101,12 @@ final moreProjects = [
       {
         "label": "Google Play",
         "icon": MaterialCommunityIcons.google_play,
-        "url": MyLinks.invmovieconcept1GooglePlay,
+        "url": MyLinks.flutter_uisGooglePlay,
       },
       {
         "label": "Github",
         "icon": MaterialCommunityIcons.github_face,
-        "url": MyLinks.invmovieconcept1GooglePlay,
+        "url": MyLinks.flutter_uisGooglePlay,
       },
     ],
   },
@@ -122,7 +122,7 @@ final moreProjects = [
       {
         "label": "Github",
         "icon": MaterialCommunityIcons.github_face,
-        "url": MyLinks.invmovieconcept1GooglePlay,
+        "url": MyLinks.flutter_uisGooglePlay,
       },
     ],
   },
