@@ -57,7 +57,7 @@ class HomeBody extends StatelessWidget {
                         textColor: AppTheme.primary,
                         borderSide: BorderSide(
                           width: 1.5,
-                          color: AppTheme.primary.withOpacity(0.2),
+                          color: AppTheme.primary.withOpacity(0.6),
                         ),
                         highlightedBorderColor: AppTheme.primary.withOpacity(
                           0.8,
@@ -83,9 +83,7 @@ class HomeBody extends StatelessWidget {
                                 item["label"],
                                 context,
                               ),
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                              ),
+                              style: TextStyles.body17,
                             ),
                           ],
                         ),
