@@ -44,6 +44,7 @@ dependencies:
   provider: 4.3.2+2
   supercharged: 1.10.0
   flutter_icons: 1.1.0
+  dotted_border: 1.0.6
   fluttery_dart2: 0.0.9
   touchable_opacity: 1.1.2
   page_transition: 1.1.7+2

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_uis/io/io.dart';
+import 'package:universal_io/io.dart';
 
 import 'package:url_launcher/url_launcher.dart' as url;
 import 'package:open_url/open_url.dart';
@@ -21,8 +21,19 @@ class Utils {
   }
 
   static double rangeMap(
-      double number, double inMin, double inMax, double outMin, double outMax) {
-    return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+    double number,
+    double inMin,
+    double inMax,
+    double outMin,
+    double outMax, {
+    bool safe = false,
+  }) {
+    final range =
+        (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+    if (safe) {
+      return range.clamp(outMin, outMax);
+    }
+    return range;
   }
 
   static double rangeL2LMap(
@@ -32,12 +43,18 @@ class Utils {
     double inMax,
     double outMin,
     double outMid,
-    double outMax,
-  ) {
+    double outMax, {
+    bool safe = false,
+  }) {
     double parsed = Utils.rangeMap(number, inMin, inMid, outMin, outMid);
 
     if (parsed > outMid) {
       parsed = Utils.rangeMap(number, inMid, inMax, outMid, outMax);
+    }
+
+    if (safe) {
+      if (parsed <= outMin) return outMin;
+      if (parsed >= outMax) return outMax;
     }
 
     return parsed;
@@ -45,7 +62,7 @@ class Utils {
 
   static launchUrl(link) async {
     try {
-      if (Platform.isLinux || Platform.isWindows) {
+      if (Platform.isWindows || Platform.isLinux) {
         final result = await openUrl(link);
         return result.exitCode != 0;
       } else {
@@ -56,6 +73,7 @@ class Utils {
         return safeCheck;
       }
     } catch (e) {
+      print(e);
       return false;
     }
   }
@@ -133,5 +151,9 @@ class Utils {
 
   static bool isDesktop() {
     return Platform.isMacOS || Platform.isWindows || Platform.isLinux;
+  }
+
+  static bool isMobile() {
+    return Platform.isAndroid || Platform.isIOS;
   }
 }

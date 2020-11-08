@@ -2,28 +2,19 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_uis/UI.dart';
 
 class Dimensions {
-  static double redBackground;
-  static double avatarSize;
+  static double projectCardWidth;
+  static double projectCardHeight;
+
+  static double avatarRadius;
 
   static init(BuildContext context) {
     App.init(context);
 
-    redBackground = AppDimensions.ratio * 60;
-    avatarSize = AppDimensions.ratio * 60;
+    projectCardHeight = 80 + AppDimensions.ratio * 60;
+    projectCardWidth = 150 + AppDimensions.ratio * 80;
 
-    if (UI.md && UI.height > 480) {
-      avatarSize = AppDimensions.padding * 17;
-      redBackground = AppDimensions.ratio * 80;
-    }
-    if (UI.lg && UI.height > 600) {
-      avatarSize = AppDimensions.padding * 20;
-      redBackground = AppDimensions.ratio * 120;
-    }
-    if (UI.xlg && UI.height > 800) {
-      redBackground = AppDimensions.ratio * 160;
-    }
+    avatarRadius = 150 + AppDimensions.ratio * 60;
   }
 }
