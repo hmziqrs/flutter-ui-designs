@@ -6,9 +6,7 @@ class ScreenStateProvider extends ChangeNotifier {
       Provider.of<ScreenStateProvider>(context, listen: listen);
 
   bool _isSettingsOpen = false;
-
   bool get isSettingsOpen => this._isSettingsOpen;
-
   setSettingsOpen(bool flag) {
     if (flag == this._isSettingsOpen) {
       return;

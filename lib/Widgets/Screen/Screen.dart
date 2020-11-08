@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'widgets/ScreenSettingsModal.dart';
 
-import 'ScreenStateProvider.dart';
+import 'Provider.dart';
 
 class Screen extends StatelessWidget {
   Screen({
@@ -61,7 +61,7 @@ class Screen extends StatelessWidget {
                 ),
                 this.renderSettings
                     ? Selector<ScreenStateProvider, bool>(
-                      selector: (_, state) => state.isSettingsOpen,
+                        selector: (_, state) => state.isSettingsOpen,
                         builder: (ctx, isSettingsOpen, child) {
                           return ScreenSettingsModal(
                             isSettingsOpen: isSettingsOpen,

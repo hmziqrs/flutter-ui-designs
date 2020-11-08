@@ -1,166 +1,89 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/Utils.dart';
 
-import 'package:flutter_uis/configs/Theme.dart' as theme;
-import 'package:flutter_uis/configs/TextStyles.dart';
-
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
+import 'package:provider/provider.dart';
 
-import 'messages/keys.dart';
-import 'data.dart' as data;
-import 'Dimensions.dart';
-
-import 'widgets/HomeBuildVersion.dart';
+import 'Provider.dart';
 import 'widgets/HomeAlertModal.dart';
 
-class HomeScreen extends StatefulWidget {
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
+import 'messages/keys.dart';
+import 'Dimensions.dart';
+import 'widgets/HomeBody.dart';
 
-class _HomeScreenState extends State<HomeScreen> {
-  bool webPopUpMounted = false;
-  double webPopUpOpacity = 0;
-
-  bool desktopPopUpMounted = false;
-  double desktopPopUpOpacity = 0;
-
-  @override
-  void initState() {
-    this.webPopUpMounted = kIsWeb;
-    this.webPopUpOpacity = kIsWeb ? 1 : 0;
-
-    this.desktopPopUpMounted = Utils.isDesktop();
-    this.desktopPopUpOpacity = Utils.isDesktop() ? 1 : 0;
-
-    super.initState();
-  }
-
-  void handlePath(String path) {
-    Navigator.of(context).pushNamed(
-      path,
-    );
-  }
-
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
 
-    return Screen(
-      scaffoldBackgroundColor: Colors.white,
-      child: SafeArea(
-        child: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            Center(
-              child: Container(
-                width: double.infinity,
-                constraints: BoxConstraints(
-                  maxWidth: AppDimensions.maxContainerWidth,
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppDimensions.padding * 2,
-                  vertical: AppDimensions.padding,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      App.translate(
-                        HomeScreenMessages.title,
-                      ),
-                      key: Key("title"),
-                      style: TextStyles.heading1,
+    return ChangeNotifierProvider<HomeStateProvider>(
+      create: (_) => HomeStateProvider(),
+      child: Screen(
+        scaffoldBackgroundColor: Colors.white,
+        child: SafeArea(
+          child: Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+              HomeBody(),
+              Selector<HomeStateProvider, bool>(
+                selector: (_, state) => state.isWebPopUpOpen,
+                builder: (context, isWebPopUpOpen, snapshot) {
+                  return HomeAlertModal(
+                    title: App.translate(
+                      HomeScreenMessages.modalWebTitle,
+                      context,
                     ),
-                    Text(
-                      App.translate(
-                        HomeScreenMessages.desc,
-                      ),
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: theme.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    description: App.translate(
+                      HomeScreenMessages.modalWebDesc,
+                      context,
                     ),
-                    Padding(padding: EdgeInsets.all(AppDimensions.padding)),
-                    ...data.list
-                        .map(
-                          (item) => Container(
-                            width: double.infinity,
-                            child: OutlineButton(
-                              key: Key(item["key"]),
-                              textColor: theme.primary,
-                              borderSide: BorderSide(
-                                width: 1.5,
-                                color: theme.primary.withOpacity(0.2),
-                              ),
-                              highlightedBorderColor: theme.primary.withOpacity(
-                                0.8,
-                              ),
-                              onPressed: () => this.handlePath(item["path"]),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(item["icon"], size: 20),
-                                  Container(width: 6),
-                                  Text(
-                                    App.translate(
-                                      item["label"],
-                                    ),
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                        .toList(),
-                    HomeBuildVersion(),
-                  ],
-                ),
+                    primaryText: App.translate(
+                      HomeScreenMessages.modalWebButton1,
+                      context,
+                    ),
+                    secondaryText: App.translate(
+                      HomeScreenMessages.modalWebButton2,
+                      context,
+                    ),
+                    initialMount: kIsWeb,
+                    isOpen: isWebPopUpOpen,
+                    onPrimary: () =>
+                        Navigator.of(context).pushNamed("download"),
+                    onSecondary: () =>
+                        HomeStateProvider.state(context).setWebPopUpOpen(false),
+                  );
+                },
               ),
-            ),
-            HomeAlertModal(
-              title: App.translate(
-                HomeScreenMessages.modalWebTitle,
+              Selector<HomeStateProvider, bool>(
+                selector: (_, state) => state.isDesktopPopUpOpen,
+                builder: (context, isDesktopPopUpOpen, snapshot) {
+                  return HomeAlertModal(
+                    title: App.translate(
+                      HomeScreenMessages.modalDesktopTitle,
+                      context,
+                    ),
+                    description: App.translate(
+                      HomeScreenMessages.modalDesktopDesc,
+                      context,
+                    ),
+                    secondaryText: App.translate(
+                      HomeScreenMessages.modalDesktopButton,
+                      context,
+                    ),
+                    initialMount: Utils.isDesktop(),
+                    isOpen: isDesktopPopUpOpen,
+                    onPrimary: () =>
+                        Navigator.of(context).pushNamed("download"),
+                    onSecondary: () => HomeStateProvider.state(context)
+                        .setDesktopPopUpOpen(false),
+                  );
+                },
               ),
-              description: App.translate(
-                HomeScreenMessages.modalWebDesc,
-              ),
-              primaryText: App.translate(
-                HomeScreenMessages.modalWebButton1,
-              ),
-              secondaryText: App.translate(
-                HomeScreenMessages.modalWebButton2,
-              ),
-              mount: this.webPopUpMounted,
-              opacity: this.webPopUpOpacity,
-              onEnd: () => setState(() => (this.webPopUpMounted = false)),
-              onPrimary: () => Navigator.of(context).pushNamed("download"),
-              onSecondary: () => setState(() => (this.webPopUpOpacity = 0)),
-            ),
-            HomeAlertModal(
-              title: App.translate(
-                HomeScreenMessages.modalDesktopTitle,
-              ),
-              description: App.translate(
-                HomeScreenMessages.modalDesktopDesc,
-              ),
-              secondaryText: App.translate(
-                HomeScreenMessages.modalDesktopButton,
-              ),
-              mount: this.desktopPopUpMounted,
-              opacity: this.desktopPopUpOpacity,
-              onEnd: () => setState(() => (this.desktopPopUpMounted = false)),
-              onSecondary: () => setState(() => (this.desktopPopUpOpacity = 0)),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
