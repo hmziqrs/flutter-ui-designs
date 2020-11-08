@@ -6,7 +6,7 @@ import 'package:supercharged/supercharged.dart';
 import 'package:flutter_uis/UI.dart';
 
 import 'ScreenSettingsModalBody.dart';
-import '../ScreenStateProvider.dart';
+import '../Provider.dart';
 
 class ScreenSettingsModal extends StatefulWidget {
   ScreenSettingsModal({

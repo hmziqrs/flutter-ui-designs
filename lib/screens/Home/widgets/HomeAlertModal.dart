@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:supercharged/supercharged.dart';
+
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/screens/Home/TestKeys.dart';
 
-class HomeAlertModal extends StatelessWidget {
+class HomeAlertModal extends StatefulWidget {
   HomeAlertModal({
     this.title,
+    this.isOpen,
+    this.initialMount,
     this.description,
-    this.mount,
-    this.opacity,
-    this.onEnd,
     this.primaryText,
     this.onPrimary,
     this.secondaryText,
@@ -18,27 +19,53 @@ class HomeAlertModal extends StatelessWidget {
   });
 
   final String title;
+  final bool isOpen;
+  final bool initialMount;
   final String description;
-  final bool mount;
-  final double opacity;
-  final VoidCallback onEnd;
   final String primaryText;
   final VoidCallback onPrimary;
   final String secondaryText;
   final VoidCallback onSecondary;
 
   @override
+  _HomeAlertModalState createState() => _HomeAlertModalState();
+}
+
+class _HomeAlertModalState extends State<HomeAlertModal> {
+  bool didMount;
+  @override
+  void initState() {
+    this.didMount = widget.initialMount;
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant HomeAlertModal oldWidget) {
+    if (oldWidget.isOpen && !widget.isOpen) {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+        setState(() {
+          this.didMount = false;
+        });
+      });
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (!mount) {
-      return Positioned(
-        child: Container(),
-      );
+    if (!this.didMount) {
+      return SizedBox();
     }
     return Positioned.fill(
       child: AnimatedOpacity(
-        opacity: opacity,
-        duration: Duration(milliseconds: 280),
-        onEnd: onEnd,
+        opacity: widget.isOpen ? 1.0 : 0.0,
+        duration: 280.milliseconds,
+        onEnd: () async {
+          await 80.milliseconds.delay;
+          setState(() {
+            this.didMount = false;
+          });
+        },
         child: Container(
           alignment: Alignment.center,
           color: Colors.black.withOpacity(0.4),
@@ -64,7 +91,7 @@ class HomeAlertModal extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.all(AppDimensions.padding * 2),
                     child: Text(
-                      title,
+                      widget.title,
                       style: TextStyle(
                         fontSize: 24.0,
                         fontWeight: FontWeight.w700,
@@ -78,7 +105,7 @@ class HomeAlertModal extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.all(AppDimensions.padding * 2),
                     child: Text(
-                      description,
+                      widget.description,
                       style: TextStyle(
                         fontSize: 10.0 + AppDimensions.ratio * 3,
                         fontWeight: FontWeight.w400,
@@ -91,12 +118,12 @@ class HomeAlertModal extends StatelessWidget {
                     child: Wrap(
                       alignment: WrapAlignment.end,
                       children: <Widget>[
-                        primaryText != null
+                        widget.primaryText != null
                             ? RaisedButton(
                                 color: theme.primary,
-                                onPressed: onPrimary,
+                                onPressed: widget.onPrimary,
                                 child: Text(
-                                  primaryText,
+                                  widget.primaryText,
                                   style: TextStyle(
                                     color: Colors.white,
                                   ),
@@ -105,10 +132,10 @@ class HomeAlertModal extends StatelessWidget {
                             : Container(),
                         RaisedButton(
                           color: Colors.white,
-                          onPressed: onSecondary,
+                          onPressed: widget.onSecondary,
                           key: Key(HomeScreenTestKeys.modalContinueBtn),
                           child: Text(
-                            secondaryText,
+                            widget.secondaryText,
                             style: TextStyle(
                               color: theme.primary,
                             ),
