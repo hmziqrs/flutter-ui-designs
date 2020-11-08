@@ -22,7 +22,6 @@ class HomeScreen extends StatelessWidget {
     return ChangeNotifierProvider<HomeStateProvider>(
       create: (_) => HomeStateProvider(),
       child: Screen(
-        scaffoldBackgroundColor: Colors.white,
         child: SafeArea(
           child: Stack(
             fit: StackFit.expand,

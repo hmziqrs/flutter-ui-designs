@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/configs/App.dart';
+
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
+import 'package:flutter_uis/configs/TextStyles.dart';
+import 'package:flutter_uis/configs/App.dart';
 
 import '../messages/keys.dart';
 
@@ -15,10 +18,8 @@ class HomeBuildVersion extends StatelessWidget {
       child: Text(
         "${App.translate(HomeScreenMessages.version)} 1.1.3",
         textAlign: TextAlign.center,
-        style: TextStyle(
-          fontWeight: FontWeight.w700,
-          color: Colors.black.withOpacity(0.25),
-          fontSize: 5 + AppDimensions.ratio * 4,
+        style: TextStyles.body27.copyWith(
+          color: AppTheme.text.withOpacity(0.4),
         ),
       ),
     );

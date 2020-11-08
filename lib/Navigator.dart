@@ -3,8 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import './configs/Theme.dart' as theme;
-import 'package:flutter_uis/io/io.dart';
+import './configs/theme.dart' as theme;
 
 import 'package:flutter_uis/AppLocalizations.dart';
 import 'Providers/AppProvider.dart';
@@ -97,15 +96,10 @@ class MaterialChild extends StatelessWidget {
         }
         return supportedLocales.first;
       },
+      theme: theme.base,
+      darkTheme: theme.baseDark,
+      themeMode: ThemeMode.dark,
       navigatorKey: this.navigatorKey,
-      theme: ThemeData(
-        fontFamily: "Muli",
-        primaryColor: theme.primary,
-        accentColor: theme.primary,
-        textTheme: TextTheme(
-          bodyText2: TextStyle(),
-        ),
-      ),
       navigatorObservers: observers,
       initialRoute: "home",
       onGenerateRoute: (settings) {
