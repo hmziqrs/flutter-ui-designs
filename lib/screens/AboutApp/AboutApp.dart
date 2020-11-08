@@ -34,7 +34,7 @@ class AboutAppScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  App.translate(AboutAppScreenMessages.title),
+                  App.translate(AboutAppScreenMessages.title, context),
                   style: TextStyle(
                     fontSize: 40,
                     fontWeight: FontWeight.w700,
@@ -44,7 +44,7 @@ class AboutAppScreen extends StatelessWidget {
                   padding: EdgeInsets.all(AppDimensions.padding / 2),
                 ),
                 Text(
-                  App.translate(AboutAppScreenMessages.description),
+                  App.translate(AboutAppScreenMessages.description, context),
                   style: TextStyle(
                     fontSize: 16,
                     color: theme.primary,
@@ -55,75 +55,75 @@ class AboutAppScreen extends StatelessWidget {
                   padding: EdgeInsets.all(AppDimensions.padding * 1.5),
                 ),
                 AboutAppText(
-                  App.translate(AboutAppScreenMessages.question1),
+                  App.translate(AboutAppScreenMessages.question1, context),
                 ),
                 AboutAppText(
-                  App.translate(AboutAppScreenMessages.question2),
+                  App.translate(AboutAppScreenMessages.question2, context),
                   point: true,
                 ),
                 AboutAppText(
-                  App.translate(AboutAppScreenMessages.question3),
+                  App.translate(AboutAppScreenMessages.question3, context),
                   point: true,
                 ),
                 AboutAppText(
-                  App.translate(AboutAppScreenMessages.question4),
+                  App.translate(AboutAppScreenMessages.question4, context),
                   point: true,
                 ),
                 AboutAppText(
-                  App.translate(AboutAppScreenMessages.question5),
+                  App.translate(AboutAppScreenMessages.question5, context),
                   point: true,
                 ),
                 AboutAppText(
-                  App.translate(AboutAppScreenMessages.question6),
+                  App.translate(AboutAppScreenMessages.question6, context),
                   point: true,
                 ),
                 AboutAppText(
-                  App.translate(AboutAppScreenMessages.question7),
+                  App.translate(AboutAppScreenMessages.question7, context),
                   point: true,
                 ),
                 AboutAppText(
-                  App.translate(AboutAppScreenMessages.question8),
-                  point: true,
-                ),
-                Padding(
-                  padding: EdgeInsets.all(AppDimensions.padding * 1.5),
-                ),
-                AboutAppText(
-                  App.translate(AboutAppScreenMessages.answer1),
-                ),
-                AboutAppText(
-                  App.translate(AboutAppScreenMessages.answer2),
-                  point: true,
-                ),
-                AboutAppText(
-                  App.translate(AboutAppScreenMessages.answer3),
-                  point: true,
-                ),
-                AboutAppText(
-                  App.translate(AboutAppScreenMessages.answer4),
-                  point: true,
-                ),
-                AboutAppText(
-                  App.translate(AboutAppScreenMessages.answer5),
-                  point: true,
-                ),
-                AboutAppText(
-                  App.translate(AboutAppScreenMessages.answer6),
-                  point: true,
-                ),
-                AboutAppText(
-                  App.translate(AboutAppScreenMessages.answer7),
-                  point: true,
-                ),
-                AboutAppText(
-                  App.translate(AboutAppScreenMessages.answer8),
+                  App.translate(AboutAppScreenMessages.question8, context),
                   point: true,
                 ),
                 Padding(
                   padding: EdgeInsets.all(AppDimensions.padding * 1.5),
                 ),
                 AboutAppText(
-                  App.translate(AboutAppScreenMessages.iDont),
+                  App.translate(AboutAppScreenMessages.answer1, context),
+                ),
+                AboutAppText(
+                  App.translate(AboutAppScreenMessages.answer2, context),
+                  point: true,
+                ),
+                AboutAppText(
+                  App.translate(AboutAppScreenMessages.answer3, context),
+                  point: true,
+                ),
+                AboutAppText(
+                  App.translate(AboutAppScreenMessages.answer4, context),
+                  point: true,
+                ),
+                AboutAppText(
+                  App.translate(AboutAppScreenMessages.answer5, context),
+                  point: true,
+                ),
+                AboutAppText(
+                  App.translate(AboutAppScreenMessages.answer6, context),
+                  point: true,
+                ),
+                AboutAppText(
+                  App.translate(AboutAppScreenMessages.answer7, context),
+                  point: true,
+                ),
+                AboutAppText(
+                  App.translate(AboutAppScreenMessages.answer8, context),
+                  point: true,
+                ),
+                Padding(
+                  padding: EdgeInsets.all(AppDimensions.padding * 1.5),
+                ),
+                AboutAppText(
+                  App.translate(AboutAppScreenMessages.iDont, context),
                   textStyle: TextStyle(
                     color: theme.primary,
                   ),

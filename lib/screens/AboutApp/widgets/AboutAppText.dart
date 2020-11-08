@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
+import 'package:flutter_uis/configs/TextStyles.dart';
 
 class AboutAppText extends StatelessWidget {
   AboutAppText(this.string, {this.point = false, textStyle})
@@ -11,12 +13,8 @@ class AboutAppText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = point ? Colors.black.withOpacity(0.6) : Colors.black;
-    TextStyle style = TextStyle(
-      fontSize: point ? 13 : 15,
-      fontWeight: FontWeight.w600,
-      color: color,
-    ).merge(textStyle);
+    final color = point ? AppTheme.subText2 : AppTheme.text;
+    TextStyle style = TextStyles.body26.copyWith(color: color).merge(textStyle);
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: AppDimensions.padding / 1.8),
