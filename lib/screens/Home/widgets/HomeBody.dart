@@ -83,7 +83,7 @@ class HomeBody extends StatelessWidget {
                                 item["label"],
                                 context,
                               ),
-                              style: TextStyles.body17,
+                              style: TextStyles.body16,
                             ),
                           ],
                         ),

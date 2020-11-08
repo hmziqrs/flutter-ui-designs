@@ -1,218 +1,136 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/configs/App.dart';
+
 import 'package:flutter_uis/Utils.dart';
 
-import 'AboutDeveloperShowSupport.dart';
+import 'package:flutter_uis/widgets/AboutUser/AboutUserContactButton.dart';
+import 'package:flutter_uis/widgets/AboutUser/AboutUserJobTitle.dart';
+import 'package:flutter_uis/widgets/AboutUser/AboutUserHeading.dart';
+import 'package:flutter_uis/widgets/AboutUser/AboutUserSkills.dart';
+import 'package:flutter_uis/widgets/AboutUser/AboutUserName.dart';
+import 'package:flutter_uis/widgets/AboutUser/AboutUserBio.dart';
+
+import 'package:flutter_uis/widgets/Buttons/Alpha.dart';
+import 'package:flutter_uis/widgets/Header/Header.dart';
+import 'package:flutter_uis/widgets/Banners/Alpha.dart';
+
+import 'AboutDeveloperMoreProjects.dart';
+
 import '../messages/keys.dart';
 import '../data.dart' as data;
 import '../Dimensions.dart';
+import '../TestKeys.dart';
 
 class AboutDeveloperBody extends StatelessWidget {
+  Widget mapSupportButton(
+    BuildContext context,
+    Map obj,
+  ) {
+    final buttonMargin = EdgeInsets.only(
+      top: AppDimensions.padding * 2,
+      left: AppDimensions.padding * 2,
+      right: AppDimensions.padding * 2,
+    );
+    final prefix = obj["platform"];
+
+    String label = obj["label"].toString();
+
+    if (prefix != null) {
+      label = App.translate(label) + " " + prefix;
+    }
+
+    return AlphaButton(
+      icon: obj["icon"],
+      margin: buttonMargin,
+      label: (App.translate(label, context)).toUpperCase(),
+      onTap: () => Utils.launchUrl(obj["link"]),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Container(height: Dimensions.avatarSize / 2),
-        Padding(
-          padding: EdgeInsets.only(
-            left: AppDimensions.padding,
-            right: AppDimensions.padding,
-            top: AppDimensions.padding * 3,
-          ),
-          child: Text(
-            App.translate(AboutDeveloperScreenMessages.title),
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w600,
+    return Align(
+      child: Container(
+        width: AppDimensions.maxContainerWidth,
+        child: ListView(
+          key: Key(AboutDeveloperTestKeys.rootScroll),
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            Header(
+              label: AboutDeveloperScreenMessages.title,
             ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-            left: AppDimensions.padding,
-            right: AppDimensions.padding,
-            top: AppDimensions.padding,
-          ),
-          child: Text(
-            App.translate(AboutDeveloperScreenMessages.description),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-            left: AppDimensions.padding,
-            right: AppDimensions.padding,
-            top: AppDimensions.padding * 3,
-          ),
-          child: Text(
-            App.translate(AboutDeveloperScreenMessages.skillSet),
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w600,
+            SizedBox(height: AppDimensions.padding * 1),
+            AboutUserName(name: "Hamza Iqbal"),
+            AboutUserJobTitle(
+              label: "Full Stack, React Native & Flutter Developer",
             ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-            top: AppDimensions.padding,
-          ),
-          child: Wrap(
-            children: data.skills
+            AboutUserBio(points: data.devDescription),
+            SizedBox(height: AppDimensions.padding * 3),
+            Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
+            SizedBox(height: AppDimensions.padding * 2),
+            AboutUserHeading(
+              label: "skills",
+            ),
+            SizedBox(height: AppDimensions.padding * 1),
+            AboutUserSkills(
+              skills: data.skills,
+            ),
+            SizedBox(height: AppDimensions.padding * 2),
+            Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
+            SizedBox(height: AppDimensions.padding * 2),
+            AboutUserHeading(label: "contacts"),
+            SizedBox(height: AppDimensions.padding * 2),
+            AlphaBanner(
+              text: App.translate(
+                AboutDeveloperScreenMessages.contactsDesc,
+                context,
+              ),
+            ),
+            SizedBox(height: AppDimensions.padding * 1),
+            ...data.contacts
                 .map(
-                  (skill) => Container(
-                    margin: EdgeInsets.all(AppDimensions.padding * 1),
-                    padding: EdgeInsets.symmetric(
-                      vertical: AppDimensions.padding,
-                      horizontal: AppDimensions.padding * 2,
-                    ),
-                    decoration: BoxDecoration(
-                      color: theme.darkBackground,
-                      borderRadius: BorderRadius.circular(4.0),
-                      border: Border.all(
-                        width: 1,
-                        color: theme.primary,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: theme.primary.withOpacity(0.5),
-                          blurRadius: 3,
-                        ),
-                      ],
-                    ),
-                    child: Text(
-                      skill,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
+                  (contact) => AboutUserContactButton(
+                    url: contact["url"],
+                    icon: contact["icon"],
+                    label: contact["label"],
+                    initContext: Dimensions.init,
+                    platform: contact["platform"],
                   ),
                 )
                 .toList(),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-            left: AppDimensions.padding,
-            right: AppDimensions.padding,
-            top: AppDimensions.padding * 3,
-          ),
-          child: Text(
-            App.translate(AboutDeveloperScreenMessages.letsChat),
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w600,
+            SizedBox(height: AppDimensions.padding * 3),
+            Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
+            SizedBox(height: AppDimensions.padding * 2),
+            AboutUserHeading(
+              label: "likeProject",
             ),
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(),
-          padding: EdgeInsets.only(
-            left: AppDimensions.padding,
-            right: AppDimensions.padding,
-            top: AppDimensions.padding,
-            bottom: AppDimensions.padding * 2,
-          ),
-          child: Text(
-            App.translate(AboutDeveloperScreenMessages.note),
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: Colors.white.withOpacity(0.5),
+            SizedBox(height: AppDimensions.padding * 2),
+            AlphaBanner(
+              text: App.translate(
+                AboutDeveloperScreenMessages.likeProjectDesc,
+                context,
+              ),
             ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppDimensions.padding,
-          ),
-          child: Column(
-            children: data.contacts
+            SizedBox(height: AppDimensions.padding * 1),
+            ...data.showSupport
                 .map(
-                  (contact) => Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: AppDimensions.padding),
-                    child: OutlineButton(
-                      onPressed: () async {
-                        final check = await Utils.launchUrl(Utils.socialLink(
-                          contact["username"],
-                          contact["platform"],
-                        ));
-                        if (!check) {
-                          // this.screenKey.currentState.showPopUp();
-                        }
-                      },
-                      padding: EdgeInsets.symmetric(
-                        vertical: AppDimensions.padding * 1.2,
-                      ),
-                      color: theme.primary,
-                      textColor: theme.primary,
-                      highlightedBorderColor: theme.primary,
-                      borderSide: BorderSide(
-                        color: theme.primary.withOpacity(0.7),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: AppDimensions.padding,
-                            ),
-                            child: Icon(
-                              contact["icon"],
-                              color: Colors.white,
-                            ),
-                          ),
-                          Text(
-                            (["facebook", "instagram", "linkedin"]
-                                        .contains(contact["platform"])
-                                    ? "@"
-                                    : "") +
-                                contact["username"],
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  (obj) => this.mapSupportButton(context, obj),
                 )
                 .toList(),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(
-            left: AppDimensions.padding,
-            right: AppDimensions.padding,
-            top: AppDimensions.padding * 3,
-          ),
-          child: Text(
-            App.translate(AboutDeveloperScreenMessages.support),
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w600,
+            SizedBox(height: AppDimensions.padding * 3),
+            Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
+            SizedBox(height: AppDimensions.padding * 2),
+            AboutUserHeading(
+              label: "moreProjects",
             ),
-          ),
+            SizedBox(height: AppDimensions.padding * 1),
+            AboutDeveloperMoreProjects(),
+          ],
         ),
-        Padding(
-          padding: EdgeInsets.only(
-            left: AppDimensions.padding,
-            right: AppDimensions.padding,
-            top: AppDimensions.padding,
-          ),
-          child: Text(
-            App.translate(AboutDeveloperScreenMessages.supportDescription),
-            style: TextStyle(
-              fontSize: 8 + AppDimensions.ratio * 4,
-              color: Colors.white.withOpacity(0.55),
-            ),
-          ),
-        ),
-        AboutDeveloperShowSupport(),
-      ],
+      ),
     );
   }
 }
