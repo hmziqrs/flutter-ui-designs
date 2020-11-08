@@ -16,7 +16,7 @@ class HomeBuildVersion extends StatelessWidget {
       ),
       width: double.infinity,
       child: Text(
-        "${App.translate(HomeScreenMessages.version)} 1.1.3",
+        "${App.translate(HomeScreenMessages.version, context)} 1.1.3",
         textAlign: TextAlign.center,
         style: TextStyles.body27.copyWith(
           color: AppTheme.text.withOpacity(0.4),

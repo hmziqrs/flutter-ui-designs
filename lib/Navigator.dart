@@ -98,7 +98,7 @@ class MaterialChild extends StatelessWidget {
       },
       theme: theme.base,
       darkTheme: theme.baseDark,
-      themeMode: ThemeMode.dark,
+      themeMode: state.themeMode,
       navigatorKey: this.navigatorKey,
       navigatorObservers: observers,
       initialRoute: "home",

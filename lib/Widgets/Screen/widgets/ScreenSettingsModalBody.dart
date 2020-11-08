@@ -26,7 +26,6 @@ class ScreenSettingsModalBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Material(
       textStyle: Theme.of(context).textTheme.bodyText1,
       color: Colors.transparent,
@@ -137,14 +136,14 @@ class ScreenSettingsModalBody extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // ...ThemeMode.values.map(
-                  //   (themeMode) => ScreenSettingsSelect(
-                  //     testKey: themeTestKeysMap[themeMode],
-                  //     onPress: () => appState.setTheme(themeMode),
-                  //     isActive: themeMode == appState.themeMode,
-                  //     text: App.translate(themeModeMap[themeMode], context),
-                  //   ),
-                  // ),
+                  ...ThemeMode.values.map(
+                    (themeMode) => ScreenSettingsSelect(
+                      testKey: themeTestKeysMap[themeMode],
+                      onPress: () => appState.setTheme(themeMode),
+                      isActive: themeMode == appState.themeMode,
+                      text: App.translate(themeModeMap[themeMode], context),
+                    ),
+                  ),
                   Container(height: AppDimensions.padding * 3),
                 ],
               ),
