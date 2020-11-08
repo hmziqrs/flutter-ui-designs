@@ -15,10 +15,9 @@ abstract class MyLinks {
       'https://play.google.com/store/apps/details?id=com.onemdev.rnloop';
 
   //
-  static final invmovieconcept1Github =
-      'https://github.com/hackerhgl/invmovieconcept1';
-  static final invmovieconcept1GooglePlay =
-      'https://play.google.com/store/apps/details?id=com.onemdev.invmovieconcept1';
+  static final flutter_uisGithub = 'https://github.com/hackerhgl/flutter_uis';
+  static final flutter_uisGooglePlay =
+      'https://play.google.com/store/apps/details?id=com.onemdev.flutter_uis';
 
   //
   static final hackerhglCVGithub = 'https://github.com/hackerhgl/CV';
