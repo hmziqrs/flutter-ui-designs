@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
-import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/screens/Home/TestKeys.dart';
 
 class HomeAlertModal extends StatefulWidget {
@@ -68,17 +68,17 @@ class _HomeAlertModalState extends State<HomeAlertModal> {
         },
         child: Container(
           alignment: Alignment.center,
-          color: Colors.black.withOpacity(0.4),
+          color: AppTheme.background.withOpacity(0.8),
           child: Container(
             margin: EdgeInsets.all(AppDimensions.padding * 3),
             width: 400,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppTheme.background,
               borderRadius: BorderRadius.circular(8.0),
               boxShadow: [
                 BoxShadow(
                   blurRadius: 25,
-                  color: Colors.black.withOpacity(0.3),
+                  color: AppTheme.shadow,
                 ),
               ],
             ),
@@ -86,7 +86,6 @@ class _HomeAlertModalState extends State<HomeAlertModal> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                // crossAxisAlignment: CrossAxisAlignment.sta,
                 children: [
                   Padding(
                     padding: EdgeInsets.all(AppDimensions.padding * 2),
@@ -100,7 +99,7 @@ class _HomeAlertModalState extends State<HomeAlertModal> {
                   ),
                   Container(
                     height: 2,
-                    color: Colors.black.withOpacity(0.12),
+                    color: AppTheme.text01,
                   ),
                   Padding(
                     padding: EdgeInsets.all(AppDimensions.padding * 2),
@@ -120,24 +119,24 @@ class _HomeAlertModalState extends State<HomeAlertModal> {
                       children: <Widget>[
                         widget.primaryText != null
                             ? RaisedButton(
-                                color: theme.primary,
+                                color: AppTheme.primary,
                                 onPressed: widget.onPrimary,
                                 child: Text(
                                   widget.primaryText,
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: AppTheme.text,
                                   ),
                                 ),
                               )
                             : Container(),
                         RaisedButton(
-                          color: Colors.white,
+                          color: AppTheme.background,
                           onPressed: widget.onSecondary,
                           key: Key(HomeScreenTestKeys.modalContinueBtn),
                           child: Text(
                             widget.secondaryText,
                             style: TextStyle(
-                              color: theme.primary,
+                              color: AppTheme.primary,
                             ),
                           ),
                         ),
