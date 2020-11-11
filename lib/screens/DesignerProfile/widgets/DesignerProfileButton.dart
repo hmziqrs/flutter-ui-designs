@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/configs/Theme.dart' as theme;
 
 import 'package:flutter_uis/widgets/BorderButton/BorderButton.dart';
@@ -22,7 +23,7 @@ class DesignerProfileButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color color = enable ? theme.primary : Colors.black.withOpacity(0.3);
+    Color color = enable ? AppTheme.primary : AppTheme.text03;
 
     return BorderButton(
       color: color,
