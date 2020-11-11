@@ -34,11 +34,11 @@ void setEnv(String key, String value) {
       // [";", "\$env:$key"],
       runInShell: true,
     );
-    final resulta = Process.runSync(
-      "\$env:$key",
-      [],
-      runInShell: true,
-    );
+    // final resulta = Process.runSync(
+    //   "\$env:$key",
+    //   [],
+    //   runInShell: true,
+    // );
     print(result.stdout);
     print("ERROR");
     print(result.stderr);
