@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 
 import '../../../configs/theme.dart' as theme;
 import '../data.dart' as data;
@@ -29,13 +30,13 @@ class HFDHomeScreenCategories extends StatelessWidget {
                         width: Dimensions.categoryBaseSize,
                         height: Dimensions.categoryBaseSize,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: AppTheme.background,
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 8,
                               offset: Offset(0, 6),
-                              color: Colors.black.withOpacity(0.10),
+                              color: AppTheme.text01,
                             ),
                           ],
                         ),
