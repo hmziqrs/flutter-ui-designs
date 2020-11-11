@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
-import 'package:flutter_uis/configs/Theme.dart' as theme;
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/UI.dart';
 
 import '../Dimensions.dart';
@@ -34,15 +34,13 @@ class DesignerProfileAvatar extends StatelessWidget {
           color: Colors.black,
           border: Border.all(
             width: AppDimensions.padding,
-            // color: Colors.white,
-            color: theme.primary,
+            color: AppTheme.primary,
           ),
           boxShadow: [
             BoxShadow(
               blurRadius: 12,
               spreadRadius: 8,
-              color: Colors.white,
-              // color: theme.primary,
+              color: AppTheme.background,
             )
           ],
         ),
@@ -51,7 +49,6 @@ class DesignerProfileAvatar extends StatelessWidget {
             username,
             style: TextStyle(
               fontSize: Dimensions.avatarSize * 0.15,
-              // color: theme.primary,
               color: Colors.white,
               fontWeight: FontWeight.w800,
             ),
