@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/App.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -24,13 +25,13 @@ class HFDDetailScreenBody extends StatelessWidget {
       padding: EdgeInsets.all(AppDimensions.padding * 2),
       width: (AppDimensions.miniContainerWidth - AppDimensions.padding * 8),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppTheme.background,
         borderRadius: BorderRadius.circular(8.0),
         boxShadow: [
           BoxShadow(
             blurRadius: 10.0,
             offset: Offset(0.0, 4.0),
-            color: Colors.black.withOpacity(0.2),
+            color: AppTheme.text02,
           ),
         ],
       ),
@@ -78,7 +79,7 @@ class HFDDetailScreenBody extends StatelessWidget {
                     "${item.dailyCal}% ${App.translate(HFDDetailScreenMessages.dailyCalories)}",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: Colors.black.withOpacity(0.4),
+                      color: AppTheme.subText3,
                     ),
                   ),
                 ],
@@ -128,7 +129,7 @@ class HFDDetailScreenBody extends StatelessWidget {
                 height: 4 + AppDimensions.ratio * 1,
                 child: LinearProgressIndicator(
                   value: Utils.rangeMap(animate, 0.0, 1.0, 0.0, no / 100),
-                  backgroundColor: Colors.black.withOpacity(0.3),
+                  backgroundColor: AppTheme.text03,
                 ),
               ),
             ),
@@ -156,7 +157,7 @@ class HFDDetailScreenBody extends StatelessWidget {
                 label,
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  color: Colors.black.withOpacity(0.4),
+                  color: AppTheme.subText3,
                   fontSize: 5 + AppDimensions.ratio * 4,
                 ),
               ),
