@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/UI.dart';
-import 'package:flutter_uis/Utils.dart';
-import 'package:flutter_uis/configs/App.dart';
+
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/App.dart';
+
+import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/UI.dart';
 
 import '../../../configs/theme.dart' as theme;
 import '../../../data/flights.dart' as data;
@@ -61,6 +63,7 @@ class HABDetailScreenFlightHeader extends StatelessWidget {
                                   App.translate(entry.value.name),
                                   style: TextStyle(
                                     fontSize: 30,
+                                    // color: Colors.black,
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
@@ -68,6 +71,7 @@ class HABDetailScreenFlightHeader extends StatelessWidget {
                                   " ${App.translate(HABDetailScreenMessages.flight)}",
                                   style: TextStyle(
                                     fontSize: 30,
+                                    // color: Colors.black,
                                   ),
                                 ),
                               ],
@@ -76,6 +80,7 @@ class HABDetailScreenFlightHeader extends StatelessWidget {
                               App.translate(entry.value.shortDesc),
                               style: TextStyle(
                                 fontSize: 12.0,
+                                // color: Colors.black,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
