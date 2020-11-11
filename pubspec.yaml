@@ -18,6 +18,7 @@ environment:
 
 flutter_icons:
   includes:
+    - fea
     - mco
     - ent
     - faw5s

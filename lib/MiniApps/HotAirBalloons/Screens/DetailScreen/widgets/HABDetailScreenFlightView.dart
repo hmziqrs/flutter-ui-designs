@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/MiniApps/HotAirBalloons/Screens/DetailScreen/TestKeys.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/configs/App.dart';
 
-import '../../../configs/theme.dart' as theme;
 import '../../../data/flights.dart' as data;
 import '../messages/keys.dart';
 import '../Dimensions.dart';
+import '../TestKeys.dart';
 
 import 'HABDetailScreenPostFlightInfoTab.dart';
 import 'HABDetailScreenFlightDetailsTab.dart';
@@ -85,7 +85,7 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
           App.translate(widget.flight.inFlightInfo),
           style: TextStyle(
             fontSize: 12,
-            color: theme.subText,
+            color: AppTheme.subText,
             height: 1.7,
           ),
         ),
@@ -113,7 +113,7 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
               right: AppDimensions.padding * 4,
             ),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppTheme.background,
               borderRadius: BorderRadius.vertical(
                 top: Radius.circular(Dimensions.borderCliping),
               ),
@@ -126,11 +126,11 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
                   indicator: null,
                   isScrollable: true,
                   onTap: this.setActiveTab,
-                  labelColor: theme.primary,
+                  labelColor: AppTheme.primary,
                   labelStyle: tabBarFontStyle,
                   controller: this.tabController,
                   indicatorColor: Colors.transparent,
-                  unselectedLabelColor: Colors.black,
+                  unselectedLabelColor: AppTheme.text,
                   unselectedLabelStyle: tabBarFontStyle,
                   tabs: this
                       .tabs
@@ -148,7 +148,7 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
                                   bottom: BorderSide(
                                     width: 1,
                                     color: index == this.activeTab
-                                        ? theme.primary
+                                        ? AppTheme.primary
                                         : Colors.transparent,
                                   ),
                                 ),

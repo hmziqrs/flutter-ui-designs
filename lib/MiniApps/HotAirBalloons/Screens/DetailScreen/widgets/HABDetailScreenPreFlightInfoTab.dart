@@ -4,8 +4,9 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_uis/configs/App.dart';
 
 import '../../../data/flights.dart' as data;
-import 'HABDetailScreenRowInfo.dart';
 import '../messages/keys.dart';
+
+import 'HABDetailScreenRowInfo.dart';
 
 class HABDetailScreenPreFlightInfoTab extends StatelessWidget {
   const HABDetailScreenPreFlightInfoTab(this.flight);

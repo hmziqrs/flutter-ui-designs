@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/Utils.dart';
 
@@ -47,9 +48,8 @@ class _HABHomeScreenFlightsCarouselState
               .map(
                 (index, item) {
                   final data.HABFlight item = data.flights[index];
-                  final activeTextColor = index == this.activeIndex
-                      ? theme.primary
-                      : widget.fontStyle.color;
+                  final activeTextColor =
+                      index == this.activeIndex ? theme.primary : AppTheme.text;
 
                   return MapEntry(
                     index,
@@ -61,13 +61,13 @@ class _HABHomeScreenFlightsCarouselState
                         margin: EdgeInsets.all(AppDimensions.padding * 2),
                         padding: EdgeInsets.all(AppDimensions.padding * 2),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: AppTheme.background,
                           borderRadius: BorderRadius.circular(16.0),
                           boxShadow: [
                             BoxShadow(
                               blurRadius: 8,
                               offset: Offset(0, 6),
-                              color: Colors.black.withOpacity(0.2),
+                              color: AppTheme.text02,
                             )
                           ],
                         ),
@@ -98,7 +98,7 @@ class _HABHomeScreenFlightsCarouselState
                                 App.translate(item.people),
                                 style: TextStyle(
                                   fontSize: 12,
-                                  color: theme.subText,
+                                  color: AppTheme.subText,
                                 ),
                               ),
                             ),

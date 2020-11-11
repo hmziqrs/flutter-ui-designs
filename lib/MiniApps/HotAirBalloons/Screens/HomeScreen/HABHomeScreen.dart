@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tinycolor/tinycolor.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -38,6 +39,9 @@ class HABHomeScreen extends StatelessWidget {
               transform: Dimensions.shapeTransform,
               child: Image.asset(
                 "assets/ma-hab/bubbles-bg.png",
+                color: App.isDark()
+                    ? TinyColor(Colors.black).lighten(15).color
+                    : null,
               ),
             ),
           ),

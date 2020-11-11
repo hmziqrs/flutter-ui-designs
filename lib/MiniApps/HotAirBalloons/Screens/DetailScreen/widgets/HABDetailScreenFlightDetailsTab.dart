@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/TextStyles.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/UI.dart';
 
-import '../../../configs/theme.dart' as theme;
 import '../../../data/flights.dart' as data;
 import '../messages/keys.dart';
 
@@ -22,18 +23,36 @@ class HABDetailScreenFlightDetailsTab extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         HABDetailScreenRowInfo(
-          App.translate(HABDetailScreenMessages.basketSize),
-          App.translate(flight.basketSize),
+          App.translate(
+            HABDetailScreenMessages.basketSize,
+            context,
+          ),
+          App.translate(
+            flight.basketSize,
+            context,
+          ),
           Feather.users,
         ),
         HABDetailScreenRowInfo(
-          App.translate(HABDetailScreenMessages.flightTime),
-          App.translate(flight.time),
+          App.translate(
+            HABDetailScreenMessages.flightTime,
+            context,
+          ),
+          App.translate(
+            flight.time,
+            context,
+          ),
           Feather.clock,
         ),
         HABDetailScreenRowInfo(
-          App.translate(HABDetailScreenMessages.price),
-          App.translate(flight.price),
+          App.translate(
+            HABDetailScreenMessages.price,
+            context,
+          ),
+          App.translate(
+            flight.price,
+            context,
+          ),
           Feather.tag,
         ),
         Padding(
@@ -42,11 +61,13 @@ class HABDetailScreenFlightDetailsTab extends StatelessWidget {
             vertical: AppDimensions.padding * 4,
           ),
           child: Text(
-            App.translate(flight.desc),
-            style: TextStyle(
-              fontSize: 12,
-              color: theme.subText,
+            App.translate(
+              flight.desc,
+              context,
+            ),
+            style: TextStyles.body3.copyWith(
               height: 1.7,
+              color: AppTheme.subText,
             ),
           ),
         ),
@@ -64,13 +85,13 @@ class HABDetailScreenFlightDetailsTab extends StatelessWidget {
                 blurRadius: 15,
                 spreadRadius: 0,
                 offset: Offset(0, 15),
-                color: theme.primary.withOpacity(0.35),
+                color: AppTheme.primary.withOpacity(0.35),
               )
             ],
           ),
           child: FlatButton(
             onPressed: () {},
-            color: theme.primary,
+            color: AppTheme.primary,
             textColor: Colors.white,
             splashColor: Colors.transparent,
             highlightColor: Colors.black.withOpacity(0.1),
@@ -79,7 +100,10 @@ class HABDetailScreenFlightDetailsTab extends StatelessWidget {
               borderRadius: BorderRadius.circular(12.0),
             ),
             child: Text(
-              App.translate(HABDetailScreenMessages.bookNow),
+              App.translate(
+                HABDetailScreenMessages.bookNow,
+                context,
+              ),
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,

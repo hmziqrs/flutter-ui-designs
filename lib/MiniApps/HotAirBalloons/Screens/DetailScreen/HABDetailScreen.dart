@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:flutter_uis/configs/AppTheme.dart';
+
 import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_uis/UI.dart';
 
 import 'package:flutter_uis/widgets/BackButton4Stack/BackButton4Stack.dart';
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
-import 'TestKeys.dart';
 import 'widgets/HABDetailScreenFlightHeader.dart';
 import 'widgets/HABDetailScreenFlightView.dart';
+
 import '../../configs/theme.dart' as theme;
 import '../../data/flights.dart' as data;
+
 import 'Dimensions.dart';
+import 'TestKeys.dart';
 
 class HABDetailScreen extends StatefulWidget {
   HABDetailScreen(this.index, {Key key}) : super(key: key);
@@ -109,8 +113,8 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
           fontFamily: 'Montserrat',
         );
     final rootTheme = Theme.of(context).copyWith(
-      primaryColor: theme.primary,
-      accentColor: theme.primary,
+      primaryColor: AppTheme.primary,
+      accentColor: AppTheme.primary,
     );
 
     return RawKeyboardListener(
@@ -120,7 +124,6 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
       child: Screen(
         theme: rootTheme,
         textStyle: fontStyle,
-        scaffoldBackgroundColor: Colors.white,
         child: Stack(
           fit: StackFit.expand,
           children: [
@@ -130,7 +133,8 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
               child: Container(
                 height: Dimensions.backgroudImageHeight,
                 foregroundDecoration: BoxDecoration(
-                  color: theme.background2.withOpacity(0.8),
+                  color: AppTheme.background.withOpacity(0.44),
+                  // color: theme.background2.withOpacity(0.8),
                 ),
                 child: ListView.builder(
                   itemCount: Dimensions.noOfImages,
