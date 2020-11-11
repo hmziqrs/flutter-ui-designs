@@ -25,8 +25,8 @@ const Map strings = {
   '$scope/moreProjects': 'Explore More Projects',
 
   // Projects
-  '$scope/projectFUD':
-      "Simple implementation of complex UI designs and animations. In this project you will experience my journey of experimenting to find ideal flutter architecture.",
+  '$scope/projectINVMovie1':
+      "Implementation of complex movie booking UI concept featuring complex gesture based parallax animations",
   '$scope/projectRNL':
       "Simple and elegant clone \"Loop game\" in react native with just simple setState & contexts for shared state.",
   '$scope/projectHCV':

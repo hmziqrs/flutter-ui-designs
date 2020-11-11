@@ -14,7 +14,7 @@ abstract class AboutDeveloperScreenMessages {
 	static String likeProject = '$scope/likeProject';
 	static String likeProjectDesc = '$scope/likeProjectDesc';
 	static String moreProjects = '$scope/moreProjects';
-	static String projectFUD = '$scope/projectFUD';
+	static String projectINVMovie1 = '$scope/projectINVMovie1';
 	static String projectRNL = '$scope/projectRNL';
 	static String projectHCV = '$scope/projectHCV';
 	static String likeProject1 = '$scope/likeProject1';
