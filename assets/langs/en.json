@@ -246,5 +246,6 @@
   "DownloadScreen/share": "Share",
   "DownloadScreen/download": "Download",
   "DownloadScreen/open": "Open",
-  "DownloadScreen/linkCopied": "link copied"
+  "DownloadScreen/linkCopied": "link copied",
+  "AboutDeveloperScreen/projectINVMovie1": "Implementation of complex movie booking UI concept featuring complex gesture based parallax animations"
 }
