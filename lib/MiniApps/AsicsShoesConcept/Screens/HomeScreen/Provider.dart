@@ -7,10 +7,28 @@ class ASCShoeProvider extends ChangeNotifier {
   static final List<int> shoeSizes = [7, 8, 9, 10, 11];
 
   int _activeShoeSize = shoeSizes[0];
+  AnimationController shoesController;
+  Animation<double> shoeAnimation;
+  int _index = 0;
   get activeShoeSize => this._activeShoeSize;
 
-  void setShoeSize(size) {
+  void setShoeSize(size, int index) {
+    if (this._index == index) {
+      return;
+    }
     this._activeShoeSize = size;
     this.notifyListeners();
+    const SCALE_FACTOR = 0.06;
+    this.shoeAnimation = Tween(
+      begin: SCALE_FACTOR * (this._index),
+      end: SCALE_FACTOR * (index + 1),
+    ).animate(
+      CurvedAnimation(
+        curve: Curves.elasticOut,
+        parent: shoesController,
+      ),
+    );
+    this.shoesController.forward(from: 0.0);
+    this._index = index;
   }
 }

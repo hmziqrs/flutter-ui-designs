@@ -52,7 +52,7 @@ class ASCHomeScreenContentSizes extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () => ASCShoeProvider.state(
                     context,
-                  ).setShoeSize(entry.value),
+                  ).setShoeSize(entry.value, entry.key),
                   key: Key(
                     ASCHomeScreenTestKeys.getSize(
                       activePage,
