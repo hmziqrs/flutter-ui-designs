@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
-import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_uis/configs/AppTheme.dart';
+import 'package:flutter_uis/configs/App.dart';
+
+import 'package:flutter_uis/Utils.dart';
 
 import 'ASCHomeScreenContentColorFilters.dart';
 import 'ASCHomeScreenContentPriceBadge.dart';
-import '../../../data/data.dart' as data;
 import 'ASCHomeScreenContentBadge.dart';
 import 'ASCHomeScreenContentSizes.dart';
 import 'ASCHomeScreenContentStars.dart';
+
+import '../../../data/data.dart' as data;
 import '../messages/keys.dart';
 
 class ASCHomeScreenContent extends StatefulWidget {
