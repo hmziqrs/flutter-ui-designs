@@ -35,19 +35,9 @@ class ASCHomeScreenContent extends StatefulWidget {
 }
 
 class _ASCHomeScreenContentState extends State<ASCHomeScreenContent> {
-  int activeSize;
-  final List<int> sizes = [7, 8, 9, 10, 11];
-
   @override
   void initState() {
-    this.activeSize = this.sizes[0];
     super.initState();
-  }
-
-  void setSize(int size) {
-    setState(() {
-      this.activeSize = size;
-    });
   }
 
   @override
@@ -106,9 +96,6 @@ class _ASCHomeScreenContentState extends State<ASCHomeScreenContent> {
           ),
           Container(height: AppDimensions.padding * 2),
           ASCHomeScreenContentSizes(
-            sizes: this.sizes,
-            setSize: this.setSize,
-            activeSize: this.activeSize,
             activePage: widget.activePage,
             uiParallax: widget.uiParallax,
             activeColor: widget.activeColor,

@@ -31,7 +31,7 @@ class ASCHomeScreenShoe extends StatelessWidget {
           ..rotateZ((24 + (this.uiParallax * 15)) * 3.1415927 / 180)
           ..scale(1 + scale, 1 + scale)
           ..translate(this.uiParallax * -35),
-        origin: Offset(width / 2, height / 2),
+        alignment: FractionalOffset.center,
         child: Opacity(
           opacity: (1 - opacity).clamp(0.0, 1.0),
           child: Container(

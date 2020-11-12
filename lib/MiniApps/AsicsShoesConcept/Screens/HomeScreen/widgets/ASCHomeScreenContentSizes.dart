@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/Provider.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
@@ -13,23 +14,19 @@ enum AniColors { bg, text }
 
 class ASCHomeScreenContentSizes extends StatelessWidget {
   ASCHomeScreenContentSizes({
-    @required this.sizes,
-    @required this.setSize,
     @required this.uiParallax,
-    @required this.activeSize,
     @required this.activePage,
     @required this.activeColor,
   });
 
-  final int activeSize;
   final int activePage;
-  final List<int> sizes;
   final double uiParallax;
   final Color activeColor;
-  final Function(int size) setSize;
 
   @override
   Widget build(BuildContext context) {
+    final state = ASCShoeProvider.state(context, true);
+
     final tween = MultiTween<AniColors>()
       ..add(
         AniColors.bg,
@@ -43,8 +40,7 @@ class ASCHomeScreenContentSizes extends StatelessWidget {
       );
 
     return Row(
-      children: this
-          .sizes
+      children: ASCShoeProvider.shoeSizes
           .asMap()
           .entries
           .map(
@@ -53,7 +49,7 @@ class ASCHomeScreenContentSizes extends StatelessWidget {
                 horizontal: AppDimensions.padding * 2,
               ),
               child: GestureDetector(
-                onTap: () => this.setSize(entry.value),
+                onTap: () => state.setShoeSize(entry.value),
                 key: Key(
                   ASCHomeScreenTestKeys.getSize(
                     activePage,
@@ -64,7 +60,7 @@ class ASCHomeScreenContentSizes extends StatelessWidget {
                   tween: tween,
                   duration: tween.duration,
                   key: Key(App.isDark().toString()),
-                  control: this.activeSize == entry.value
+                  control: state.activeShoeSize == entry.value
                       ? CustomAnimationControl.PLAY
                       : CustomAnimationControl.PLAY_REVERSE,
                   builder: (context, child, animation) {
