@@ -102,7 +102,6 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> with AnimationMixin {
         },
         child: SizeChangedLayoutNotifier(
           child: Screen(
-            scaffoldBackgroundColor: Colors.white,
             theme: Theme.of(context).copyWith(
               accentColor: this.activeColor.value,
               primaryColor: this.activeColor.value,

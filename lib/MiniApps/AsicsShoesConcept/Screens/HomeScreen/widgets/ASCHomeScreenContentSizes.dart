@@ -3,6 +3,8 @@ import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
+import 'package:flutter_uis/configs/App.dart';
 
 import '../Dimensions.dart';
 import '../TestKeys.dart';
@@ -31,12 +33,12 @@ class ASCHomeScreenContentSizes extends StatelessWidget {
     final tween = MultiTween<AniColors>()
       ..add(
         AniColors.bg,
-        Colors.transparent.tweenTo(Colors.black.withOpacity(0.35)),
+        Colors.transparent.tweenTo(AppTheme.text03),
         400.milliseconds,
       )
       ..add(
         AniColors.text,
-        Colors.black.tweenTo(Colors.white),
+        AppTheme.text.tweenTo(AppTheme.background),
         250.milliseconds,
       );
 
@@ -61,6 +63,7 @@ class ASCHomeScreenContentSizes extends StatelessWidget {
                 child: CustomAnimation<MultiTweenValues<AniColors>>(
                   tween: tween,
                   duration: tween.duration,
+                  key: Key(App.isDark().toString()),
                   control: this.activeSize == entry.value
                       ? CustomAnimationControl.PLAY
                       : CustomAnimationControl.PLAY_REVERSE,
