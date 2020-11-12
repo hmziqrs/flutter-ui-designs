@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_uis/Mixins/HoverWidget.dart';
 
 import '../../data/data.dart' as data;
 import 'Dimensions.dart';
+import 'Provider.dart';
 import 'TestKeys.dart';
 
 import 'widgets/ASCHomeScreenContent.dart';
@@ -135,27 +137,31 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> with AnimationMixin {
                   uiParallax *= 0.8;
                 }
 
-                return Container(
-                  width: AppDimensions.size.width,
-                  height: AppDimensions.size.height,
-                  child: SingleChildScrollView(
-                    child: Stack(
-                      children: [
-                        Column(
-                          children: [
-                            ASCHomeScreenHeader(item: item, parallax: parallax),
-                            ASCHomeScreenContent(
-                              item: item,
-                              uiParallax: uiParallax,
-                              activePage: this.activePage,
-                              changeColor: this.changeColor,
-                              activeColor: this.activeColor.value,
-                              activeColorIndex: this.activeColorIndex,
-                            ),
-                          ],
-                        ),
-                        ASCHomeScreenShoe(item: item, uiParallax: uiParallax),
-                      ],
+                return ChangeNotifierProvider<ASCShoeProvider>(
+                  create: (_) => ASCShoeProvider(),
+                  child: Container(
+                    width: AppDimensions.size.width,
+                    height: AppDimensions.size.height,
+                    child: SingleChildScrollView(
+                      child: Stack(
+                        children: [
+                          Column(
+                            children: [
+                              ASCHomeScreenHeader(
+                                  item: item, parallax: parallax),
+                              ASCHomeScreenContent(
+                                item: item,
+                                uiParallax: uiParallax,
+                                activePage: this.activePage,
+                                changeColor: this.changeColor,
+                                activeColor: this.activeColor.value,
+                                activeColorIndex: this.activeColorIndex,
+                              ),
+                            ],
+                          ),
+                          ASCHomeScreenShoe(item: item, uiParallax: uiParallax),
+                        ],
+                      ),
                     ),
                   ),
                 );
