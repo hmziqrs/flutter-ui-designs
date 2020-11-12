@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 
 import '../../../models/ASCItem.dart';
 
@@ -37,7 +38,7 @@ class ASCHomeScreenContentStars extends StatelessWidget {
               size: 18 + AppDimensions.ratio + 10,
               color: this.item.stars > index
                   ? this.activeColor
-                  : Colors.black.withOpacity(0.5),
+                  : AppTheme.subText3,
             ),
           ),
         ),

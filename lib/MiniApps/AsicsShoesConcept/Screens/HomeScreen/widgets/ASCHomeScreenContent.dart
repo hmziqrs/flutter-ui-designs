@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 
 import 'ASCHomeScreenContentColorFilters.dart';
 import 'ASCHomeScreenContentPriceBadge.dart';
@@ -76,8 +77,8 @@ class _ASCHomeScreenContentState extends State<ASCHomeScreenContent> {
                   Text(
                     App.translate(widget.item.contentSubHeading),
                     style: TextStyle(
+                      color: AppTheme.subText3,
                       fontWeight: FontWeight.w700,
-                      color: Colors.black.withOpacity(0.4),
                       fontSize: 6 + AppDimensions.ratio * 5,
                     ),
                   ),
