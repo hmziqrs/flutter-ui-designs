@@ -18,10 +18,10 @@ class ASCShoeProvider extends ChangeNotifier {
     }
     this._activeShoeSize = size;
     this.notifyListeners();
-    const SCALE_FACTOR = 0.06;
+    const SCALE_FACTOR = 0.07;
     this.shoeAnimation = Tween(
       begin: SCALE_FACTOR * (this._index),
-      end: SCALE_FACTOR * (index + 1),
+      end: SCALE_FACTOR * (index),
     ).animate(
       CurvedAnimation(
         curve: Curves.elasticOut,
