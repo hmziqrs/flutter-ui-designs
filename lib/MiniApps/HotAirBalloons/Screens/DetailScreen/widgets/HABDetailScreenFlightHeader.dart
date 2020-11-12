@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/Utils.dart';
 import 'package:flutter_uis/UI.dart';
 
-import '../../../configs/theme.dart' as theme;
 import '../../../data/flights.dart' as data;
 import '../messages/keys.dart';
 import '../Dimensions.dart';
@@ -71,7 +71,6 @@ class HABDetailScreenFlightHeader extends StatelessWidget {
                                   " ${App.translate(HABDetailScreenMessages.flight)}",
                                   style: TextStyle(
                                     fontSize: 30,
-                                    // color: Colors.black,
                                   ),
                                 ),
                               ],
@@ -81,7 +80,6 @@ class HABDetailScreenFlightHeader extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 12.0,
                                 // color: Colors.black,
-                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           ],
@@ -117,8 +115,8 @@ class HABDetailScreenFlightHeader extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: entry.key == this.activePage
-                      ? theme.primary
-                      : theme.indicator,
+                      ? AppTheme.primary
+                      : AppTheme.subText2,
                 ),
               ),
             )
