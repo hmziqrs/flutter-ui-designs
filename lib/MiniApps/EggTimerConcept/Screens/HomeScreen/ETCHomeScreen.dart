@@ -108,15 +108,15 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
       end: Alignment.bottomCenter,
     );
 
-    final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
-          fontFamily: 'BebasNeue',
-        );
+    // final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
+    //       fontFamily: 'BebasNeue',
+    //     );
 
     final isRunning = this.timer.state == ETCTimerState.running;
     final isReady = this.timer.state == ETCTimerState.ready;
 
     return Screen(
-      textStyle: fontStyle,
+      fontFamily: 'BebasNeue',
       scaffoldBackgroundColor: Colors.transparent,
       belowBuilder: (_) => Positioned.fill(
         child: Container(
