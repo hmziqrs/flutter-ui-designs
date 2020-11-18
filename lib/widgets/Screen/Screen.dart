@@ -14,6 +14,7 @@ class Screen extends StatelessWidget {
     this.builder,
     this.textStyle,
     this.debugLabel,
+    this.fontFamily,
     this.belowBuilder,
     this.bottomNavigationBar,
     this.renderSettings = true,
@@ -26,6 +27,7 @@ class Screen extends StatelessWidget {
   final String debugLabel;
   final TextStyle textStyle;
   final bool renderSettings;
+  final String fontFamily;
   final Widget bottomNavigationBar;
   final Color scaffoldBackgroundColor;
   final void Function(BuildContext) init;
@@ -38,39 +40,44 @@ class Screen extends StatelessWidget {
       this.init(context);
     }
 
+    final baseTheme = this.theme ?? Theme.of(context);
+
     return ChangeNotifierProvider<ScreenStateProvider>(
       create: (_) => ScreenStateProvider(),
       child: Theme(
-        data: this.theme ?? Theme.of(context),
-        child: AnimatedDefaultTextStyle(
-          duration: Duration(milliseconds: 400),
-          style: this.textStyle ?? DefaultTextStyle.of(context).style,
-          child: Scaffold(
-            drawer: this.drawer,
-            bottomNavigationBar: this.bottomNavigationBar,
-            backgroundColor: this.scaffoldBackgroundColor ??
-                Theme.of(context).scaffoldBackgroundColor,
-            body: Stack(
-              fit: StackFit.expand,
-              children: <Widget>[
-                this.belowBuilder != null
-                    ? this.belowBuilder(context)
-                    : Container(),
-                Positioned.fill(
-                  child: child ?? builder(context),
-                ),
-                this.renderSettings
-                    ? Selector<ScreenStateProvider, bool>(
-                        selector: (_, state) => state.isSettingsOpen,
-                        builder: (ctx, isSettingsOpen, child) {
-                          return ScreenSettingsModal(
-                            isSettingsOpen: isSettingsOpen,
-                          );
-                        },
-                      )
-                    : Container(),
-              ],
-            ),
+        isMaterialAppTheme: true,
+        data: baseTheme.copyWith(
+          textTheme: baseTheme.textTheme.apply(fontFamily: this.fontFamily),
+          primaryTextTheme:
+              baseTheme.primaryTextTheme.apply(fontFamily: this.fontFamily),
+          accentTextTheme:
+              baseTheme.accentTextTheme.apply(fontFamily: this.fontFamily),
+        ),
+        child: Scaffold(
+          drawer: this.drawer,
+          bottomNavigationBar: this.bottomNavigationBar,
+          backgroundColor: this.scaffoldBackgroundColor ??
+              Theme.of(context).scaffoldBackgroundColor,
+          body: Stack(
+            fit: StackFit.expand,
+            children: <Widget>[
+              this.belowBuilder != null
+                  ? this.belowBuilder(context)
+                  : Container(),
+              Positioned.fill(
+                child: child ?? builder(context),
+              ),
+              this.renderSettings
+                  ? Selector<ScreenStateProvider, bool>(
+                      selector: (_, state) => state.isSettingsOpen,
+                      builder: (ctx, isSettingsOpen, child) {
+                        return ScreenSettingsModal(
+                          isSettingsOpen: isSettingsOpen,
+                        );
+                      },
+                    )
+                  : Container(),
+            ],
           ),
         ),
       ),

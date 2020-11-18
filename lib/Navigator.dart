@@ -100,7 +100,7 @@ class MaterialChild extends StatelessWidget {
       themeMode: state.themeMode,
       navigatorKey: this.navigatorKey,
       navigatorObservers: observers,
-      initialRoute: "ascHome",
+      initialRoute: "home",
       onGenerateRoute: (settings) {
         final index = ["skvDetail", "hfdDetail"].indexOf(settings.name);
         if (index > -1) {
