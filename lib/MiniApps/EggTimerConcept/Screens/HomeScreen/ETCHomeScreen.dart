@@ -9,10 +9,10 @@ import 'package:flutter_uis/Utils.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
-import '../../configs/theme.dart' as theme;
 import '../../models/ETCTimer.dart';
 import 'messages/keys.dart';
 import 'TestKeys.dart';
+import 'Theme.dart';
 
 import 'widgets/ETCHomeScreenTimerTime.dart';
 import 'widgets/ETCHomeScreenTimerDail.dart';
@@ -103,14 +103,10 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
     Dimensions.init(context);
 
     final gradient = LinearGradient(
-      colors: [theme.light1, theme.light2],
+      colors: [ETCTheme.color1, ETCTheme.color2],
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
     );
-
-    // final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
-    //       fontFamily: 'BebasNeue',
-    //     );
 
     final isRunning = this.timer.state == ETCTimerState.running;
     final isReady = this.timer.state == ETCTimerState.ready;
