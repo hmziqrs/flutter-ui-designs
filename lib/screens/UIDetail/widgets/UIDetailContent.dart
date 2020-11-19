@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 
 import 'package:flutter_uis/statics/models/UIItem.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -74,7 +75,7 @@ class UIDetailContent extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w600,
-                        color: Colors.black.withOpacity(0.6),
+                        color: AppTheme.subText,
                       ),
                     ),
                   )
