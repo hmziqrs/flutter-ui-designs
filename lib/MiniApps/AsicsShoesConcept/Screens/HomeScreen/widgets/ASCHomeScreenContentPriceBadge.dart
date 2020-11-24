@@ -38,7 +38,7 @@ class ASCHomeScreenContentPriceBadge extends StatelessWidget {
         ),
         child: RichText(
           text: TextSpan(
-            text: "${App.translate(ASCHomeScreenMessages.usd)} ",
+            text: "${App.translate(ASCHomeScreenMessages.usd, context)} ",
             style: TextStyle(
               fontSize: 10 + AppDimensions.ratio * 4,
             ),

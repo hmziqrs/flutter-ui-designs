@@ -22,6 +22,7 @@ class DesignerProfileContactMe extends StatelessWidget {
         DesignerProfileHeading(
           App.translate(
             DesignerProfileScreenMessages.contactMe,
+            context,
           ),
         ),
         Wrap(

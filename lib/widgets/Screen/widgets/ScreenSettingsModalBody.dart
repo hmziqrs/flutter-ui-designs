@@ -1,4 +1,3 @@
-import 'package:emojis/emojis.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/Providers/AppProvider.dart';

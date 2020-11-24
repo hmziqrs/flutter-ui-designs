@@ -191,7 +191,10 @@ class _SKVHomeScreenPlanetsCarouselState
                             ),
                           ),
                           Text(
-                            App.translate(item.nickname),
+                            App.translate(
+                              item.nickname,
+                              context,
+                            ),
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               color: theme.primary,
@@ -199,7 +202,10 @@ class _SKVHomeScreenPlanetsCarouselState
                             ),
                           ),
                           Text(
-                            App.translate(item.positionInSystem),
+                            App.translate(
+                              item.positionInSystem,
+                              context,
+                            ),
                             style: TextStyle(
                               fontSize: 4 + AppDimensions.ratio * 4,
                               color: Colors.white,

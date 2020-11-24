@@ -26,9 +26,7 @@ class DesignerProfileMoreUIs extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         DesignerProfileHeading(
-          App.translate(
-            DesignerProfileScreenMessages.explore,
-          ),
+          App.translate(DesignerProfileScreenMessages.explore, context),
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,

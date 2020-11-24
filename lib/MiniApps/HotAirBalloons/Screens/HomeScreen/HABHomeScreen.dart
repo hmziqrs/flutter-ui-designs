@@ -76,7 +76,10 @@ class HABHomeScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: AppDimensions.padding * 2),
                     child: Text(
-                      App.translate(HABHomeScreenMessages.title),
+                      App.translate(
+                        HABHomeScreenMessages.title,
+                        context,
+                      ),
                       style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.w700,
@@ -90,7 +93,10 @@ class HABHomeScreen extends StatelessWidget {
                       bottom: AppDimensions.padding,
                     ),
                     child: Text(
-                      App.translate(HABHomeScreenMessages.subTitle),
+                      App.translate(
+                        HABHomeScreenMessages.subTitle,
+                        context,
+                      ),
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                       ),

@@ -17,20 +17,38 @@ class HABDetailScreenPreFlightInfoTab extends StatelessWidget {
     return Column(
       children: [
         HABDetailScreenRowInfo(
-          App.translate(HABDetailScreenMessages.pickUp),
-          App.translate(flight.pickUp),
+          App.translate(
+            HABDetailScreenMessages.pickUp,
+            context,
+          ),
+          App.translate(
+            flight.pickUp,
+            context,
+          ),
           MaterialCommunityIcons.bus_side,
           fullWidth: true,
         ),
         HABDetailScreenRowInfo(
-          App.translate(flight.breakFastType),
-          App.translate(flight.breakFast),
+          App.translate(
+            flight.breakFastType,
+            context,
+          ),
+          App.translate(
+            flight.breakFast,
+            context,
+          ),
           MaterialCommunityIcons.coffee_outline,
           fullWidth: true,
         ),
         HABDetailScreenRowInfo(
-          App.translate(HABDetailScreenMessages.watchingInflation),
-          App.translate(flight.inflation),
+          App.translate(
+            HABDetailScreenMessages.watchingInflation,
+            context,
+          ),
+          App.translate(
+            flight.inflation,
+            context,
+          ),
           MaterialCommunityIcons.airballoon,
           fullWidth: true,
         ),
