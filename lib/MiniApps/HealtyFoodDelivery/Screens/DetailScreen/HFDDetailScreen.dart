@@ -52,7 +52,7 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
-
+    const fontFamily = 'Nunito';
     final HFDFoodItem item = ModalRoute.of(context).settings.arguments;
     final textStyle =
         Theme.of(context).textTheme.bodyText1.copyWith(fontFamily: 'Nunito');
@@ -71,6 +71,7 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
 
     return Container(
       child: Screen(
+        fontFamily: fontFamily,
         theme: Theme.of(context).copyWith(
           accentColor: theme.primary,
           primaryColor: theme.primary,

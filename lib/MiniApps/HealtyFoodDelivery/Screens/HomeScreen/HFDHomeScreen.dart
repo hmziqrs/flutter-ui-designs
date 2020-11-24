@@ -45,9 +45,11 @@ class _HFDHomeScreenState extends State<HFDHomeScreen> {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
+    const fontFamily = 'Nunito';
 
     return Container(
       child: Screen(
+        fontFamily: fontFamily,
         theme: Theme.of(context).copyWith(
           accentColor: theme.primary,
           primaryColor: theme.primary,
@@ -87,7 +89,7 @@ class _HFDHomeScreenState extends State<HFDHomeScreen> {
         textStyle: Theme.of(context)
             .textTheme
             .bodyText1
-            .copyWith(fontFamily: 'Nunito'),
+            .copyWith(fontFamily: fontFamily),
         child: SafeArea(
           top: false,
           child: ListView(

@@ -67,9 +67,9 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
-
+    const fontFamily = 'Montserrat';
     final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
-          fontFamily: 'Montserrat',
+          fontFamily: fontFamily,
         );
 
     final rootTheme = Theme.of(context).copyWith(
@@ -79,6 +79,7 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
 
     return Screen(
       theme: rootTheme,
+      fontFamily: fontFamily,
       textStyle: fontStyle,
       scaffoldBackgroundColor: theme.background,
       child: GestureDetector(

@@ -108,9 +108,10 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
+    const fontFamily = 'Montserrat';
 
     final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
-          fontFamily: 'Montserrat',
+          fontFamily: fontFamily,
         );
     final rootTheme = Theme.of(context).copyWith(
       primaryColor: AppTheme.primary,
@@ -122,6 +123,7 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
       focusNode: FocusNode(),
       onKey: this.onKeyHandler,
       child: Screen(
+        fontFamily: fontFamily,
         theme: rootTheme,
         textStyle: fontStyle,
         child: Stack(

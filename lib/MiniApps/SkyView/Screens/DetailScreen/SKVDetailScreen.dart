@@ -113,9 +113,10 @@ class _SKVDetailScreenState extends State<SKVDetailScreen>
   Widget build(BuildContext context) {
     UI.init(context);
     Dimensions.init(context);
+    const fontFamily = 'Montserrat';
 
     final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
-          fontFamily: 'Montserrat',
+          fontFamily: fontFamily,
         );
 
     final rootTheme = Theme.of(context).copyWith(
@@ -124,8 +125,9 @@ class _SKVDetailScreenState extends State<SKVDetailScreen>
     );
 
     return Screen(
-      textStyle: fontStyle,
       theme: rootTheme,
+      textStyle: fontStyle,
+      fontFamily: fontFamily,
       child: RawKeyboardListener(
         autofocus: true,
         focusNode: FocusNode(),

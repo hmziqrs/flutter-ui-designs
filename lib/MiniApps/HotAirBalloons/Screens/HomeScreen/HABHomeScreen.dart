@@ -16,9 +16,9 @@ class HABHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
-
+    const fontFamily = 'Montserrat';
     final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
-          fontFamily: 'Montserrat',
+          fontFamily: fontFamily,
         );
 
     final rootTheme = Theme.of(context).copyWith(
@@ -27,6 +27,7 @@ class HABHomeScreen extends StatelessWidget {
     );
 
     return Screen(
+      fontFamily: fontFamily,
       theme: rootTheme,
       textStyle: fontStyle,
       scaffoldBackgroundColor: theme.primary,
