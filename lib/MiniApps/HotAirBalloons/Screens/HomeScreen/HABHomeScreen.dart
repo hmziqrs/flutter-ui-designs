@@ -49,7 +49,7 @@ class HABHomeScreen extends StatelessWidget {
           Positioned(
             top: Dimensions.balloonShadowOffset.dy,
             right: Dimensions.balloonShadowOffset.dx,
-            child: HABHomeScreenBaloonAnimationWrapper(
+            child: HABHomeScreenBallonAnimationWrapper(
               imagePath: "assets/ma-hab/balloon-shadow.png",
               imageSize: Dimensions.balloonShadowSize,
               opacity: 0.3,
@@ -59,7 +59,7 @@ class HABHomeScreen extends StatelessWidget {
           Positioned(
             top: Dimensions.balloonOffset.dy,
             right: Dimensions.balloonOffset.dx,
-            child: HABHomeScreenBaloonAnimationWrapper(
+            child: HABHomeScreenBallonAnimationWrapper(
               imagePath: "assets/ma-hab/balloon.png",
               imageSize: Dimensions.balloonSize,
               opacity: 1.0,

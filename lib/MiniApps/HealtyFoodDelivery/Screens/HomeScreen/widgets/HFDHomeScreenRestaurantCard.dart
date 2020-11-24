@@ -10,8 +10,8 @@ import '../data.dart' as data;
 import '../Dimensions.dart';
 
 class HFDHomeScreenRestaurantCard extends StatefulWidget {
-  final data.HFDRestaurant resrutant;
-  HFDHomeScreenRestaurantCard(this.resrutant, {Key key}) : super(key: key);
+  final data.HFDRestaurant restaurant;
+  HFDHomeScreenRestaurantCard(this.restaurant, {Key key}) : super(key: key);
 
   @override
   _HFDHomeScreenRestaurantCardState createState() =>
@@ -28,14 +28,14 @@ class _HFDHomeScreenRestaurantCardState
       padding: EdgeInsets.all(AppDimensions.padding * 2),
       child: Align(
         child: this.buildInkWell(
-          key: Key(this.widget.resrutant.testKey),
+          key: Key(this.widget.restaurant.testKey),
           child: Container(
             width: Dimensions.restaurantCardBaseWidth,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.0),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage(widget.resrutant.image),
+                image: AssetImage(widget.restaurant.image),
               ),
               boxShadow: [
                 BoxShadow(
@@ -95,7 +95,7 @@ class _HFDHomeScreenRestaurantCardState
                             horizontal: AppDimensions.padding * 2,
                           ),
                           child: Text(
-                            widget.resrutant.name,
+                            widget.restaurant.name,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 15 + AppDimensions.ratio * 4,
@@ -113,37 +113,38 @@ class _HFDHomeScreenRestaurantCardState
                           -AppDimensions.ratio * 16,
                           AppDimensions.ratio * 4,
                         ),
-                        child: ControlledAnimation(
+                        child: CustomAnimation(
                           tween: Tween(begin: 0.0, end: 1.0),
                           duration: Duration(milliseconds: 280),
-                          playback: this.animation.value > 0.5
-                              ? Playback.PLAY_FORWARD
-                              : Playback.PLAY_REVERSE,
-                          builder: (context, opacityAnimation) {
+                          control: this.animation.value > 0.5
+                              ? CustomAnimationControl.PLAY
+                              : CustomAnimationControl.PLAY_REVERSE,
+                          child: Container(
+                            width: double.infinity,
+                            margin: EdgeInsets.symmetric(
+                              horizontal: AppDimensions.padding * 2,
+                            ),
+                            child: Row(
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      height: 1.26,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.white.withOpacity(0.55),
+                                      fontSize: 6 + AppDimensions.ratio * 4,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          builder: (context, child, opacityAnimation) {
                             return Opacity(
                               opacity: opacityAnimation,
-                              child: Container(
-                                width: double.infinity,
-                                margin: EdgeInsets.symmetric(
-                                  horizontal: AppDimensions.padding * 2,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Flexible(
-                                      child: Text(
-                                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-                                        maxLines: 2,
-                                        style: TextStyle(
-                                          height: 1.26,
-                                          fontWeight: FontWeight.w300,
-                                          color: Colors.white.withOpacity(0.55),
-                                          fontSize: 6 + AppDimensions.ratio * 4,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              child: child,
                             );
                           },
                         ),

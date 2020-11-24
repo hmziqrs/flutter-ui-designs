@@ -18,6 +18,12 @@ import 'widgets/HFDDetailScreenHeader.dart';
 import 'widgets/HFDDetailScreenBody.dart';
 import 'Dimensions.dart';
 
+enum AnimProp {
+  base,
+  circle,
+  bars,
+}
+
 class HFDDetailScreen extends StatefulWidget {
   HFDDetailScreen({Key key}) : super(key: key);
 
@@ -59,15 +65,33 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
 
     final baseDuration = Duration(milliseconds: 400);
     final baseTween = Tween(begin: 0.0, end: 1.0);
-    final tween = MultiTrackTween([
-      Track("base").add(baseDuration, baseTween),
-      Track("circle")
-          .add(Duration(milliseconds: 300), ConstantTween(0.0))
-          .add(baseDuration, baseTween),
-      Track("bars")
-          .add(Duration(milliseconds: 300), ConstantTween(0.0))
-          .add(baseDuration, baseTween),
-    ]);
+
+    MultiTween<AnimProp> tween = MultiTween<AnimProp>()
+      ..add(
+        AnimProp.base,
+        baseTween,
+        baseDuration,
+      )
+      ..add(
+        AnimProp.circle,
+        ConstantTween(0.0),
+        Duration(milliseconds: 300),
+      )
+      ..add(
+        AnimProp.circle,
+        baseTween,
+        baseDuration,
+      )
+      ..add(
+        AnimProp.bars,
+        ConstantTween(0.0),
+        Duration(milliseconds: 300),
+      )
+      ..add(
+        AnimProp.bars,
+        baseTween,
+        baseDuration,
+      );
 
     return Container(
       child: Screen(
@@ -98,18 +122,19 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
                   child: Column(
                     children: <Widget>[
                       HFDDetailScreenBackgroundImageBody(item: item),
-                      ControlledAnimation(
+                      CustomAnimation<MultiTweenValues<AnimProp>>(
                         tween: tween,
                         duration: tween.duration,
                         delay: Duration(milliseconds: 400),
-                        builder: (context, multiTrackAnimations) => Opacity(
-                          opacity: multiTrackAnimations["base"],
+                        builder: (context, child, multiTrackAnimations) =>
+                            Opacity(
+                          opacity: multiTrackAnimations.get(AnimProp.base),
                           child: Container(
                             transform: Matrix4.identity()
                               ..translate(
                                 0.0,
                                 Utils.rangeMap(
-                                  multiTrackAnimations["base"],
+                                  multiTrackAnimations.get(AnimProp.base),
                                   0.0,
                                   1.0,
                                   80,
@@ -120,7 +145,12 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
                               children: <Widget>[
                                 HFDDetailScreenBody(
                                   item: item,
-                                  multiTrackAnimations: multiTrackAnimations,
+                                  circle: multiTrackAnimations.get(
+                                    AnimProp.circle,
+                                  ),
+                                  bars: multiTrackAnimations.get(
+                                    AnimProp.bars,
+                                  ),
                                 ),
                                 Container(
                                   height: AppDimensions.padding * 4,

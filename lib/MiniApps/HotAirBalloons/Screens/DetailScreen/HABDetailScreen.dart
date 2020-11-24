@@ -12,7 +12,6 @@ import 'package:flutter_uis/widgets/Screen/Screen.dart';
 import 'widgets/HABDetailScreenFlightHeader.dart';
 import 'widgets/HABDetailScreenFlightView.dart';
 
-import '../../configs/theme.dart' as theme;
 import '../../data/flights.dart' as data;
 
 import 'Dimensions.dart';
@@ -131,7 +130,7 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
             Positioned.fill(
               bottom: null,
               child: Container(
-                height: Dimensions.backgroudImageHeight,
+                height: Dimensions.backgroundImageHeight,
                 foregroundDecoration: BoxDecoration(
                   color: AppTheme.background.withOpacity(0.44),
                   // color: theme.background2.withOpacity(0.8),

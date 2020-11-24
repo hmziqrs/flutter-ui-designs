@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-class HABHomeScreenBaloonAnimationWrapper extends StatelessWidget {
-  HABHomeScreenBaloonAnimationWrapper({
+class HABHomeScreenBallonAnimationWrapper extends StatelessWidget {
+  HABHomeScreenBallonAnimationWrapper({
     @required this.imagePath,
     @required this.imageSize,
     this.opacity,
@@ -14,21 +14,21 @@ class HABHomeScreenBaloonAnimationWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ControlledAnimation(
+    return CustomAnimation(
       delay: Duration(milliseconds: 100),
       tween: Tween(begin: 0.0, end: 1.0),
       duration: Duration(milliseconds: 1800),
-      builder: (ctx, animation) => Opacity(
+      builder: (ctx, _, animation) => Opacity(
         opacity: animation,
         child: Transform.scale(
           scale: animation,
           origin: Offset(0, 300),
-          child: ControlledAnimation(
-            playback: Playback.MIRROR,
+          child: CustomAnimation(
+            control: CustomAnimationControl.MIRROR,
             delay: Duration(milliseconds: 2200),
             tween: Tween(begin: -40.0, end: 10.0),
             duration: Duration(milliseconds: 2800),
-            builder: (ctx, translate) => Transform.translate(
+            builder: (ctx, child, translate) => Transform.translate(
               offset: Offset(0, translate),
               child: Opacity(
                 opacity: opacity,
