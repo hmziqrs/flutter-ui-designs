@@ -141,6 +141,7 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
                                     child: Text(
                                       App.translate(
                                         HFDDetailScreenMessages.orderNow,
+                                        context,
                                       ),
                                       style: textStyle.copyWith(
                                         fontSize: 17,

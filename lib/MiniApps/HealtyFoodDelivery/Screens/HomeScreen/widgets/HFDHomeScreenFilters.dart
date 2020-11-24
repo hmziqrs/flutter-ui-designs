@@ -92,7 +92,10 @@ class _HFDHomeScreenFiltersState extends State<HFDHomeScreenFilters> {
                         borderRadius: BorderRadius.circular(50.0),
                       ),
                       child: Text(
-                        App.translate(filter),
+                        App.translate(
+                          filter,
+                          context,
+                        ),
                         style: TextStyle(
                           color: isActive ? Colors.white : null,
                         ),

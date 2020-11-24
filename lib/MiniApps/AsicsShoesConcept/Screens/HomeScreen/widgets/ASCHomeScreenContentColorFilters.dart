@@ -40,7 +40,10 @@ class ASCHomeScreenContentColorFilters extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              App.translate(ASCHomeScreenMessages.colours),
+              App.translate(
+                ASCHomeScreenMessages.colours,
+                context,
+              ),
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 8 + AppDimensions.ratio * 6,

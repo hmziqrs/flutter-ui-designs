@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/configs/App.dart';
+
 import 'package:flutter_uis/Utils.dart';
 
 import 'ASCHomeScreenContentColorFilters.dart';
 import 'ASCHomeScreenContentPriceBadge.dart';
-import '../../../data/data.dart' as data;
 import 'ASCHomeScreenContentBadge.dart';
 import 'ASCHomeScreenContentSizes.dart';
 import 'ASCHomeScreenContentStars.dart';
+
+import '../../../data/data.dart' as data;
 import '../messages/keys.dart';
 
 class ASCHomeScreenContent extends StatefulWidget {
@@ -34,19 +37,9 @@ class ASCHomeScreenContent extends StatefulWidget {
 }
 
 class _ASCHomeScreenContentState extends State<ASCHomeScreenContent> {
-  int activeSize;
-  final List<int> sizes = [7, 8, 9, 10, 11];
-
   @override
   void initState() {
-    this.activeSize = this.sizes[0];
     super.initState();
-  }
-
-  void setSize(int size) {
-    setState(() {
-      this.activeSize = size;
-    });
   }
 
   @override
@@ -74,10 +67,13 @@ class _ASCHomeScreenContentState extends State<ASCHomeScreenContent> {
                   ),
                   Container(height: AppDimensions.padding),
                   Text(
-                    App.translate(widget.item.contentSubHeading),
+                    App.translate(
+                      widget.item.contentSubHeading,
+                      context,
+                    ),
                     style: TextStyle(
+                      color: AppTheme.subText3,
                       fontWeight: FontWeight.w700,
-                      color: Colors.black.withOpacity(0.4),
                       fontSize: 6 + AppDimensions.ratio * 5,
                     ),
                   ),
@@ -97,7 +93,10 @@ class _ASCHomeScreenContentState extends State<ASCHomeScreenContent> {
           ),
           Container(height: AppDimensions.padding * 6),
           Text(
-            App.translate(ASCHomeScreenMessages.size),
+            App.translate(
+              ASCHomeScreenMessages.size,
+              context,
+            ),
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 8 + AppDimensions.ratio * 6,
@@ -105,9 +104,6 @@ class _ASCHomeScreenContentState extends State<ASCHomeScreenContent> {
           ),
           Container(height: AppDimensions.padding * 2),
           ASCHomeScreenContentSizes(
-            sizes: this.sizes,
-            setSize: this.setSize,
-            activeSize: this.activeSize,
             activePage: widget.activePage,
             uiParallax: widget.uiParallax,
             activeColor: widget.activeColor,

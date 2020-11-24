@@ -99,7 +99,10 @@ class _HFDHomeScreenState extends State<HFDHomeScreen> {
                 child: Row(
                   children: <Widget>[
                     Text(
-                      App.translate(HFDHomeScreenMessages.title),
+                      App.translate(
+                        HFDHomeScreenMessages.title,
+                        context,
+                      ),
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
@@ -145,6 +148,7 @@ class _HFDHomeScreenState extends State<HFDHomeScreen> {
                 child: Text(
                   App.translate(
                     HFDHomeScreenMessages.topRestaurants,
+                    context,
                   ),
                   style: TextStyle(
                     fontSize: 24,

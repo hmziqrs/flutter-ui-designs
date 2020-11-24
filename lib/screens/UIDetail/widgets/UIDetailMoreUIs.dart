@@ -30,7 +30,7 @@ class UIDetailMoreUIs extends StatelessWidget {
         Padding(
           padding: EdgeInsets.all(AppDimensions.padding),
           child: Text(
-            "${App.translate(UIDetailScreenMessages.moreUIs)} ${uiItem.designer}",
+            "${App.translate(UIDetailScreenMessages.moreUIs, context)} ${uiItem.designer}",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,

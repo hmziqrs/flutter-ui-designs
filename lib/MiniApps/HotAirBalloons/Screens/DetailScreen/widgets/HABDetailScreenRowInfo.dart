@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
-
-import '../../../configs/theme.dart' as theme;
+import 'package:flutter_uis/configs/AppTheme.dart';
 
 class HABDetailScreenRowInfo extends StatelessWidget {
   const HABDetailScreenRowInfo(this.name, this.desc, this.icon,
@@ -27,7 +26,7 @@ class HABDetailScreenRowInfo extends StatelessWidget {
             child: Icon(
               icon,
               size: 16,
-              color: theme.primary,
+              color: AppTheme.primary,
             ),
           ),
           Flexible(
@@ -51,7 +50,7 @@ class HABDetailScreenRowInfo extends StatelessWidget {
                     child: Text(
                       desc,
                       style: TextStyle(
-                        color: theme.subText.withOpacity(0.6),
+                        color: AppTheme.subText2,
                         fontWeight: FontWeight.w500,
                       ),
                     ),

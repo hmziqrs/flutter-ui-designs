@@ -9,10 +9,10 @@ import 'package:flutter_uis/Utils.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
-import '../../configs/theme.dart' as theme;
 import '../../models/ETCTimer.dart';
-import 'TestKeys.dart';
 import 'messages/keys.dart';
+import 'TestKeys.dart';
+import 'Theme.dart';
 
 import 'widgets/ETCHomeScreenTimerTime.dart';
 import 'widgets/ETCHomeScreenTimerDail.dart';
@@ -103,20 +103,16 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
     Dimensions.init(context);
 
     final gradient = LinearGradient(
-      colors: [theme.light1, theme.light2],
+      colors: [ETCTheme.color1, ETCTheme.color2],
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
     );
-
-    final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
-          fontFamily: 'BebasNeue',
-        );
 
     final isRunning = this.timer.state == ETCTimerState.running;
     final isReady = this.timer.state == ETCTimerState.ready;
 
     return Screen(
-      textStyle: fontStyle,
+      fontFamily: 'BebasNeue',
       scaffoldBackgroundColor: Colors.transparent,
       belowBuilder: (_) => Positioned.fill(
         child: Container(
@@ -172,7 +168,10 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                         Expanded(
                           child: ETCHomeScreenButton(
                             testKey: Key(ETCHomeScreenTestKeys.restartBtn),
-                            label: App.translate(ETCHomeScreenMessages.restart),
+                            label: App.translate(
+                              ETCHomeScreenMessages.restart,
+                              context,
+                            ),
                             icon: Icons.refresh,
                             onPress: this.timer.restart,
                           ),
@@ -180,7 +179,10 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                         Expanded(
                           child: ETCHomeScreenButton(
                             testKey: Key(ETCHomeScreenTestKeys.resetBtn),
-                            label: App.translate(ETCHomeScreenMessages.reset),
+                            label: App.translate(
+                              ETCHomeScreenMessages.reset,
+                              context,
+                            ),
                             icon: Icons.arrow_back,
                             onPress: this.timer.reset,
                           ),
@@ -217,6 +219,7 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                         isRunning
                             ? ETCHomeScreenMessages.pause
                             : ETCHomeScreenMessages.play,
+                        context,
                       ),
                       icon: isRunning ? Icons.pause : Icons.play_arrow,
                       onPress: () =>

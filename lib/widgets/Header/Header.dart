@@ -7,8 +7,6 @@ import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/Utils.dart';
 
-import 'package:flutter_uis/widgets/Buttons/BackIcon.dart';
-
 import 'TestKeys.dart';
 
 class Header extends StatelessWidget {
@@ -42,7 +40,20 @@ class Header extends StatelessWidget {
           children: [
             Container(
               key: Key(HeaderWidgetKey.backButton),
-              child: BackIconButton(),
+              child: IconButton(
+                icon: Icon(Icons.chevron_left),
+                tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+                onPressed: () {
+                  Navigator.popUntil(
+                    context,
+                    (route) {
+                      print(route.settings);
+                      return route.settings.name !=
+                          ModalRoute.of(context).settings.name;
+                    },
+                  );
+                },
+              ),
             ),
             Container(
               padding: EdgeInsets.all(AppDimensions.padding * 2),

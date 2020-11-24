@@ -53,7 +53,10 @@ class SKVDetailScreenTextContent extends StatelessWidget {
                 pageRendered: this.pageRendered,
                 index: 1,
                 child: Text(
-                  App.translate(this.item.nickname),
+                  App.translate(
+                    this.item.nickname,
+                    context,
+                  ),
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     color: Colors.white,
@@ -104,7 +107,10 @@ class SKVDetailScreenTextContent extends StatelessWidget {
               pageRendered: this.pageRendered,
               index: 4,
               child: SKVDetailScreenAttribute(
-                label: App.translate(SKVDetailScreenMessages.distanceFromSun),
+                label: App.translate(
+                  SKVDetailScreenMessages.distanceFromSun,
+                  context,
+                ),
                 prefix: "km",
                 text: this.item.distanceFromSun,
                 icon: MaterialCommunityIcons.arrow_expand,
@@ -114,7 +120,10 @@ class SKVDetailScreenTextContent extends StatelessWidget {
               pageRendered: this.pageRendered,
               index: 5,
               child: SKVDetailScreenAttribute(
-                label: App.translate(SKVDetailScreenMessages.oneWayTimeSun),
+                label: App.translate(
+                  SKVDetailScreenMessages.oneWayTimeSun,
+                  context,
+                ),
                 prefix: "min",
                 text: this.item.lightTimeFromSun,
                 icon: MaterialCommunityIcons.weather_sunny,
@@ -124,8 +133,14 @@ class SKVDetailScreenTextContent extends StatelessWidget {
               pageRendered: this.pageRendered,
               index: 6,
               child: SKVDetailScreenAttribute(
-                label: App.translate(SKVDetailScreenMessages.lengthYear),
-                prefix: App.translate(SKVDetailScreenMessages.earthDays),
+                label: App.translate(
+                  SKVDetailScreenMessages.lengthYear,
+                  context,
+                ),
+                prefix: App.translate(
+                  SKVDetailScreenMessages.earthDays,
+                  context,
+                ),
                 text: this.item.lengthOfYears,
                 icon: MaterialCommunityIcons.moon_waning_crescent,
               ),

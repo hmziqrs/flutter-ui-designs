@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tinycolor/tinycolor.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -38,6 +39,9 @@ class HABHomeScreen extends StatelessWidget {
               transform: Dimensions.shapeTransform,
               child: Image.asset(
                 "assets/ma-hab/bubbles-bg.png",
+                color: App.isDark()
+                    ? TinyColor(Colors.black).lighten(15).color
+                    : null,
               ),
             ),
           ),
@@ -72,7 +76,10 @@ class HABHomeScreen extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: AppDimensions.padding * 2),
                     child: Text(
-                      App.translate(HABHomeScreenMessages.title),
+                      App.translate(
+                        HABHomeScreenMessages.title,
+                        context,
+                      ),
                       style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.w700,
@@ -86,7 +93,10 @@ class HABHomeScreen extends StatelessWidget {
                       bottom: AppDimensions.padding,
                     ),
                     child: Text(
-                      App.translate(HABHomeScreenMessages.subTitle),
+                      App.translate(
+                        HABHomeScreenMessages.subTitle,
+                        context,
+                      ),
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                       ),

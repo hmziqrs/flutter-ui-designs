@@ -14,10 +14,10 @@ abstract class MyLinks {
   static final rnLoopGooglePlay =
       'https://play.google.com/store/apps/details?id=com.onemdev.rnloop';
 
-  //
-  static final invmovieconcept1Github =
+//
+  static final invmovie1Github =
       'https://github.com/hackerhgl/invmovieconcept1';
-  static final invmovieconcept1GooglePlay =
+  static final invmovie1GooglePlay =
       'https://play.google.com/store/apps/details?id=com.onemdev.invmovieconcept1';
 
   //
