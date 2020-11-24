@@ -99,24 +99,14 @@ class ScreenSettingsModalBody extends StatelessWidget {
                       return ScreenSettingsSelect(
                         onPress: () => appState.setActiveLocale(locale),
                         isActive: locale == appState.activeLocale,
-                        textChild: DefaultTextStyle(
-                          style: DefaultTextStyle.of(context).style.copyWith(
-                                fontWeight: FontWeight.w600,
-                              ),
-                          child: Row(
-                            children: [
-                              Text(map[key]["emoji"]),
-                              Container(width: AppDimensions.padding),
-                              Text(map[key]["label"]),
-                              Text(" - "),
-                              Text(
-                                App.translate(
-                                  map[key]["trans"],
-                                  context,
-                                ),
-                              ),
-                            ],
-                          ),
+                        textChild: Row(
+                          children: [
+                            Text(
+                                "${map[key]["emoji"]}  ${map[key]["label"]} - ${App.translate(
+                              map[key]["trans"],
+                              context,
+                            )}"),
+                          ],
                         ),
                       );
                     },

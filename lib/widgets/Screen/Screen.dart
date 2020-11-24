@@ -45,7 +45,6 @@ class Screen extends StatelessWidget {
     return ChangeNotifierProvider<ScreenStateProvider>(
       create: (_) => ScreenStateProvider(),
       child: Theme(
-        isMaterialAppTheme: true,
         data: baseTheme.copyWith(
           textTheme: baseTheme.textTheme.apply(fontFamily: this.fontFamily),
           primaryTextTheme:
@@ -67,16 +66,29 @@ class Screen extends StatelessWidget {
               Positioned.fill(
                 child: child ?? builder(context),
               ),
-              this.renderSettings
-                  ? Selector<ScreenStateProvider, bool>(
-                      selector: (_, state) => state.isSettingsOpen,
-                      builder: (ctx, isSettingsOpen, child) {
-                        return ScreenSettingsModal(
-                          isSettingsOpen: isSettingsOpen,
-                        );
-                      },
-                    )
-                  : Container(),
+              Theme(
+                data: baseTheme.copyWith(
+                  textTheme: baseTheme.textTheme.apply(
+                    fontFamily: 'Muli',
+                  ),
+                  primaryTextTheme: baseTheme.primaryTextTheme.apply(
+                    fontFamily: 'Muli',
+                  ),
+                  accentTextTheme: baseTheme.accentTextTheme.apply(
+                    fontFamily: 'Muli',
+                  ),
+                ),
+                child: this.renderSettings
+                    ? Selector<ScreenStateProvider, bool>(
+                        selector: (_, state) => state.isSettingsOpen,
+                        builder: (ctx, isSettingsOpen, child) {
+                          return ScreenSettingsModal(
+                            isSettingsOpen: isSettingsOpen,
+                          );
+                        },
+                      )
+                    : Container(),
+              ),
             ],
           ),
         ),
