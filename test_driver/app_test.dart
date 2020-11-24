@@ -76,7 +76,7 @@ void main() async {
           await TestActions.tap(HomeScreenTestKeys.settingsBtn);
           print("Home Screen Complete");
 
-          return;
+          // return;
           // Settings Modal
           // await Screenshot.screenshot("Settings-Modal");
           // await TestActions.tap(ScreenWidgetTestKeys.close);

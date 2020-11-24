@@ -15,7 +15,7 @@ import 'TestKeys.dart';
 import 'Theme.dart';
 
 import 'widgets/ETCHomeScreenTimerTime.dart';
-import 'widgets/ETCHomeScreenTimerDail.dart';
+import 'widgets/ETCHomeScreenTimerDial.dart';
 import 'widgets/ETCHomeScreenButton.dart';
 import 'Dimensions.dart';
 
@@ -56,10 +56,10 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
     if (this.dragStartCord != null) {
       final factor = math.pi * 2;
       final angleDiff = cord.angle - dragStartCord.angle;
-      final agnlePercent =
+      final anglePercent =
           (angleDiff + (angleDiff < 0.0 ? factor : 0.0)) / factor;
       final timeDiffInSecs =
-          (agnlePercent * this.timer.maxTime.inSeconds).round();
+          (anglePercent * this.timer.maxTime.inSeconds).round();
       this.selectedTime =
           Duration(seconds: this.dragStartTime.inSeconds + timeDiffInSecs);
 
@@ -81,20 +81,20 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
   playPauseAnimationState() {
     switch (this.timer.state) {
       case ETCTimerState.running:
-        return Playback.PLAY_FORWARD;
+        return CustomAnimationControl.PLAY;
       case ETCTimerState.paused:
-        return Playback.PAUSE;
+        return CustomAnimationControl.STOP;
       default:
-        return Playback.PLAY_REVERSE;
+        return CustomAnimationControl.PLAY_REVERSE;
     }
   }
 
   resetRestartAnimationState() {
     switch (this.timer.state) {
       case ETCTimerState.paused:
-        return Playback.PLAY_FORWARD;
+        return CustomAnimationControl.PLAY;
       default:
-        return Playback.PLAY_REVERSE;
+        return CustomAnimationControl.PLAY_REVERSE;
     }
   }
 
@@ -128,7 +128,7 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
               onRadialDragEnd: this.onRadialDragEnd,
               onRadialDragStart: this.onRadialDragStart,
               onRadialDragUpdate: this.onRadialDragUpdate,
-              child: ControlledAnimation(
+              child: CustomAnimation(
                 key: Key(this.timer.state.toString()),
                 tween: Tween<double>(
                   end: 0.0,
@@ -139,10 +139,11 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                       .clamp(200.0, 400.0)
                       .toInt(),
                 ),
-                playback:
-                    isReady ? Playback.PLAY_FORWARD : Playback.PLAY_REVERSE,
-                builder: (context, double animation) {
-                  return ETCHomeScreenTimerDail(
+                control: isReady
+                    ? CustomAnimationControl.PLAY
+                    : CustomAnimationControl.PLAY_REVERSE,
+                builder: (context, child, animation) {
+                  return ETCHomeScreenTimerDial(
                     gradient,
                     ticksPerSection: 5,
                     maxTime: this.timer.maxTime,
@@ -154,50 +155,63 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
               ),
             ),
             Expanded(child: Container()),
-            ControlledAnimation(
+            CustomAnimation(
               tween: Tween(begin: 0.0, end: 1.0),
-              playback: this.resetRestartAnimationState(),
+              control: this.resetRestartAnimationState(),
               duration: Duration(milliseconds: 280),
-              builder: (context, animation) {
+              child: Container(
+                width: AppDimensions.miniContainerWidth,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: ETCHomeScreenButton(
+                        testKey: Key(ETCHomeScreenTestKeys.restartBtn),
+                        label: App.translate(
+                          ETCHomeScreenMessages.restart,
+                          context,
+                        ),
+                        icon: Icons.refresh,
+                        onPress: this.timer.restart,
+                      ),
+                    ),
+                    Expanded(
+                      child: ETCHomeScreenButton(
+                        testKey: Key(ETCHomeScreenTestKeys.resetBtn),
+                        label: App.translate(
+                          ETCHomeScreenMessages.reset,
+                          context,
+                        ),
+                        icon: Icons.arrow_back,
+                        onPress: this.timer.reset,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              builder: (context, child, animation) {
                 return Opacity(
                   opacity: animation,
-                  child: Container(
-                    width: AppDimensions.miniContainerWidth,
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: ETCHomeScreenButton(
-                            testKey: Key(ETCHomeScreenTestKeys.restartBtn),
-                            label: App.translate(
-                              ETCHomeScreenMessages.restart,
-                              context,
-                            ),
-                            icon: Icons.refresh,
-                            onPress: this.timer.restart,
-                          ),
-                        ),
-                        Expanded(
-                          child: ETCHomeScreenButton(
-                            testKey: Key(ETCHomeScreenTestKeys.resetBtn),
-                            label: App.translate(
-                              ETCHomeScreenMessages.reset,
-                              context,
-                            ),
-                            icon: Icons.arrow_back,
-                            onPress: this.timer.reset,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: child,
                 );
               },
             ),
-            ControlledAnimation(
+            CustomAnimation(
               tween: Tween(begin: 0.0, end: 1.0),
-              playback: this.playPauseAnimationState(),
+              control: this.playPauseAnimationState(),
               duration: Duration(milliseconds: 280),
-              builder: (context, animation) {
+              child: ETCHomeScreenButton(
+                testKey: Key(ETCHomeScreenTestKeys.playPauseBtn),
+                label: App.translate(
+                  isRunning
+                      ? ETCHomeScreenMessages.pause
+                      : ETCHomeScreenMessages.play,
+                  context,
+                ),
+                icon: isRunning ? Icons.pause : Icons.play_arrow,
+                onPress: () =>
+                    isRunning ? this.timer.pause() : this.timer.resume(),
+              ),
+              builder: (context, child, animation) {
                 return Container(
                   width: AppDimensions.miniContainerWidth,
                   transform: Matrix4.identity()
@@ -213,18 +227,7 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                     ),
                   child: Opacity(
                     opacity: animation,
-                    child: ETCHomeScreenButton(
-                      testKey: Key(ETCHomeScreenTestKeys.playPauseBtn),
-                      label: App.translate(
-                        isRunning
-                            ? ETCHomeScreenMessages.pause
-                            : ETCHomeScreenMessages.play,
-                        context,
-                      ),
-                      icon: isRunning ? Icons.pause : Icons.play_arrow,
-                      onPress: () =>
-                          isRunning ? this.timer.pause() : this.timer.resume(),
-                    ),
+                    child: child,
                   ),
                 );
               },

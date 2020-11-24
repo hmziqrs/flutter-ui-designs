@@ -30,8 +30,8 @@ class ETCHomeScreenTickPainter extends CustomPainter {
   TextPainter textPaint;
   TextStyle textStyle;
 
-  final LONG_TICK = AppDimensions.ratio * 9;
-  final SHORT_TICK = AppDimensions.ratio * 3;
+  final longTick = AppDimensions.ratio * 9;
+  final shortTick = AppDimensions.ratio * 3;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -41,7 +41,7 @@ class ETCHomeScreenTickPainter extends CustomPainter {
 
     for (var i = 0; i < tickCount; ++i) {
       bool isLongTick = i % ticksPerSection == 0;
-      final tickLength = isLongTick ? LONG_TICK : SHORT_TICK;
+      final tickLength = isLongTick ? longTick : shortTick;
 
       canvas.drawLine(
         Offset(0.0, -radius),

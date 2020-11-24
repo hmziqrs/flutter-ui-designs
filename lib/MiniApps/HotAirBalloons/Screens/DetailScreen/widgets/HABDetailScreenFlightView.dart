@@ -103,12 +103,12 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
       child: SingleChildScrollView(
         child: ClipRRect(
           borderRadius: BorderRadius.vertical(
-            top: Radius.circular(Dimensions.borderCliping),
+            top: Radius.circular(Dimensions.borderClipping),
           ),
           child: Container(
             margin: EdgeInsets.only(
-              top: Dimensions.backgroudImageHeight -
-                  Dimensions.borderCliping * 2,
+              top: Dimensions.backgroundImageHeight -
+                  Dimensions.borderClipping * 2,
             ),
             padding: EdgeInsets.only(
               top: AppDimensions.padding * 4,
@@ -118,7 +118,7 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
             decoration: BoxDecoration(
               color: AppTheme.background,
               borderRadius: BorderRadius.vertical(
-                top: Radius.circular(Dimensions.borderCliping),
+                top: Radius.circular(Dimensions.borderClipping),
               ),
             ),
             child: Column(
@@ -171,12 +171,12 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
                 Padding(
                   padding: EdgeInsets.all(AppDimensions.padding * 1.5),
                 ),
-                ControlledAnimation(
+                CustomAnimation(
                   key: Key(this.activeTab.toString()),
                   tween: Tween(begin: 0.0, end: 1.0),
                   delay: Duration(milliseconds: 120),
                   duration: Duration(milliseconds: 500),
-                  builder: (ctx, animation) => Opacity(
+                  builder: (ctx, child, animation) => Opacity(
                     opacity: animation,
                     child: buildContent,
                   ),

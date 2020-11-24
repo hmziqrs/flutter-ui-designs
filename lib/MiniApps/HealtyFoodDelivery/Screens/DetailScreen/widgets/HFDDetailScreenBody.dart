@@ -13,11 +13,13 @@ import '../messages/keys.dart';
 class HFDDetailScreenBody extends StatelessWidget {
   HFDDetailScreenBody({
     @required this.item,
-    @required this.multiTrackAnimations,
+    @required this.bars,
+    @required this.circle,
   });
 
   final HFDFoodItem item;
-  final dynamic multiTrackAnimations;
+  final double bars;
+  final double circle;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +68,7 @@ class HFDDetailScreenBody extends StatelessWidget {
                     "${item.kcal.toStringAsFixed(0)}",
                   ),
                   progressColor: theme.primary,
-                  percent: this.multiTrackAnimations["circle"],
+                  percent: this.circle,
                 ),
               ),
               Column(
@@ -98,7 +100,7 @@ class HFDDetailScreenBody extends StatelessWidget {
               HFDDetailScreenMessages.carbo,
               context,
             ),
-            this.multiTrackAnimations["bars"],
+            this.bars,
           ),
           this.buildLinearBar(
             item.protien,
@@ -106,7 +108,7 @@ class HFDDetailScreenBody extends StatelessWidget {
               HFDDetailScreenMessages.protein,
               context,
             ),
-            this.multiTrackAnimations["bars"],
+            this.bars,
           ),
           this.buildLinearBar(
             item.fat,
@@ -114,7 +116,7 @@ class HFDDetailScreenBody extends StatelessWidget {
               HFDDetailScreenMessages.fat,
               context,
             ),
-            this.multiTrackAnimations["bars"],
+            this.bars,
           ),
         ],
       ),

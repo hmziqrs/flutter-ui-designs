@@ -29,8 +29,8 @@ class HABDetailScreenFlightHeader extends StatelessWidget {
       top: 0,
       child: SafeArea(
         child: Container(
-          height: Dimensions.backgroudImageHeight -
-              (Dimensions.borderCliping * 1.8),
+          height: Dimensions.backgroundImageHeight -
+              (Dimensions.borderClipping * 1.8),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -41,7 +41,7 @@ class HABDetailScreenFlightHeader extends StatelessWidget {
                     double inputMid = UI.width * (entry.key);
                     double inputMax = UI.width * (entry.key + 1);
 
-                    double rangedOapcity = Utils.rangeL2LMap(
+                    double rangedOpacity = Utils.rangeL2LMap(
                       this.pageViewOffset,
                       inputMin,
                       inputMid,
@@ -52,7 +52,7 @@ class HABDetailScreenFlightHeader extends StatelessWidget {
                     ).clamp(0.0, 1.0);
 
                     return Opacity(
-                      opacity: rangedOapcity,
+                      opacity: rangedOpacity,
                       child: Container(
                         child: Column(
                           children: [

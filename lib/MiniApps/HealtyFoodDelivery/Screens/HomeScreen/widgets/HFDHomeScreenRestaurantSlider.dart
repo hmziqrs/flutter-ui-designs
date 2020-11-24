@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
-import '../TestKeys.dart';
 import '../data.dart' as data;
+import '../Dimensions.dart';
+import '../TestKeys.dart';
 
 import 'HFDHomeScreenRestaurantCard.dart';
-import '../Dimensions.dart';
 
 class HFDHomeScreenRestaurantSlider extends StatefulWidget {
   HFDHomeScreenRestaurantSlider({Key key}) : super(key: key);
@@ -18,7 +17,7 @@ class HFDHomeScreenRestaurantSlider extends StatefulWidget {
 }
 
 class _HFDHomeScreenRestaurantSliderState
-    extends State<HFDHomeScreenRestaurantSlider> with AnimationControllerMixin {
+    extends State<HFDHomeScreenRestaurantSlider> {
   PageController pageController;
 
   @override

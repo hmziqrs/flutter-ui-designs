@@ -22,13 +22,13 @@ class SKVDetailScreenPlanet extends StatelessWidget {
 
   Widget renderContent(double animation) {
     final width = AppDimensions.size.width;
-    // This variale helps us calculate parallax for each page.
+    // This variable helps us calculate parallax for each page.
     final widthOffset = this.offset - (width * this.index);
     final rotateRatio = math.pi / 180;
 
     double opacityOffset = animation;
 
-    // Init offSet bascially works like rotate origin here we set the center of radius
+    // Init offSet basically works like rotate origin here we set the center of radius
     double initOffSetX =
         AppDimensions.size.width - (Dimensions.planetSize * 0.5);
     double initOffSetY =
@@ -40,7 +40,7 @@ class SKVDetailScreenPlanet extends StatelessWidget {
     double angle = Utils.rangeMap(widthOffset, 0, width, -90, -200);
 
     /* pageRendered variable is very important
-    becuase it is responsible to trigger animation when use first navigate to this screen*/
+    because it is responsible to trigger animation when use first navigate to this screen*/
     if (this.pageRendered) {
       opacityOffset = Utils.rangeMap(
         widthOffset,
@@ -75,12 +75,12 @@ class SKVDetailScreenPlanet extends StatelessWidget {
             width: Dimensions.planetSize,
             height: Dimensions.planetSize,
             alignment: Alignment.bottomCenter,
-            child: ControlledAnimation(
-              playback: Playback.LOOP,
+            child: CustomAnimation(
+              control: CustomAnimationControl.LOOP,
               delay: Duration(milliseconds: this.pageRendered ? 800 : 1400),
               tween: Tween(begin: 0.0, end: math.pi * 2),
               duration: Duration(seconds: 50),
-              builder: (ctx, rotation) {
+              builder: (ctx, _, rotation) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(Dimensions.planetSize),
                   child: Container(
@@ -126,11 +126,11 @@ class SKVDetailScreenPlanet extends StatelessWidget {
         : Positioned.fill(
             left: 0,
             right: 0,
-            child: ControlledAnimation(
+            child: PlayAnimation(
               delay: Duration(milliseconds: 410),
               tween: Tween(begin: 0.0, end: 1.0),
               duration: Duration(milliseconds: 500),
-              builder: (ctx, animation) => this.renderContent(animation),
+              builder: (ctx, _, animation) => this.renderContent(animation),
             ),
           );
   }
