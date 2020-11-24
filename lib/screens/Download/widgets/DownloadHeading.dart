@@ -19,7 +19,7 @@ class DownloadHeading extends StatelessWidget {
         horizontal: AppDimensions.padding * 2,
       ),
       child: Text(
-        App.translate(this.label),
+        App.translate(this.label, context),
         style: TextStyles.heading46,
       ),
     );

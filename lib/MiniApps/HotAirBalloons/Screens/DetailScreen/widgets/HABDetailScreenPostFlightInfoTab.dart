@@ -17,20 +17,38 @@ class HABDetailScreenPostFlightInfoTab extends StatelessWidget {
     return Column(
       children: [
         HABDetailScreenRowInfo(
-          App.translate(HABDetailScreenMessages.celebration),
-          App.translate(flight.celebration),
+          App.translate(
+            HABDetailScreenMessages.celebration,
+            context,
+          ),
+          App.translate(
+            flight.celebration,
+            context,
+          ),
           Entypo.drink,
           fullWidth: true,
         ),
         HABDetailScreenRowInfo(
-          App.translate(HABDetailScreenMessages.flightCertificate),
-          App.translate(flight.certificate),
+          App.translate(
+            HABDetailScreenMessages.flightCertificate,
+            context,
+          ),
+          App.translate(
+            flight.certificate,
+            context,
+          ),
           MaterialCommunityIcons.certificate,
           fullWidth: true,
         ),
         HABDetailScreenRowInfo(
-          App.translate(HABDetailScreenMessages.serviceBack),
-          App.translate(flight.serviceBack),
+          App.translate(
+            HABDetailScreenMessages.serviceBack,
+            context,
+          ),
+          App.translate(
+            flight.serviceBack,
+            context,
+          ),
           MaterialCommunityIcons.bus_side,
           fullWidth: true,
         ),

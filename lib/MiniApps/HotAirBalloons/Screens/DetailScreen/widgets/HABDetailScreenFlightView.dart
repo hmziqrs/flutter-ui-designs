@@ -82,7 +82,10 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
       buildContent = Padding(
         padding: EdgeInsets.all(AppDimensions.padding * 3),
         child: Text(
-          App.translate(widget.flight.inFlightInfo),
+          App.translate(
+            widget.flight.inFlightInfo,
+            context,
+          ),
           style: TextStyle(
             fontSize: 12,
             color: AppTheme.subText,
@@ -141,7 +144,12 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
                           GestureDetector(
                             key: Key(this.tabsTestKeys[index]),
                             child: Container(
-                              child: Text(App.translate(tab)),
+                              child: Text(
+                                App.translate(
+                                  tab,
+                                  context,
+                                ),
+                              ),
                               padding: EdgeInsets.only(bottom: 3),
                               decoration: BoxDecoration(
                                 border: Border(

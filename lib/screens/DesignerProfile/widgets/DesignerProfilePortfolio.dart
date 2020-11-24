@@ -27,6 +27,7 @@ class DesignerProfilePortfolio extends StatelessWidget {
               DesignerProfileHeading(
                 App.translate(
                   DesignerProfileScreenMessages.portfolio,
+                  context,
                 ),
               ),
               Wrap(

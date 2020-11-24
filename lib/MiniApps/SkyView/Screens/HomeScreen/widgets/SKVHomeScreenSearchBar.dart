@@ -50,7 +50,10 @@ class SKVHomeScreenSearchBar extends StatelessWidget {
                 fontSize: 8 + AppDimensions.ratio * 4,
               ),
               decoration: InputDecoration(
-                hintText: App.translate(SKVHomeScreenMessages.searchBar),
+                hintText: App.translate(
+                  SKVHomeScreenMessages.searchBar,
+                  context,
+                ),
                 hintStyle: TextStyle(
                   color: theme.lightText,
                   fontWeight: FontWeight.w500,

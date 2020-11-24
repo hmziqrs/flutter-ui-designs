@@ -67,7 +67,10 @@ class _ASCHomeScreenContentState extends State<ASCHomeScreenContent> {
                   ),
                   Container(height: AppDimensions.padding),
                   Text(
-                    App.translate(widget.item.contentSubHeading),
+                    App.translate(
+                      widget.item.contentSubHeading,
+                      context,
+                    ),
                     style: TextStyle(
                       color: AppTheme.subText3,
                       fontWeight: FontWeight.w700,
@@ -90,7 +93,10 @@ class _ASCHomeScreenContentState extends State<ASCHomeScreenContent> {
           ),
           Container(height: AppDimensions.padding * 6),
           Text(
-            App.translate(ASCHomeScreenMessages.size),
+            App.translate(
+              ASCHomeScreenMessages.size,
+              context,
+            ),
             style: TextStyle(
               fontWeight: FontWeight.w600,
               fontSize: 8 + AppDimensions.ratio * 6,

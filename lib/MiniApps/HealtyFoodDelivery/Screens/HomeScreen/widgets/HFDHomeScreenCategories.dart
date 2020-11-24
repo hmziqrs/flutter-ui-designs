@@ -53,7 +53,10 @@ class HFDHomeScreenCategories extends StatelessWidget {
                         padding: EdgeInsets.all(AppDimensions.padding * 0.8),
                       ),
                       Text(
-                        App.translate(category.name),
+                        App.translate(
+                          category.name,
+                          context,
+                        ),
                         style: TextStyle(
                           fontSize: 8 + AppDimensions.ratio * 4,
                           fontWeight: FontWeight.w600,

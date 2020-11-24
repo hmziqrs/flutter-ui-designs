@@ -75,7 +75,10 @@ class _HABHomeScreenFlightsCarouselState
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              App.translate(item.name),
+                              App.translate(
+                                item.name,
+                                context,
+                              ),
                               style: widget.fontStyle.copyWith(
                                 fontSize: 16,
                                 color: activeTextColor,
@@ -83,7 +86,10 @@ class _HABHomeScreenFlightsCarouselState
                               ),
                             ),
                             Text(
-                              App.translate(HABHomeScreenMessages.flight),
+                              App.translate(
+                                HABHomeScreenMessages.flight,
+                                context,
+                              ),
                               style: widget.fontStyle.copyWith(
                                 fontSize: 15,
                                 color: activeTextColor,
@@ -95,7 +101,10 @@ class _HABHomeScreenFlightsCarouselState
                                 top: AppDimensions.padding,
                               ),
                               child: Text(
-                                App.translate(item.people),
+                                App.translate(
+                                  item.people,
+                                  context,
+                                ),
                                 style: TextStyle(
                                   fontSize: 12,
                                   color: AppTheme.subText,

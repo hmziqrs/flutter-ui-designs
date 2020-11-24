@@ -24,7 +24,7 @@ class UIDetailSupport extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(AppDimensions.padding),
             child: Text(
-              App.translate(UIDetailScreenMessages.moreUIs),
+              App.translate(UIDetailScreenMessages.moreUIs, context),
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -47,7 +47,7 @@ class UIDetailSupport extends StatelessWidget {
                         ),
                         Padding(padding: EdgeInsets.only(top: 4)),
                         Text(
-                          App.translate(support["label"]),
+                          App.translate(support["label"], context),
                           style: TextStyle(
                             color: color,
                             fontSize: 5 * AppDimensions.ratio,

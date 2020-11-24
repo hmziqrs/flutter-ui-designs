@@ -40,7 +40,10 @@ class HFDDetailScreenBody extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(AppDimensions.padding * 2),
             child: Text(
-              App.translate(HFDDetailScreenMessages.nutritionFact),
+              App.translate(
+                HFDDetailScreenMessages.nutritionFact,
+                context,
+              ),
               style: TextStyle(
                 fontSize: 10 + AppDimensions.ratio * 5,
                 fontWeight: FontWeight.w600,
@@ -76,7 +79,10 @@ class HFDDetailScreenBody extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "${item.dailyCal}% ${App.translate(HFDDetailScreenMessages.dailyCalories)}",
+                    "${item.dailyCal}% ${App.translate(
+                      HFDDetailScreenMessages.dailyCalories,
+                      context,
+                    )}",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       color: AppTheme.subText3,
@@ -90,6 +96,7 @@ class HFDDetailScreenBody extends StatelessWidget {
             item.carbo,
             App.translate(
               HFDDetailScreenMessages.carbo,
+              context,
             ),
             this.multiTrackAnimations["bars"],
           ),
@@ -97,6 +104,7 @@ class HFDDetailScreenBody extends StatelessWidget {
             item.protien,
             App.translate(
               HFDDetailScreenMessages.protein,
+              context,
             ),
             this.multiTrackAnimations["bars"],
           ),
@@ -104,6 +112,7 @@ class HFDDetailScreenBody extends StatelessWidget {
             item.fat,
             App.translate(
               HFDDetailScreenMessages.fat,
+              context,
             ),
             this.multiTrackAnimations["bars"],
           ),

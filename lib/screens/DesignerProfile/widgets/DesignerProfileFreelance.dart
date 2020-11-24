@@ -22,6 +22,7 @@ class DesignerProfileFreelance extends StatelessWidget {
         DesignerProfileHeading(
           App.translate(
             DesignerProfileScreenMessages.hireMe,
+            context,
           ),
         ),
         Wrap(

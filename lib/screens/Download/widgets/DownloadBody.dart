@@ -97,10 +97,10 @@ class DownloadBody extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.zero,
       children: <Widget>[
-        Header(label: App.translate(DownloadScreenMessages.title)),
+        Header(label: App.translate(DownloadScreenMessages.title, context)),
         // Content
 
-        AlphaBanner(text: App.translate(DownloadScreenMessages.desc)),
+        AlphaBanner(text: App.translate(DownloadScreenMessages.desc, context)),
         SizedBox(height: AppDimensions.padding * 2),
 
         //Mobile

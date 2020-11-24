@@ -67,7 +67,10 @@ class ASCHomeScreenHeader extends StatelessWidget {
                   ),
                   Container(height: AppDimensions.padding * 1),
                   Text(
-                    App.translate(this.item.headerDescription),
+                    App.translate(
+                      this.item.headerDescription,
+                      context,
+                    ),
                     maxLines: 3,
                     style: TextStyle(
                       color: Colors.white,
