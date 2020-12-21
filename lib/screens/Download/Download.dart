@@ -21,7 +21,8 @@ class DownloadScreen extends StatelessWidget {
       control: CustomAnimationControl.MIRROR,
       builder: (context, child, animation) {
         return Positioned(
-          bottom: AppDimensions.ratio * -10,
+          bottom:
+              AppDimensions.ratio * -10 + MediaQuery.of(context).padding.bottom,
           right: AppDimensions.ratio * 5,
           child: Icon(
             MaterialCommunityIcons.cloud_download_outline,

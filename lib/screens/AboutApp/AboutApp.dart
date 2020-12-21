@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/Widgets/Header/Header.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -24,36 +25,30 @@ class AboutAppScreen extends StatelessWidget {
             constraints: BoxConstraints(
               maxWidth: AppDimensions.maxContainerWidth,
             ),
-            padding: Utils.safePaddingUnit(context, 'vertical').add(
-              EdgeInsets.symmetric(
-                horizontal: AppDimensions.padding * 2,
-                vertical: AppDimensions.padding,
-              ),
-            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  App.translate(AboutAppScreenMessages.title, context),
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.w700,
+                Header(
+                  label: App.translate(
+                    AboutAppScreenMessages.title,
+                    context,
                   ),
                 ),
+                SizedBox(height: AppDimensions.padding * 3),
                 Padding(
-                  padding: EdgeInsets.all(AppDimensions.padding / 2),
-                ),
-                Text(
-                  App.translate(AboutAppScreenMessages.description, context),
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: theme.primary,
-                    fontWeight: FontWeight.w600,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppDimensions.padding * 3,
+                  ),
+                  child: Text(
+                    App.translate(AboutAppScreenMessages.description, context),
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: theme.primary,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(AppDimensions.padding * 1.5),
-                ),
+                SizedBox(height: AppDimensions.padding * 2.0),
                 AboutAppText(
                   App.translate(AboutAppScreenMessages.question1, context),
                 ),
@@ -128,6 +123,7 @@ class AboutAppScreen extends StatelessWidget {
                     color: theme.primary,
                   ),
                 ),
+                Utils.safePadding(context, 'bottom'),
               ],
             ),
           ),

@@ -54,6 +54,7 @@ void showBottomSheetWithBoxButtons({
               ),
             ],
           ),
+          SizedBox(height: MediaQuery.of(context).padding.bottom),
         ],
       );
     },

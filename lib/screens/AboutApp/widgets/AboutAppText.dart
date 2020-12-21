@@ -17,7 +17,10 @@ class AboutAppText extends StatelessWidget {
     TextStyle style = TextStyles.body26.copyWith(color: color).merge(textStyle);
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: AppDimensions.padding / 1.8),
+      padding: EdgeInsets.symmetric(
+        vertical: AppDimensions.padding / 1.8,
+        horizontal: AppDimensions.padding * 3,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
