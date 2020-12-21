@@ -71,13 +71,13 @@ final showSupport = [
   {
     "label": AboutDeveloperScreenMessages.likeProject1,
     "icon": MaterialCommunityIcons.github_face,
-    "link": MyLinks.invmovieconcept1Github,
+    "link": MyLinks.fudGithub,
   },
   {
     "platform": "Play Store",
     "label": AboutDeveloperScreenMessages.likeProject2,
     "icon": MaterialCommunityIcons.google_play,
-    "link": MyLinks.invmovieconcept1GooglePlay,
+    "link": MyLinks.fudGooglePlay,
   },
   {
     "platform": "Linkedin",
@@ -96,17 +96,17 @@ final showSupport = [
 final moreProjects = [
   {
     "label": "Flutter Movie Concept UI",
-    "desc": AboutDeveloperScreenMessages.projectFUD,
+    "desc": AboutDeveloperScreenMessages.projectINVMovie1,
     "links": [
       {
         "label": "Google Play",
         "icon": MaterialCommunityIcons.google_play,
-        "url": MyLinks.invmovieconcept1GooglePlay,
+        "url": MyLinks.invmovie1GooglePlay,
       },
       {
         "label": "Github",
         "icon": MaterialCommunityIcons.github_face,
-        "url": MyLinks.invmovieconcept1GooglePlay,
+        "url": MyLinks.invmovie1GooglePlay,
       },
     ],
   },
@@ -122,7 +122,7 @@ final moreProjects = [
       {
         "label": "Github",
         "icon": MaterialCommunityIcons.github_face,
-        "url": MyLinks.invmovieconcept1GooglePlay,
+        "url": MyLinks.rnLoopGithub,
       },
     ],
   },

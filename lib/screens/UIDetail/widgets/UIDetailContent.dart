@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 
 import 'package:flutter_uis/statics/models/UIItem.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -56,7 +57,7 @@ class UIDetailContent extends StatelessWidget {
                 horizontal: AppDimensions.padding,
               ),
               child: Text(
-                "${App.translate(UIDetailScreenMessages.by)} ${uiItem.designer}",
+                "${App.translate(UIDetailScreenMessages.by, context)} ${uiItem.designer}",
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 16.0,
@@ -74,7 +75,7 @@ class UIDetailContent extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w600,
-                        color: Colors.black.withOpacity(0.6),
+                        color: AppTheme.subText,
                       ),
                     ),
                   )
@@ -86,14 +87,20 @@ class UIDetailContent extends StatelessWidget {
               children: [
                 UIDetailButton(
                   testKey: UIDetailScreenTestKeys.openApp,
-                  text: App.translate(UIDetailScreenMessages.openApp),
+                  text: App.translate(
+                    UIDetailScreenMessages.openApp,
+                    context,
+                  ),
                   callback: () => Navigator.of(context).pushNamed(
                     uiItem.miniApp,
                   ),
                 ),
                 UIDetailButton(
                   testKey: UIDetailScreenTestKeys.viewSource,
-                  text: App.translate(UIDetailScreenMessages.viewSource),
+                  text: App.translate(
+                    UIDetailScreenMessages.viewSource,
+                    context,
+                  ),
                   callback: () async {
                     await Utils.launchUrl(uiItem.link);
                   },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 
 class BorderButton extends StatelessWidget {
   BorderButton({
@@ -29,11 +30,11 @@ class BorderButton extends StatelessWidget {
       constraints: BoxConstraints(maxWidth: this.maxWidth),
       child: RaisedButton(
         elevation: 0.0,
-        color: Colors.white,
         hoverElevation: 0.0,
         textColor: this.color,
         key: Key(this.testKey),
         highlightElevation: 0.0,
+        color: AppTheme.background,
         disabledColor: Colors.transparent,
         padding: EdgeInsets.symmetric(
           vertical: 12.0,

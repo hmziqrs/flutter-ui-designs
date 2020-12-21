@@ -23,9 +23,8 @@ class SKVDetailScreenSpaceBackground extends StatelessWidget {
     return Positioned.fill(
       top: Dimensions.starBgTopSpace,
       bottom: Dimensions.starBgBottomSpace,
-      child: CustomAnimation(
+      child: PlayAnimation(
         tween: tween,
-        duration: Duration(milliseconds: 1200),
         child: SingleChildScrollView(
           controller: this.starsController,
           scrollDirection: Axis.horizontal,
@@ -48,6 +47,7 @@ class SKVDetailScreenSpaceBackground extends StatelessWidget {
             ),
           ),
         ),
+        duration: Duration(milliseconds: 1200),
         builder: (ctx, child, animation) => Container(
           foregroundDecoration: BoxDecoration(
             color: Colors.black.withOpacity(

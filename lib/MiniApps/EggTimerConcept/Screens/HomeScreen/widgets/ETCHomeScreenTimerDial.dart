@@ -9,8 +9,8 @@ import '../TestKeys.dart';
 import 'ETCHomeScreenArrowPainter.dart';
 import 'ETCHomeScreenTickPainter.dart';
 
-class ETCHomeScreenTimerDail extends StatefulWidget {
-  ETCHomeScreenTimerDail(
+class ETCHomeScreenTimerDial extends StatefulWidget {
+  ETCHomeScreenTimerDial(
     this.gradient, {
     this.ticksPerSection,
     this.maxTime,
@@ -22,10 +22,10 @@ class ETCHomeScreenTimerDail extends StatefulWidget {
   final int ticksPerSection;
 
   @override
-  _ETCHomeScreenTimerDailState createState() => _ETCHomeScreenTimerDailState();
+  _ETCHomeScreenTimerDialState createState() => _ETCHomeScreenTimerDialState();
 }
 
-class _ETCHomeScreenTimerDailState extends State<ETCHomeScreenTimerDail> {
+class _ETCHomeScreenTimerDialState extends State<ETCHomeScreenTimerDial> {
   double rotationPercent() =>
       this.widget.currentTime.inSeconds / this.widget.maxTime.inSeconds;
 

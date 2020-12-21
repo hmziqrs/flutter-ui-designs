@@ -1,12 +1,13 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 
 class ETCHomeScreenArrowPainter extends CustomPainter {
   ETCHomeScreenArrowPainter({this.rotationPercent})
       : arrowSize = AppDimensions.ratio * 10,
         arrowPaint = Paint() {
-    arrowPaint.color = Colors.black;
+    arrowPaint.color = AppTheme.text;
     arrowPaint.style = PaintingStyle.fill;
   }
 
@@ -30,7 +31,7 @@ class ETCHomeScreenArrowPainter extends CustomPainter {
     path.close();
 
     canvas.drawPath(path, arrowPaint);
-    canvas.drawShadow(path, Colors.black, 3.0, false);
+    canvas.drawShadow(path, AppTheme.text, 3.0, false);
   }
 
   @override

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/UI.dart';
-import 'package:flutter_uis/Utils.dart';
-import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_uis/configs/AppDimensions.dart';
 
-import '../../../configs/theme.dart' as theme;
+import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
+import 'package:flutter_uis/configs/App.dart';
+
+import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/UI.dart';
+
 import '../../../data/flights.dart' as data;
 import '../messages/keys.dart';
 import '../Dimensions.dart';
@@ -27,8 +29,8 @@ class HABDetailScreenFlightHeader extends StatelessWidget {
       top: 0,
       child: SafeArea(
         child: Container(
-          height: Dimensions.backgroudImageHeight -
-              (Dimensions.borderCliping * 1.8),
+          height: Dimensions.backgroundImageHeight -
+              (Dimensions.borderClipping * 1.8),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -39,7 +41,7 @@ class HABDetailScreenFlightHeader extends StatelessWidget {
                     double inputMid = UI.width * (entry.key);
                     double inputMax = UI.width * (entry.key + 1);
 
-                    double rangedOapcity = Utils.rangeL2LMap(
+                    double rangedOpacity = Utils.rangeL2LMap(
                       this.pageViewOffset,
                       inputMin,
                       inputMid,
@@ -50,7 +52,7 @@ class HABDetailScreenFlightHeader extends StatelessWidget {
                     ).clamp(0.0, 1.0);
 
                     return Opacity(
-                      opacity: rangedOapcity,
+                      opacity: rangedOpacity,
                       child: Container(
                         child: Column(
                           children: [
@@ -61,6 +63,7 @@ class HABDetailScreenFlightHeader extends StatelessWidget {
                                   App.translate(entry.value.name),
                                   style: TextStyle(
                                     fontSize: 30,
+                                    // color: Colors.black,
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
@@ -76,7 +79,7 @@ class HABDetailScreenFlightHeader extends StatelessWidget {
                               App.translate(entry.value.shortDesc),
                               style: TextStyle(
                                 fontSize: 12.0,
-                                fontWeight: FontWeight.w500,
+                                // color: Colors.black,
                               ),
                             ),
                           ],
@@ -112,8 +115,8 @@ class HABDetailScreenFlightHeader extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: entry.key == this.activePage
-                      ? theme.primary
-                      : theme.indicator,
+                      ? AppTheme.primary
+                      : AppTheme.subText2,
                 ),
               ),
             )

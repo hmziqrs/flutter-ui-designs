@@ -39,7 +39,10 @@ class SKVHomeScreenStory extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      App.translate(this.story.name),
+                      App.translate(
+                        this.story.name,
+                        context,
+                      ),
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
@@ -71,7 +74,10 @@ class SKVHomeScreenStory extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      App.translate(this.story.desc),
+                      App.translate(
+                        this.story.desc,
+                        context,
+                      ),
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

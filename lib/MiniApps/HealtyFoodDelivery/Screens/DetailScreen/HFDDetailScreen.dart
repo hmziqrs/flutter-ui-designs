@@ -20,6 +20,12 @@ import 'widgets/HFDDetailScreenBody.dart';
 import 'Dimensions.dart';
 import 'data.dart';
 
+enum AnimProp {
+  base,
+  circle,
+  bars,
+}
+
 class HFDDetailScreen extends StatefulWidget {
   HFDDetailScreen({Key key}) : super(key: key);
 
@@ -59,16 +65,35 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
     final textStyle =
         Theme.of(context).textTheme.bodyText1.copyWith(fontFamily: 'Nunito');
 
-    final baseDuration = 400.milliseconds;
-    final baseTween = 0.0.tweenTo(1.0);
-    final delayTween = ConstantTween(0.0);
-    final delayDuration = 300.milliseconds;
-    final tween = MultiTween<AnimProp>()
-      ..add(AnimProp.base, baseTween, baseDuration)
-      ..add(AnimProp.circle, delayTween, delayDuration)
-      ..add(AnimProp.circle, baseTween, baseDuration)
-      ..add(AnimProp.bars, delayTween, delayDuration)
-      ..add(AnimProp.bars, baseTween, baseDuration);
+    final baseDuration = Duration(milliseconds: 400);
+    final baseTween = Tween(begin: 0.0, end: 1.0);
+
+    MultiTween<AnimProp> tween = MultiTween<AnimProp>()
+      ..add(
+        AnimProp.base,
+        baseTween,
+        baseDuration,
+      )
+      ..add(
+        AnimProp.circle,
+        ConstantTween(0.0),
+        Duration(milliseconds: 300),
+      )
+      ..add(
+        AnimProp.circle,
+        baseTween,
+        baseDuration,
+      )
+      ..add(
+        AnimProp.bars,
+        ConstantTween(0.0),
+        Duration(milliseconds: 300),
+      )
+      ..add(
+        AnimProp.bars,
+        baseTween,
+        baseDuration,
+      );
 
     return Container(
       child: Screen(
@@ -103,31 +128,6 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
                         tween: tween,
                         duration: tween.duration,
                         delay: Duration(milliseconds: 400),
-                        child: Container(
-                          width: (AppDimensions.miniContainerWidth * 0.7)
-                              .clamp(180.0, 300.0),
-                          child: RaisedButton(
-                            onPressed: () {},
-                            color: theme.primary,
-                            padding: EdgeInsets.symmetric(
-                              vertical: AppDimensions.padding * 1.8,
-                            ),
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(80),
-                            ),
-                            child: Text(
-                              App.translate(
-                                HFDDetailScreenMessages.orderNow,
-                              ),
-                              style: textStyle.copyWith(
-                                fontSize: 17,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: "Nunito",
-                              ),
-                            ),
-                          ),
-                        ),
                         builder: (context, child, multiTrackAnimations) =>
                             Opacity(
                           opacity: multiTrackAnimations.get(AnimProp.base),
@@ -147,12 +147,43 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
                               children: <Widget>[
                                 HFDDetailScreenBody(
                                   item: item,
-                                  multiTrackAnimations: multiTrackAnimations,
+                                  circle: multiTrackAnimations.get(
+                                    AnimProp.circle,
+                                  ),
+                                  bars: multiTrackAnimations.get(
+                                    AnimProp.bars,
+                                  ),
                                 ),
                                 Container(
                                   height: AppDimensions.padding * 4,
                                 ),
-                                child,
+                                Container(
+                                  width:
+                                      (AppDimensions.miniContainerWidth * 0.7)
+                                          .clamp(180.0, 300.0),
+                                  child: RaisedButton(
+                                    onPressed: () {},
+                                    color: theme.primary,
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: AppDimensions.padding * 1.8,
+                                    ),
+                                    shape: new RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(80),
+                                    ),
+                                    child: Text(
+                                      App.translate(
+                                        HFDDetailScreenMessages.orderNow,
+                                        context,
+                                      ),
+                                      style: textStyle.copyWith(
+                                        fontSize: 17,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: "Nunito",
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),

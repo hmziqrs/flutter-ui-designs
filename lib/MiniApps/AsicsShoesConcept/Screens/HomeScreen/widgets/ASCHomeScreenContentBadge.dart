@@ -33,7 +33,10 @@ class ASCHomeScreenContentBadge extends StatelessWidget {
           borderRadius: BorderRadius.circular(6.0),
         ),
         child: Text(
-          App.translate(ASCHomeScreenMessages.newText),
+          App.translate(
+            ASCHomeScreenMessages.newText,
+            context,
+          ),
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w700,

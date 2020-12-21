@@ -22,7 +22,7 @@ class SKVDetailScreenOrbit extends StatelessWidget {
     final tween = Tween(begin: Dimensions.orbitInitialOffset, end: 0.0);
     return this.pageRendered
         ? this.renderContent(0.0)
-        : CustomAnimation(
+        : PlayAnimation(
             duration: Duration(milliseconds: 800),
             tween: tween,
             delay: Duration(milliseconds: 400),

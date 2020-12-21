@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 
 class ETCHomeScreenTickPainter extends CustomPainter {
   ETCHomeScreenTickPainter({
@@ -14,11 +15,11 @@ class ETCHomeScreenTickPainter extends CustomPainter {
           textDirection: TextDirection.ltr,
         ),
         textStyle = TextStyle(
-          color: Colors.black,
+          color: AppTheme.text,
           fontFamily: 'BebasNeue',
           fontSize: 10 + AppDimensions.ratio * 5,
         ) {
-    tickPaint.color = Colors.black;
+    tickPaint.color = AppTheme.text;
     tickPaint.strokeWidth = 2.0;
   }
 

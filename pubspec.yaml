@@ -21,6 +21,13 @@ dependency_overrides:
   intl: 0.17.0-nullsafety.2
   quiver: 3.0.0-nullsafety.2
 
+flutter_icons:
+  includes:
+    - fea
+    - mco
+    - ent
+    - faw5s
+
 dependencies:
   flutter:
     sdk: flutter

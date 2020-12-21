@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-class HABHomeScreenBaloonAnimationWrapper extends StatelessWidget {
-  HABHomeScreenBaloonAnimationWrapper({
+class HABHomeScreenBallonAnimationWrapper extends StatelessWidget {
+  HABHomeScreenBallonAnimationWrapper({
     @required this.imagePath,
     @required this.imageSize,
     this.opacity,

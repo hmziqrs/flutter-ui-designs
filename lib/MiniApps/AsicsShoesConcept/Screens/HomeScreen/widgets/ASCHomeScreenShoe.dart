@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/Provider.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
 import '../../../models/ASCItem.dart';
 import '../Dimensions.dart';
 
-class ASCHomeScreenShoe extends StatelessWidget {
+class ASCHomeScreenShoe extends StatefulWidget {
   ASCHomeScreenShoe({
     @required this.item,
     @required this.uiParallax,
@@ -15,23 +16,56 @@ class ASCHomeScreenShoe extends StatelessWidget {
   final double uiParallax;
 
   @override
+  _ASCHomeScreenShoeState createState() => _ASCHomeScreenShoeState();
+}
+
+class _ASCHomeScreenShoeState extends State<ASCHomeScreenShoe>
+    with SingleTickerProviderStateMixin {
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      const SCALE_FACTOR = 0.5;
+      final state = ASCShoeProvider.state(context);
+
+      state.shoesController = AnimationController(
+        vsync: this,
+        duration: Duration(milliseconds: 800),
+        reverseDuration: Duration(milliseconds: 800),
+      )..addListener(
+          () {
+            setState(() {});
+          },
+        );
+
+      state.shoeAnimation = Tween(begin: 0.0, end: SCALE_FACTOR).animate(
+        CurvedAnimation(
+          curve: Curves.elasticOut,
+          parent: ASCShoeProvider.state(context).shoesController,
+        ),
+      );
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double width = Dimensions.shoeWidth;
     double height = Dimensions.shoeHeight;
 
-    final scale = this.uiParallax * -0.12;
-    final opacity = this.uiParallax * 0.15;
-
+    final scale = this.widget.uiParallax * -0.12;
+    final opacity = this.widget.uiParallax * 0.15;
+    final state = ASCShoeProvider.state(context);
+    final sizeScale = (state.shoeAnimation?.value ?? 0);
     return Positioned(
       top: Dimensions.shoeTop,
       // left: (AppDimensions.size.width / 2) - width * 0.4,
       left: (AppDimensions.size.width / 2) - width * 0.45,
       child: Transform(
         transform: Matrix4.identity()
-          ..rotateZ((24 + (this.uiParallax * 15)) * 3.1415927 / 180)
-          ..scale(1 + scale, 1 + scale)
-          ..translate(this.uiParallax * -35),
-        origin: Offset(width / 2, height / 2),
+          ..rotateZ((24 + (this.widget.uiParallax * 15)) * 3.1415927 / 180)
+          ..scale(1 + scale + sizeScale, 1 + scale + sizeScale)
+          ..translate(this.widget.uiParallax * -35),
+        alignment: FractionalOffset.center,
         child: Opacity(
           opacity: (1 - opacity).clamp(0.0, 1.0),
           child: Container(
@@ -59,7 +93,7 @@ class ASCHomeScreenShoe extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(child: Image.asset(this.item.shoeImage)),
+                Container(child: Image.asset(this.widget.item.shoeImage)),
               ],
             ),
           ),

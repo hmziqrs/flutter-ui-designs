@@ -107,7 +107,10 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
                           right: AppDimensions.padding * 3,
                         ),
                         child: Text(
-                          App.translate(SKVHomeScreenMessages.explore),
+                          App.translate(
+                            SKVHomeScreenMessages.explore,
+                            context,
+                          ),
                           style: TextStyle(
                             fontSize: 20 + AppDimensions.ratio * 10,
                             fontWeight: FontWeight.w800,
@@ -143,7 +146,14 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
                           ),
                           tabs: this
                               .tabs
-                              .map((tab) => Text(App.translate(tab)))
+                              .map(
+                                (tab) => Text(
+                                  App.translate(
+                                    tab,
+                                    context,
+                                  ),
+                                ),
+                              )
                               .toList(),
                         ),
                       ),
@@ -175,7 +185,10 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
                           right: AppDimensions.padding * 1.5,
                         ),
                         child: Text(
-                          App.translate(SKVHomeScreenMessages.popular),
+                          App.translate(
+                            SKVHomeScreenMessages.popular,
+                            context,
+                          ),
                           style: TextStyle(
                             color: theme.lightText,
                             fontWeight: FontWeight.w800,

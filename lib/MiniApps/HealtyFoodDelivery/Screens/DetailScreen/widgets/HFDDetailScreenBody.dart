@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/Mixins/HoverWidget.dart';
 import 'package:flutter_uis/configs/App.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -14,11 +15,13 @@ import '../data.dart';
 class HFDDetailScreenBody extends StatelessWidget {
   HFDDetailScreenBody({
     @required this.item,
-    @required this.multiTrackAnimations,
+    @required this.bars,
+    @required this.circle,
   });
 
   final HFDFoodItem item;
-  final MultiTweenValues<AnimProp> multiTrackAnimations;
+  final double bars;
+  final double circle;
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +29,13 @@ class HFDDetailScreenBody extends StatelessWidget {
       padding: EdgeInsets.all(AppDimensions.padding * 2),
       width: (AppDimensions.miniContainerWidth - AppDimensions.padding * 8),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppTheme.background,
         borderRadius: BorderRadius.circular(8.0),
         boxShadow: [
           BoxShadow(
             blurRadius: 10.0,
             offset: Offset(0.0, 4.0),
-            color: Colors.black.withOpacity(0.2),
+            color: AppTheme.text02,
           ),
         ],
       ),
@@ -41,7 +44,10 @@ class HFDDetailScreenBody extends StatelessWidget {
           Padding(
             padding: EdgeInsets.all(AppDimensions.padding * 2),
             child: Text(
-              App.translate(HFDDetailScreenMessages.nutritionFact),
+              App.translate(
+                HFDDetailScreenMessages.nutritionFact,
+                context,
+              ),
               style: TextStyle(
                 fontSize: 10 + AppDimensions.ratio * 5,
                 fontWeight: FontWeight.w600,
@@ -64,7 +70,7 @@ class HFDDetailScreenBody extends StatelessWidget {
                     "${item.kcal.toStringAsFixed(0)}",
                   ),
                   progressColor: theme.primary,
-                  percent: this.multiTrackAnimations.get(AnimProp.circle),
+                  percent: this.circle,
                 ),
               ),
               Column(
@@ -77,10 +83,13 @@ class HFDDetailScreenBody extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "${item.dailyCal}% ${App.translate(HFDDetailScreenMessages.dailyCalories)}",
+                    "${item.dailyCal}% ${App.translate(
+                      HFDDetailScreenMessages.dailyCalories,
+                      context,
+                    )}",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: Colors.black.withOpacity(0.4),
+                      color: AppTheme.subText3,
                     ),
                   ),
                 ],
@@ -91,22 +100,25 @@ class HFDDetailScreenBody extends StatelessWidget {
             item.carbo,
             App.translate(
               HFDDetailScreenMessages.carbo,
+              context,
             ),
-            this.multiTrackAnimations.get(AnimProp.bars),
+            this.bars,
           ),
           this.buildLinearBar(
             item.protien,
             App.translate(
               HFDDetailScreenMessages.protein,
+              context,
             ),
-            this.multiTrackAnimations.get(AnimProp.bars),
+            this.bars,
           ),
           this.buildLinearBar(
             item.fat,
             App.translate(
               HFDDetailScreenMessages.fat,
+              context,
             ),
-            this.multiTrackAnimations.get(AnimProp.bars),
+            this.bars,
           ),
         ],
       ),
@@ -130,7 +142,7 @@ class HFDDetailScreenBody extends StatelessWidget {
                 height: 4 + AppDimensions.ratio * 1,
                 child: LinearProgressIndicator(
                   value: Utils.rangeMap(animate, 0.0, 1.0, 0.0, no / 100),
-                  backgroundColor: Colors.black.withOpacity(0.3),
+                  backgroundColor: AppTheme.text03,
                 ),
               ),
             ),
@@ -158,7 +170,7 @@ class HFDDetailScreenBody extends StatelessWidget {
                 label,
                 textAlign: TextAlign.left,
                 style: TextStyle(
-                  color: Colors.black.withOpacity(0.4),
+                  color: AppTheme.subText3,
                   fontSize: 5 + AppDimensions.ratio * 4,
                 ),
               ),

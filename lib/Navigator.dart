@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'configs/theme.dart' as theme;
+import 'configs/Theme.dart' as theme;
 import 'AppLocalizations.dart';
 import 'Providers/AppProvider.dart';
 

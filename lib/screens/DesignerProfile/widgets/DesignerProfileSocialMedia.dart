@@ -24,6 +24,7 @@ class DesignerProfileSocialMedia extends StatelessWidget {
         DesignerProfileHeading(
           App.translate(
             DesignerProfileScreenMessages.follow,
+            context,
           ),
         ),
         Wrap(

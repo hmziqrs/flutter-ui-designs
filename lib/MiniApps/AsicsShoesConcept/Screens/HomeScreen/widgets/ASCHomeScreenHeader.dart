@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
+
 import 'package:flutter_uis/Utils.dart';
 
 import '../../../models/ASCItem.dart';
@@ -66,7 +67,10 @@ class ASCHomeScreenHeader extends StatelessWidget {
                   ),
                   Container(height: AppDimensions.padding * 1),
                   Text(
-                    App.translate(this.item.headerDescription),
+                    App.translate(
+                      this.item.headerDescription,
+                      context,
+                    ),
                     maxLines: 3,
                     style: TextStyle(
                       color: Colors.white,
