@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter_uis/Utils.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
 
@@ -14,13 +15,16 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox('app');
 
-  final analyticsObserver = FirebaseAnalyticsObserver(
-    analytics: FirebaseAnalytics(),
-  );
-  // Crashlytics.instance.enableInDevMode = true;
+  final List<NavigatorObserver> observers = [];
+
+  if (Utils.isMobile()) {
+    observers.add(FirebaseAnalyticsObserver(
+      analytics: FirebaseAnalytics(),
+    ));
+  }
 
   FlutterError.onError = (FlutterErrorDetails err) {
     FirebaseCrashlytics.instance.recordFlutterError(err);
   };
-  runApp(AppNavigator([analyticsObserver]));
+  runApp(AppNavigator(observers));
 }
