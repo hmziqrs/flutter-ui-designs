@@ -16,11 +16,12 @@ class SKVDetailScreenAnimatedText extends StatelessWidget {
   Widget build(BuildContext context) {
     int initialDelay = (this.pageRendered ? 400 : 900) + (this.index * 60);
 
-    return ControlledAnimation(
-      delay: Duration(milliseconds: initialDelay),
-      duration: Duration(milliseconds: 550),
+    return CustomAnimation(
+      child: this.child,
       tween: Tween(begin: 0.0, end: 1.0),
-      builder: (ctx, animation) => Opacity(
+      duration: Duration(milliseconds: 550),
+      delay: Duration(milliseconds: initialDelay),
+      builder: (ctx, child, animation) => Opacity(
         opacity: animation,
         child: child,
       ),

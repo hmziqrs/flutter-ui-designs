@@ -68,7 +68,7 @@ class AboutUserContactButton extends StatelessWidget {
 
     showBottomSheetWithBoxButtons(
       context: context,
-      appinit: this.initContext,
+      appInit: this.initContext,
       button1: (bottomSheetContext) async {
         if (isMobile) {
           Share.share(socialUrl, subject: this.platform);
@@ -80,7 +80,7 @@ class AboutUserContactButton extends StatelessWidget {
           );
           Navigator.pop(bottomSheetContext);
           await 200.milliseconds.delay;
-          Scaffold.of(context).hideCurrentSnackBar(
+          ScaffoldMessenger.of(context).hideCurrentSnackBar(
             reason: SnackBarClosedReason.dismiss,
           );
           showSnackBarBase(

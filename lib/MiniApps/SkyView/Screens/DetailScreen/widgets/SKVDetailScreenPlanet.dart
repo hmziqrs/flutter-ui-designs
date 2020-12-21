@@ -75,12 +75,21 @@ class SKVDetailScreenPlanet extends StatelessWidget {
             width: Dimensions.planetSize,
             height: Dimensions.planetSize,
             alignment: Alignment.bottomCenter,
-            child: ControlledAnimation(
-              playback: Playback.LOOP,
+            child: CustomAnimation(
+              control: CustomAnimationControl.LOOP,
               delay: Duration(milliseconds: this.pageRendered ? 800 : 1400),
               tween: Tween(begin: 0.0, end: math.pi * 2),
               duration: Duration(seconds: 50),
-              builder: (ctx, rotation) {
+              child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(item.image),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+              builder: (ctx, child, rotation) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(Dimensions.planetSize),
                   child: Container(
@@ -99,15 +108,7 @@ class SKVDetailScreenPlanet extends StatelessWidget {
                     ),
                     child: Transform.rotate(
                       angle: rotation,
-                      child: Container(
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(item.image),
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
+                      child: child,
                     ),
                   ),
                 );
@@ -126,11 +127,11 @@ class SKVDetailScreenPlanet extends StatelessWidget {
         : Positioned.fill(
             left: 0,
             right: 0,
-            child: ControlledAnimation(
+            child: CustomAnimation(
               delay: Duration(milliseconds: 410),
               tween: Tween(begin: 0.0, end: 1.0),
               duration: Duration(milliseconds: 500),
-              builder: (ctx, animation) => this.renderContent(animation),
+              builder: (ctx, child, animation) => this.renderContent(animation),
             ),
           );
   }

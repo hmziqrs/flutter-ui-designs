@@ -112,7 +112,6 @@ class _UIListScreenState extends State<UIListScreen>
                           .map(
                             (ui) => UICard(
                               ui,
-                              prespectiveScale: 0.0,
                               cardWidth: Dimensions.cardWidth,
                               cardHeight: Dimensions.cardHeight,
                               padding: AppDimensions.padding * 2,

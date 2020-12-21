@@ -14,20 +14,20 @@ class UICard extends StatefulWidget {
     this.cardWidth,
     this.cardHeight,
     this.isMini = false,
-    this.prespectiveScale = 0,
+    this.perspectiveScale = 0,
   });
   final UIItem item;
   final bool isMini;
   final double padding;
   final double cardWidth;
   final double cardHeight;
-  final double prespectiveScale;
+  final double perspectiveScale;
 
   @override
   _UICardState createState() => _UICardState();
 }
 
-class _UICardState extends State<UICard> with AnimationControllerMixin {
+class _UICardState extends State<UICard> with AnimationMixin {
   Animation<double> animation;
 
   @override
@@ -37,14 +37,12 @@ class _UICardState extends State<UICard> with AnimationControllerMixin {
   }
 
   void onFocus(bool focus) {
-    controller.reset([
-      FromToTask(
-        to: focus ? 1.0 : 0.0,
-        duration: Duration(
-          milliseconds: 180,
-        ),
-      )
-    ]);
+    this.controller.animateTo(
+          focus ? 1.0 : 0.0,
+          duration: Duration(
+            milliseconds: 180,
+          ),
+        );
   }
 
   BoxShadow boxShadow() {
@@ -127,7 +125,7 @@ class _UICardState extends State<UICard> with AnimationControllerMixin {
       child: Transform(
         transform: Matrix4.identity()
           ..setEntry(3, 2, 0.005)
-          ..rotateX(this.widget.prespectiveScale / 1000),
+          ..rotateX(this.widget.perspectiveScale / 1000),
         alignment: FractionalOffset.center,
         child: Stack(
           children: <Widget>[

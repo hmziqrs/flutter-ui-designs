@@ -99,6 +99,7 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SKVHomeScreenSearchBar(),
+
                       Padding(
                         padding: EdgeInsets.only(
                           top: AppDimensions.padding * 4,
@@ -114,7 +115,7 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
                           ),
                         ),
                       ),
-                      // Tabsbar
+                      // TabsBar
                       Container(
                         margin: EdgeInsets.symmetric(
                           vertical: AppDimensions.padding * 3,

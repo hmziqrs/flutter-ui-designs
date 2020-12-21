@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
@@ -18,7 +17,7 @@ class HFDHomeScreenRestaurantSlider extends StatefulWidget {
 }
 
 class _HFDHomeScreenRestaurantSliderState
-    extends State<HFDHomeScreenRestaurantSlider> with AnimationControllerMixin {
+    extends State<HFDHomeScreenRestaurantSlider> {
   PageController pageController;
 
   @override

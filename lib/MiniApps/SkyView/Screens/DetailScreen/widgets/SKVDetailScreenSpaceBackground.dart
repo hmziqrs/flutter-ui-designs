@@ -23,37 +23,38 @@ class SKVDetailScreenSpaceBackground extends StatelessWidget {
     return Positioned.fill(
       top: Dimensions.starBgTopSpace,
       bottom: Dimensions.starBgBottomSpace,
-      child: ControlledAnimation(
-        duration: Duration(milliseconds: 1200),
+      child: CustomAnimation(
         tween: tween,
-        builder: (ctx, animation) => Container(
+        duration: Duration(milliseconds: 1200),
+        child: SingleChildScrollView(
+          controller: this.starsController,
+          scrollDirection: Axis.horizontal,
+          physics: NeverScrollableScrollPhysics(),
+          child: Row(
+            key: this.starsWidgetKey,
+            children: List.generate(
+              data.objectList.length + 1,
+              (index) => Transform(
+                transform: Matrix4.identity()
+                  ..setEntry(3, 2, 0.001)
+                  ..rotateX(0.0)
+                  ..rotateY(index % 2 == 1 ? 0.0 : math.pi),
+                alignment: FractionalOffset.center,
+                child: Image.asset(
+                  "assets/ma-skv/stars-bg.jpg",
+                  fit: BoxFit.fitHeight,
+                ),
+              ),
+            ),
+          ),
+        ),
+        builder: (ctx, child, animation) => Container(
           foregroundDecoration: BoxDecoration(
             color: Colors.black.withOpacity(
               this.pageRendered ? tween.end : animation,
             ),
           ),
-          child: SingleChildScrollView(
-            controller: this.starsController,
-            scrollDirection: Axis.horizontal,
-            physics: NeverScrollableScrollPhysics(),
-            child: Row(
-              key: this.starsWidgetKey,
-              children: List.generate(
-                data.objectList.length + 1,
-                (index) => Transform(
-                  transform: Matrix4.identity()
-                    ..setEntry(3, 2, 0.001)
-                    ..rotateX(0.0)
-                    ..rotateY(index % 2 == 1 ? 0.0 : math.pi),
-                  alignment: FractionalOffset.center,
-                  child: Image.asset(
-                    "assets/ma-skv/stars-bg.jpg",
-                    fit: BoxFit.fitHeight,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          child: child,
         ),
       ),
     );

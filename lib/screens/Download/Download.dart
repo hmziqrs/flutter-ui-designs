@@ -20,14 +20,14 @@ class DownloadScreen extends StatelessWidget {
     Dimensions.init(context);
 
     return Screen(
-      belowBuilder: (context) => ControlledAnimation(
+      belowBuilder: (context) => CustomAnimation(
         tween: ColorTween(
           begin: theme.primary.withOpacity(0.15),
           end: theme.primary.withOpacity(1.0),
         ),
         duration: Duration(milliseconds: 2400),
-        playback: Playback.MIRROR,
-        builder: (context, animation) {
+        control: CustomAnimationControl.MIRROR,
+        builder: (context, child, animation) {
           return Positioned(
             bottom: AppDimensions.ratio * -10,
             right: AppDimensions.ratio * 5,

@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:supercharged/supercharged.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -17,6 +18,7 @@ import 'widgets/HFDDetailScreenBackground.dart';
 import 'widgets/HFDDetailScreenHeader.dart';
 import 'widgets/HFDDetailScreenBody.dart';
 import 'Dimensions.dart';
+import 'data.dart';
 
 class HFDDetailScreen extends StatefulWidget {
   HFDDetailScreen({Key key}) : super(key: key);
@@ -57,17 +59,16 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
     final textStyle =
         Theme.of(context).textTheme.bodyText1.copyWith(fontFamily: 'Nunito');
 
-    final baseDuration = Duration(milliseconds: 400);
-    final baseTween = Tween(begin: 0.0, end: 1.0);
-    final tween = MultiTrackTween([
-      Track("base").add(baseDuration, baseTween),
-      Track("circle")
-          .add(Duration(milliseconds: 300), ConstantTween(0.0))
-          .add(baseDuration, baseTween),
-      Track("bars")
-          .add(Duration(milliseconds: 300), ConstantTween(0.0))
-          .add(baseDuration, baseTween),
-    ]);
+    final baseDuration = 400.milliseconds;
+    final baseTween = 0.0.tweenTo(1.0);
+    final delayTween = ConstantTween(0.0);
+    final delayDuration = 300.milliseconds;
+    final tween = MultiTween<AnimProp>()
+      ..add(AnimProp.base, baseTween, baseDuration)
+      ..add(AnimProp.circle, delayTween, delayDuration)
+      ..add(AnimProp.circle, baseTween, baseDuration)
+      ..add(AnimProp.bars, delayTween, delayDuration)
+      ..add(AnimProp.bars, baseTween, baseDuration);
 
     return Container(
       child: Screen(
@@ -98,18 +99,44 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
                   child: Column(
                     children: <Widget>[
                       HFDDetailScreenBackgroundImageBody(item: item),
-                      ControlledAnimation(
+                      CustomAnimation<MultiTweenValues<AnimProp>>(
                         tween: tween,
                         duration: tween.duration,
                         delay: Duration(milliseconds: 400),
-                        builder: (context, multiTrackAnimations) => Opacity(
-                          opacity: multiTrackAnimations["base"],
+                        child: Container(
+                          width: (AppDimensions.miniContainerWidth * 0.7)
+                              .clamp(180.0, 300.0),
+                          child: RaisedButton(
+                            onPressed: () {},
+                            color: theme.primary,
+                            padding: EdgeInsets.symmetric(
+                              vertical: AppDimensions.padding * 1.8,
+                            ),
+                            shape: new RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(80),
+                            ),
+                            child: Text(
+                              App.translate(
+                                HFDDetailScreenMessages.orderNow,
+                              ),
+                              style: textStyle.copyWith(
+                                fontSize: 17,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontFamily: "Nunito",
+                              ),
+                            ),
+                          ),
+                        ),
+                        builder: (context, child, multiTrackAnimations) =>
+                            Opacity(
+                          opacity: multiTrackAnimations.get(AnimProp.base),
                           child: Container(
                             transform: Matrix4.identity()
                               ..translate(
                                 0.0,
                                 Utils.rangeMap(
-                                  multiTrackAnimations["base"],
+                                  multiTrackAnimations.get(AnimProp.base),
                                   0.0,
                                   1.0,
                                   80,
@@ -125,32 +152,7 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
                                 Container(
                                   height: AppDimensions.padding * 4,
                                 ),
-                                Container(
-                                  width:
-                                      (AppDimensions.miniContainerWidth * 0.7)
-                                          .clamp(180.0, 300.0),
-                                  child: RaisedButton(
-                                    onPressed: () {},
-                                    color: theme.primary,
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: AppDimensions.padding * 1.8,
-                                    ),
-                                    shape: new RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(80),
-                                    ),
-                                    child: Text(
-                                      App.translate(
-                                        HFDDetailScreenMessages.orderNow,
-                                      ),
-                                      style: textStyle.copyWith(
-                                        fontSize: 17,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w600,
-                                        fontFamily: "Nunito",
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                child,
                               ],
                             ),
                           ),

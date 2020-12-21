@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 // import 'package:firebase/firebase.dart' as firebase;
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
@@ -26,7 +27,7 @@ class _DownloadLinkState extends State<DownloadLink> with HoverWidgetMixin {
       margin: EdgeInsets.all(AppDimensions.padding * 2),
 
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppTheme.background,
         borderRadius: BorderRadius.circular(8.0),
         border: Border.all(width: 2, color: theme.primary),
         boxShadow: [
@@ -50,13 +51,13 @@ class _DownloadLinkState extends State<DownloadLink> with HoverWidgetMixin {
               horizontal: AppDimensions.padding * 4,
               vertical: AppDimensions.padding * 1.8,
             ),
-            child: ControlledAnimation(
+            child: CustomAnimation(
               duration: Duration(milliseconds: 280),
-              tween: ColorTween(begin: Colors.black, end: theme.primary),
-              playback: this.isFocused
-                  ? Playback.PLAY_FORWARD
-                  : Playback.PLAY_REVERSE,
-              builder: (context, animation) {
+              tween: ColorTween(begin: AppTheme.text, end: AppTheme.primary),
+              control: this.isFocused
+                  ? CustomAnimationControl.PLAY
+                  : CustomAnimationControl.PLAY_REVERSE,
+              builder: (context, child, animation) {
                 return Row(
                   children: [
                     Icon(

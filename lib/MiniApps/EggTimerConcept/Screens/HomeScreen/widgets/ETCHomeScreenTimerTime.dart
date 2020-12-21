@@ -38,12 +38,14 @@ class _ETCHomeScreenTimerTimeState extends State<ETCHomeScreenTimerTime> {
       fontSize: 35 + AppDimensions.ratio * 35,
       fontWeight: FontWeight.w800,
     );
-    return ControlledAnimation(
+    return CustomAnimation(
       startPosition: 1.0,
       tween: Tween(begin: 0.0, end: 1.0),
       duration: Duration(milliseconds: 200),
-      playback: isReady ? Playback.PLAY_FORWARD : Playback.PLAY_REVERSE,
-      builder: (context, animation) {
+      control: isReady
+          ? CustomAnimationControl.PLAY
+          : CustomAnimationControl.PLAY_REVERSE,
+      builder: (context, child, animation) {
         return Stack(
           alignment: Alignment.center,
           children: <Widget>[

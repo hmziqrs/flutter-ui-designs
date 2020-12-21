@@ -1,4 +1,3 @@
-import 'package:emojis/emojis.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/Providers/AppProvider.dart';
@@ -82,7 +81,7 @@ class ScreenSettingsModalBody extends StatelessWidget {
                       horizontal: AppDimensions.padding * 2,
                     ),
                     child: Text(
-                      "All the translatable messages are translated by an automated google translator script that's why you may see translation errors if you choose any language other than English And I won't improve translation since this is just an experimintal application also I work alone on this project. If you wish to improve translation do contact me, I'll mention your contribution in appllication and github repository.",
+                      "All the translatable messages are translated by an automated google translator script that's why you may see translation errors if you choose any language other than English And I won't improve translation since this is just an experimental application also I work alone on this project. If you wish to improve translation do contact me, I'll mention your contribution in application and github repository.",
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,

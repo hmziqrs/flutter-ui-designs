@@ -81,20 +81,20 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
   playPauseAnimationState() {
     switch (this.timer.state) {
       case ETCTimerState.running:
-        return Playback.PLAY_FORWARD;
+        return CustomAnimationControl.PLAY;
       case ETCTimerState.paused:
-        return Playback.PAUSE;
+        return CustomAnimationControl.STOP;
       default:
-        return Playback.PLAY_REVERSE;
+        return CustomAnimationControl.PLAY_REVERSE;
     }
   }
 
   resetRestartAnimationState() {
     switch (this.timer.state) {
       case ETCTimerState.paused:
-        return Playback.PLAY_FORWARD;
+        return CustomAnimationControl.PLAY;
       default:
-        return Playback.PLAY_REVERSE;
+        return CustomAnimationControl.PLAY_REVERSE;
     }
   }
 
@@ -132,7 +132,7 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
               onRadialDragEnd: this.onRadialDragEnd,
               onRadialDragStart: this.onRadialDragStart,
               onRadialDragUpdate: this.onRadialDragUpdate,
-              child: ControlledAnimation(
+              child: CustomAnimation(
                 key: Key(this.timer.state.toString()),
                 tween: Tween<double>(
                   end: 0.0,
@@ -143,9 +143,10 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                       .clamp(200.0, 400.0)
                       .toInt(),
                 ),
-                playback:
-                    isReady ? Playback.PLAY_FORWARD : Playback.PLAY_REVERSE,
-                builder: (context, double animation) {
+                control: isReady
+                    ? CustomAnimationControl.PLAY
+                    : CustomAnimationControl.PLAY_REVERSE,
+                builder: (context, child, double animation) {
                   return ETCHomeScreenTimerDail(
                     gradient,
                     ticksPerSection: 5,
@@ -158,11 +159,11 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
               ),
             ),
             Expanded(child: Container()),
-            ControlledAnimation(
+            CustomAnimation(
               tween: Tween(begin: 0.0, end: 1.0),
-              playback: this.resetRestartAnimationState(),
+              control: this.resetRestartAnimationState(),
               duration: Duration(milliseconds: 280),
-              builder: (context, animation) {
+              builder: (context, child, animation) {
                 return Opacity(
                   opacity: animation,
                   child: Container(
@@ -191,11 +192,11 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                 );
               },
             ),
-            ControlledAnimation(
+            CustomAnimation(
               tween: Tween(begin: 0.0, end: 1.0),
-              playback: this.playPauseAnimationState(),
+              control: this.playPauseAnimationState(),
               duration: Duration(milliseconds: 280),
-              builder: (context, animation) {
+              builder: (context, child, animation) {
                 return Container(
                   width: AppDimensions.miniContainerWidth,
                   transform: Matrix4.identity()

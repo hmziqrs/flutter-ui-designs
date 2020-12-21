@@ -63,17 +63,17 @@ class _HFDHomeScreenFiltersState extends State<HFDHomeScreenFilters> {
                       this.activeFilter = filter;
                     });
                   },
-                  child: ControlledAnimation(
+                  child: CustomAnimation(
                     startPosition: 0.0,
-                    playback: toggles[filters.indexOf(filter)]
-                        ? Playback.PLAY_FORWARD
-                        : Playback.PLAY_REVERSE,
+                    control: toggles[filters.indexOf(filter)]
+                        ? CustomAnimationControl.PLAY
+                        : CustomAnimationControl.PLAY_REVERSE,
                     duration: Duration(milliseconds: 280),
                     tween: ColorTween(
                       begin: Colors.transparent,
                       end: Colors.black.withOpacity(0.08),
                     ),
-                    builder: (ctx, animation) => Container(
+                    builder: (ctx, child, animation) => Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: AppDimensions.padding * 4,
                         vertical: AppDimensions.padding * 1.5,

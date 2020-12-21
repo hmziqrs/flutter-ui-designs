@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 import 'package:flutter_uis/configs/App.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -8,6 +9,7 @@ import 'package:flutter_uis/Utils.dart';
 import '../../../configs/theme.dart' as theme;
 import '../../../models/HFDFoodItem.dart';
 import '../messages/keys.dart';
+import '../data.dart';
 
 class HFDDetailScreenBody extends StatelessWidget {
   HFDDetailScreenBody({
@@ -16,7 +18,7 @@ class HFDDetailScreenBody extends StatelessWidget {
   });
 
   final HFDFoodItem item;
-  final dynamic multiTrackAnimations;
+  final MultiTweenValues<AnimProp> multiTrackAnimations;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,7 @@ class HFDDetailScreenBody extends StatelessWidget {
                     "${item.kcal.toStringAsFixed(0)}",
                   ),
                   progressColor: theme.primary,
-                  percent: this.multiTrackAnimations["circle"],
+                  percent: this.multiTrackAnimations.get(AnimProp.circle),
                 ),
               ),
               Column(
@@ -90,21 +92,21 @@ class HFDDetailScreenBody extends StatelessWidget {
             App.translate(
               HFDDetailScreenMessages.carbo,
             ),
-            this.multiTrackAnimations["bars"],
+            this.multiTrackAnimations.get(AnimProp.bars),
           ),
           this.buildLinearBar(
             item.protien,
             App.translate(
               HFDDetailScreenMessages.protein,
             ),
-            this.multiTrackAnimations["bars"],
+            this.multiTrackAnimations.get(AnimProp.bars),
           ),
           this.buildLinearBar(
             item.fat,
             App.translate(
               HFDDetailScreenMessages.fat,
             ),
-            this.multiTrackAnimations["bars"],
+            this.multiTrackAnimations.get(AnimProp.bars),
           ),
         ],
       ),

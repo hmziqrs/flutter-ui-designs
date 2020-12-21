@@ -67,6 +67,7 @@ void main() async {
       'ScreenShots',
       () async {
         await driver.runUnsynchronized(() async {
+          print("$width $height");
           if (Utils.isDesktop || Utils.isWeb) {
             await Screenshot.screenshot("Home-Screen-Modal");
             await TestActions.tap(HomeScreenTestKeys.modalContinueBtn);
@@ -76,7 +77,6 @@ void main() async {
           await TestActions.tap(HomeScreenTestKeys.settingsBtn);
           print("Home Screen Complete");
 
-          return;
           // Settings Modal
           // await Screenshot.screenshot("Settings-Modal");
           // await TestActions.tap(ScreenWidgetTestKeys.close);

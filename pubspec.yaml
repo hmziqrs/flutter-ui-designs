@@ -40,16 +40,17 @@ dependencies:
   universal_io: 1.0.1
 
   emojis: 0.8.1
+  recase: 3.0.0
   pigment: 1.0.3
   tinycolor: 1.0.3
-  supercharged: 1.10.0
   flutter_icons: 1.1.0
   dotted_border: 1.0.6
   fluttery_dart2: 0.0.9
   touchable_opacity: 1.1.2
   page_transition: 1.1.7+2
-  simple_animations: 2.2.2
   percent_indicator: 2.1.1+1
+  supercharged: 2.0.0-nullsafety.0
+  simple_animations: 3.0.0-nullsafety.2
 
 dev_dependencies:
   flutter_driver:

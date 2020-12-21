@@ -10,7 +10,7 @@ import 'Base.dart';
 void showBottomSheetWithBoxButtons({
   // Contexts
   BuildContext context,
-  Function(BuildContext) appinit,
+  Function(BuildContext) appInit,
   Future<void> Function(BuildContext context) button1,
   Future<void> Function(BuildContext context) button2,
 
@@ -25,7 +25,7 @@ void showBottomSheetWithBoxButtons({
 }) {
   Scaffold.of(context).showBottomSheet(
     (bottomSheetContext) {
-      appinit(bottomSheetContext);
+      appInit(bottomSheetContext);
 
       return BottomSheetBase(
         width: AppDimensions.maxContainerWidth,

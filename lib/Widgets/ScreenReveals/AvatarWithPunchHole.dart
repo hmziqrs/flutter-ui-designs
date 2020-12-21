@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'package:flutter_uis/configs/AppTheme.dart';

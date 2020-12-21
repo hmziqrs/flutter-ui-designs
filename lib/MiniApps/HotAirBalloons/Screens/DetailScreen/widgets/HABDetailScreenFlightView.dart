@@ -163,14 +163,15 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
                 Padding(
                   padding: EdgeInsets.all(AppDimensions.padding * 1.5),
                 ),
-                ControlledAnimation(
+                CustomAnimation(
+                  child: buildContent,
                   key: Key(this.activeTab.toString()),
                   tween: Tween(begin: 0.0, end: 1.0),
                   delay: Duration(milliseconds: 120),
                   duration: Duration(milliseconds: 500),
-                  builder: (ctx, animation) => Opacity(
+                  builder: (ctx, child, animation) => Opacity(
                     opacity: animation,
-                    child: buildContent,
+                    child: child,
                   ),
                 ),
               ],

@@ -113,37 +113,38 @@ class _HFDHomeScreenRestaurantCardState
                           -AppDimensions.ratio * 16,
                           AppDimensions.ratio * 4,
                         ),
-                        child: ControlledAnimation(
+                        child: CustomAnimation(
                           tween: Tween(begin: 0.0, end: 1.0),
                           duration: Duration(milliseconds: 280),
-                          playback: this.animation.value > 0.5
-                              ? Playback.PLAY_FORWARD
-                              : Playback.PLAY_REVERSE,
-                          builder: (context, opacityAnimation) {
+                          control: this.animation.value > 0.5
+                              ? CustomAnimationControl.PLAY
+                              : CustomAnimationControl.PLAY_REVERSE,
+                          child: Container(
+                            width: double.infinity,
+                            margin: EdgeInsets.symmetric(
+                              horizontal: AppDimensions.padding * 2,
+                            ),
+                            child: Row(
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                      height: 1.26,
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.white.withOpacity(0.55),
+                                      fontSize: 6 + AppDimensions.ratio * 4,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          builder: (context, child, opacityAnimation) {
                             return Opacity(
                               opacity: opacityAnimation,
-                              child: Container(
-                                width: double.infinity,
-                                margin: EdgeInsets.symmetric(
-                                  horizontal: AppDimensions.padding * 2,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Flexible(
-                                      child: Text(
-                                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-                                        maxLines: 2,
-                                        style: TextStyle(
-                                          height: 1.26,
-                                          fontWeight: FontWeight.w300,
-                                          color: Colors.white.withOpacity(0.55),
-                                          fontSize: 6 + AppDimensions.ratio * 4,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              child: child,
                             );
                           },
                         ),

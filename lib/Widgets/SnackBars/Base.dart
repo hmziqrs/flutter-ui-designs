@@ -49,5 +49,5 @@ void showSnackBarBase({
     ),
   );
 
-  Scaffold.of(context).showSnackBar(snackbar);
+  ScaffoldMessenger.of(context).showSnackBar(snackbar);
 }

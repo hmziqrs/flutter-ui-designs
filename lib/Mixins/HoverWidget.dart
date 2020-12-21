@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/widgets.dart';
-import 'package:simple_animations/simple_animations.dart';
 export 'package:simple_animations/simple_animations.dart';
+import 'package:supercharged/supercharged.dart';
 
 @optionalTypeArgs
 mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
@@ -13,27 +13,34 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
   bool isFocused = false;
   bool forceFocus = false;
 
-  AnimationControllerX controller = AnimationControllerX();
+  AnimationController controller;
 
   @override
   void initState() {
-    controller.configureVsync(this);
+    controller = AnimationController(
+      duration: 800.milliseconds,
+      vsync: this,
+    );
     controller.addListener(() => setState(() {}));
-    animation = Tween(begin: 0.0, end: 1.0).animate(controller);
+    animation = 0.0.tweenTo(1.0).animate(controller);
 
     super.initState();
   }
 
   void onFocus(bool focus) {
     isFocused = focus;
-    controller.reset([
-      FromToTask(
-        to: focus ? 1.0 : 0.0,
-        duration: Duration(
-          milliseconds: 180,
-        ),
-      )
-    ]);
+    this.controller.animateTo(
+          focus ? 1.0 : 0.0,
+          duration: Duration(
+            milliseconds: 180,
+          ),
+        );
+    // controller.reset([
+    //   FromToTask(
+    //     to: ,
+
+    //   )
+    // ]);
   }
 
   void removeForceFocus() {
