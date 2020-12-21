@@ -29,6 +29,7 @@ class HABHomeScreen extends StatelessWidget {
     return Screen(
       theme: rootTheme,
       textStyle: fontStyle,
+      fontFamily: 'Montserrat',
       scaffoldBackgroundColor: theme.primary,
       child: Stack(
         fit: StackFit.expand,

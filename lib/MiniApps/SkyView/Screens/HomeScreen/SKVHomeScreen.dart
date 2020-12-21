@@ -79,7 +79,7 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
 
     return Screen(
       theme: rootTheme,
-      textStyle: fontStyle,
+      fontFamily: 'Montserrat',
       scaffoldBackgroundColor: theme.background,
       child: GestureDetector(
         onTap: () => FocusScope.of(context).requestFocus(

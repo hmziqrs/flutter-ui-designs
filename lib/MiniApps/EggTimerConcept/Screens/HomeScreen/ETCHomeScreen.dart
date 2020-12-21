@@ -112,6 +112,7 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
     final isReady = this.timer.state == ETCTimerState.ready;
 
     return Screen(
+      fontFamily: 'BebasNeue',
       scaffoldBackgroundColor: Colors.transparent,
       belowBuilder: (_) => Positioned.fill(
         child: Container(

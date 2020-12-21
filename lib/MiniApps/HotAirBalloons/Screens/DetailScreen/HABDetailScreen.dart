@@ -123,6 +123,7 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
       child: Screen(
         theme: rootTheme,
         textStyle: fontStyle,
+        fontFamily: 'Montserrat',
         child: Stack(
           fit: StackFit.expand,
           children: [

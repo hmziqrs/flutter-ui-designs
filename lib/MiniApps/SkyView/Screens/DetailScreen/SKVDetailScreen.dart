@@ -124,8 +124,9 @@ class _SKVDetailScreenState extends State<SKVDetailScreen>
     );
 
     return Screen(
-      textStyle: fontStyle,
       theme: rootTheme,
+      textStyle: fontStyle,
+      fontFamily: 'Montserrat',
       child: RawKeyboardListener(
         autofocus: true,
         focusNode: FocusNode(),
