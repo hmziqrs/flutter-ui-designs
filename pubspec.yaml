@@ -14,7 +14,12 @@ description: A new Flutter project.
 version: 1.1.3
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.7.0 <3.0.0'
+
+dependency_overrides:
+  provider: 5.0.0-nullsafety.1
+  intl: 0.17.0-nullsafety.2
+  quiver: 3.0.0-nullsafety.2
 
 dependencies:
   flutter:
@@ -22,14 +27,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  intl: 0.16.1
-  quiver: 2.1.3
-
-  admob_flutter: 0.3.4
-  firebase_core: 0.5.0
-  firebase_analytics: 6.0.0
-  firebase_performance: 0.4.0
-  firebase_crashlytics: 0.1.4+1
+  firebase_core: 0.5.3
+  firebase_analytics: 6.3.0
+  firebase_performance: 0.4.3
+  firebase_crashlytics: 0.2.4
 
   share: 0.6.5
   hive: 1.4.4+1
@@ -41,7 +42,6 @@ dependencies:
   emojis: 0.8.1
   pigment: 1.0.3
   tinycolor: 1.0.3
-  provider: 4.3.2+2
   supercharged: 1.10.0
   flutter_icons: 1.1.0
   dotted_border: 1.0.6
@@ -56,7 +56,7 @@ dev_dependencies:
     sdk: flutter
   test: any
   glob: 1.2.0
-  path: 1.8.0-nullsafety.2
+  path: 1.8.0-nullsafety.3
   translator: 0.1.4
   intl_translation: 0.17.10
   yaml: 2.2.1
