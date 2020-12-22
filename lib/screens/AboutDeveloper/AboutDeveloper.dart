@@ -11,8 +11,18 @@ class AboutDeveloperScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Dimensions.init(context);
 
-    return Screen(
-      child: AboutDeveloperBody(),
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.popUntil(
+          context,
+          (route) =>
+              route.settings.name != ModalRoute.of(context).settings.name,
+        );
+        return false;
+      },
+      child: Screen(
+        child: AboutDeveloperBody(),
+      ),
     );
   }
 }

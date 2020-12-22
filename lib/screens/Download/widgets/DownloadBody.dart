@@ -9,8 +9,8 @@ import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/utils/Utils.dart';
 
-import 'package:flutter_uis/widgets/SnackBars/snackbars.dart' as snackBars;
 import 'package:flutter_uis/widgets/BottomSheets/WithBoxButtons.dart';
+import 'package:flutter_uis/widgets/SnackBars/Base.dart';
 import 'package:flutter_uis/widgets/Banners/Alpha.dart';
 import 'package:flutter_uis/widgets/Buttons/Alpha.dart';
 import 'package:flutter_uis/widgets/Header/Header.dart';
@@ -58,10 +58,10 @@ class DownloadBody extends StatelessWidget {
           );
           Navigator.pop(bottomSheetContext);
           await 200.milliseconds.delay;
-          Scaffold.of(context).hideCurrentSnackBar(
+          ScaffoldMessenger.of(context).hideCurrentSnackBar(
             reason: SnackBarClosedReason.dismiss,
           );
-          snackBars.showSnackBarBase(
+          showSnackBarBase(
             context: context,
             text:
                 "${map["name"]} ${App.translate(DownloadScreenMessages.linkCopied, context)}",

@@ -46,11 +46,9 @@ class Header extends StatelessWidget {
                 onPressed: () {
                   Navigator.popUntil(
                     context,
-                    (route) {
-                      print(route.settings);
-                      return route.settings.name !=
-                          ModalRoute.of(context).settings.name;
-                    },
+                    (route) =>
+                        route.settings.name !=
+                        ModalRoute.of(context).settings.name,
                   );
                 },
               ),

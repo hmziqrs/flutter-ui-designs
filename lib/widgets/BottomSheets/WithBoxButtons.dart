@@ -7,7 +7,7 @@ import 'package:flutter_uis/widgets/Buttons/Boxed.dart';
 
 import 'Base.dart';
 
-void showBottomSheetWithBoxButtons({
+PersistentBottomSheetController showBottomSheetWithBoxButtons({
   // Contexts
   BuildContext context,
   Function(BuildContext) appInit,
@@ -23,7 +23,7 @@ void showBottomSheetWithBoxButtons({
   IconData icon1,
   IconData icon2,
 }) {
-  Scaffold.of(context).showBottomSheet(
+  return Scaffold.of(context).showBottomSheet(
     (bottomSheetContext) {
       appInit(bottomSheetContext);
 

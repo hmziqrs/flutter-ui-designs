@@ -10,6 +10,7 @@ void showSnackBarBase({
   String text,
   double width,
 }) {
+  ScaffoldMessenger.of(context).hideCurrentSnackBar();
   final snackbar = SnackBar(
     elevation: 0.0,
     margin: EdgeInsets.zero,
