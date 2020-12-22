@@ -51,7 +51,7 @@ jobs:
           cd app
           flutter config --enable-web
           flutter pub get
-          flutter build web -t lib/main.mobile.dart --release
+          flutter build web -t lib/main.firebase.dart --release
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@v1.3.0
         with:
@@ -72,13 +72,15 @@ jobs:
       - uses: actions/setup-java@v1
         with:
           java-version: '12.x'
+      - name: Install NDK
+        run: echo "y" | sudo /usr/local/lib/android/sdk/tools/bin/sdkmanager --install "ndk;20.0.5594570" --sdk_root=${ANDROID_SDK_ROOT}
       - uses: actions/checkout@v2
         with:
           path: 'app'
       - run: |
           cd app
           flutter pub get
-          flutter build apk -t lib/main.mobile.dart --release
+          flutter build apk -t lib/main.firebase.dart --release
       - name: Create Android Release
         uses: ncipollo/release-action@v1
         with:
@@ -102,7 +104,7 @@ jobs:
           cd app
           flutter config --enable-macos-desktop
           flutter pub get
-          flutter build macos --release
+          flutter build macos -t lib/main.firebase.dart --release
           cd build/macos/Build/Products/Release
           ditto -c -k --sequesterRsrc --keepParent flutter_uis.app macos-release.zip
       - uses: ncipollo/release-action@v1
@@ -119,7 +121,8 @@ jobs:
           git clone https://github.com/flutter/flutter.git
           cd flutter
           git checkout 72aa23eb93
-      - run: echo "$(pwd)\flutter\bin" >> $GITHUB_PATH
+      # - run: echo  >> $GITHUB_PATH
+      - run: echo "$(pwd)\flutter\bin" | Out-File -Append -FilePath $env:GITHUB_PATH -Encoding utf8
       - uses: actions/checkout@v2
         with:
           path: 'app'

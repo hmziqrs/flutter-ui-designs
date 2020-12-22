@@ -13,7 +13,6 @@ import 'UIDetailMoreUIs.dart';
 import 'UIDetailButton.dart';
 
 import '../messages/keys.dart';
-import '../Dimensions.dart';
 import '../TestKeys.dart';
 
 class UIDetailContent extends StatelessWidget {

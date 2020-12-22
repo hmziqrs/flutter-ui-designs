@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/Widgets/Banners/Alpha.dart';
-import 'package:flutter_uis/Widgets/Header/Header.dart';
+import 'package:flutter_uis/widgets/Banners/Alpha.dart';
+import 'package:flutter_uis/widgets/Header/Header.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/configs/AppDimensions.dart';

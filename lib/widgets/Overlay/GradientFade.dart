@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/Widgets/ScreenAnimation/Base.dart';
-import 'package:simple_animations/simple_animations.dart';
-import 'package:supercharged/supercharged.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_uis/widgets/ScreenAnimation/Base.dart';
+// import 'package:simple_animations/simple_animations.dart';
+// import 'package:supercharged/supercharged.dart';
+// import 'package:provider/provider.dart';
 
 import 'package:flutter_uis/configs/AppTheme.dart';
 

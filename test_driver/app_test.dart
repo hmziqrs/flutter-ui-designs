@@ -12,7 +12,7 @@ import 'package:flutter_uis/MiniApps/SkyView/data/TestKeys.dart';
 import 'package:flutter_uis/screens/UIList/TestKeys.dart';
 
 import 'package:flutter_uis/screens/Home/TestKeys.dart';
-// import 'package:flutter_uis/Widgets/Screen/TestKeys.dart';
+// import 'package:flutter_uis/widgets/Screen/TestKeys.dart';
 import 'package:flutter_uis/screens/UIDetail/TestKeys.dart';
 import 'package:flutter_uis/statics/data/uiListTestKeys.dart';
 
