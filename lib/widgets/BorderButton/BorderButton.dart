@@ -29,7 +29,7 @@ class BorderButton extends StatelessWidget {
       child: InkWell(
         key: Key(this.testKey),
         onTap: this.onPressed,
-        // disabledColor: Colors.transparent,
+        borderRadius: CommonProps.buttonRadius,
         child: ConstrainedBox(
           constraints: BoxConstraints(maxWidth: this.maxWidth),
           child: Ink(
@@ -41,7 +41,7 @@ class BorderButton extends StatelessWidget {
             ),
             width: this.width,
             padding: EdgeInsets.symmetric(
-              vertical: AppDimensions.padding * 1.3,
+              vertical: AppDimensions.padding * 1.5,
             ),
             child: DefaultTextStyle(
               child: this.child,
