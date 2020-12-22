@@ -15,7 +15,8 @@ class Screen extends StatelessWidget {
     this.textStyle,
     this.debugLabel,
     this.fontFamily,
-    this.belowBuilder,
+    this.belowBuilders,
+    this.overlayBuilders,
     this.bottomNavigationBar,
     this.renderSettings = true,
     this.scaffoldBackgroundColor,
@@ -32,7 +33,8 @@ class Screen extends StatelessWidget {
   final Color scaffoldBackgroundColor;
   final void Function(BuildContext) init;
   final Widget Function(BuildContext) builder;
-  final Widget Function(BuildContext context) belowBuilder;
+  final List<Widget> belowBuilders;
+  final List<Widget> overlayBuilders;
 
   @override
   Widget build(BuildContext context) {
@@ -60,12 +62,11 @@ class Screen extends StatelessWidget {
           body: Stack(
             fit: StackFit.expand,
             children: <Widget>[
-              this.belowBuilder != null
-                  ? this.belowBuilder(context)
-                  : Container(),
+              ...(this.belowBuilders ?? []),
               Positioned.fill(
                 child: child ?? builder(context),
               ),
+              ...(this.overlayBuilders ?? []),
               Theme(
                 data: baseTheme.copyWith(
                   textTheme: baseTheme.textTheme.apply(

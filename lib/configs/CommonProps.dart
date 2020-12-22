@@ -18,10 +18,10 @@ abstract class CommonProps {
   static BoxDecoration borderButton;
 
   static init() {
-    initButtons();
-    initGradients();
-    initShadows();
     initRadius();
+    initButtons();
+    initShadows();
+    initGradients();
   }
 
   static initRadius() {

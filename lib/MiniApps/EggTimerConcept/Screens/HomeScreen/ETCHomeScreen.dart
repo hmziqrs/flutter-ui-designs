@@ -114,11 +114,13 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
     return Screen(
       fontFamily: 'BebasNeue',
       scaffoldBackgroundColor: Colors.transparent,
-      belowBuilder: (_) => Positioned.fill(
-        child: Container(
-          decoration: BoxDecoration(gradient: gradient),
+      belowBuilders: [
+        Positioned.fill(
+          child: Container(
+            decoration: BoxDecoration(gradient: gradient),
+          ),
         ),
-      ),
+      ],
       child: SafeArea(
         child: Column(
           children: [
