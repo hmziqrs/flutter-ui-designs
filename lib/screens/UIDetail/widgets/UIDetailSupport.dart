@@ -6,7 +6,6 @@ import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/statics/models/UIItem.dart';
 
-import '../messages/keys.dart';
 import '../data.dart' as data;
 
 class UIDetailSupport extends StatelessWidget {

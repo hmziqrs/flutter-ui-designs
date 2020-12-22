@@ -1,42 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/Widgets/custom/CustomFlexibleSpaceBar.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 
 import 'package:flutter_uis/statics/data/uiList.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
-import 'widgets/UIDetailCoverImage.dart';
 import 'widgets/UIDetailContent.dart';
 import 'Dimensions.dart';
 
-class UIDetailScreen extends StatefulWidget {
-  @override
-  _UIDetailScreenState createState() => _UIDetailScreenState();
-}
-
-class _UIDetailScreenState extends State<UIDetailScreen>
-    with SingleTickerProviderStateMixin {
-  double scrollOffset = 0.0;
-  ScrollController scrollController;
-
-  @override
-  void initState() {
-    super.initState();
-    this.scrollController = ScrollController();
-    this.scrollController.addListener(() {
-      final offset = this.scrollController.offset;
-      setState(() {
-        scrollOffset = -offset;
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    this.scrollController.dispose();
-    super.dispose();
-  }
-
+class UIDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
@@ -44,6 +18,25 @@ class _UIDetailScreenState extends State<UIDetailScreen>
 
     return Screen(
       overlayBuilders: [
+        Positioned(
+          top: 0,
+          left: 0,
+          right: 0,
+          child: Container(
+            height: Dimensions.cardHeight * 0.6,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                end: Alignment.bottomCenter,
+                begin: Alignment.topCenter,
+                stops: [0.15, 1.0],
+                colors: [
+                  AppTheme.primary.withOpacity(0.84),
+                  AppTheme.primary.withOpacity(0.01),
+                ],
+              ),
+            ),
+          ),
+        ),
         Positioned(
           top: MediaQuery.of(context).padding.top + AppDimensions.padding,
           child: Padding(
@@ -59,20 +52,34 @@ class _UIDetailScreenState extends State<UIDetailScreen>
           ),
         ),
       ],
-      child: SingleChildScrollView(
-        controller: this.scrollController,
-        child: Column(
-          children: [
-            UIDetailCoverImage(
-              scrollOffset: this.scrollOffset,
+      child: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            stretch: true,
+            backgroundColor: Colors.transparent,
+            iconTheme: IconThemeData(opacity: 0.0),
+            expandedHeight: Dimensions.coverImageHeight,
+            flexibleSpace: CustomFlexibleSpaceBar(
+              collapseMode: CollapseMode.parallax,
+              stretchModes: [
+                StretchMode.zoomBackground,
+              ],
+              background: Hero(
+                transitionOnUserGestures: true,
+                tag: "thumbnail-${uiItem.id}",
+                child: Image.asset(
+                  uiItem.thumbnail,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: UIDetailContent(
               uiItem: uiItem,
             ),
-            UIDetailContent(
-              uiItem: uiItem,
-              scrollOffset: this.scrollOffset,
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

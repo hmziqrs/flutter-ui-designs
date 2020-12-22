@@ -19,22 +19,14 @@ import '../TestKeys.dart';
 class UIDetailContent extends StatelessWidget {
   UIDetailContent({
     @required this.uiItem,
-    @required this.scrollOffset,
   });
 
   final UIItem uiItem;
-  final double scrollOffset;
 
   @override
   build(BuildContext context) {
-    double safeOffset = -scrollOffset;
-
-    if (safeOffset > Dimensions.coverImageHeight) {
-      safeOffset = Dimensions.coverImageHeight;
-    }
     return Center(
       child: Container(
-        transform: Matrix4.identity()..translate(0.0, safeOffset),
         constraints: BoxConstraints(
           maxWidth: AppDimensions.maxContainerWidth,
         ),
@@ -123,11 +115,6 @@ class UIDetailContent extends StatelessWidget {
                     ),
                   )
                 : Container(),
-            Padding(
-              padding: EdgeInsets.only(
-                top: safeOffset < 0 ? 0 : safeOffset,
-              ),
-            ),
             Utils.safePadding(context, 'bottom'),
           ],
         ),

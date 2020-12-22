@@ -645,6 +645,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety.3"
+  stretchy_header:
+    dependency: "direct main"
+    description:
+      name: stretchy_header
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.8"
   string_scanner:
     dependency: transitive
     description:
