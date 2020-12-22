@@ -24,67 +24,62 @@ class HomeScreen extends StatelessWidget {
       create: (_) => HomeStateProvider(),
       child: Screen(
         child: SafeArea(
-          child: Stack(
-            fit: StackFit.expand,
-            children: <Widget>[
-              HomeBody(),
-              Selector<HomeStateProvider, bool>(
-                selector: (_, state) => state.isWebPopUpOpen,
-                builder: (context, isWebPopUpOpen, snapshot) {
-                  return HomeAlertModal(
-                    title: App.translate(
-                      HomeScreenMessages.modalWebTitle,
-                      context,
-                    ),
-                    description: App.translate(
-                      HomeScreenMessages.modalWebDesc,
-                      context,
-                    ),
-                    primaryText: App.translate(
-                      HomeScreenMessages.modalWebButton1,
-                      context,
-                    ),
-                    secondaryText: App.translate(
-                      HomeScreenMessages.modalWebButton2,
-                      context,
-                    ),
-                    initialMount: kIsWeb,
-                    isOpen: isWebPopUpOpen,
-                    onPrimary: () =>
-                        Navigator.of(context).pushNamed("download"),
-                    onSecondary: () =>
-                        HomeStateProvider.state(context).setWebPopUpOpen(false),
-                  );
-                },
-              ),
-              Selector<HomeStateProvider, bool>(
-                selector: (_, state) => state.isDesktopPopUpOpen,
-                builder: (context, isDesktopPopUpOpen, snapshot) {
-                  return HomeAlertModal(
-                    title: App.translate(
-                      HomeScreenMessages.modalDesktopTitle,
-                      context,
-                    ),
-                    description: App.translate(
-                      HomeScreenMessages.modalDesktopDesc,
-                      context,
-                    ),
-                    secondaryText: App.translate(
-                      HomeScreenMessages.modalDesktopButton,
-                      context,
-                    ),
-                    initialMount: Utils.isDesktop(),
-                    isOpen: isDesktopPopUpOpen,
-                    onPrimary: () =>
-                        Navigator.of(context).pushNamed("download"),
-                    onSecondary: () => HomeStateProvider.state(context)
-                        .setDesktopPopUpOpen(false),
-                  );
-                },
-              ),
-            ],
-          ),
+          child: HomeBody(),
         ),
+        overlayBuilders: [
+          Selector<HomeStateProvider, bool>(
+            selector: (_, state) => state.isWebPopUpOpen,
+            builder: (context, isWebPopUpOpen, snapshot) {
+              return HomeAlertModal(
+                title: App.translate(
+                  HomeScreenMessages.modalWebTitle,
+                  context,
+                ),
+                description: App.translate(
+                  HomeScreenMessages.modalWebDesc,
+                  context,
+                ),
+                primaryText: App.translate(
+                  HomeScreenMessages.modalWebButton1,
+                  context,
+                ),
+                secondaryText: App.translate(
+                  HomeScreenMessages.modalWebButton2,
+                  context,
+                ),
+                initialMount: kIsWeb,
+                isOpen: isWebPopUpOpen,
+                onPrimary: () => Navigator.of(context).pushNamed("download"),
+                onSecondary: () =>
+                    HomeStateProvider.state(context).setWebPopUpOpen(false),
+              );
+            },
+          ),
+          Selector<HomeStateProvider, bool>(
+            selector: (_, state) => state.isDesktopPopUpOpen,
+            builder: (context, isDesktopPopUpOpen, snapshot) {
+              return HomeAlertModal(
+                title: App.translate(
+                  HomeScreenMessages.modalDesktopTitle,
+                  context,
+                ),
+                description: App.translate(
+                  HomeScreenMessages.modalDesktopDesc,
+                  context,
+                ),
+                secondaryText: App.translate(
+                  HomeScreenMessages.modalDesktopButton,
+                  context,
+                ),
+                initialMount: Utils.isDesktop(),
+                isOpen: isDesktopPopUpOpen,
+                onPrimary: () => Navigator.of(context).pushNamed("download"),
+                onSecondary: () =>
+                    HomeStateProvider.state(context).setDesktopPopUpOpen(false),
+              );
+            },
+          ),
+        ],
       ),
     );
   }
