@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
 
-import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/utils/Utils.dart';
 import 'package:flutter_uis/statics/models/UIItem.dart';
 
 import 'package:simple_animations/simple_animations.dart';

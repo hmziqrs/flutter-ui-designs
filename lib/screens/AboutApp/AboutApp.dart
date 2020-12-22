@@ -4,7 +4,7 @@ import 'package:flutter_uis/Widgets/Header/Header.dart';
 import 'package:flutter_uis/configs/Theme.dart' as theme;
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/utils/Utils.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 

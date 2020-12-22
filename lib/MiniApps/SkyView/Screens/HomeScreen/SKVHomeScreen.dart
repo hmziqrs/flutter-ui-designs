@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/utils/Utils.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
@@ -40,7 +40,6 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
   @override
   void initState() {
     super.initState();
-    Utils.darkStatusBar();
 
     this.tabController = TabController(
       length: this.tabs.length,
@@ -50,7 +49,6 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
 
   @override
   void dispose() {
-    Utils.lightStatusBar();
     super.dispose();
   }
 

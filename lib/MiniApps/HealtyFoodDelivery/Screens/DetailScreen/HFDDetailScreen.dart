@@ -1,10 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:supercharged/supercharged.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/utils/Utils.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 import 'package:flutter_uis/Mixins/HoverWidget.dart';
@@ -18,7 +17,6 @@ import 'widgets/HFDDetailScreenBackground.dart';
 import 'widgets/HFDDetailScreenHeader.dart';
 import 'widgets/HFDDetailScreenBody.dart';
 import 'Dimensions.dart';
-import 'data.dart';
 
 enum AnimProp {
   base,
@@ -40,8 +38,6 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
 
   @override
   initState() {
-    Utils.lightStatusBar();
-
     this.scrollController.addListener(() {
       setState(() {
         this.offset = this.scrollController.offset;
@@ -53,7 +49,6 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
 
   @override
   dispose() {
-    Utils.darkStatusBar();
     super.dispose();
   }
 

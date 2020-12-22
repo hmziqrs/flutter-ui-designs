@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
 
-import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/utils/Utils.dart';
 
 class HomeStateProvider extends ChangeNotifier {
   static HomeStateProvider state(BuildContext context, [listen = false]) =>

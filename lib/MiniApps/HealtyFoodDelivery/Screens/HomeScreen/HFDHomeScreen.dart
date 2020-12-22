@@ -1,11 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/MiniApps/HealtyFoodDelivery/Screens/HomeScreen/TestKeys.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_uis/Utils.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
@@ -19,6 +17,7 @@ import '../../configs/theme.dart' as theme;
 import 'messages/keys.dart';
 import 'data.dart' as data;
 import 'Dimensions.dart';
+import 'TestKeys.dart';
 
 class HFDHomeScreen extends StatefulWidget {
   HFDHomeScreen({Key key}) : super(key: key);
@@ -32,13 +31,11 @@ class _HFDHomeScreenState extends State<HFDHomeScreen> {
 
   @override
   initState() {
-    Utils.darkStatusBar();
     super.initState();
   }
 
   @override
   dispose() {
-    Utils.lightStatusBar();
     super.dispose();
   }
 

@@ -5,7 +5,7 @@ import 'package:flutter_uis/statics/models/UIItem.dart';
 import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
-import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/utils/Utils.dart';
 
 import '../messages/keys.dart';
 import 'UIDetailSupport.dart';

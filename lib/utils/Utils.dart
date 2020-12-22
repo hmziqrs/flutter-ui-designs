@@ -1,25 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:universal_io/io.dart';
 
 import 'package:url_launcher/url_launcher.dart' as url;
 import 'package:open_url/open_url.dart';
 
 class Utils {
-  static lightStatusBar() {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-      statusBarIconBrightness: Brightness.light,
-      systemNavigationBarIconBrightness: Brightness.light,
-    ));
-  }
-
-  static darkStatusBar() {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
-      statusBarIconBrightness: Brightness.dark,
-      // systemNavigationBarIconBrightness: Brightness.dark,
-    ));
-  }
-
   static double rangeMap(
     double number,
     double inMin,

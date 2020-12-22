@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'package:flutter_uis/configs/AppTheme.dart';
 
-import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/utils/Utils.dart';
 import 'package:flutter_uis/UI.dart';
 
 import 'package:flutter_uis/widgets/BackButton4Stack/BackButton4Stack.dart';

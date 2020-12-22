@@ -29,5 +29,6 @@ class App {
     return base.translate(key) ?? key;
   }
 
-  static bool isDark() => Theme.of(App.ctx).brightness == Brightness.dark;
+  static bool isDark([BuildContext context]) =>
+      Theme.of(context ?? App.ctx).brightness == Brightness.dark;
 }

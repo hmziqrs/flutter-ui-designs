@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/Mixins/HoverWidget.dart';
 import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
-import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/utils/Utils.dart';
 
 import '../../../configs/theme.dart' as theme;
 import '../../../models/HFDFoodItem.dart';
 import '../messages/keys.dart';
-import '../data.dart';
 
 class HFDDetailScreenBody extends StatelessWidget {
   HFDDetailScreenBody({

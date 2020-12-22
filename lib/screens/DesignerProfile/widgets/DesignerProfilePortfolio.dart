@@ -3,7 +3,7 @@ import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 import 'package:flutter_uis/statics/models/UIDesigner.dart';
-import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/utils/Utils.dart';
 
 import 'DesignerProfileHeading.dart';
 import 'DesignerProfileButton.dart';

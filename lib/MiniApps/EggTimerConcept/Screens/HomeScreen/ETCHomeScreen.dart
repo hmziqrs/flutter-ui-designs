@@ -5,7 +5,7 @@ import 'package:fluttery_dart2/gestures.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/utils/Utils.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 

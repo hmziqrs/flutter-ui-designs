@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
-import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/utils/Utils.dart';
 
 class HFDDetailScreenHeader extends StatelessWidget {
   HFDDetailScreenHeader();

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
-import 'package:flutter_uis/Utils.dart';
+import 'package:flutter_uis/utils/Utils.dart';
 import 'package:flutter_uis/UI.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
@@ -66,8 +66,6 @@ class _SKVDetailScreenState extends State<SKVDetailScreen>
       }
     });
 
-    Utils.lightStatusBar();
-
     this.timeout = Timer(
       Duration(milliseconds: 1300),
       () => setState(() {
@@ -78,7 +76,6 @@ class _SKVDetailScreenState extends State<SKVDetailScreen>
 
   @override
   void dispose() {
-    Utils.darkStatusBar();
     this.pageController.dispose();
     this.timeout.cancel();
     super.dispose();

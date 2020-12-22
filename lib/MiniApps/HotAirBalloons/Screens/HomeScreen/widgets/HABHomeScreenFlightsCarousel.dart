@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_uis/Utils.dart';
 
 import '../../DetailScreen/HABDetailScreen.dart';
 import '../../../configs/theme.dart' as theme;
@@ -27,13 +26,11 @@ class _HABHomeScreenFlightsCarouselState
     setState(() {
       activeIndex = index;
     });
-    Utils.darkStatusBar();
     await Navigator.of(context).push(
       new MaterialPageRoute(
         builder: (ctx) => HABDetailScreen(index),
       ),
     );
-    Utils.lightStatusBar();
   }
 
   @override
