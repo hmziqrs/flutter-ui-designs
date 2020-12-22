@@ -10,13 +10,13 @@ class FadeScreenProvider extends ChangeNotifier {
   bool _fadeOff = false;
   bool get fadeOff => _fadeOff;
 
-  close({VoidCallback callback, int delay = 700}) async {
-    if (!this._fadeOff) {
+  void close({VoidCallback callback, int delay = 300}) async {
+    if (this._fadeOff) {
       return;
     }
-    this._fadeOff = false;
+    this._fadeOff = true;
+    this.notifyListeners();
     await delay.milliseconds.delay;
     callback();
-    notifyListeners();
   }
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/Widgets/Overlay/GradientFade.dart';
+import 'package:flutter_uis/Widgets/ScreenAnimation/Base.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
-import 'package:flutter_uis/configs/AppTheme.dart';
 
 import 'package:flutter_uis/statics/data/uiList.dart';
 
 import 'package:flutter_uis/Widgets/custom/CustomFlexibleSpaceBar.dart';
+import 'package:flutter_uis/Widgets/Overlay/GradientFade.dart';
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
 import 'widgets/UIDetailContent.dart';
@@ -18,10 +18,33 @@ class UIDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
-    final UIItem uiItem = ModalRoute.of(context).settings.arguments;
 
     return ChangeNotifierProvider<UIDetailStateProvider>(
       create: (_) => UIDetailStateProvider(),
+      child: _Body(),
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body({Key key}) : super(key: key);
+
+  void onClose(BuildContext context) =>
+      UIDetailStateProvider.state(context).close(callback: () {
+        Navigator.of(context).popUntil(
+          ModalRoute.withName("uiList"),
+        );
+      });
+
+  @override
+  Widget build(BuildContext context) {
+    final UIItem uiItem = ModalRoute.of(context).settings.arguments;
+
+    return WillPopScope(
+      onWillPop: () async {
+        this.onClose(context);
+        return false;
+      },
       child: Screen(
         overlayBuilders: [
           OverlayGradientFade<UIDetailStateProvider>(
@@ -33,10 +56,17 @@ class UIDetailScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                 horizontal: AppDimensions.padding,
               ),
-              child: BackButton(
-                color: Colors.black,
-                onPressed: () => Navigator.of(context).popUntil(
-                  ModalRoute.withName("uiList"),
+              child: ScreenAnimationBase<UIDetailStateProvider>(
+                delay: 500,
+                builder: (_, child, animation) {
+                  return Opacity(
+                    child: child,
+                    opacity: animation,
+                  );
+                },
+                child: BackButton(
+                  color: Colors.black,
+                  onPressed: () => this.onClose(context),
                 ),
               ),
             ),
