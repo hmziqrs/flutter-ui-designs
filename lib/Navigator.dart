@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_uis/AppRoutes.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -120,31 +121,31 @@ class MaterialChild extends StatelessWidget {
         return MaterialPageRoute(builder: (context) => HomeScreen());
       },
       routes: <String, WidgetBuilder>{
-        "home": (_) => new HomeScreen(),
-        "about": (_) => new AboutAppScreen(),
-        "aboutDeveloper": (_) => new AboutDeveloperScreen(),
-        "download": (_) => new DownloadScreen(),
-        "uiList": (_) => new UIListScreen(),
-        "uiDetail": (_) => new UIDetailScreen(),
-        "designerProfile": (_) => new DesignerProfileScreen(),
+        AppRoutes.home: (_) => new HomeScreen(),
+        AppRoutes.about: (_) => new AboutAppScreen(),
+        AppRoutes.aboutDeveloper: (_) => new AboutDeveloperScreen(),
+        AppRoutes.download: (_) => new DownloadScreen(),
+        AppRoutes.uiList: (_) => new UIListScreen(),
+        AppRoutes.uiDetail: (_) => new UIDetailScreen(),
+        AppRoutes.designerProfile: (_) => new DesignerProfileScreen(),
 
         // Healthy Food Delivery
-        "hfdHome": (_) => new HFDHomeScreen(),
+        AppRoutes.hfdHome: (_) => new HFDHomeScreen(),
         // "hfdDetail": (_) => new HFDDetailScreen(),
 
         // Hot Air Balloon
-        "habHome": (_) => new HABHomeScreen(),
+        AppRoutes.habHome: (_) => new HABHomeScreen(),
 
         // Sky View
-        "skvHome": (_) => new SKVHomeScreen(),
-        "skvDetail": (context) {
+        AppRoutes.skvHome: (_) => new SKVHomeScreen(),
+        AppRoutes.skvDetail: (context) {
           final int index = ModalRoute.of(context).settings.arguments;
           return SKVDetailScreen(index);
         },
 
-        "ascHome": (_) => new ASCHomeScreen(),
+        AppRoutes.ascHome: (_) => new ASCHomeScreen(),
 
-        "etcHome": (_) => new ETCHomeScreen(),
+        AppRoutes.etcHome: (_) => new ETCHomeScreen(),
       },
     );
   }
