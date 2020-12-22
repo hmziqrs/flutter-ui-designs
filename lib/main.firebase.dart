@@ -1,13 +1,13 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter_uis/utils/Utils.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hive/hive.dart';
 
-import 'package:flutter_uis/Navigator.dart';
+import 'utils/Utils.dart';
+import 'Navigator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

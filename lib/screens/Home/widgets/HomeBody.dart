@@ -70,7 +70,7 @@ class HomeBody extends StatelessWidget {
                         onTap: () => this.onPress(context, item["path"]),
                         child: Ink(
                           padding: EdgeInsets.symmetric(
-                            vertical: AppDimensions.padding * 1,
+                            vertical: AppDimensions.padding * 1.5,
                           ),
                           width: double.infinity,
                           decoration: BoxDecoration(
