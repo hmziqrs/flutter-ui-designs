@@ -12,8 +12,8 @@ jobs:
       - run: |
           git clone https://github.com/flutter/flutter.git
           cd flutter
-          git checkout 54c9441723
-      - run: echo ::add-path::`pwd`"/flutter/bin"
+          git checkout 72aa23eb93
+      - run: echo `pwd`"/flutter/bin" >> $GITHUB_PATH
       # - run: flutter doctor
       - uses: actions/checkout@v2
         with:
@@ -41,8 +41,8 @@ jobs:
       - run: |
           git clone https://github.com/flutter/flutter.git
           cd flutter
-          git checkout 54c9441723
-      - run: echo ::add-path::`pwd`"/flutter/bin"
+          git checkout 72aa23eb93
+      - run: echo `pwd`"/flutter/bin" >> $GITHUB_PATH
       - uses: actions/checkout@v2
         with:
           path: 'app'
@@ -67,8 +67,8 @@ jobs:
       - run: |
           git clone https://github.com/flutter/flutter.git
           cd flutter
-          git checkout 54c9441723
-      - run: echo ::add-path::`pwd`"/flutter/bin"
+          git checkout 72aa23eb93
+      - run: echo `pwd`"/flutter/bin" >> $GITHUB_PATH
       - uses: actions/setup-java@v1
         with:
           java-version: '12.x'
@@ -93,8 +93,8 @@ jobs:
       - run: |
           git clone https://github.com/flutter/flutter.git
           cd flutter
-          git checkout 54c9441723
-      - run: echo ::add-path::`pwd`"/flutter/bin"
+          git checkout 72aa23eb93
+      - run: echo `pwd`"/flutter/bin" >> $GITHUB_PATH
       - uses: actions/checkout@v2
         with:
           path: 'app'
@@ -118,8 +118,8 @@ jobs:
       - run: |
           git clone https://github.com/flutter/flutter.git
           cd flutter
-          git checkout 54c9441723
-      - run: echo ::add-path::"$(pwd)\flutter\bin"
+          git checkout 72aa23eb93
+      - run: echo "$(pwd)\flutter\bin" >> $GITHUB_PATH
       - uses: actions/checkout@v2
         with:
           path: 'app'
