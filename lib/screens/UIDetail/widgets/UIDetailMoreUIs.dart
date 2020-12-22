@@ -22,15 +22,17 @@ class UIDetailMoreUIs extends StatelessWidget {
         .where((ui) => ui.id != uiItem.id && ui.designer == uiItem.designer);
 
     if (moreUis.length == 0) {
-      return Container();
+      return SizedBox();
     }
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.all(AppDimensions.padding),
+          padding: EdgeInsets.all(AppDimensions.padding * 1),
           child: Text(
-            "${App.translate(UIDetailScreenMessages.moreUIs, context)} ${uiItem.designer}",
+            "${App.translate(UIDetailScreenMessages.moreUIs, context)} ${uiItem.designer}"
+                .trim(),
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,

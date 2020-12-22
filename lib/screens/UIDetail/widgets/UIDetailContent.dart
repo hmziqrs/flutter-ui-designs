@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/configs/AppTheme.dart';
-
-import 'package:flutter_uis/statics/models/UIItem.dart';
-import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
+import 'package:flutter_uis/configs/App.dart';
+import 'package:flutter_uis/configs/TextStyles.dart';
+
+import 'package:flutter_uis/statics/models/UIItem.dart';
 import 'package:flutter_uis/utils/Utils.dart';
 
-import '../messages/keys.dart';
 import 'UIDetailSupport.dart';
 import 'UIDetailMoreUIs.dart';
 import 'UIDetailButton.dart';
+
+import '../messages/keys.dart';
 import '../Dimensions.dart';
 import '../TestKeys.dart';
 
@@ -72,17 +74,14 @@ class UIDetailContent extends StatelessWidget {
                     ),
                     child: Text(
                       uiItem.description,
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w600,
-                        color: AppTheme.subText,
+                      style: TextStyles.body26.copyWith(
+                        color: AppTheme.subText2,
                       ),
                     ),
                   )
                 : Container()),
             Padding(padding: EdgeInsets.all(AppDimensions.padding)),
             Row(
-              // crossAxisAlignment: CrossAxisAlignment.stretch,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UIDetailButton(

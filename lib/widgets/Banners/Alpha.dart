@@ -23,7 +23,7 @@ class AlphaBanner extends StatelessWidget {
       padding: EdgeInsets.only(
         left: AppDimensions.padding * 2.0,
         right: AppDimensions.padding * 2.0,
-        top: AppDimensions.padding * 1.0,
+        top: AppDimensions.padding * 1.5,
         bottom: AppDimensions.padding * 1.5,
       ),
       child: Text(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
 
@@ -53,7 +54,7 @@ class _UICardState extends State<UICard> with AnimationMixin {
         spreadRadius: 1.0,
         blurRadius: blurRadius,
         offset: Offset(0.0, 3.0),
-        color: Colors.black.withOpacity(opacity),
+        color: AppTheme.shadow.withOpacity(opacity),
       );
     } else {
       final opacity = Utils.rangeMap(animation.value, 0.0, 1.0, 0.4, 0.7);
@@ -62,7 +63,7 @@ class _UICardState extends State<UICard> with AnimationMixin {
         spreadRadius: 0.0,
         blurRadius: blurRadius,
         offset: Offset(0.0, 4.0),
-        color: Colors.black.withOpacity(opacity),
+        color: AppTheme.shadow.withOpacity(opacity),
       );
     }
   }

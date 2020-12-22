@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/Widgets/Banners/Alpha.dart';
 import 'package:flutter_uis/Widgets/Header/Header.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
@@ -117,11 +118,11 @@ class AboutAppScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.all(AppDimensions.padding * 1.5),
                 ),
-                AboutAppText(
-                  App.translate(AboutAppScreenMessages.iDont, context),
-                  textStyle: TextStyle(
-                    color: theme.primary,
-                  ),
+                AlphaBanner(
+                  text: App.translate(AboutAppScreenMessages.iDont, context),
+                ),
+                SizedBox(
+                  height: AppDimensions.padding * 3,
                 ),
                 Utils.safePadding(context, 'bottom'),
               ],

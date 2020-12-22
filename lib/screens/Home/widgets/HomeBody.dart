@@ -33,7 +33,7 @@ class HomeBody extends StatelessWidget {
           ),
           padding: EdgeInsets.symmetric(
             horizontal: AppDimensions.padding * 2,
-            vertical: AppDimensions.padding,
+            vertical: AppDimensions.padding * 2,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,13 +73,7 @@ class HomeBody extends StatelessWidget {
                             vertical: AppDimensions.padding * 1.5,
                           ),
                           width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: CommonProps.buttonRadius,
-                            border: Border.all(
-                              width: 1.0,
-                              color: AppTheme.primary,
-                            ),
-                          ),
+                          decoration: CommonProps.borderButton,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -88,7 +82,7 @@ class HomeBody extends StatelessWidget {
                                 size: 20,
                                 color: AppTheme.primary,
                               ),
-                              Container(width: 6),
+                              Container(width: AppDimensions.padding),
                               Text(
                                 App.translate(
                                   item["label"],

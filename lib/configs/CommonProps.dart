@@ -15,6 +15,7 @@ abstract class CommonProps {
   static LinearGradient gradient1Cross;
 
   static BorderRadius buttonRadius;
+  static BoxDecoration borderButton;
 
   static init() {
     initButtons();
@@ -28,6 +29,13 @@ abstract class CommonProps {
   }
 
   static initButtons() {
+    borderButton = BoxDecoration(
+      borderRadius: CommonProps.buttonRadius,
+      border: Border.all(
+        width: 1.4,
+        color: AppTheme.primary,
+      ),
+    );
     btnPadSm = EdgeInsets.symmetric(
       horizontal: AppDimensions.padding * 2,
       vertical: AppDimensions.padding * 1.0,

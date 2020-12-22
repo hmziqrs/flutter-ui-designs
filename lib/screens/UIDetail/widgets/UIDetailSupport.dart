@@ -21,16 +21,6 @@ class UIDetailSupport extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: EdgeInsets.all(AppDimensions.padding),
-            child: Text(
-              App.translate(UIDetailScreenMessages.moreUIs, context),
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
           Padding(padding: EdgeInsets.all(AppDimensions.padding)),
           Row(
             children: data.getSupportList(uiItem).map(
