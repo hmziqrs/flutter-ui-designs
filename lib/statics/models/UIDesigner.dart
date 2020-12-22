@@ -28,6 +28,7 @@ class UIDesigner {
   // Freelance
   String fiverr;
   String upwork;
+  String upworkCompany;
 
   // Direct
   String skype;
@@ -54,6 +55,7 @@ class UIDesigner {
     this.website,
     this.fiverr,
     this.upwork,
+    this.upworkCompany,
     this.emails,
     this.phone,
   });

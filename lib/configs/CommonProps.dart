@@ -14,10 +14,17 @@ abstract class CommonProps {
   static List<BoxShadow> headerShadow;
   static LinearGradient gradient1Cross;
 
+  static BorderRadius buttonRadius;
+
   static init() {
     initButtons();
     initGradients();
     initShadows();
+    initRadius();
+  }
+
+  static initRadius() {
+    buttonRadius = BorderRadius.circular(AppTheme.buttonRadius);
   }
 
   static initButtons() {

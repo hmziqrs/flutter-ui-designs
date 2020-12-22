@@ -102,6 +102,7 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
           primaryColor: theme.primary,
         ),
         textStyle: textStyle,
+        fontFamily: 'Nunito',
         builder: (_) {
           double safeOffset = this.offset;
 

@@ -43,11 +43,13 @@ android {
     }
 
     defaultConfig {
+        buildToolsVersion = "30.0.2"
         applicationId "com.onemdev.flutter_ui_challenges"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode flutterVersionCode.toInteger()
+        multiDexEnabled true
         versionName flutterVersionName
+        versionCode flutterVersionCode.toInteger()
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

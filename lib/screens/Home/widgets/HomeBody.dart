@@ -3,6 +3,7 @@ import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/AppTheme.dart';
+import 'package:flutter_uis/configs/CommonProps.dart';
 import 'package:flutter_uis/configs/TextStyles.dart';
 import 'package:flutter_uis/widgets/Screen/Provider.dart';
 
@@ -11,6 +12,15 @@ import '../data.dart' as data;
 import '../messages/keys.dart';
 
 class HomeBody extends StatelessWidget {
+  onPress(BuildContext context, String path) {
+    if (path == 'settings') {
+      return ScreenStateProvider.state(context).setSettingsOpen(true);
+    }
+    Navigator.of(context).pushNamed(
+      path,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -50,42 +60,45 @@ class HomeBody extends StatelessWidget {
               Padding(padding: EdgeInsets.all(AppDimensions.padding)),
               ...data.list
                   .map(
-                    (item) => Container(
-                      width: double.infinity,
-                      child: OutlineButton(
+                    (item) => Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: AppDimensions.padding * 1,
+                      ),
+                      child: InkWell(
                         key: Key(item["key"]),
-                        textColor: AppTheme.primary,
-                        borderSide: BorderSide(
-                          width: 1.5,
-                          color: AppTheme.primary.withOpacity(0.6),
-                        ),
-                        highlightedBorderColor: AppTheme.primary.withOpacity(
-                          0.8,
-                        ),
-                        onPressed: () {
-                          final path = item["path"];
-                          if (path == 'settings') {
-                            return ScreenStateProvider.state(context)
-                                .setSettingsOpen(true);
-                          }
-
-                          Navigator.of(context).pushNamed(
-                            path,
-                          );
-                        },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(item["icon"], size: 20),
-                            Container(width: 6),
-                            Text(
-                              App.translate(
-                                item["label"],
-                                context,
-                              ),
-                              style: TextStyles.body16,
+                        borderRadius: CommonProps.buttonRadius,
+                        onTap: () => this.onPress(context, item["path"]),
+                        child: Ink(
+                          padding: EdgeInsets.symmetric(
+                            vertical: AppDimensions.padding * 1,
+                          ),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            borderRadius: CommonProps.buttonRadius,
+                            border: Border.all(
+                              width: 1.0,
+                              color: AppTheme.primary,
                             ),
-                          ],
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                item["icon"],
+                                size: 20,
+                                color: AppTheme.primary,
+                              ),
+                              Container(width: 6),
+                              Text(
+                                App.translate(
+                                  item["label"],
+                                  context,
+                                ),
+                                style: TextStyles.body16
+                                    .copyWith(color: AppTheme.primary),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

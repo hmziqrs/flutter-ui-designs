@@ -52,6 +52,7 @@ class _HFDHomeScreenState extends State<HFDHomeScreen> {
           accentColor: theme.primary,
           primaryColor: theme.primary,
         ),
+        fontFamily: 'Nunito',
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: this.activeBottomNav,

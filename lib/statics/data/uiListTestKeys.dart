@@ -6,4 +6,5 @@ abstract class UIListDataTestKeys {
   static final String skv = "$scope/skv";
   static final String asc = "$scope/asc";
   static final String etc = "$scope/etc";
+  static final String coda = "$scope/coda";
 }
