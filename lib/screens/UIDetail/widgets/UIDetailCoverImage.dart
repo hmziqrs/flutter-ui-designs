@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 
 import 'package:flutter_uis/statics/data/uiList.dart';
 
@@ -27,6 +28,17 @@ class UIDetailCoverImage extends StatelessWidget {
           image: DecorationImage(
             image: ExactAssetImage(uiItem.thumbnail),
             fit: BoxFit.cover,
+          ),
+        ),
+        foregroundDecoration: BoxDecoration(
+          gradient: LinearGradient(
+            end: Alignment.center,
+            begin: Alignment.topCenter,
+            stops: [0.15, 1.0],
+            colors: [
+              AppTheme.primary.withOpacity(0.84),
+              AppTheme.primary.withOpacity(0.01),
+            ],
           ),
         ),
       ),

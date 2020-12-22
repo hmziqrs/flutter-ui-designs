@@ -67,6 +67,7 @@ class _UIDetailScreenState extends State<UIDetailScreen>
                   horizontal: AppDimensions.padding,
                 ),
                 child: BackButton(
+                  color: Colors.black,
                   onPressed: () => Navigator.of(context).popUntil(
                     ModalRoute.withName("uiList"),
                   ),
