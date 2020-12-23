@@ -31,6 +31,7 @@ class UIUtils {
 
   static lightStatusBar() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+      statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.light,
       systemNavigationBarIconBrightness: Brightness.light,
     ));
@@ -38,6 +39,7 @@ class UIUtils {
 
   static darkStatusBar() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+      statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.dark,
       // systemNavigationBarIconBrightness: Brightness.dark,
     ));
