@@ -7,12 +7,12 @@ import 'package:flutter_uis/io/io.dart';
 
 class UIUtils {
   static SystemUiOverlayStyle getThemeStatusBar(
-    BuildContext context, [
-    Brightness forceBrightness,
-  ]) {
+    BuildContext context, {
+    Brightness statusBarBrightness,
+    Brightness navBarBrightness,
+  }) {
     final isDark = App.isDark(context);
-    final brightness =
-        forceBrightness ?? (isDark ? Brightness.light : Brightness.dark);
+    final brightness = isDark ? Brightness.light : Brightness.dark;
     final base = brightness == Brightness.dark
         ? SystemUiOverlayStyle.light
         : SystemUiOverlayStyle.dark;
@@ -20,17 +20,28 @@ class UIUtils {
     if (Platform.isIOS) {
       final brightness = (!isDark ? Brightness.light : Brightness.dark);
       return base.copyWith(
-        statusBarBrightness: brightness,
-        statusBarIconBrightness: brightness,
-        systemNavigationBarIconBrightness: brightness,
+        statusBarBrightness: statusBarBrightness ?? brightness,
+        statusBarIconBrightness: statusBarBrightness ?? brightness,
+        systemNavigationBarIconBrightness: statusBarBrightness ?? brightness,
       );
     } else {
+      final reverse = statusBarBrightness == Brightness.light
+          ? Brightness.dark
+          : Brightness.light;
+
+      Color systemNavigationBarColor = AppTheme.background;
+      Color systemNavigationBarDividerColor = AppTheme.background2;
+      if (navBarBrightness == Brightness.light) {
+        systemNavigationBarColor = AppTheme.dark;
+        systemNavigationBarDividerColor = AppTheme.background2Dark;
+      }
       return (base.copyWith(
-        statusBarBrightness: brightness,
-        statusBarIconBrightness: brightness,
-        systemNavigationBarIconBrightness: brightness,
-        systemNavigationBarColor: AppTheme.background,
-        systemNavigationBarDividerColor: AppTheme.background2,
+        statusBarBrightness: statusBarBrightness != null ? reverse : brightness,
+        statusBarIconBrightness:
+            statusBarBrightness != null ? reverse : brightness,
+        systemNavigationBarIconBrightness: navBarBrightness ?? brightness,
+        systemNavigationBarColor: systemNavigationBarColor,
+        systemNavigationBarDividerColor: systemNavigationBarDividerColor,
       ));
     }
   }

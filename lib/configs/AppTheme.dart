@@ -11,6 +11,8 @@ class AppTheme {
   static Color cardBg;
   static Color background;
   static Color background2;
+  static Color background2Dark;
+  static Color background2Light;
   static Color backgroundSub;
 
   static Color shadow;
@@ -63,6 +65,9 @@ class AppTheme {
     subText = Colors.black.withOpacity(0.70);
     subText2 = Colors.black.withOpacity(0.60);
     subText3 = Colors.black.withOpacity(0.40);
+
+    background2Dark = TinyColor(theme.darkBackground).lighten(7).color;
+    background2Light = light.toTinyColor().darken(5).color;
 
     if (isDark()) {
       background = theme.darkBackground;

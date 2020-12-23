@@ -4,6 +4,7 @@ import 'package:flutter_uis/utils/UIUtils.dart';
 
 const MODE = 'mode';
 const LIGHT = 'light';
+const LIGHT_NAVDARK = 'light_navDark';
 const DARK = 'dark';
 
 final statusBarMap = {
@@ -20,14 +21,14 @@ final statusBarMap = {
   AppRoutes.hfdDetail: MODE,
 
   // Hot Air Balloon
-  AppRoutes.habHome: MODE,
+  AppRoutes.habHome: LIGHT,
   AppRoutes.habDetail: MODE,
 
   // Sky View
   AppRoutes.skvHome: MODE,
-  AppRoutes.skvDetail: MODE,
+  AppRoutes.skvDetail: LIGHT_NAVDARK,
 
-  AppRoutes.ascHome: MODE,
+  AppRoutes.ascHome: LIGHT,
 
   AppRoutes.etcHome: MODE,
 };
@@ -37,10 +38,25 @@ class StatusBarHandler {
     final theme = statusBarMap[route];
     switch (theme) {
       case DARK:
-        return UIUtils.getThemeStatusBar(context, Brightness.dark);
+        return UIUtils.getThemeStatusBar(
+          context,
+          statusBarBrightness: Brightness.light,
+          navBarBrightness: Brightness.light,
+        );
         break;
       case LIGHT:
-        return UIUtils.getThemeStatusBar(context, Brightness.light);
+        return UIUtils.getThemeStatusBar(
+          context,
+          statusBarBrightness: Brightness.dark,
+          navBarBrightness: Brightness.dark,
+        );
+        break;
+      case LIGHT_NAVDARK:
+        return UIUtils.getThemeStatusBar(
+          context,
+          statusBarBrightness: Brightness.dark,
+          navBarBrightness: Brightness.light,
+        );
         break;
       default:
         return UIUtils.getThemeStatusBar(context);
