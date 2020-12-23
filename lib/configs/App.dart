@@ -5,7 +5,6 @@ import 'AppDimensions.dart';
 import 'TextStyles.dart';
 import 'CommonProps.dart';
 import 'AppTheme.dart';
-import 'StatusBar.dart';
 
 class App {
   static BuildContext ctx;
@@ -18,8 +17,6 @@ class App {
     TextStyles.init();
     CommonProps.init();
     App.ctx = context;
-    // final route = ModalRoute.of(context).settings.name;
-    // StatusBarHandler.init(context, route);
     isLtr = Directionality.of(context) == TextDirection.ltr;
   }
 

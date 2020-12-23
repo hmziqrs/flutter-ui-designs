@@ -12,8 +12,8 @@ final statusBarMap = {
   AppRoutes.aboutDeveloper: MODE,
   AppRoutes.download: MODE,
   AppRoutes.uiList: MODE,
-  AppRoutes.uiDetail: LIGHT,
-  AppRoutes.designerProfile: LIGHT,
+  AppRoutes.uiDetail: MODE,
+  AppRoutes.designerProfile: MODE,
 
   // Healthy Food Delivery
   AppRoutes.hfdHome: MODE,
@@ -33,19 +33,17 @@ final statusBarMap = {
 };
 
 class StatusBarHandler {
-  static init(BuildContext context, String route) {
+  static get(BuildContext context, String route) {
     final theme = statusBarMap[route];
-    print("$route $theme");
     switch (theme) {
       case DARK:
-        UIUtils.darkStatusBar();
+        return UIUtils.getThemeStatusBar(context, Brightness.dark);
         break;
       case LIGHT:
-        print("LIGHT");
-        UIUtils.lightStatusBar();
+        return UIUtils.getThemeStatusBar(context, Brightness.light);
         break;
       default:
-        UIUtils.themeStatusBar(context);
+        return UIUtils.getThemeStatusBar(context);
     }
   }
 }

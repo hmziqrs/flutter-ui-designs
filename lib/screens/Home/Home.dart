@@ -1,9 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_uis/utils/UIUtils.dart';
 import 'package:flutter_uis/utils/Utils.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
@@ -20,28 +18,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
-    bool toggle = false;
     return ChangeNotifierProvider<HomeStateProvider>(
       create: (_) => HomeStateProvider(),
       child: Screen(
         child: SafeArea(
-          child: Column(
-            children: [
-              HomeBody(),
-              // RaisedButton(
-              //   onPressed: () {
-              //     toggle = !toggle;
-              //     print('UIUtils $toggle');
-              //     if (toggle) {
-              //       UIUtils.lightStatusBar();
-              //     } else {
-              //       UIUtils.darkStatusBar();
-              //     }
-              //   },
-              //   child: Text("TOGGLE"),
-              // ),
-            ],
-          ),
+          child: HomeBody(),
         ),
         overlayBuilders: [
           Selector<HomeStateProvider, bool>(

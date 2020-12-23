@@ -11,7 +11,6 @@ import 'package:flutter_uis/statics/data/uiList.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
-import 'widgets/DesignerProfileAvatar.dart';
 import 'widgets/DesignerProfileBody.dart';
 import 'Dimensions.dart';
 import 'Provider.dart';
@@ -61,6 +60,7 @@ class _Body extends StatelessWidget {
           slivers: [
             SliverAppBar(
               stretch: true,
+              brightness: Brightness.dark,
               backgroundColor: Colors.transparent,
               iconTheme: IconThemeData(opacity: 0.0),
               expandedHeight: Dimensions.coverImageHeight,

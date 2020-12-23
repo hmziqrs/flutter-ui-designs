@@ -6,42 +6,46 @@ import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/io/io.dart';
 
 class UIUtils {
-  static themeStatusBar(BuildContext context) {
+  static SystemUiOverlayStyle getThemeStatusBar(
+    BuildContext context, [
+    Brightness forceBrightness,
+  ]) {
     final isDark = App.isDark(context);
-    final brightness = isDark ? Brightness.light : Brightness.dark;
-    final base =
-        isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark;
+    final brightness =
+        forceBrightness ?? (isDark ? Brightness.light : Brightness.dark);
+    final base = brightness == Brightness.dark
+        ? SystemUiOverlayStyle.light
+        : SystemUiOverlayStyle.dark;
 
     if (Platform.isIOS) {
-      SystemChrome.setSystemUIOverlayStyle(
-        base,
-      );
+      return (base);
     } else {
-      SystemChrome.setSystemUIOverlayStyle(
-        base.copyWith(
-          statusBarBrightness: brightness,
-          statusBarIconBrightness: brightness,
-          systemNavigationBarIconBrightness: brightness,
-          systemNavigationBarColor: AppTheme.background,
-          systemNavigationBarDividerColor: AppTheme.background2,
-        ),
-      );
+      return (base.copyWith(
+        statusBarBrightness: brightness,
+        statusBarIconBrightness: brightness,
+        systemNavigationBarIconBrightness: brightness,
+        systemNavigationBarColor: AppTheme.background,
+        systemNavigationBarDividerColor: AppTheme.background2,
+      ));
     }
   }
 
-  static lightStatusBar() {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+  static SystemUiOverlayStyle getLightStatusBar() {
+    return (SystemUiOverlayStyle.light.copyWith(
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.light,
       systemNavigationBarIconBrightness: Brightness.light,
+      // systemNavigationBarColor: AppTheme.background,
+      // systemNavigationBarDividerColor: AppTheme.background2,
     ));
   }
 
-  static darkStatusBar() {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+  static SystemUiOverlayStyle getDarkStatusBar() {
+    return (SystemUiOverlayStyle.dark.copyWith(
       statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.dark,
-      // systemNavigationBarIconBrightness: Brightness.dark,
+      // systemNavigationBarColor: AppTheme.background,
+      // systemNavigationBarDividerColor: AppTheme.background2,
     ));
   }
 }

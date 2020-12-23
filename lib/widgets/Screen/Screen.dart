@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_uis/configs/StatusBar.dart';
 import 'package:provider/provider.dart';
 
 import 'widgets/ScreenSettingsModal.dart';
@@ -59,38 +61,44 @@ class Screen extends StatelessWidget {
           bottomNavigationBar: this.bottomNavigationBar,
           backgroundColor: this.scaffoldBackgroundColor ??
               Theme.of(context).scaffoldBackgroundColor,
-          body: Stack(
-            fit: StackFit.expand,
-            children: <Widget>[
-              ...(this.belowBuilders ?? []),
-              Positioned.fill(
-                child: child ?? builder(context),
-              ),
-              ...(this.overlayBuilders ?? []),
-              Theme(
-                data: baseTheme.copyWith(
-                  textTheme: baseTheme.textTheme.apply(
-                    fontFamily: 'Muli',
-                  ),
-                  primaryTextTheme: baseTheme.primaryTextTheme.apply(
-                    fontFamily: 'Muli',
-                  ),
-                  accentTextTheme: baseTheme.accentTextTheme.apply(
-                    fontFamily: 'Muli',
-                  ),
+          body: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: StatusBarHandler.get(
+              context,
+              ModalRoute.of(context).settings.name,
+            ),
+            child: Stack(
+              fit: StackFit.expand,
+              children: <Widget>[
+                ...(this.belowBuilders ?? []),
+                Positioned.fill(
+                  child: child ?? builder(context),
                 ),
-                child: this.renderSettings
-                    ? Selector<ScreenStateProvider, bool>(
-                        selector: (_, state) => state.isSettingsOpen,
-                        builder: (ctx, isSettingsOpen, child) {
-                          return ScreenSettingsModal(
-                            isSettingsOpen: isSettingsOpen,
-                          );
-                        },
-                      )
-                    : Container(),
-              ),
-            ],
+                ...(this.overlayBuilders ?? []),
+                Theme(
+                  data: baseTheme.copyWith(
+                    textTheme: baseTheme.textTheme.apply(
+                      fontFamily: 'Muli',
+                    ),
+                    primaryTextTheme: baseTheme.primaryTextTheme.apply(
+                      fontFamily: 'Muli',
+                    ),
+                    accentTextTheme: baseTheme.accentTextTheme.apply(
+                      fontFamily: 'Muli',
+                    ),
+                  ),
+                  child: this.renderSettings
+                      ? Selector<ScreenStateProvider, bool>(
+                          selector: (_, state) => state.isSettingsOpen,
+                          builder: (ctx, isSettingsOpen, child) {
+                            return ScreenSettingsModal(
+                              isSettingsOpen: isSettingsOpen,
+                            );
+                          },
+                        )
+                      : Container(),
+                ),
+              ],
+            ),
           ),
         ),
       ),

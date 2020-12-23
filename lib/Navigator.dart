@@ -4,6 +4,7 @@ import 'package:flutter_uis/AppRoutes.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'NavigatorObserver.dart';
 import 'configs/Theme.dart' as theme;
 import 'AppLocalizations.dart';
 import 'Providers/AppProvider.dart';
@@ -100,7 +101,7 @@ class MaterialChild extends StatelessWidget {
       darkTheme: theme.baseDark,
       themeMode: state.themeMode,
       navigatorKey: this.navigatorKey,
-      navigatorObservers: observers,
+      navigatorObservers: [AppNavigatorObserver()],
       initialRoute: "home",
       onGenerateRoute: (settings) {
         final index = ["skvDetail", "hfdDetail"].indexOf(settings.name);

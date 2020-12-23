@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_uis/widgets/ScreenAnimation/Base.dart';
 import 'package:provider/provider.dart';
 
@@ -39,7 +40,6 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UIItem uiItem = ModalRoute.of(context).settings.arguments;
-
     return WillPopScope(
       onWillPop: () async {
         this.onClose(context);
@@ -48,7 +48,8 @@ class _Body extends StatelessWidget {
       child: Screen(
         overlayBuilders: [
           OverlayGradientFade<UIDetailStateProvider>(
-            height: Dimensions.cardHeight * 0.6,
+            height: (Dimensions.cardHeight * 0.6) +
+                MediaQuery.of(context).padding.top,
           ),
           Positioned(
             top: MediaQuery.of(context).padding.top + AppDimensions.padding,
@@ -65,7 +66,7 @@ class _Body extends StatelessWidget {
                   );
                 },
                 child: BackButton(
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -76,6 +77,7 @@ class _Body extends StatelessWidget {
           slivers: [
             SliverAppBar(
               stretch: true,
+              brightness: Brightness.dark,
               backgroundColor: Colors.transparent,
               iconTheme: IconThemeData(opacity: 0.0),
               expandedHeight: Dimensions.coverImageHeight,
