@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/UI.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -21,7 +22,7 @@ class SKVDetailScreenPlanet extends StatelessWidget {
   final double offset;
 
   Widget renderContent(double animation) {
-    final width = AppDimensions.size.width;
+    final width = UI.getSize().width;
     // This variable helps us calculate parallax for each page.
     final widthOffset = this.offset - (width * this.index);
     final rotateRatio = math.pi / 180;
@@ -29,13 +30,12 @@ class SKVDetailScreenPlanet extends StatelessWidget {
     double opacityOffset = animation;
 
     // Init offSet basically works like rotate origin here we set the center of radius
-    double initOffSetX =
-        AppDimensions.size.width - (Dimensions.planetSize * 0.5);
+    double initOffSetX = width - (Dimensions.planetSize * 0.5);
     double initOffSetY =
         (AppDimensions.size.height * 0.5) - (Dimensions.planetSize * 0.5);
 
     final radiusY = AppDimensions.size.height * 0.5;
-    final radiusX = AppDimensions.size.width * 0.5;
+    final radiusX = width * 0.5;
 
     double angle = Utils.rangeMap(widthOffset, 0, width, -90, -200);
 
@@ -60,6 +60,12 @@ class SKVDetailScreenPlanet extends StatelessWidget {
     final sin = initOffSetX + (math.sin(angle * rotateRatio) * radiusX);
     final cos = initOffSetY + (math.cos(angle * rotateRatio) * -radiusY);
 
+    CustomAnimationControl control = CustomAnimationControl.LOOP;
+
+    if (widthOffset > 20 || widthOffset < -20) {
+      control = CustomAnimationControl.STOP;
+    }
+
     return Opacity(
       opacity: (this.pageRendered ? opacityOffset : animation).clamp(0.0, 1.0),
       child: Align(
@@ -76,7 +82,7 @@ class SKVDetailScreenPlanet extends StatelessWidget {
             height: Dimensions.planetSize,
             alignment: Alignment.bottomCenter,
             child: CustomAnimation(
-              control: CustomAnimationControl.LOOP,
+              control: control,
               delay: Duration(milliseconds: this.pageRendered ? 800 : 1400),
               tween: Tween(begin: 0.0, end: math.pi * 2),
               duration: Duration(seconds: 50),
@@ -122,17 +128,15 @@ class SKVDetailScreenPlanet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return this.pageRendered
-        ? this.renderContent(1.0)
-        : Positioned.fill(
-            left: 0,
-            right: 0,
-            child: CustomAnimation(
-              delay: Duration(milliseconds: 410),
-              tween: Tween(begin: 0.0, end: 1.0),
-              duration: Duration(milliseconds: 500),
-              builder: (ctx, child, animation) => this.renderContent(animation),
-            ),
-          );
+    return Positioned.fill(
+      left: 0,
+      right: 0,
+      child: CustomAnimation(
+        delay: Duration(milliseconds: 410),
+        tween: Tween(begin: 0.0, end: 1.0),
+        duration: Duration(milliseconds: 500),
+        builder: (ctx, child, animation) => this.renderContent(animation),
+      ),
+    );
   }
 }

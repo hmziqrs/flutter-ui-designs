@@ -12,11 +12,9 @@ import '../messages/keys.dart';
 
 class SKVDetailScreenTextContent extends StatelessWidget {
   SKVDetailScreenTextContent({
-    @required this.pageRendered,
     @required this.item,
   });
 
-  final bool pageRendered;
   final SKVObject item;
 
   @override
@@ -33,7 +31,6 @@ class SKVDetailScreenTextContent extends StatelessWidget {
                 right: AppDimensions.padding * 2,
               ),
               child: SKVDetailScreenAnimatedText(
-                pageRendered: this.pageRendered,
                 index: 0,
                 child: Text(
                   this.item.name,
@@ -50,7 +47,6 @@ class SKVDetailScreenTextContent extends StatelessWidget {
                 horizontal: AppDimensions.padding * 2,
               ),
               child: SKVDetailScreenAnimatedText(
-                pageRendered: this.pageRendered,
                 index: 1,
                 child: Text(
                   App.translate(
@@ -69,7 +65,6 @@ class SKVDetailScreenTextContent extends StatelessWidget {
                 horizontal: AppDimensions.padding * 2,
               ),
               child: SKVDetailScreenAnimatedText(
-                pageRendered: this.pageRendered,
                 index: 2,
                 child: Text(
                   this.item.distanceInKm,
@@ -82,7 +77,6 @@ class SKVDetailScreenTextContent extends StatelessWidget {
               ),
             ),
             SKVDetailScreenAnimatedText(
-              pageRendered: this.pageRendered,
               index: 3,
               child: Container(
                 margin: EdgeInsets.only(
@@ -104,7 +98,6 @@ class SKVDetailScreenTextContent extends StatelessWidget {
               child: Container(),
             ),
             SKVDetailScreenAnimatedText(
-              pageRendered: this.pageRendered,
               index: 4,
               child: SKVDetailScreenAttribute(
                 label: App.translate(
@@ -117,7 +110,6 @@ class SKVDetailScreenTextContent extends StatelessWidget {
               ),
             ),
             SKVDetailScreenAnimatedText(
-              pageRendered: this.pageRendered,
               index: 5,
               child: SKVDetailScreenAttribute(
                 label: App.translate(
@@ -130,7 +122,6 @@ class SKVDetailScreenTextContent extends StatelessWidget {
               ),
             ),
             SKVDetailScreenAnimatedText(
-              pageRendered: this.pageRendered,
               index: 6,
               child: SKVDetailScreenAttribute(
                 label: App.translate(
