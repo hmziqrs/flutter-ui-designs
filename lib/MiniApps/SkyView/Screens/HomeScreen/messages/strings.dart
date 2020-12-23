@@ -10,7 +10,7 @@ const Map strings = {
   '$scope/planets': "Planets",
   '$scope/stars': "Stars",
   '$scope/satellites': "Satellites",
-  '$scope/astroids': "Astroids",
+  '$scope/asteroids': "Asteroids",
   '$scope/comets': "Comets",
 
   // SearchBar

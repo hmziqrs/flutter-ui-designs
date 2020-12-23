@@ -8,7 +8,7 @@ abstract class SKVHomeScreenMessages {
 	static String planets = '$scope/planets';
 	static String stars = '$scope/stars';
 	static String satellites = '$scope/satellites';
-	static String astroids = '$scope/astroids';
+	static String asteroids = '$scope/asteroids';
 	static String comets = '$scope/comets';
 	static String searchBar = '$scope/searchBar';
 }

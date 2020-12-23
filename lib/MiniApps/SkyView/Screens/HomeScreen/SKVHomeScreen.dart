@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -11,53 +12,38 @@ import '../../data/data.dart' as data;
 import 'messages/keys.dart';
 import 'Dimensions.dart';
 import 'TestKeys.dart';
+import 'Provider.dart';
 
 import 'widgets/SKVHomeScreenPlanetsCarousel.dart';
 import 'widgets/SKVHomeScreenSearchBar.dart';
 import 'widgets/SKVHomeScreenStory.dart';
+import 'widgets/SKVHomeScreenTabBar.dart';
 
-class SKVHomeScreen extends StatefulWidget {
-  SKVHomeScreen({Key key}) : super(key: key);
-
-  _SKVHomeScreenState createState() => _SKVHomeScreenState();
-}
-
-class _SKVHomeScreenState extends State<SKVHomeScreen>
-    with SingleTickerProviderStateMixin {
-  TabController tabController;
-  double scrollOffset = 0.0;
-  double previousOffset = 0.0;
-  // Key pageScrollKey = GlobalKey(debugLabel: "pageScroll");
-
-  final List<String> tabs = [
-    SKVHomeScreenMessages.planets,
-    SKVHomeScreenMessages.stars,
-    SKVHomeScreenMessages.satellites,
-    SKVHomeScreenMessages.astroids,
-    SKVHomeScreenMessages.comets,
-  ];
-
+class SKVHomeScreen extends StatelessWidget {
   @override
-  void initState() {
-    super.initState();
-
-    this.tabController = TabController(
-      length: this.tabs.length,
-      vsync: this,
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<SKVHomeState>(
+      create: (_) => SKVHomeState(),
+      child: _Body(),
     );
   }
+}
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  bool onScrollNotification(notification) {
-    if (Axis.vertical == notification.metrics.axis) {
-      setState(() {
-        this.scrollOffset = (notification.metrics.pixels - this.previousOffset);
-        this.previousOffset = notification.metrics.pixels;
-      });
+class _Body extends StatelessWidget {
+  bool onScrollNotification(
+    BuildContext context,
+    ScrollNotification notification, [
+    bool isHorizontal = false,
+  ]) {
+    final offset = notification?.metrics?.pixels;
+    if (offset == null) {
+      return false;
+    }
+    final state = SKVHomeState.state(context);
+    if (notification.metrics.axis == Axis.vertical) {
+      state.setOffsetY(offset);
+    } else {
+      state.setOffsetX(offset);
     }
     return true;
   }
@@ -65,10 +51,6 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
-
-    final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
-          fontFamily: 'Montserrat',
-        );
 
     final rootTheme = Theme.of(context).copyWith(
       accentColor: theme.primary,
@@ -84,7 +66,7 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
           new FocusNode(),
         ),
         child: NotificationListener<ScrollNotification>(
-          onNotification: this.onScrollNotification,
+          onNotification: (n) => this.onScrollNotification(context, n),
           child: SingleChildScrollView(
             key: Key(SKVHomeScreenTestKeys.rootScroll),
             physics: ClampingScrollPhysics(),
@@ -117,48 +99,14 @@ class _SKVHomeScreenState extends State<SKVHomeScreen>
                         ),
                       ),
                       // TabsBar
-                      Container(
-                        margin: EdgeInsets.symmetric(
-                          vertical: AppDimensions.padding * 3,
-                          horizontal: AppDimensions.padding * 3,
-                        ),
-                        color: theme.background,
-                        child: TabBar(
-                          isScrollable: true,
-                          labelStyle: fontStyle.copyWith(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          unselectedLabelStyle: fontStyle.copyWith(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600,
-                          ),
-                          labelColor: Colors.black,
-                          indicatorColor: theme.primary,
-                          controller: this.tabController,
-                          unselectedLabelColor: theme.subText,
-                          indicatorSize: TabBarIndicatorSize.label,
-                          labelPadding: EdgeInsets.symmetric(
-                            vertical: AppDimensions.padding,
-                            horizontal: AppDimensions.padding * 3,
-                          ),
-                          tabs: this
-                              .tabs
-                              .map(
-                                (tab) => Text(
-                                  App.translate(
-                                    tab,
-                                    context,
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                        ),
-                      ),
+                      SKVHomeScreenTabBar(),
                     ],
                   ),
                 ),
-                SKVHomeScreenPlanetsCarousel(this.scrollOffset),
+                NotificationListener<ScrollNotification>(
+                  onNotification: (n) => this.onScrollNotification(context, n),
+                  child: SKVHomeScreenPlanetsCarousel(),
+                ),
                 // Build Stories
                 Container(
                   width: double.infinity,

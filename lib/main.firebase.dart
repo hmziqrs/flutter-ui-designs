@@ -16,7 +16,6 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox('app');
   UIUtils.setLightStatusBar();
-  print("YES SLAVE");
 
   final List<NavigatorObserver> observers = [];
 
