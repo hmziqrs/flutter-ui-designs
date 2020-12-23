@@ -18,7 +18,12 @@ class UIUtils {
         : SystemUiOverlayStyle.dark;
 
     if (Platform.isIOS) {
-      return (base);
+      final brightness = (!isDark ? Brightness.light : Brightness.dark);
+      return base.copyWith(
+        statusBarBrightness: brightness,
+        statusBarIconBrightness: brightness,
+        systemNavigationBarIconBrightness: brightness,
+      );
     } else {
       return (base.copyWith(
         statusBarBrightness: brightness,
@@ -30,22 +35,22 @@ class UIUtils {
     }
   }
 
-  static SystemUiOverlayStyle getLightStatusBar() {
-    return (SystemUiOverlayStyle.light.copyWith(
-      statusBarBrightness: Brightness.light,
-      statusBarIconBrightness: Brightness.light,
-      systemNavigationBarIconBrightness: Brightness.light,
-      // systemNavigationBarColor: AppTheme.background,
-      // systemNavigationBarDividerColor: AppTheme.background2,
-    ));
+  static setLightStatusBar() {
+    return SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.light.copyWith(
+        statusBarBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.light,
+        systemNavigationBarIconBrightness: Brightness.light,
+      ),
+    );
   }
 
-  static SystemUiOverlayStyle getDarkStatusBar() {
-    return (SystemUiOverlayStyle.dark.copyWith(
-      statusBarBrightness: Brightness.dark,
-      statusBarIconBrightness: Brightness.dark,
-      // systemNavigationBarColor: AppTheme.background,
-      // systemNavigationBarDividerColor: AppTheme.background2,
-    ));
+  static setDarkStatusBar() {
+    return SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle.dark.copyWith(
+        statusBarBrightness: Brightness.dark,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+    );
   }
 }
