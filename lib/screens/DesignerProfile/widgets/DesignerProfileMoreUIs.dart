@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/AppRoutes.dart';
 import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/statics/models/UIDesigner.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_uis/widgets/UICard/UICard.dart';
 import 'DesignerProfileHeading.dart';
 import '../messages/keys.dart';
 import '../Dimensions.dart';
+import '../Provider.dart';
 
 class DesignerProfileMoreUIs extends StatelessWidget {
   DesignerProfileMoreUIs({
@@ -35,10 +37,19 @@ class DesignerProfileMoreUIs extends StatelessWidget {
                 .map(
                   (ui) => UICard(
                     ui,
+                    onTap: () async {
+                      final state = DesignerProfileStateProvider.state(context);
+                      await state.hide();
+                      await Navigator.pushNamed(
+                        context,
+                        AppRoutes.uiDetail,
+                        arguments: ui,
+                      );
+                    },
                     isMini: true,
-                    padding: AppDimensions.padding * 2,
                     cardWidth: Dimensions.cardWidth,
                     cardHeight: Dimensions.cardHeight,
+                    padding: AppDimensions.padding * 2,
                   ),
                 )
                 .toList(),

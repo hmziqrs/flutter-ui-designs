@@ -66,13 +66,13 @@ class _Body extends StatelessWidget {
                 },
                 child: BackButton(
                   color: Colors.black,
-                  onPressed: () => this.onClose(context),
                 ),
               ),
             ),
           ),
         ],
         child: CustomScrollView(
+          physics: BouncingScrollPhysics(),
           slivers: [
             SliverAppBar(
               stretch: true,

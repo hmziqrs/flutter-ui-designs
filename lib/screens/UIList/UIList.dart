@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/AppRoutes.dart';
 import 'package:quiver/iterables.dart' as quiver;
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -46,6 +47,11 @@ class UIListScreen extends StatelessWidget {
                         .map(
                           (ui) => UICard(
                             ui,
+                            onTap: () => Navigator.pushNamed(
+                              context,
+                              AppRoutes.uiDetail,
+                              arguments: ui,
+                            ),
                             cardWidth: Dimensions.cardWidth,
                             cardHeight: Dimensions.cardHeight,
                             padding: AppDimensions.padding * 2,

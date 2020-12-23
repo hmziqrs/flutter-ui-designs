@@ -14,6 +14,7 @@ import 'UIDetailButton.dart';
 
 import '../messages/keys.dart';
 import '../TestKeys.dart';
+import '../Provider.dart';
 
 class UIDetailContent extends StatelessWidget {
   UIDetailContent({
@@ -105,13 +106,19 @@ class UIDetailContent extends StatelessWidget {
                     testKey: UIDetailScreenTestKeys.viewDesigner,
                     text:
                         "${App.translate(UIDetailScreenMessages.contact)} ${uiItem.designer}",
-                    callback: () => Navigator.of(context).pushNamed(
-                      "designerProfile",
-                      arguments: {
-                        "designer": uiItem.designer,
-                        "id": uiItem.id,
-                      },
-                    ),
+                    callback: () async {
+                      final screenState = UIDetailStateProvider.state(context);
+                      await screenState.hide();
+                      await Navigator.of(context).pushNamed(
+                        "designerProfile",
+                        arguments: {
+                          "designer": uiItem.designer,
+                          "id": uiItem.id,
+                        },
+                      );
+                      await screenState.dDelayD;
+                      UIDetailStateProvider.state(context).show();
+                    },
                   )
                 : Container(),
             Utils.safePadding(context, 'bottom'),

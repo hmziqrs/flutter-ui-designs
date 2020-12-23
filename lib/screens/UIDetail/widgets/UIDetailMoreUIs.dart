@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/AppRoutes.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_uis/widgets/UICard/UICard.dart';
 
 import '../messages/keys.dart';
 import '../Dimensions.dart';
+import '../Provider.dart';
 
 class UIDetailMoreUIs extends StatelessWidget {
   UIDetailMoreUIs({@required this.uiItem});
@@ -46,6 +48,15 @@ class UIDetailMoreUIs extends StatelessWidget {
                 .map(
                   (ui) => UICard(
                     ui,
+                    onTap: () async {
+                      final state = UIDetailStateProvider.state(context);
+                      await state.hide();
+                      await Navigator.pushNamed(
+                        context,
+                        AppRoutes.uiDetail,
+                        arguments: ui,
+                      );
+                    },
                     isMini: true,
                     padding: AppDimensions.padding * 2,
                     cardWidth: Dimensions.cardWidth,

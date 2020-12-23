@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/AppRoutes.dart';
+import 'package:flutter_uis/Widgets/Overlay/GradientFade.dart';
+import 'package:flutter_uis/Widgets/ScreenAnimation/Base.dart';
+import 'package:flutter_uis/Widgets/custom/CustomFlexibleSpaceBar.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
 import 'package:flutter_uis/statics/data/uiDesigners.dart';
@@ -9,35 +14,29 @@ import 'package:flutter_uis/widgets/Screen/Screen.dart';
 import 'widgets/DesignerProfileAvatar.dart';
 import 'widgets/DesignerProfileBody.dart';
 import 'Dimensions.dart';
+import 'Provider.dart';
 
-class DesignerProfileScreen extends StatefulWidget {
+class DesignerProfileScreen extends StatelessWidget {
+  const DesignerProfileScreen({Key key}) : super(key: key);
+
   @override
-  _DesignerProfileScreenState createState() => _DesignerProfileScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<DesignerProfileStateProvider>(
+      create: (_) => DesignerProfileStateProvider(),
+      child: _Body(),
+    );
+  }
 }
 
-class _DesignerProfileScreenState extends State<DesignerProfileScreen>
-    with SingleTickerProviderStateMixin {
-  ScrollController scrollController;
-  double scrollOffset = 0.0;
-
-  @override
-  void initState() {
-    super.initState();
-
-    this.scrollController = ScrollController();
-    this.scrollController.addListener(() {
-      final offset = this.scrollController.offset;
-      setState(() {
-        scrollOffset = -offset;
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    this.scrollController.dispose();
-    super.dispose();
-  }
+class _Body extends StatelessWidget {
+  void onClose(BuildContext context) =>
+      DesignerProfileStateProvider.state(context).close(
+        callback: () {
+          Navigator.of(context).popUntil(
+            ModalRoute.withName(AppRoutes.uiDetail),
+          );
+        },
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -50,48 +49,69 @@ class _DesignerProfileScreenState extends State<DesignerProfileScreen>
     UIDesigner designer =
         uiDesigners.firstWhere((user) => user.username == username);
 
-    double coverImageHeight = Dimensions.coverImageHeight + scrollOffset;
-
-    if (coverImageHeight < 0) {
-      coverImageHeight = 0;
-    }
-
-    return Screen(
-      child: SingleChildScrollView(
-        controller: this.scrollController,
-        child: Stack(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Container(
-                  transform: Matrix4.identity()
-                    ..translate(
-                      0.0,
-                      -scrollOffset,
-                    ),
-                  height: coverImageHeight,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: ExactAssetImage(designer.cover),
+    return WillPopScope(
+      onWillPop: () async {
+        this.onClose(context);
+        return false;
+      },
+      child: Screen(
+        overlayBuilders: [],
+        child: CustomScrollView(
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverAppBar(
+              stretch: true,
+              backgroundColor: Colors.transparent,
+              iconTheme: IconThemeData(opacity: 0.0),
+              expandedHeight: Dimensions.coverImageHeight,
+              flexibleSpace: Stack(
+                children: [
+                  CustomFlexibleSpaceBar(
+                    collapseMode: CollapseMode.parallax,
+                    stretchModes: [
+                      StretchMode.zoomBackground,
+                    ],
+                    background: Image.asset(
+                      designer.cover,
                       fit: BoxFit.cover,
                     ),
                   ),
-                ),
-                DesignerProfileBody(
-                  uiList: uiList,
-                  designer: designer,
-                  scrollOffset: this.scrollOffset,
-                ),
-              ],
+                  OverlayGradientFade<DesignerProfileStateProvider>(
+                    height: Dimensions.cardHeight * 0.6 +
+                        MediaQuery.of(context).padding.top,
+                    colors: [
+                      Colors.black.withOpacity(0.7),
+                      Colors.transparent,
+                    ],
+                  ),
+                  Positioned(
+                    top: MediaQuery.of(context).padding.top +
+                        AppDimensions.padding,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: AppDimensions.padding,
+                      ),
+                      child: ScreenAnimationBase<DesignerProfileStateProvider>(
+                        delay: 500,
+                        builder: (_, child, animation) {
+                          return Opacity(
+                            child: child,
+                            opacity: animation,
+                          );
+                        },
+                        child: BackButton(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            DesignerProfileAvatar(username: designer.username),
-            Positioned(
-              top: MediaQuery.of(context).padding.top,
-              child: Padding(
-                padding: EdgeInsets.all(AppDimensions.padding),
-                child: BackButton(
-                  color: Colors.white,
-                ),
+            SliverToBoxAdapter(
+              child: DesignerProfileBody(
+                uiList: uiList,
+                designer: designer,
               ),
             ),
           ],
@@ -100,3 +120,4 @@ class _DesignerProfileScreenState extends State<DesignerProfileScreen>
     );
   }
 }
+// DesignerProfileAvatar(username: designer.username),

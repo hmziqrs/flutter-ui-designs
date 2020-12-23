@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/configs/AppTheme.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
+import 'package:flutter_uis/configs/AppTheme.dart';
 
-import 'package:flutter_uis/utils/Utils.dart';
 import 'package:flutter_uis/statics/models/UIItem.dart';
-
-import 'package:simple_animations/simple_animations.dart';
+import 'package:flutter_uis/utils/Utils.dart';
 
 class UICard extends StatefulWidget {
   const UICard(
     this.item, {
+    this.onTap,
     this.padding,
     this.cardWidth,
     this.cardHeight,
@@ -22,6 +22,7 @@ class UICard extends StatefulWidget {
   final double padding;
   final double cardWidth;
   final double cardHeight;
+  final VoidCallback onTap;
   final double perspectiveScale;
 
   @override
@@ -144,15 +145,7 @@ class _UICardState extends State<UICard> with AnimationMixin {
                 splashColor: Colors.transparent,
                 onHover: this.onFocus,
                 onFocusChange: this.onFocus,
-                onTap: () => this.widget.isMini
-                    ? Navigator.of(context).pushReplacementNamed(
-                        "uiDetail",
-                        arguments: this.widget.item,
-                      )
-                    : Navigator.of(context).pushNamed(
-                        "uiDetail",
-                        arguments: this.widget.item,
-                      ),
+                onTap: this.widget.onTap,
                 child: Container(
                   child: Padding(
                     padding: EdgeInsets.all(this.widget.padding),

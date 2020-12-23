@@ -16,24 +16,15 @@ class DesignerProfileBody extends StatelessWidget {
   DesignerProfileBody({
     this.uiList,
     this.designer,
-    this.scrollOffset,
   });
 
   final UIDesigner designer;
-  final double scrollOffset;
   final List<UIItem> uiList;
 
   @override
   Widget build(BuildContext context) {
-    double safeOffset = -scrollOffset;
-
-    if (safeOffset > Dimensions.coverImageHeight) {
-      safeOffset = Dimensions.coverImageHeight;
-    }
-
     return Center(
       child: Container(
-        transform: Matrix4.identity()..translate(0.0, safeOffset),
         width: AppDimensions.maxContainerWidth,
         padding: EdgeInsets.all(AppDimensions.padding * 2),
         child: Column(
@@ -41,7 +32,6 @@ class DesignerProfileBody extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(
-                top: Dimensions.avatarSize / 2,
                 left: AppDimensions.padding,
                 right: AppDimensions.padding,
               ),
@@ -82,9 +72,6 @@ class DesignerProfileBody extends StatelessWidget {
             Padding(padding: EdgeInsets.all(AppDimensions.padding)),
             DesignerProfileMoreUIs(designer: designer, uiList: uiList),
             Utils.safePadding(context, "bottom"),
-            Padding(
-              padding: EdgeInsets.only(top: safeOffset < 0 ? 0 : safeOffset),
-            )
           ],
         ),
       ),
