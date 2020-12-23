@@ -23,6 +23,8 @@ if (flutterVersionName == null) {
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 def keystoreProperties = new Properties()
@@ -52,7 +54,6 @@ android {
         multiDexEnabled true
         versionName flutterVersionName
         versionCode flutterVersionCode.toInteger()
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
    signingConfigs {
@@ -79,11 +80,4 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
-
-
-apply plugin: 'io.fabric'
-apply plugin: 'com.google.gms.google-services'
