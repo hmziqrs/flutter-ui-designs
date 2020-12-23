@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/AppRoutes.dart';
-import 'package:flutter_uis/Widgets/Overlay/GradientFade.dart';
-import 'package:flutter_uis/Widgets/ScreenAnimation/Base.dart';
-import 'package:flutter_uis/Widgets/custom/CustomFlexibleSpaceBar.dart';
+import 'package:flutter_uis/widgets/Overlay/GradientFade.dart';
+import 'package:flutter_uis/widgets/ScreenAnimation/Base.dart';
+import 'package:flutter_uis/widgets/custom/CustomFlexibleSpaceBar.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
