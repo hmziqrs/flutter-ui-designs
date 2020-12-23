@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:provider/provider.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -18,27 +19,19 @@ import 'messages/keys.dart';
 import 'data.dart' as data;
 import 'Dimensions.dart';
 import 'TestKeys.dart';
+import 'Provider.dart';
 
-class HFDHomeScreen extends StatefulWidget {
-  HFDHomeScreen({Key key}) : super(key: key);
-
+class HFDHomeScreen extends StatelessWidget {
   @override
-  _HFDHomeScreenState createState() => _HFDHomeScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<HFDHomeState>(
+      create: (_) => HFDHomeState(),
+      child: _Body(),
+    );
+  }
 }
 
-class _HFDHomeScreenState extends State<HFDHomeScreen> {
-  int activeBottomNav = 0;
-
-  @override
-  initState() {
-    super.initState();
-  }
-
-  @override
-  dispose() {
-    super.dispose();
-  }
-
+class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
@@ -50,38 +43,40 @@ class _HFDHomeScreenState extends State<HFDHomeScreen> {
           primaryColor: theme.primary,
         ),
         fontFamily: 'Nunito',
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: this.activeBottomNav,
-          selectedItemColor: theme.primary,
-          unselectedItemColor: Colors.black,
-          onTap: (index) {
-            setState(() {
-              this.activeBottomNav = index;
-            });
-          },
-          items: data.bottomNavList
-              .map(
-                (item) => BottomNavigationBarItem(
-                  icon: Icon(item),
-                  title: Padding(
-                    padding: EdgeInsets.all(0),
-                    child: Container(
-                      width: 30,
-                      height: 4,
-                      transform: Matrix4.identity()..translate(0.0, 4.0),
-                      decoration: BoxDecoration(
-                        color: (data.bottomNavList[this.activeBottomNav] == item
-                            ? theme.primary
-                            : Colors.transparent),
-                        borderRadius: BorderRadius.circular(4.0),
+        bottomNavigationBar: Selector<HFDHomeState, int>(
+            selector: (_, state) => state.activeTab,
+            builder: (context, activeTab, child) {
+              return BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                currentIndex: activeTab,
+                selectedItemColor: theme.primary,
+                unselectedItemColor: Colors.black,
+                onTap: (index) {
+                  HFDHomeState.state(context).setActiveTab(index);
+                },
+                items: data.bottomNavList.map(
+                  (item) {
+                    return BottomNavigationBarItem(
+                      icon: Icon(item),
+                      title: Padding(
+                        padding: EdgeInsets.all(0),
+                        child: Container(
+                          width: 30,
+                          height: 4,
+                          transform: Matrix4.identity()..translate(0.0, 4.0),
+                          decoration: BoxDecoration(
+                            color: (data.bottomNavList[activeTab] == item
+                                ? theme.primary
+                                : Colors.transparent),
+                            borderRadius: BorderRadius.circular(4.0),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-              )
-              .toList(),
-        ),
+                    );
+                  },
+                ).toList(),
+              );
+            }),
         textStyle: Theme.of(context)
             .textTheme
             .bodyText1

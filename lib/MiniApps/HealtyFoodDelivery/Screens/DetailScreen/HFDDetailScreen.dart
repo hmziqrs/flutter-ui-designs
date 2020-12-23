@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -17,6 +18,7 @@ import 'widgets/HFDDetailScreenBackground.dart';
 import 'widgets/HFDDetailScreenHeader.dart';
 import 'widgets/HFDDetailScreenBody.dart';
 import 'Dimensions.dart';
+import 'Provider.dart';
 
 enum AnimProp {
   base,
@@ -24,34 +26,17 @@ enum AnimProp {
   bars,
 }
 
-class HFDDetailScreen extends StatefulWidget {
-  HFDDetailScreen({Key key}) : super(key: key);
-
+class HFDDetailScreen extends StatelessWidget {
   @override
-  _HFDDetailScreenState createState() => _HFDDetailScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<HFDDetailState>(
+      create: (_) => HFDDetailState(),
+      child: _Body(),
+    );
+  }
 }
 
-class _HFDDetailScreenState extends State<HFDDetailScreen>
-    with SingleTickerProviderStateMixin {
-  ScrollController scrollController = ScrollController();
-  double offset = 0.0;
-
-  @override
-  initState() {
-    this.scrollController.addListener(() {
-      setState(() {
-        this.offset = this.scrollController.offset;
-      });
-    });
-
-    super.initState();
-  }
-
-  @override
-  dispose() {
-    super.dispose();
-  }
-
+class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
@@ -90,7 +75,15 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
         baseDuration,
       );
 
-    return Container(
+    return NotificationListener<ScrollNotification>(
+      onNotification: (notification) {
+        if (notification is ScrollUpdateNotification) {
+          HFDDetailState.state(context).setOffset(
+            notification.metrics.pixels,
+          );
+        }
+        return true;
+      },
       child: Screen(
         theme: Theme.of(context).copyWith(
           accentColor: theme.primary,
@@ -99,19 +92,17 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
         textStyle: textStyle,
         fontFamily: 'Nunito',
         builder: (_) {
-          double safeOffset = this.offset;
-
-          if (safeOffset > Dimensions.coverImageHeight) {
-            safeOffset = Dimensions.coverImageHeight;
-          }
-
           return SingleChildScrollView(
-            controller: this.scrollController,
+            physics: BouncingScrollPhysics(),
             child: Stack(
               children: <Widget>[
-                HFDDetailScreenBackground(
-                  item: item,
-                  offset: this.offset,
+                Consumer<HFDDetailState>(
+                  builder: (context, state, child) {
+                    return HFDDetailScreenBackground(
+                      offset: state.offset,
+                      item: item,
+                    );
+                  },
                 ),
                 Container(
                   margin: EdgeInsets.only(
@@ -188,15 +179,16 @@ class _HFDDetailScreenState extends State<HFDDetailScreen>
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: safeOffset < 0 ? 0 : safeOffset,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: safeOffset < 0 ? 0 : safeOffset,
-                  ),
+                Consumer<HFDDetailState>(
+                  builder: (context, state, child) {
+                    final safeOffset =
+                        state.getSafe(Dimensions.coverImageHeight);
+                    return Padding(
+                      padding: EdgeInsets.only(
+                        top: safeOffset < 0 ? 0 : safeOffset,
+                      ),
+                    );
+                  },
                 ),
                 HFDDetailScreenHeader(),
               ],
