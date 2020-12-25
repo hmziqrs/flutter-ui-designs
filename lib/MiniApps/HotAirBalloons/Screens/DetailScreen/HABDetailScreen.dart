@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 import 'package:flutter_uis/configs/AppTheme.dart';
 
@@ -14,99 +15,35 @@ import 'widgets/HABDetailScreenFlightView.dart';
 
 import '../../data/flights.dart' as data;
 
+import 'Provider.dart';
 import 'Dimensions.dart';
 import 'TestKeys.dart';
 
-class HABDetailScreen extends StatefulWidget {
+class HABDetailScreen extends StatelessWidget {
   HABDetailScreen(this.index, {Key key}) : super(key: key);
   final int index;
 
-  _HABDetailScreenState createState() => _HABDetailScreenState();
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<HABDetailState>(
+      create: (_) => HABDetailState(
+        activePage: this.index,
+        pageController: PageController(
+          initialPage: this.index,
+          keepPage: true,
+        ),
+        backgroundController: ScrollController(),
+      ),
+      child: _HABDetailBody(),
+    );
+  }
 }
 
-class _HABDetailScreenState extends State<HABDetailScreen> {
-  PageController pageController;
-  ScrollController backgroundController;
-  int activePage;
-  bool rendered = false;
-
-  @override
-  void initState() {
-    this.activePage = widget.index;
-    this.backgroundController = ScrollController();
-    this.pageController = PageController(
-      initialPage: widget.index,
-      keepPage: true,
-    );
-
-    this.pageController.addListener(() {
-      this.syncParallaxBackground();
-      setState(() {});
-    });
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      this.syncParallaxBackground();
-      setState(() {
-        this.rendered = true;
-      });
-    });
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    this.pageController.dispose();
-    super.dispose();
-  }
-
-  void setActivePage(int index) {
-    setState(() {
-      this.activePage = index;
-    });
-  }
-
-  void syncParallaxBackground() {
-    int listSize = data.flights.length - 1;
-
-    final offset = this.pageController.offset;
-    final totalSize = UI.width * (listSize);
-    this.backgroundController.jumpTo(
-          Utils.rangeMap(
-            offset,
-            0.0,
-            totalSize,
-            0.0,
-            this.backgroundController.position.maxScrollExtent,
-          ),
-        );
-  }
-
-  void onKeyHandler(RawKeyEvent event) {
-    if (event.runtimeType == RawKeyDownEvent) {
-      return;
-    }
-
-    if (event.logicalKey == LogicalKeyboardKey.arrowRight &&
-        activePage < data.flights.length - 1) {
-      this.pageController.animateToPage(
-            this.activePage + 1,
-            duration: Duration(milliseconds: 280),
-            curve: Curves.easeIn,
-          );
-    }
-    if (event.logicalKey == LogicalKeyboardKey.arrowLeft && activePage > 0) {
-      this.pageController.animateToPage(
-            this.activePage - 1,
-            duration: Duration(milliseconds: 280),
-            curve: Curves.easeIn,
-          );
-    }
-  }
-
+class _HABDetailBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
+    final state = HABDetailState.state(context);
 
     final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
           fontFamily: 'Montserrat',
@@ -119,7 +56,7 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
     return RawKeyboardListener(
       autofocus: true,
       focusNode: FocusNode(),
-      onKey: this.onKeyHandler,
+      // onKey: this.onKeyHandler,
       child: Screen(
         theme: rootTheme,
         textStyle: fontStyle,
@@ -139,7 +76,7 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
                 child: ListView.builder(
                   itemCount: Dimensions.noOfImages,
                   scrollDirection: Axis.horizontal,
-                  controller: this.backgroundController,
+                  controller: state.backgroundController,
                   itemBuilder: (_, i) => Image.asset(
                     "assets/ma-hab/mountains.jpg",
                     fit: BoxFit.fitHeight,
@@ -148,17 +85,21 @@ class _HABDetailScreenState extends State<HABDetailScreen> {
               ),
             ),
             // Header
-            HABDetailScreenFlightHeader(
-              activePage: this.activePage,
-              pageViewOffset: this.rendered ? this.pageController?.offset : 0.0,
+            Consumer<HABDetailState>(
+              builder: (context, consumed, child) {
+                return HABDetailScreenFlightHeader(
+                  pageViewOffset: consumed.offset,
+                  activePage: consumed.activePage,
+                );
+              },
             ),
             // Horizontal PageView Builder
             PageView.builder(
               pageSnapping: true,
-              controller: this.pageController,
+              controller: state.pageController,
               itemCount: data.flights.length,
               scrollDirection: Axis.horizontal,
-              onPageChanged: this.setActivePage,
+              onPageChanged: state.setActivePage,
               key: Key(HABDetailScreenTestKeys.rootPageView),
               itemBuilder: (context, index) {
                 final flight = data.flights[index];

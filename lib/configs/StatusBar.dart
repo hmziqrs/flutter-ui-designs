@@ -25,7 +25,7 @@ final statusBarMap = {
   AppRoutes.habDetail: MODE,
 
   // Sky View
-  AppRoutes.skvHome: MODE,
+  AppRoutes.skvHome: DARK,
   AppRoutes.skvDetail: LIGHT_NAVDARK,
 
   AppRoutes.ascHome: LIGHT,
