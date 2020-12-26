@@ -248,5 +248,14 @@
   "DownloadScreen/open": "Open",
   "DownloadScreen/linkCopied": "link copied",
   "AboutDeveloperScreen/projectINVMovie1": "Implementation of complex movie booking UI concept featuring complex gesture based parallax animations",
-  "SKVHomeScreen/asteroids": "Asteroids"
+  "SKVHomeScreen/asteroids": "Asteroids",
+  "CCNHomeScreen/heading": "Looking for your favorite meal",
+  "CCNHomeScreen/tab1": "Home",
+  "CCNHomeScreen/tab2": "Meal Plan",
+  "CCNHomeScreen/tab3": "Subscription",
+  "CCNHomeScreen/tab4": "More",
+  "CCNHomeScreen/cat1": "Breakfast",
+  "CCNHomeScreen/cat2": "Lunch",
+  "CCNHomeScreen/cat3": "Dinner",
+  "CCNHomeScreen/cat4": "Snacks"
 }

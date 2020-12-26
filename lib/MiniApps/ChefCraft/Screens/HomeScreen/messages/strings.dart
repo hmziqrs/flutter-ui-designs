@@ -3,18 +3,19 @@ import 'dart:isolate';
 const String scope = 'CCNHomeScreen';
 
 const Map strings = {
-  '$scope/explore': "Explore",
-  '$scope/popular': "Popular",
+  '$scope/heading': "Looking for your favorite meal",
 
-  // Tabs
-  '$scope/planets': "Planets",
-  '$scope/stars': "Stars",
-  '$scope/satellites': "Satellites",
-  '$scope/asteroids': "Asteroids",
-  '$scope/comets': "Comets",
+  // categories
+  '$scope/cat1': "Breakfast",
+  '$scope/cat2': "Lunch",
+  '$scope/cat3': "Dinner",
+  '$scope/cat4': "Snacks",
 
-  // SearchBar
-  '$scope/searchBar': "Search Planets, Stars, Satellite",
+  // tabs
+  '$scope/tab1': "Home",
+  '$scope/tab2': "Meal Plan",
+  '$scope/tab3': "Subscription",
+  '$scope/tab4': "More",
 };
 
 main(List<String> args, SendPort port) {

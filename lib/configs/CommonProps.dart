@@ -15,6 +15,7 @@ abstract class CommonProps {
   static LinearGradient gradient1Cross;
 
   static BorderRadius buttonRadius;
+  static BorderRadius cardRadius;
   static BoxDecoration borderButton;
 
   static init() {
@@ -26,6 +27,7 @@ abstract class CommonProps {
 
   static initRadius() {
     buttonRadius = BorderRadius.circular(AppTheme.buttonRadius);
+    cardRadius = BorderRadius.circular(AppTheme.cartRadius);
   }
 
   static initButtons() {

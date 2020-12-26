@@ -7,6 +7,7 @@ class AppTheme {
   static BuildContext ctx;
 
   static double buttonRadius = 6.0;
+  static double cartRadius = 12.0;
 
   static Color cardBg;
   static Color background;

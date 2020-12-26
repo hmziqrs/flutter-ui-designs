@@ -81,6 +81,7 @@ flutter:
     - assets/langs/
 
     - assets/user/
+    - assets/food/
     - assets/thumbnails/
 
     - assets/ma-hfd/
