@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/Widgets/Buttons/AppButton.dart';
-import 'package:flutter_uis/Widgets/Overlay/GradientFade.dart';
-import 'package:flutter_uis/Widgets/ScreenAnimation/Base.dart';
+import 'package:flutter_uis/widgets/Buttons/AppButton.dart';
+import 'package:flutter_uis/widgets/Overlay/GradientFade.dart';
+import 'package:flutter_uis/widgets/ScreenAnimation/Base.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
