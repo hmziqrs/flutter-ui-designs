@@ -19,7 +19,7 @@ void main() async {
 
   final List<NavigatorObserver> observers = [];
 
-  if (Utils.isMobile()) {
+  if (Utils.isMobile() || (!Utils.isMobile() && !Utils.isDesktop())) {
     observers.add(FirebaseAnalyticsObserver(
       analytics: FirebaseAnalytics(),
     ));

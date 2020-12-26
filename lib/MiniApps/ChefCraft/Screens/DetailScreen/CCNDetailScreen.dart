@@ -93,10 +93,10 @@ class _Body extends StatelessWidget {
             height: MediaQuery.of(context).padding.top + space * 4,
           ),
           Positioned(
-            top: MediaQuery.of(context).padding.top,
+            top: MediaQuery.of(context).padding.top + AppDimensions.padding,
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: AppDimensions.padding,
+                horizontal: AppDimensions.padding * 2,
               ),
               child: ScreenAnimationBase<CCNDetailState>(
                 delay: 500,
@@ -124,9 +124,10 @@ class _Body extends StatelessWidget {
             height: MediaQuery.of(context).padding.top + space * 7,
           ),
           Positioned(
-            left: space,
-            right: space,
-            bottom: MediaQuery.of(context).padding.bottom,
+            left: space + MediaQuery.of(context).padding.left,
+            right: space + MediaQuery.of(context).padding.right,
+            bottom: MediaQuery.of(context).padding.bottom +
+                AppDimensions.padding * 2,
             child: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: AppDimensions.padding,

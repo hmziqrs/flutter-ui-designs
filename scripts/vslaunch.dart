@@ -42,7 +42,7 @@ void main(List<String> args) async {
     if (desktopCheck == -1) {
       obj["args"] = ['-t', 'lib/main.firebase.dart'];
       if (deviceType == webtype) {
-        obj["args"] = ['-t', 'lib/main.web.dart'];
+        obj["args"] = ['-t', 'lib/main.firebase.dart'];
       }
     }
     return obj;

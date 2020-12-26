@@ -170,6 +170,7 @@ class CCNHomeScreen extends StatelessWidget {
                   },
                 ),
               ),
+              SizedBox(height: space),
             ],
           ),
         ),
