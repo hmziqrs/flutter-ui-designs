@@ -5,14 +5,12 @@ import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/configs/CommonProps.dart';
 import 'package:flutter_uis/configs/TextStyles.dart';
 import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_uis/utils/Utils.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
 import '../../../HealtyFoodDelivery/Screens/HomeScreen/data.dart' as data;
 import 'messages/keys.dart';
 import 'Dimensions.dart';
-import 'TestKeys.dart';
 
 class CCNHomeScreen extends StatelessWidget {
   static final catAssets = [
@@ -125,6 +123,7 @@ class CCNHomeScreen extends StatelessWidget {
                   ),
                   itemBuilder: (context, index) {
                     final item = data.items[index];
+
                     return Container(
                       margin: EdgeInsets.symmetric(
                         horizontal: space / 2,
@@ -132,7 +131,11 @@ class CCNHomeScreen extends StatelessWidget {
                       width: Dimensions.largeBox,
                       height: Dimensions.largeBox,
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () => Navigator.pushNamed(
+                          context,
+                          "ccnDetail",
+                          arguments: item,
+                        ),
                         borderRadius: CommonProps.cardRadius,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -153,7 +156,7 @@ class CCNHomeScreen extends StatelessWidget {
                             ),
                             SizedBox(height: AppDimensions.padding * 0.5),
                             Text(
-                              'By Author',
+                              'By ${item.author}',
                               style: TextStyles.heading6.copyWith(
                                 color: AppTheme.subText3,
                               ),

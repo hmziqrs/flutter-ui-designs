@@ -2,6 +2,7 @@ class HFDFoodItem {
   HFDFoodItem({
     this.id,
     this.name,
+    this.author,
     this.description,
     this.testKey,
     this.price,
@@ -17,6 +18,7 @@ class HFDFoodItem {
 
   int id;
   String name;
+  String author;
   String description;
   String testKey;
   double price;

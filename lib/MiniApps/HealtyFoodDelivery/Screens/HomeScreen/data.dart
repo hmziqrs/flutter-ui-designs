@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/MiniApps/HealtyFoodDelivery/Screens/HomeScreen/messages/keys.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -72,9 +73,12 @@ final List<HFDFoodItem> items = List.generate(
   9,
   (index) {
     final r = Random();
+    final fake = Faker();
+
     return new HFDFoodItem(
       id: index,
-      name: "Healthy Food",
+      author: fake.person.name(),
+      name: fake.food.dish(),
       testKey: HFDHomeScreenTestKeys.foodItem1.replaceFirst(
         "Item1",
         "Item${index + 1}",

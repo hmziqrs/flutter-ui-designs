@@ -28,9 +28,9 @@ class Screen extends StatelessWidget {
   final Widget drawer;
   final ThemeData theme;
   final String debugLabel;
+  final String fontFamily;
   final TextStyle textStyle;
   final bool renderSettings;
-  final String fontFamily;
   final Widget bottomNavigationBar;
   final Color scaffoldBackgroundColor;
   final void Function(BuildContext) init;

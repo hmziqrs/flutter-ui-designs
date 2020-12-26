@@ -257,5 +257,12 @@
   "CCNHomeScreen/cat1": "Breakfast",
   "CCNHomeScreen/cat2": "Lunch",
   "CCNHomeScreen/cat3": "Dinner",
-  "CCNHomeScreen/cat4": "Snacks"
+  "CCNHomeScreen/cat4": "Snacks",
+  "CCNDetailScreen/calories": "Calories",
+  "CCNDetailScreen/Ingredients": "Ingredients",
+  "CCNDetailScreen/totalTime": "Total Time",
+  "CCNDetailScreen/ingredients": "Ingredients",
+  "CCNDetailScreen/about": "About Recipe",
+  "CCNDetailScreen/reviews": "Reviews",
+  "CCNDetailScreen/cook": "Cook Now"
 }
