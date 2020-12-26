@@ -30,6 +30,9 @@ import 'MiniApps/AsicsShoesConcept/Screens/HomeScreen/ASCHomeScreen.dart';
 
 import 'MiniApps/EggTimerConcept/Screens/HomeScreen/ETCHomeScreen.dart';
 
+//
+import 'MiniApps/ChefCraft/Screens/HomeScreen/CCNHomeScreen.dart';
+
 class AppNavigator extends StatelessWidget {
   AppNavigator(this.observers);
   final List<NavigatorObserver> observers;
@@ -147,6 +150,7 @@ class MaterialChild extends StatelessWidget {
         AppRoutes.ascHome: (_) => new ASCHomeScreen(),
 
         AppRoutes.etcHome: (_) => new ETCHomeScreen(),
+        AppRoutes.ccnHome: (_) => new CCNHomeScreen(),
       },
     );
   }

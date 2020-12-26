@@ -19,6 +19,7 @@ class UIDesigner {
   String twitter;
   String instagram;
   String linkedin;
+  String linkedinCompany;
 
   // Portfolio
   String website;
@@ -49,6 +50,7 @@ class UIDesigner {
     this.twitter,
     this.instagram,
     this.linkedin,
+    this.linkedinCompany,
     this.skype,
     this.dribbble,
     this.behance,

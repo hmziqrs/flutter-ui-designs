@@ -22,4 +22,5 @@ class AppRoutes {
   static final ascHome = "ascHome";
 
   static final etcHome = "etcHome";
+  static final ccnHome = "ccnHome";
 }

@@ -33,14 +33,14 @@
 
 > I did spent some time to integrate <a href="https://github.com/leoafarias/fvm">FVM</a> in `Windows` but I ran into some sorts of errors. After spending some hours to solve the issue & not getting any success I parked the idea on side as currently using master branch directly is much easier & stable solution.
 
-- Flutter master channel & Framework • revision `54c9441723`
+- Flutter master channel & Framework • revision `72aa23eb93`
   - Run `flutter --version` to check it
 - Dart VM version: 2.7.1
   - Run `dart --version` to check it
 - Follow these step to use correct revision version
   - Run `cd \$FLUTTER_HOME` (or the path where your flutter is installed)
   - Run `git checkout master`
-  - Run `git checkout 54c9441723`
+  - Run `git checkout 72aa23eb93`
 - To enable desktop & web builds run the relevant command
   - Run `flutter --enable-web`
   - Run `flutter --enable-macos-desktop`
@@ -61,8 +61,7 @@
   - Padding multiplier unit (I learned it with experience instead of using 1,2,3px should use multiplier. it helps maintain constancy around the app).
 - `Widgets/Screen.dart` This widget is necessary when building a new screen.
   - configure theme & font style.
-  - You can show popUps. `final screenKey = GlobalKey<ScreenState>();` & `this.screenKey.showPopUp(message: "your message");`
-  - It also receive a `belowBuilder` parameter which builds custom background (This enables us to build Parallax, Animated background & Any thing you could imagine in background). you can find an example in `Screens/Download/Download.dart`
+  - It also receive a `belowBuilders` parameter which builds custom background (This enables us to build Parallax, Animated background & Any thing you could imagine in background). you can find an example in `Screens/Download/Download.dart`
 - Code structure is pretty much simple.
   - Don't import anything form ScreenA in ScreenB.
   - Don't import anything from Screen/Widget in universal files.
@@ -73,16 +72,8 @@
 
 ## Scripts
 
-> Just run `npm run setup` once
-
-- `scripts/upload.js`
-  - `npm run upload platform` // platforms: [apk, windows, linux, macos]
-  - This script will upload the release build to your firebase storage
-  - I intended to integrate this script with github actions but the use account access key was visible on logs that's why I stick with github-release downloads.
-- `scripts/runAlliOS.js`
-  - Need work currently not a priority.
-- `vslaunch.js`
-  - `npm run vslaunch`
+- `vslaunch.dart`
+  - `dart sciprts/vslaunch.dart`
   - This script will make vscode configuration file with all of your connected devices.
   - You can live debug app on multiple devices at once from vs code.
   - Each device's debug logs on separate **DEBUG CONSOLE**.
