@@ -26,6 +26,11 @@ final base = ThemeData(
   backgroundColor: Colors.white,
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: Colors.white,
+  pageTransitionsTheme: PageTransitionsTheme(
+    builders: {
+      TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+    },
+  ),
 );
 
 final baseDark = ThemeData(
@@ -36,4 +41,9 @@ final baseDark = ThemeData(
   backgroundColor: darkBackground,
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: darkBackground,
+  pageTransitionsTheme: PageTransitionsTheme(
+    builders: {
+      TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+    },
+  ),
 );
