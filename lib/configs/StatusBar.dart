@@ -31,6 +31,9 @@ final statusBarMap = {
   AppRoutes.ascHome: LIGHT,
 
   AppRoutes.etcHome: MODE,
+
+  AppRoutes.ccnHome: MODE,
+  AppRoutes.ccnDetail: LIGHT_NAVDARK,
 };
 
 class StatusBarHandler {

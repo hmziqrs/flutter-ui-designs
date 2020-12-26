@@ -13,14 +13,28 @@ class OverlayGradientFade<T extends FadeScreenProvider>
   const OverlayGradientFade({
     Key key,
     this.delay,
+    this.fromTop = true,
+    this.top,
+    this.bottom,
+    this.left = 0,
+    this.right = 0,
     this.colors,
     this.duration,
+    this.end = Alignment.bottomCenter,
+    this.begin = Alignment.topCenter,
     @required this.height,
   }) : super(key: key);
 
   final int delay;
+  final bool fromTop;
+  final double top;
+  final double bottom;
+  final double left;
+  final double right;
   final int duration;
   final double height;
+  final Alignment begin;
+  final Alignment end;
   final List<Color> colors;
 
   @override
@@ -32,7 +46,8 @@ class OverlayGradientFade<T extends FadeScreenProvider>
         ];
 
     return Positioned(
-      top: 0,
+      top: this.top,
+      bottom: this.bottom,
       left: 0,
       right: 0,
       child: ScreenAnimationBase<T>(
@@ -40,7 +55,11 @@ class OverlayGradientFade<T extends FadeScreenProvider>
         duration: duration,
         builder: (_, child, animation) {
           return Transform.translate(
-            offset: Offset(0.0, -this.height + animation * this.height),
+            offset: Offset(
+                0.0,
+                !this.fromTop
+                    ? this.height + animation * -this.height
+                    : -this.height + animation * this.height),
             child: Opacity(
               opacity: animation,
               child: child,
@@ -51,8 +70,8 @@ class OverlayGradientFade<T extends FadeScreenProvider>
           height: this.height,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              end: Alignment.bottomCenter,
-              begin: Alignment.topCenter,
+              end: this.end,
+              begin: this.begin,
               stops: [0.15, 1.0],
               colors: colors,
             ),

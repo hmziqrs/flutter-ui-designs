@@ -106,7 +106,7 @@ class MaterialChild extends StatelessWidget {
       themeMode: state.themeMode,
       navigatorKey: this.navigatorKey,
       navigatorObservers: [AppNavigatorObserver()],
-      initialRoute: AppRoutes.ccnHome,
+      initialRoute: AppRoutes.home,
       onGenerateRoute: (settings) {
         final index = ["skvDetail", "hfdDetail"].indexOf(settings.name);
         if (index > -1) {

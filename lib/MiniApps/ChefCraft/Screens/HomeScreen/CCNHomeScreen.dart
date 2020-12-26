@@ -26,6 +26,8 @@ class CCNHomeScreen extends StatelessWidget {
     final space = AppDimensions.padding * 3;
     return Screen(
       child: SafeArea(
+        top: false,
+        bottom: false,
         child: Material(
           child: ListView(
             children: [

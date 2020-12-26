@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
+
+import 'package:flutter_uis/Providers/FadeScreen.dart';
 import 'package:provider/provider.dart';
 
-class CCNDetailState extends ChangeNotifier {
+class CCNDetailState extends FadeScreenProvider {
   static CCNDetailState state(BuildContext context, [listen = false]) =>
       Provider.of<CCNDetailState>(context, listen: listen);
 
