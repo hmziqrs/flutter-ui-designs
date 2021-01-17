@@ -1,4 +1,7 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/UI.dart';
+import 'package:flutter_uis/configs/Ads.dart';
 import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -58,46 +61,60 @@ class HomeBody extends StatelessWidget {
                 ),
               ),
               Padding(padding: EdgeInsets.all(AppDimensions.padding)),
-              ...data.list
-                  .map(
-                    (item) => Padding(
+              ...data.list.map(
+                (item) {
+                  if (item["key"] == 'ad') {
+                    if (!App.showAds) {
+                      return SizedBox();
+                    }
+                    return Padding(
                       padding: EdgeInsets.symmetric(
                         vertical: AppDimensions.padding * 1,
                       ),
-                      child: InkWell(
-                        key: Key(item["key"]),
-                        borderRadius: CommonProps.buttonRadius,
-                        onTap: () => this.onPress(context, item["path"]),
-                        child: Ink(
-                          padding: EdgeInsets.symmetric(
-                            vertical: AppDimensions.padding * 1.5,
-                          ),
-                          width: double.infinity,
-                          decoration: CommonProps.borderButton,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                item["icon"],
-                                size: 20,
-                                color: AppTheme.primary,
+                      child: AdmobBanner(
+                        adSize: AdmobBannerSize.SMART_BANNER(context),
+                        adUnitId: Ads.getHomeScreenBanner(),
+                      ),
+                    );
+                  }
+                  return Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: AppDimensions.padding * 1,
+                    ),
+                    child: InkWell(
+                      key: Key(item["key"]),
+                      borderRadius: CommonProps.buttonRadius,
+                      onTap: () => this.onPress(context, item["path"]),
+                      child: Ink(
+                        padding: EdgeInsets.symmetric(
+                          vertical: AppDimensions.padding * 1.5,
+                        ),
+                        width: double.infinity,
+                        decoration: CommonProps.borderButton,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              item["icon"],
+                              size: 20,
+                              color: AppTheme.primary,
+                            ),
+                            Container(width: AppDimensions.padding),
+                            Text(
+                              App.translate(
+                                item["label"],
+                                context,
                               ),
-                              Container(width: AppDimensions.padding),
-                              Text(
-                                App.translate(
-                                  item["label"],
-                                  context,
-                                ),
-                                style: TextStyles.body16
-                                    .copyWith(color: AppTheme.primary),
-                              ),
-                            ],
-                          ),
+                              style: TextStyles.body16
+                                  .copyWith(color: AppTheme.primary),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  )
-                  .toList(),
+                  );
+                },
+              ).toList(),
               HomeBuildVersion(),
             ],
           ),

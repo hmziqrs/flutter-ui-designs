@@ -128,6 +128,7 @@ class AboutDeveloperBody extends StatelessWidget {
             ),
             SizedBox(height: AppDimensions.padding * 1),
             AboutDeveloperMoreProjects(),
+            Utils.safePadding(context, 'bottom'),
           ],
         ),
       ),

@@ -12,6 +12,9 @@ final list = [
     "icon": MaterialCommunityIcons.compass_outline,
   },
   {
+    "key": "ad",
+  },
+  {
     "key": HomeScreenTestKeys.aboutBtn,
     "label": HomeScreenMessages.about,
     "path": "about",

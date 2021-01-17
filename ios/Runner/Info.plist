@@ -26,6 +26,12 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-9217632370383904~9670702548</string>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This identifier will be used to deliver personalized ads to you.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

@@ -1,6 +1,8 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_uis/configs/Ads.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:share/share.dart';
 
@@ -102,7 +104,18 @@ class DownloadBody extends StatelessWidget {
 
         AlphaBanner(text: App.translate(DownloadScreenMessages.desc, context)),
         SizedBox(height: AppDimensions.padding * 2),
-
+        if (App.showAds)
+          Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: AppDimensions.padding * 1,
+            ),
+            child: Center(
+              child: AdmobBanner(
+                adSize: AdmobBannerSize.SMART_BANNER(context),
+                adUnitId: Ads.getDownloadScreenBanner(),
+              ),
+            ),
+          ),
         //Mobile
         DownloadHeading(label: DownloadScreenMessages.mobile),
         ...data.mobileLinks.map((obj) => this.mapButton(context, obj)).toList(),
@@ -119,6 +132,7 @@ class DownloadBody extends StatelessWidget {
         DownloadHeading(label: DownloadScreenMessages.web),
         ...data.webLinks.map((obj) => this.mapButton(context, obj)).toList(),
         SizedBox(height: AppDimensions.padding * 2),
+        Utils.safePadding(context, "bottom"),
       ],
     );
   }

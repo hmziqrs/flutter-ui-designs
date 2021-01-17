@@ -1,4 +1,8 @@
+import 'dart:math';
+
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/Ads.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/AppTheme.dart';
@@ -16,12 +20,45 @@ import '../messages/keys.dart';
 import '../TestKeys.dart';
 import '../Provider.dart';
 
-class UIDetailContent extends StatelessWidget {
+class UIDetailContent extends StatefulWidget {
   UIDetailContent({
     @required this.uiItem,
   });
 
   final UIItem uiItem;
+
+  @override
+  _UIDetailContentState createState() => _UIDetailContentState();
+}
+
+class _UIDetailContentState extends State<UIDetailContent> {
+  AdmobInterstitial interstitialAd;
+
+  @override
+  void initState() {
+    this.interstitialAd = AdmobInterstitial(
+      adUnitId: Ads.getOpenAppVideo(),
+      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+        if (event == AdmobAdEvent.closed) {
+          Navigator.of(context).pushNamed(
+            this.widget.uiItem.miniApp,
+          );
+        }
+      },
+    )..load();
+    super.initState();
+  }
+
+  void openApp(BuildContext context) {
+    final r = Random().nextInt(4);
+    if (r == 2) {
+      this.interstitialAd.show();
+      return;
+    }
+    Navigator.of(context).pushNamed(
+      widget.uiItem.miniApp,
+    );
+  }
 
   @override
   build(BuildContext context) {
@@ -39,7 +76,7 @@ class UIDetailContent extends StatelessWidget {
                 horizontal: AppDimensions.padding,
               ),
               child: Text(
-                uiItem.name,
+                widget.uiItem.name,
                 style: TextStyle(
                   fontSize: 28.0,
                   fontWeight: FontWeight.w700,
@@ -51,21 +88,21 @@ class UIDetailContent extends StatelessWidget {
                 horizontal: AppDimensions.padding,
               ),
               child: Text(
-                "${App.translate(UIDetailScreenMessages.by, context)} ${uiItem.designer}",
+                "${App.translate(UIDetailScreenMessages.by, context)} ${widget.uiItem.designer}",
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 16.0,
                 ),
               ),
             ),
-            (uiItem.description != null
+            (widget.uiItem.description != null
                 ? Container(
                     margin: EdgeInsets.only(top: AppDimensions.padding),
                     padding: EdgeInsets.symmetric(
                       horizontal: AppDimensions.padding,
                     ),
                     child: Text(
-                      uiItem.description,
+                      widget.uiItem.description,
                       style: TextStyles.body26.copyWith(
                         color: AppTheme.subText2,
                       ),
@@ -82,9 +119,7 @@ class UIDetailContent extends StatelessWidget {
                     UIDetailScreenMessages.openApp,
                     context,
                   ),
-                  callback: () => Navigator.of(context).pushNamed(
-                    uiItem.miniApp,
-                  ),
+                  callback: () => this.openApp(context),
                 ),
                 UIDetailButton(
                   testKey: UIDetailScreenTestKeys.viewSource,
@@ -93,27 +128,27 @@ class UIDetailContent extends StatelessWidget {
                     context,
                   ),
                   callback: () async {
-                    await Utils.launchUrl(uiItem.link);
+                    await Utils.launchUrl(widget.uiItem.link);
                   },
                 ),
               ],
             ),
-            UIDetailSupport(uiItem: uiItem),
+            UIDetailSupport(uiItem: widget.uiItem),
             Padding(padding: EdgeInsets.all(AppDimensions.padding)),
-            UIDetailMoreUIs(uiItem: uiItem),
-            uiItem.designer != "anonymous"
+            UIDetailMoreUIs(uiItem: widget.uiItem),
+            widget.uiItem.designer != "anonymous"
                 ? UIDetailButton(
                     testKey: UIDetailScreenTestKeys.viewDesigner,
                     text:
-                        "${App.translate(UIDetailScreenMessages.contact)} ${uiItem.designer}",
+                        "${App.translate(UIDetailScreenMessages.contact)} ${widget.uiItem.designer}",
                     callback: () async {
                       final screenState = UIDetailStateProvider.state(context);
                       await screenState.hide();
                       await Navigator.of(context).pushNamed(
                         "designerProfile",
                         arguments: {
-                          "designer": uiItem.designer,
-                          "id": uiItem.id,
+                          "designer": widget.uiItem.designer,
+                          "id": widget.uiItem.id,
                         },
                       );
                       await screenState.dDelayD;

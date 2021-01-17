@@ -18,9 +18,10 @@ class DownloadScreen extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         Navigator.popUntil(
-            context,
-            (route) =>
-                route.settings.name != ModalRoute.of(context).settings.name);
+          context,
+          (route) =>
+              route.settings.name != ModalRoute.of(context).settings.name,
+        );
         return false;
       },
       child: Screen(

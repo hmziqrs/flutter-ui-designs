@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/AppRoutes.dart';
 import 'package:quiver/iterables.dart' as quiver;
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/statics/data/uiList.dart';
+import 'package:flutter_uis/AppRoutes.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 import 'package:flutter_uis/widgets/UICard/UICard.dart';

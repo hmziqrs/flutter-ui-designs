@@ -29,6 +29,7 @@ final base = ThemeData(
   pageTransitionsTheme: PageTransitionsTheme(
     builders: {
       TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
     },
   ),
 );
@@ -44,6 +45,7 @@ final baseDark = ThemeData(
   pageTransitionsTheme: PageTransitionsTheme(
     builders: {
       TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
     },
   ),
 );

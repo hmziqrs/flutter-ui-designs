@@ -86,29 +86,25 @@ class _UICardState extends State<UICard> with AnimationMixin {
   }
 
   backgroundImage(BorderRadius borderRadius) {
-    return Hero(
-      transitionOnUserGestures: true,
-      tag: "thumbnail-${this.widget.item.id}",
-      child: Container(
-        margin: EdgeInsets.all(this.widget.padding),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: ExactAssetImage(this.widget.item.thumbnail),
-            fit: BoxFit.cover,
-          ),
-          boxShadow: [this.boxShadow()],
-          borderRadius: borderRadius,
+    return Container(
+      margin: EdgeInsets.all(this.widget.padding),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: ExactAssetImage(this.widget.item.thumbnail),
+          fit: BoxFit.cover,
         ),
-        foregroundDecoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.08),
-          borderRadius: borderRadius,
-        ),
-        child: ClipRRect(
-          borderRadius: borderRadius,
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: this.linearGradient(),
-            ),
+        boxShadow: [this.boxShadow()],
+        borderRadius: borderRadius,
+      ),
+      foregroundDecoration: BoxDecoration(
+        color: Colors.black.withOpacity(0.08),
+        borderRadius: borderRadius,
+      ),
+      child: ClipRRect(
+        borderRadius: borderRadius,
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: this.linearGradient(),
           ),
         ),
       ),

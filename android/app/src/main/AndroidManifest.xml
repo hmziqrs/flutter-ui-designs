@@ -3,6 +3,9 @@
     <application
         android:label="Flutter UI Designs"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9217632370383904~9670702548"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
