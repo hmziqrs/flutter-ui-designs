@@ -51,7 +51,7 @@ class _UIDetailContentState extends State<UIDetailContent> {
 
   void openApp(BuildContext context) {
     final r = Random().nextInt(4);
-    if (r == 2) {
+    if (r == 2 && App.showAds) {
       this.interstitialAd.show();
       return;
     }

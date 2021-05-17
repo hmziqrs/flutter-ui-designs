@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart'
-    show debugDefaultTargetPlatformOverride;
 
 import 'package:flutter_uis/Navigator.dart';
-import 'package:flutter_uis/io/io.dart';
+import 'package:flutter_uis/configs/App.dart';
 
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -17,13 +15,11 @@ void mainTest(NavigatorObserver observer) {
 }
 
 void _main(NavigatorObserver observer) async {
+  App.showAds = false;
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox('app');
 
-  if (Platform.isWindows || Platform.isLinux) {
-    debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
-  }
   FlutterError.onError = (FlutterErrorDetails err) {};
   final List<NavigatorObserver> observers = [];
 

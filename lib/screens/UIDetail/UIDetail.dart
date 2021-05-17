@@ -40,6 +40,7 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final UIItem uiItem = ModalRoute.of(context).settings.arguments;
+
     return WillPopScope(
       onWillPop: () async {
         this.onClose(context);
