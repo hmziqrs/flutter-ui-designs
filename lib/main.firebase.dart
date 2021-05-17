@@ -15,7 +15,8 @@ import 'Navigator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (Utils.isMobile() && App.showAds) {
+  App.showAds = Utils.isMobile();
+  if (App.showAds) {
     Admob.initialize();
     if (Platform.isIOS) {
       await Admob.requestTrackingAuthorization();

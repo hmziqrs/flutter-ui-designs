@@ -22,7 +22,14 @@ class _HFDHomeScreenRestaurantCardState
     extends State<HFDHomeScreenRestaurantCard> with HoverWidgetMixin {
   @override
   Widget build(BuildContext context) {
-    final sigma = Utils.rangeMap(this.animation.value, 0.0, 1.0, 2.4, 0);
+    final sigma = Utils.rangeMap(
+          this.animation.value,
+          0.0,
+          1.0,
+          2.4,
+          0.01,
+        ) ??
+        0.1;
 
     return Padding(
       padding: EdgeInsets.all(AppDimensions.padding * 2),
