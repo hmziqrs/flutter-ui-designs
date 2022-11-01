@@ -76,7 +76,7 @@ main(List<String> args) async {
           continue;
         }
 
-        final String rootVal = defaultMessages[key]!;
+        final String? rootVal = defaultMessages[key];
         final String parsedVal = parsed[key];
         // if (langCode == "zh") {
         //   print("key $key");
@@ -85,7 +85,7 @@ main(List<String> args) async {
         //   print("rootVal $rootVal");
         // }
         if (((parsedVal.isEmpty)) &&
-            rootVal.isNotEmpty) {
+            rootVal != null) {
           newObj[key] = await translator.translate(
             newObj[key],
             from: "en",
