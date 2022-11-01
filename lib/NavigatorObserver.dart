@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/utils/UIUtils.dart';
-import 'package:supercharged/supercharged.dart';
-import 'package:flutter_uis/configs/StatusBar.dart';
 
 class AppNavigatorObserver extends RouteObserver<PageRoute<dynamic>> {
   void _sendScreenView(PageRoute<dynamic> route) async {
@@ -16,7 +13,7 @@ class AppNavigatorObserver extends RouteObserver<PageRoute<dynamic>> {
   }
 
   @override
-  void didPush(Route<dynamic> route, Route<dynamic> previousRoute) {
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     // print('super.didPush');
     super.didPush(route, previousRoute);
     if (route is PageRoute) {
@@ -25,7 +22,7 @@ class AppNavigatorObserver extends RouteObserver<PageRoute<dynamic>> {
   }
 
   @override
-  void didReplace({Route<dynamic> newRoute, Route<dynamic> oldRoute}) {
+  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
     // print('super.didReplace');
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
     if (newRoute is PageRoute) {
@@ -34,7 +31,7 @@ class AppNavigatorObserver extends RouteObserver<PageRoute<dynamic>> {
   }
 
   @override
-  void didPop(Route<dynamic> route, Route<dynamic> previousRoute) {
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     // print('super.didPop');
     super.didPop(route, previousRoute);
     if (previousRoute is PageRoute && route is PageRoute) {

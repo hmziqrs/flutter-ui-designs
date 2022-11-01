@@ -7,9 +7,9 @@ import 'CommonProps.dart';
 import 'AppTheme.dart';
 
 class App {
-  static BuildContext ctx;
-  static bool isLtr;
-  static bool showAds = true;
+  static late BuildContext ctx;
+  static late bool isLtr;
+  static late bool showAds = true;
 
   static init(BuildContext context) {
     AppDimensions.init(context);
@@ -20,7 +20,7 @@ class App {
     isLtr = Directionality.of(context) == TextDirection.ltr;
   }
 
-  static translate(String key, [BuildContext ctx]) {
+  static translate(String key, [BuildContext? ctx]) {
     final base = AppLocalizations.of(ctx ?? App.ctx);
     if (base == null) {
       return key;
@@ -28,6 +28,6 @@ class App {
     return base.translate(key) ?? key;
   }
 
-  static bool isDark([BuildContext context]) =>
+  static bool isDark([BuildContext? context]) =>
       Theme.of(context ?? App.ctx).brightness == Brightness.dark;
 }

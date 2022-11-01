@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_uis/Navigator.dart';
 import 'package:flutter_uis/configs/App.dart';
 
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main(List<String> args) {
@@ -14,7 +13,7 @@ void mainTest(NavigatorObserver observer) {
   _main(observer);
 }
 
-void _main(NavigatorObserver observer) async {
+void _main(NavigatorObserver? observer) async {
   App.showAds = false;
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();

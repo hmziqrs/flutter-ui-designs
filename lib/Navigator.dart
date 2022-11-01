@@ -45,11 +45,12 @@ class AppNavigator extends StatelessWidget {
       autofocus: true,
       focusNode: FocusNode(),
       onKey: (RawKeyEvent event) {
+        final canPop = this.navigator.currentState?.canPop() ?? false;
         if (event.runtimeType == RawKeyDownEvent &&
             event.isAltPressed &&
             event.logicalKey == LogicalKeyboardKey.backspace &&
-            this.navigator.currentState.canPop()) {
-          this.navigator.currentState.pop();
+            canPop) {
+          this.navigator.currentState?.pop();
         }
       },
       child: MultiProvider(
@@ -72,9 +73,9 @@ class AppNavigator extends StatelessWidget {
 
 class MaterialChild extends StatelessWidget {
   MaterialChild({
-    @required this.navigatorKey,
-    @required this.observers,
-    @required this.state,
+    required this.navigatorKey,
+    required this.observers,
+    required this.state,
   });
   final List<NavigatorObserver> observers;
   final GlobalKey<NavigatorState> navigatorKey;
@@ -108,7 +109,7 @@ class MaterialChild extends StatelessWidget {
       navigatorObservers: [AppNavigatorObserver()],
       initialRoute: AppRoutes.home,
       onGenerateRoute: (settings) {
-        final index = ["skvDetail", "hfdDetail"].indexOf(settings.name);
+        final index = ["skvDetail", "hfdDetail"].indexOf(settings.name ?? '');
         if (index > -1) {
           return PageRouteBuilder(
             settings: settings,
@@ -116,7 +117,7 @@ class MaterialChild extends StatelessWidget {
               if (index == 1) {
                 return HFDDetailScreen();
               }
-              return SKVDetailScreen(settings.arguments);
+              return SKVDetailScreen((settings.arguments as int? ?? 0));
             },
             transitionsBuilder: (_, anim, __, child) {
               return FadeTransition(opacity: anim, child: child);
@@ -144,7 +145,8 @@ class MaterialChild extends StatelessWidget {
         // Sky View
         AppRoutes.skvHome: (_) => new SKVHomeScreen(),
         AppRoutes.skvDetail: (context) {
-          final int index = ModalRoute.of(context).settings.arguments;
+          final route = ModalRoute.of(context);
+          final int index = (route?.settings.arguments as int?) ?? 0;
           return SKVDetailScreen(index);
         },
 

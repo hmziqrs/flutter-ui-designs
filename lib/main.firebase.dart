@@ -3,9 +3,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hive/hive.dart';
 import 'package:universal_io/io.dart';
 
 import 'utils/UIUtils.dart';
@@ -31,7 +29,7 @@ void main() async {
 
   if (Utils.isMobile() || (!Utils.isMobile() && !Utils.isDesktop())) {
     observers.add(FirebaseAnalyticsObserver(
-      analytics: FirebaseAnalytics(),
+      analytics: FirebaseAnalytics.instance,
     ));
   }
 

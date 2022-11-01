@@ -4,29 +4,29 @@ import 'package:flutter/widgets.dart';
 import 'DeviceType.dart';
 
 class UI {
-  static MediaQueryData _mediaQueryData;
-  static double width;
-  static double height;
-  static double horizontal;
-  static double vertical;
+  static late MediaQueryData _mediaQueryData;
+  static late double width;
+  static late double height;
+  static late double horizontal;
+  static late double vertical;
 
-  static double _safeAreaHorizontal;
-  static double _safeAreaVertical;
-  static double safeWidth;
-  static double safeHeight;
+  static late double _safeAreaHorizontal;
+  static late double _safeAreaVertical;
+  static late double safeWidth;
+  static late double safeHeight;
 
-  static bool isTablet;
-  static double diagonal;
+  static late bool isTablet;
+  static late double diagonal;
 
-  static bool xxs;
-  static bool xs;
-  static bool sm;
-  static bool md;
-  static bool xmd;
-  static bool lg;
-  static bool xl;
-  static bool xlg;
-  static bool xxlg;
+  static late bool xxs;
+  static late bool xs;
+  static late bool sm;
+  static late bool md;
+  static late bool xmd;
+  static late bool lg;
+  static late bool xl;
+  static late bool xlg;
+  static late bool xxlg;
 
   static void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);

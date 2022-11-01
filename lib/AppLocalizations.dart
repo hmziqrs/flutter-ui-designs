@@ -15,11 +15,11 @@ class AppLocalizations {
   static LocalizationsDelegate<AppLocalizations> getDelegate() =>
       _AppLocalizationsDelegate();
 
-  static AppLocalizations of(BuildContext context) {
+  static AppLocalizations? of(BuildContext context) {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  Map<String, String> _localizedStrings;
+  late Map<String, String> _localizedStrings;
 
   Future<bool> load() async {
     final ByteData file =
@@ -35,7 +35,7 @@ class AppLocalizations {
   }
 
   // This method will be called from every widget which needs a localized text
-  String translate(String key) {
+  String? translate(String key) {
     return _localizedStrings[key];
   }
 }
