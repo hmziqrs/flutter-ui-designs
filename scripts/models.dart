@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import './utils.dart';
+import 'package:collection/collection.dart';
 
 main(List<String> args) async {
   print("\n\n\nGENERATE BUNDLED JSON FOR YOUR LOCALIZE MESSAGES");
@@ -13,9 +14,8 @@ main(List<String> args) async {
       if (g) {
         return false;
       }
-      final listCheck = rawList.firstWhere(
+      final listCheck = rawList.firstWhereOrNull(
         (sub) => sub.path == element.path.replaceFirst(".dart", ".g.dart"),
-        orElse: () => null,
       );
       return listCheck == null;
     },
@@ -25,7 +25,7 @@ main(List<String> args) async {
     final file = File(item.path);
     final strings = file.readAsLinesSync();
     final List<String> newFile = [];
-    String className;
+    late String className;
     newFile.add("import 'package:json_annotation/json_annotation.dart';");
     for (int index = 0; index < strings.length; index++) {
       final line = strings[index];

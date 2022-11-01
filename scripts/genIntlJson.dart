@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
+import 'package:glob/list_local_fs.dart';
 import 'package:glob/glob.dart';
 import 'package:translator/translator.dart';
 
@@ -11,7 +12,7 @@ main(List<String> args) async {
   final dartFile = new Glob("lib/**/**.dart");
   final translator = new GoogleTranslator();
 
-  final List<FileSystemEntity> files = dartFile.listSync();
+  final files = dartFile.listSync();
   final Map<String, String> defaultMessages = {};
   final Map<String, Map<String, String>> defaultLocaleMessages = {};
   final JsonEncoder jsonEncoder = JsonEncoder.withIndent('  ');
@@ -20,7 +21,8 @@ main(List<String> args) async {
     if (entity.path.contains(normalize("/messages/strings.dart"))) {
       ReceivePort port = new ReceivePort();
       final raw = await getMessagesViaIsolate(entity, port);
-      final Map messages = raw["strings"].cast<String, String>();
+      final Map<String, String> messages =
+          raw["strings"].cast<String, String>();
 
       final localesDirectory = new Directory(
         entity.path.replaceFirst(r'strings.dart', r'locales').toString(),
@@ -37,11 +39,12 @@ main(List<String> args) async {
             localeFile,
             new ReceivePort(),
           );
-          final Map localeMessages = localeRaw.cast<String, String>();
+          final Map<String, String> localeMessages =
+              localeRaw.cast<String, String>();
           if (defaultLocaleMessages[localeCode] == null) {
             defaultLocaleMessages[localeCode] = {};
           }
-          defaultLocaleMessages[localeCode].addAll(localeMessages);
+          defaultLocaleMessages[localeCode]!.addAll(localeMessages);
         }
       }
 
@@ -73,7 +76,7 @@ main(List<String> args) async {
           continue;
         }
 
-        final String rootVal = defaultMessages[key];
+        final String rootVal = defaultMessages[key]!;
         final String parsedVal = parsed[key];
         // if (langCode == "zh") {
         //   print("key $key");
@@ -81,7 +84,7 @@ main(List<String> args) async {
         //       "parsedVal ${(parsedVal == null || (parsedVal != null && parsedVal.isEmpty))} $parsedVal");
         //   print("rootVal $rootVal");
         // }
-        if ((parsedVal == null || (parsedVal != null && parsedVal.isEmpty)) &&
+        if (((parsedVal.isEmpty)) &&
             rootVal.isNotEmpty) {
           newObj[key] = await translator.translate(
             newObj[key],
@@ -104,7 +107,7 @@ Future<Map> getMessagesViaIsolate(
 ) async {
   await Isolate.spawnUri(
     Uri.parse(entity.resolveSymbolicLinksSync().replaceAll("\\", "/")),
-    null,
+    [],
     port.sendPort,
   );
   final Map messages = await port.first;

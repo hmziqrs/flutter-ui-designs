@@ -42,7 +42,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
- 
+
 
   # Firebase
   firebase_core: 2.1.1
@@ -79,10 +79,10 @@ dev_dependencies:
   # flutter_driver:
   #   sdk: flutter
   # test: any
-  io: 1.0.0
-  glob: 2.0.1
-  yaml: 3.1.0
-  translator: 0.1.6+1
+  io: 1.0.3
+  glob: 2.1.0
+  yaml: 3.1.1
+  translator: 0.1.7
 
 flutter:
   uses-material-design: true

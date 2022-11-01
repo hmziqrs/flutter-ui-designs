@@ -35,7 +35,7 @@ main(List<String> args) async {
       "-t",
       targetFile,
       "-d",
-      deviceMap[platform],
+      deviceMap[platform]!,
     ],
     runInShell: Platform.isWindows,
   );
