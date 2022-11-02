@@ -1,21 +1,21 @@
 class UIItem {
   int id;
   String name;
-  String description;
-  String designer;
-  String source;
-  String miniApp;
-  String link;
-  String thumbnail;
-  String testKey;
+  String? description;
+  String? designer;
+  String? source;
+  String? miniApp;
+  String? link;
+  String? thumbnail;
+  String? testKey;
   bool tabletSupport;
   bool webSupport;
   bool landscapeSupport;
   bool desktopSupport;
 
   UIItem({
-    this.id,
-    this.name,
+    required this.id,
+    required this.name,
     this.description,
     this.designer,
     this.source,

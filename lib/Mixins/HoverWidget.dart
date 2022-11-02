@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/widgets.dart';
 export 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 @optionalTypeArgs
 mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
     implements TickerProvider {
-  Ticker _ticker;
-  Animation<double> animation;
+  late Ticker _ticker;
+  late Animation<double> animation;
   bool isFocused = false;
   bool forceFocus = false;
 
-  AnimationController controller;
+  late AnimationController controller;
 
   @override
   void initState() {
@@ -59,20 +58,20 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
 
   Widget buildInkWell({
     required Widget child,
-    GestureTapCallback onTap,
-    GestureTapCallback onDoubleTap,
-    GestureLongPressCallback onLongPress,
-    GestureTapDownCallback onTapDown,
-    GestureTapCancelCallback onTapCancel,
-    ValueChanged<bool> onHighlightChanged,
-    ValueChanged<bool> onHover,
-    ValueChanged<bool> onFocusChange,
-    Color focusColor,
-    Color hoverColor,
-    Color highlightColor,
-    Color splashColor,
+    GestureTapCallback? onTap,
+    GestureTapCallback? onDoubleTap,
+    GestureLongPressCallback? onLongPress,
+    GestureTapDownCallback? onTapDown,
+    GestureTapCancelCallback? onTapCancel,
+    ValueChanged<bool>? onHighlightChanged,
+    ValueChanged<bool>? onHover,
+    ValueChanged<bool>? onFocusChange,
+    Color? focusColor,
+    Color? hoverColor,
+    Color? highlightColor,
+    Color? splashColor,
     bool isButton = false,
-    Key key,
+    Key? key,
   }) {
     return InkWell(
       key: key,
@@ -86,23 +85,33 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
       splashColor: isButton ? null : Colors.transparent,
       onTap: () {
         this.removeForceFocus();
-        onTap();
+        if (onTap != null) {
+          onTap();
+        }
       },
       onTapDown: (value) {
         this.addForceFocus();
-        onTapDown(value);
+        if (onTapDown != null) {
+          onTapDown(value);
+        }
       },
       onTapCancel: () {
         this.removeForceFocus();
-        onTapCancel();
+        if (onTapCancel != null) {
+          onTapCancel();
+        }
       },
       onHover: (value) {
         this.onFocus(value);
-        onHover(value);
+        if (onHover != null) {
+          onHover(value);
+        }
       },
       onFocusChange: (value) {
         this.onFocus(value);
-        onFocusChange(value);
+        if (onFocusChange != null) {
+          onFocusChange(value);
+        }
       },
     );
   }
@@ -133,7 +142,7 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
           'be disposed before calling super.dispose(). Tickers used by AnimationControllers '
           'should be disposed by calling dispose() on the AnimationController itself. '
           'Otherwise, the ticker will leak.\n'
-          'The offending ticker was: ${_ticker.toString(debugIncludeStack: true)}');
+          'The offending ticker was: ${_ticker.toString()}');
     }());
     super.dispose();
   }
@@ -159,6 +168,8 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
     properties.add(DiagnosticsProperty<Ticker>('ticker', _ticker,
         description: tickerDescription,
         showSeparator: false,
-        defaultValue: null));
+        defaultValue: null,
+      ),
+    );
   }
 }

@@ -4,44 +4,44 @@ class UIDesigner {
   String username;
 
   // Personal Info
-  String avatar;
+  String? avatar;
   String cover;
   String name;
-  String description;
+  String? description;
 
   // Location
-  String job;
-  String address;
-  String location;
+  String? job;
+  String? address;
+  String? location;
 
   // Soical Media
-  String facebook;
-  String twitter;
-  String instagram;
-  String linkedin;
-  String linkedinCompany;
+  String? facebook;
+  String? twitter;
+  String? instagram;
+  String? linkedin;
+  String? linkedinCompany;
 
   // Portfolio
-  String website;
-  String dribbble;
-  String behance;
+  String? website;
+  String? dribbble;
+  String? behance;
 
   // Freelance
-  String fiverr;
-  String upwork;
-  String upworkCompany;
+  String? fiverr;
+  String? upwork;
+  String? upworkCompany;
 
   // Direct
-  String skype;
+  String? skype;
   List<String> emails;
   List<String> phone;
 
   UIDesigner({
-    this.id,
-    this.username,
+    required this.id,
+    required this.username,
     this.avatar,
     this.cover = "assets/user/cover.jpg",
-    this.name,
+    required this.name,
     this.description,
     this.address,
     this.job,
@@ -58,7 +58,7 @@ class UIDesigner {
     this.fiverr,
     this.upwork,
     this.upworkCompany,
-    this.emails,
-    this.phone,
+    this.emails = const [],
+    this.phone = const [],
   });
 }
