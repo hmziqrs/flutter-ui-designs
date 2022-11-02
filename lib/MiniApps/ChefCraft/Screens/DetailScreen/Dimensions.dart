@@ -4,7 +4,7 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
 
 class Dimensions {
-  static double coverImage;
+  static late double coverImage;
 
   static init(BuildContext context) {
     App.init(context);

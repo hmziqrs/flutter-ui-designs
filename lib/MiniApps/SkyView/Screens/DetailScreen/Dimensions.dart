@@ -4,10 +4,10 @@ import 'package:flutter_uis/UI.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
 class Dimensions {
-  static double planetSize;
-  static double orbitInitialOffset;
-  static double starBgBottomSpace;
-  static double starBgTopSpace;
+  static late double planetSize;
+  static late double orbitInitialOffset;
+  static late double starBgBottomSpace;
+  static late double starBgTopSpace;
 
   static init(BuildContext context) {
     AppDimensions.init(context);

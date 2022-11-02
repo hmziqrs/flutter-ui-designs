@@ -5,7 +5,7 @@ import 'package:flutter_uis/configs/App.dart';
 import 'Theme.dart';
 
 class Dimensions {
-  static double radius;
+  static late double radius;
 
   static init(BuildContext context) {
     App.init(context);

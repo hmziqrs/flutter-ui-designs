@@ -4,18 +4,18 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
 
 class Dimensions {
-  static double chipsContainerWidth;
+  static late double chipsContainerWidth;
 
-  static double itemBaseWidth;
-  static double itemBaseHeight;
-  static double itemContentWidth;
-  static double itemDiscountSize;
+  static late double itemBaseWidth;
+  static late double itemBaseHeight;
+  static late double itemContentWidth;
+  static late double itemDiscountSize;
 
-  static double categoryBaseSize;
+  static late double categoryBaseSize;
 
-  static double restaurantContainerHeight;
-  static double restaurantCardBaseWidth;
-  // static double chipsContainerWidth;
+  static late double restaurantContainerHeight;
+  static late double restaurantCardBaseWidth;
+  // static late double chipsContainerWidth;
 
   static init(BuildContext context) {
     App.init(context);

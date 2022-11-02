@@ -5,7 +5,7 @@ import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
 class Dimensions {
-  static double flightCardWidth;
+  static late double flightCardWidth;
 
   static Matrix4 shapeTransform;
 

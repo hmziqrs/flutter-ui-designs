@@ -5,15 +5,15 @@ import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/UI.dart';
 
 class Dimensions {
-  static double searchBarHeight;
+  static late double searchBarHeight;
 
-  static double carouselHeight;
-  static double carouselCardWidth;
-  static double carouselPlanetSize;
-  static double carouselAddIconSize;
+  static late double carouselHeight;
+  static late double carouselCardWidth;
+  static late double carouselPlanetSize;
+  static late double carouselAddIconSize;
 
-  static double storyImageHeight;
-  static double storyBaseWidth;
+  static late double storyImageHeight;
+  static late double storyBaseWidth;
 
   static init(BuildContext context) {
     App.init(context);
