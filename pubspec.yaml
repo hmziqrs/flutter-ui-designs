@@ -67,7 +67,7 @@ dependencies:
   tinycolor2: 3.0.1
   supercharged: 2.1.1
   dotted_border: 2.0.0+3
-  fluttery_dart2: 0.0.9
+  # fluttery_dart2: 0.0.9
   stretchy_header: 2.0.0
   touchable_opacity: 1.2.0
   page_transition: 2.0.9

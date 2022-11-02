@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:fluttery_dart2/gestures.dart';
+// import 'package:fluttery_dart2/gestures.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -11,6 +11,7 @@ import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
 import '../../models/ETCTimer.dart';
 import 'messages/keys.dart';
+import 'gestures.dart';
 import 'TestKeys.dart';
 import 'Theme.dart';
 
