@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
 
@@ -21,12 +22,12 @@ class SKVDetailScreenOrbit extends StatelessWidget {
     final tween = Tween(begin: Dimensions.orbitInitialOffset, end: 0.0);
     return this.pageRendered
         ? this.renderContent(0.0)
-        : PlayAnimation(
+        : PlayAnimationBuilder(
             duration: Duration(milliseconds: 800),
             tween: tween,
             delay: Duration(milliseconds: 400),
             curve: Curves.fastLinearToSlowEaseIn,
-            builder: (ctx, child, animation) => this.renderContent(animation),
+            builder: (ctx, animation, child) => this.renderContent(animation),
           );
   }
 

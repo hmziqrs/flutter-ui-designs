@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:flutter_uis/configs/AppDimensions.dart';
-import 'package:flutter_uis/utils/Utils.dart';
 import 'package:flutter_uis/UI.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
@@ -21,7 +18,7 @@ import 'widgets/SKVDetailScreenOrbit.dart';
 
 class SKVDetailScreen extends StatelessWidget {
   final int index;
-  SKVDetailScreen(this.index, {Key key}) : super(key: key);
+  SKVDetailScreen(this.index, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,13 +67,14 @@ class _Body extends StatelessWidget {
     UI.init(context);
     Dimensions.init(context);
 
-    final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
+    final fontStyle = Theme.of(context).textTheme.bodyText1!.copyWith(
           fontFamily: 'Montserrat',
         );
 
     final rootTheme = Theme.of(context).copyWith(
       primaryColor: theme.secondary,
-      accentColor: theme.secondary,
+      colorScheme:
+          ColorScheme.fromSwatch().copyWith(secondary: theme.secondary),
     );
 
     final state = SKVDetailState.state(context);

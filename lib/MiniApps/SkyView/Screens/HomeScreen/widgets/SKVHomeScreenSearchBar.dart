@@ -45,7 +45,7 @@ class SKVHomeScreenSearchBar extends StatelessWidget {
           Flexible(
             child: TextField(
               cursorColor: theme.primary,
-              style: baseTheme.textTheme.bodyText1.copyWith(
+              style: baseTheme.textTheme.bodyText1!.copyWith(
                 fontWeight: FontWeight.w500,
                 fontSize: 8 + AppDimensions.ratio * 4,
               ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_uis/UI.dart';
 import 'package:provider/provider.dart';
 import 'package:supercharged/supercharged.dart';
@@ -12,7 +11,17 @@ class SKVDetailState extends ChangeNotifier {
   static SKVDetailState state(BuildContext context, [listen = false]) =>
       Provider.of<SKVDetailState>(context, listen: listen);
 
-  SKVDetailState({this.activePage, this.starsController, pageController}) {
+  int activePage;
+  bool pageRendered = false;
+  late PageController pageController;
+  ScrollController starsController;
+  GlobalKey starsWidgetKey = GlobalKey();
+
+  SKVDetailState({
+    required this.activePage,
+    required this.starsController,
+    required PageController pageController,
+  }) {
     this.pageController = pageController;
     this.pageController.addListener(() {
       final __offset = this.pageController.offset;
@@ -22,7 +31,7 @@ class SKVDetailState extends ChangeNotifier {
       this.setOffset(__offset);
 
       if (starsWidget != null) {
-        final starsOffset = starsWidget.size.width - screenWidth;
+        final starsOffset = starsWidget.size!.width - screenWidth;
         this.starsController.jumpTo(
               Utils.rangeMap(
                 __offset,
@@ -43,11 +52,7 @@ class SKVDetailState extends ChangeNotifier {
     this.notifyListeners();
   }
 
-  int activePage;
-  bool pageRendered = false;
-  PageController pageController;
-  ScrollController starsController;
-  GlobalKey starsWidgetKey = GlobalKey();
+
 
   setActivePage(int index) {
     this.activePage = index;

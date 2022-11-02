@@ -17,13 +17,13 @@ class HABHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Dimensions.init(context);
 
-    final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
+    final fontStyle = Theme.of(context).textTheme.bodyText1!.copyWith(
           fontFamily: 'Montserrat',
         );
 
     final rootTheme = Theme.of(context).copyWith(
       primaryColor: theme.primary,
-      accentColor: theme.primary,
+      colorScheme: ColorScheme.fromSwatch().copyWith(secondary: theme.primary),
     );
 
     return Screen(

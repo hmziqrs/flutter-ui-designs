@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 import 'package:flutter_uis/UI.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -59,10 +60,10 @@ class SKVDetailScreenPlanet extends StatelessWidget {
     final sin = initOffSetX + (math.sin(angle * rotateRatio) * radiusX);
     final cos = initOffSetY + (math.cos(angle * rotateRatio) * -radiusY);
 
-    CustomAnimationControl control = CustomAnimationControl.LOOP;
+    Control control = Control.loop;
 
     if (widthOffset > 20 || widthOffset < -20) {
-      control = CustomAnimationControl.STOP;
+      control = Control.stop;
     }
 
     return Opacity(
@@ -80,7 +81,7 @@ class SKVDetailScreenPlanet extends StatelessWidget {
             width: Dimensions.planetSize,
             height: Dimensions.planetSize,
             alignment: Alignment.bottomCenter,
-            child: CustomAnimation(
+            child: CustomAnimationBuilder(
               control: control,
               delay: Duration(milliseconds: this.pageRendered ? 800 : 1400),
               tween: Tween(begin: 0.0, end: math.pi * 2),
@@ -94,7 +95,11 @@ class SKVDetailScreenPlanet extends StatelessWidget {
                   ),
                 ),
               ),
-              builder: (ctx, child, rotation) {
+              builder: (
+                ctx,
+                rotation,
+                child,
+              ) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(Dimensions.planetSize),
                   child: Container(
@@ -130,11 +135,11 @@ class SKVDetailScreenPlanet extends StatelessWidget {
     return Positioned.fill(
       left: 0,
       right: 0,
-      child: CustomAnimation(
+      child: CustomAnimationBuilder(
         delay: Duration(milliseconds: 410),
         tween: Tween(begin: 0.0, end: 1.0),
         duration: Duration(milliseconds: 500),
-        builder: (ctx, child, animation) => this.renderContent(animation),
+        builder: (ctx, animation, child) => this.renderContent(animation),
       ),
     );
   }

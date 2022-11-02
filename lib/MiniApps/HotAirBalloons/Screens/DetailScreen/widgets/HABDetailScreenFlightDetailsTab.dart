@@ -89,16 +89,23 @@ class HABDetailScreenFlightDetailsTab extends StatelessWidget {
               )
             ],
           ),
-          child: FlatButton(
+          child: TextButton(
             onPressed: () {},
-            color: AppTheme.primary,
-            textColor: Colors.white,
-            splashColor: Colors.transparent,
-            highlightColor: Colors.black.withOpacity(0.1),
-            padding: EdgeInsets.symmetric(vertical: AppDimensions.padding * 2),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
+            // VISIT
+            style: TextButton.styleFrom(
+              backgroundColor: AppTheme.primary,
+              // splashColor: Colors.transparent,
+              // highlightColor: Colors.black.withOpacity(0.1),
+              padding:
+                  EdgeInsets.symmetric(vertical: AppDimensions.padding * 2),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              textStyle: TextStyle(
+                color: Colors.white,
+              ),
             ),
+
             child: Text(
               App.translate(
                 HABDetailScreenMessages.bookNow,

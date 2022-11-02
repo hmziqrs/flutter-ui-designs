@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 
 class HABHomeScreenBallonAnimationWrapper extends StatelessWidget {
   HABHomeScreenBallonAnimationWrapper({
     required this.imagePath,
     required this.imageSize,
-    this.opacity,
+    required this.opacity,
   });
 
   final String imagePath;
@@ -13,17 +14,17 @@ class HABHomeScreenBallonAnimationWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomAnimation(
+    return CustomAnimationBuilder(
       delay: Duration(milliseconds: 100),
       tween: Tween(begin: 0.0, end: 1.0),
       duration: Duration(milliseconds: 1800),
-      builder: (ctx, child, animation) => Opacity(
+      builder: (ctx, animation, child) => Opacity(
         opacity: animation,
         child: Transform.scale(
           scale: animation,
           origin: Offset(0, 300),
-          child: CustomAnimation(
-            control: CustomAnimationControl.MIRROR,
+          child: CustomAnimationBuilder(
+            control: Control.mirror,
             delay: Duration(milliseconds: 2200),
             tween: Tween(begin: -40.0, end: 10.0),
             duration: Duration(milliseconds: 2800),
@@ -36,7 +37,7 @@ class HABHomeScreenBallonAnimationWrapper extends StatelessWidget {
                 height: imageSize.height,
               ),
             ),
-            builder: (ctx, child, translate) => Transform.translate(
+            builder: (ctx, translate, child) => Transform.translate(
               offset: Offset(0, translate),
               child: child,
             ),

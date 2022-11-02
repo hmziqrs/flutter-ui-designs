@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +11,11 @@ class HABDetailState extends ChangeNotifier {
   static HABDetailState state(BuildContext context, [listen = false]) =>
       Provider.of<HABDetailState>(context, listen: listen);
 
-  HABDetailState({this.activePage, this.backgroundController, pageController}) {
+  HABDetailState({
+    required this.activePage,
+    required this.backgroundController,
+    required PageController pageController,
+  }) {
     this.pageController = pageController;
     this.pageController.addListener(() {
       final __offset = this.pageController.offset;
@@ -41,7 +44,7 @@ class HABDetailState extends ChangeNotifier {
 
   int activePage;
   bool pageRendered = false;
-  PageController pageController;
+  late PageController pageController;
   ScrollController backgroundController;
 
   setActivePage(int index) {
