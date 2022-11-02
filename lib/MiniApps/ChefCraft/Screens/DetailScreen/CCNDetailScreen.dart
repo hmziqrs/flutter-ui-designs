@@ -47,7 +47,8 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
-    final data.HFDFoodItem item = ModalRoute.of(context).settings.arguments;
+    final data.HFDFoodItem item =
+        ModalRoute.of(context)!.settings.arguments! as data.HFDFoodItem;
 
     final space = AppDimensions.padding * 3;
 
@@ -100,7 +101,7 @@ class _Body extends StatelessWidget {
               ),
               child: ScreenAnimationBase<CCNDetailState>(
                 delay: 500,
-                builder: (_, child, animation) {
+                builder: (_, animation, child) {
                   return Opacity(
                     child: child,
                     opacity: animation,
@@ -134,7 +135,7 @@ class _Body extends StatelessWidget {
               ),
               child: ScreenAnimationBase<CCNDetailState>(
                 delay: 500,
-                builder: (_, child, animation) {
+                builder: (_, animation, child) {
                   return Opacity(
                     child: child,
                     opacity: animation,
@@ -264,7 +265,7 @@ class _Body extends StatelessWidget {
                         maxLines: 6,
                         style: TextStyles.body1.copyWith(
                           color: AppTheme.subText,
-                          height: TextStyles.body1.fontSize * 0.12,
+                          height: TextStyles.body1.fontSize! * 0.12,
                         ),
                       ),
                       SizedBox(height: space),
