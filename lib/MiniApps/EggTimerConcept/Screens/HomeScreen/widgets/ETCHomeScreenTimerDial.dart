@@ -12,9 +12,9 @@ import 'ETCHomeScreenTickPainter.dart';
 class ETCHomeScreenTimerDial extends StatefulWidget {
   ETCHomeScreenTimerDial(
     this.gradient, {
-    this.ticksPerSection,
-    this.maxTime,
-    this.currentTime,
+    required this.ticksPerSection,
+    required this.maxTime,
+    required this.currentTime,
   });
   final LinearGradient gradient;
   final Duration currentTime;

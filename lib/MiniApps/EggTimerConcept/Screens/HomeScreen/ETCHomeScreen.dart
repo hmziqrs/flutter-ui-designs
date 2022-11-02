@@ -31,10 +31,10 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
       onTimerUpdate: () => setState(() {}),
     );
   }
-  ETCTimer timer;
-  PolarCoord dragStartCord;
-  Duration dragStartTime;
-  Duration selectedTime;
+  late ETCTimer timer;
+  PolarCoord? dragStartCord;
+  Duration? dragStartTime;
+  Duration? selectedTime;
 
   @override
   void initState() {
@@ -54,13 +54,13 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
 
   onRadialDragUpdate(PolarCoord cord) {
     final factor = math.pi * 2;
-    final angleDiff = cord.angle - dragStartCord.angle;
+    final angleDiff = cord.angle - dragStartCord!.angle;
     final anglePercent =
         (angleDiff + (angleDiff < 0.0 ? factor : 0.0)) / factor;
     final timeDiffInSecs =
         (anglePercent * this.timer.maxTime.inSeconds).round();
     this.selectedTime =
-        Duration(seconds: this.dragStartTime.inSeconds + timeDiffInSecs);
+        Duration(seconds: this.dragStartTime!.inSeconds + timeDiffInSecs);
 
     setState(() {
       this.timer.setCurrentTime(this.selectedTime);
@@ -81,9 +81,9 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
       case ETCTimerState.running:
         return Control.play;
       case ETCTimerState.paused:
-        return CustomAnimationControl.STOP;
+        return Control.stop;
       default:
-        return Control.play_REVERSE;
+        return Control.playReverse;
     }
   }
 
@@ -92,7 +92,7 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
       case ETCTimerState.paused:
         return Control.play;
       default:
-        return Control.play_REVERSE;
+        return Control.playReverse;
     }
   }
 
@@ -128,7 +128,7 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
               onRadialDragEnd: this.onRadialDragEnd,
               onRadialDragStart: this.onRadialDragStart,
               onRadialDragUpdate: this.onRadialDragUpdate,
-              child: CustomAnimation(
+              child: CustomAnimationBuilder(
                 key: Key(this.timer.state.toString()),
                 tween: Tween<double>(
                   end: 0.0,
@@ -140,8 +140,8 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                       .toInt(),
                 ),
                 control: isReady
-                    ? Control.play : Control.play_REVERSE,
-                builder: (context, child, animation) {
+                    ? Control.play : Control.playReverse,
+                builder: (context, animation, child) {
                   return ETCHomeScreenTimerDial(
                     gradient,
                     ticksPerSection: 5,
@@ -154,7 +154,7 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
               ),
             ),
             Expanded(child: Container()),
-            CustomAnimation(
+            CustomAnimationBuilder(
               tween: Tween(begin: 0.0, end: 1.0),
               control: this.resetRestartAnimationState(),
               duration: Duration(milliseconds: 280),
@@ -187,14 +187,14 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                   ],
                 ),
               ),
-              builder: (context, child, animation) {
+              builder: (context, animation, child) {
                 return Opacity(
                   opacity: animation,
                   child: child,
                 );
               },
             ),
-            CustomAnimation(
+            CustomAnimationBuilder(
               tween: Tween(begin: 0.0, end: 1.0),
               control: this.playPauseAnimationState(),
               duration: Duration(milliseconds: 280),
@@ -210,7 +210,7 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                 onPress: () =>
                     isRunning ? this.timer.pause() : this.timer.resume(),
               ),
-              builder: (context, child, animation) {
+              builder: (context, animation, child) {
                 return Container(
                   width: AppDimensions.miniContainerWidth,
                   transform: Matrix4.identity()

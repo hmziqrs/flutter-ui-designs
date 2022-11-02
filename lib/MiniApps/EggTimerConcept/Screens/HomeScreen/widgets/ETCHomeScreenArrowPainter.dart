@@ -4,7 +4,9 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/AppTheme.dart';
 
 class ETCHomeScreenArrowPainter extends CustomPainter {
-  ETCHomeScreenArrowPainter({this.rotationPercent})
+  ETCHomeScreenArrowPainter({
+    required this.rotationPercent,
+  })
       : arrowSize = AppDimensions.ratio * 10,
         arrowPaint = Paint() {
     arrowPaint.color = AppTheme.text;

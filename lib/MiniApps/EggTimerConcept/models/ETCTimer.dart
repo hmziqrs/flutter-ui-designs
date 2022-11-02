@@ -7,10 +7,13 @@ enum ETCTimerState {
 }
 
 class ETCTimer {
-  ETCTimer({this.maxTime, this.onTimerUpdate});
+  ETCTimer({
+    required this.maxTime,
+    required this.onTimerUpdate,
+  });
 
   final Duration maxTime;
-  aSync.Timer internalTimer;
+  aSync.Timer? internalTimer;
   final Function onTimerUpdate;
   final Stopwatch stopwatch = Stopwatch();
 
@@ -48,9 +51,7 @@ class ETCTimer {
     state = ETCTimerState.paused;
     stopwatch.stop();
 
-    if (onTimerUpdate != null) {
-      onTimerUpdate();
-    }
+    onTimerUpdate();
   }
 
   restart() {
@@ -76,17 +77,13 @@ class ETCTimer {
     lastStartTime = currentTime;
     stopwatch.reset();
 
-    if (onTimerUpdate != null) {
-      onTimerUpdate();
-    }
+    onTimerUpdate();
   }
 
   tick() {
     currentTime = lastStartTime - stopwatch.elapsed;
     cache4Reset = currentTime;
-    if (onTimerUpdate != null) {
-      onTimerUpdate();
-    }
+    onTimerUpdate();
     if (currentTime.inSeconds > 0) {
       internalTimer = aSync.Timer(
         Duration(seconds: 1),
