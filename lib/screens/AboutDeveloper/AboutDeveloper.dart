@@ -16,7 +16,7 @@ class AboutDeveloperScreen extends StatelessWidget {
         Navigator.popUntil(
           context,
           (route) =>
-              route.settings.name != ModalRoute.of(context).settings.name,
+              route.settings.name != ModalRoute.of(context)!.settings.name,
         );
         return false;
       },

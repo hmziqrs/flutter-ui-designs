@@ -10,12 +10,11 @@ import 'DesignerProfileFreelance.dart';
 import 'DesignerProfileContactMe.dart';
 import 'DesignerProfilePortfolio.dart';
 import 'DesignerProfileMoreUIs.dart';
-import '../Dimensions.dart';
 
 class DesignerProfileBody extends StatelessWidget {
   DesignerProfileBody({
-    this.uiList,
-    this.designer,
+    required this.uiList,
+    required this.designer,
   });
 
   final UIDesigner designer;
@@ -52,7 +51,7 @@ class DesignerProfileBody extends StatelessWidget {
                       0,
                     ),
                     child: Text(
-                      designer.description,
+                      designer.description!,
                       style: TextStyle(
                         // fontSize: 28.0,
                         color: Colors.black.withOpacity(0.45),

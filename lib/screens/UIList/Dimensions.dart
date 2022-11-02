@@ -6,7 +6,7 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 class Dimensions {
   static late double cardHeight;
   static late double cardWidth;
-  static int chunks;
+  static late int chunks;
 
   static init(BuildContext context) {
     AppDimensions.init(context);

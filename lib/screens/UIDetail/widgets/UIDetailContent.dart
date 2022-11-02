@@ -32,16 +32,16 @@ class UIDetailContent extends StatefulWidget {
 }
 
 class _UIDetailContentState extends State<UIDetailContent> {
-  AdmobInterstitial interstitialAd;
+  late AdmobInterstitial interstitialAd;
 
   @override
   void initState() {
     this.interstitialAd = AdmobInterstitial(
       adUnitId: Ads.getOpenAppVideo(),
-      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
+      listener: (AdmobAdEvent event, args) {
         if (event == AdmobAdEvent.closed) {
           Navigator.of(context).pushNamed(
-            this.widget.uiItem.miniApp,
+            this.widget.uiItem.miniApp!,
           );
         }
       },
@@ -56,7 +56,7 @@ class _UIDetailContentState extends State<UIDetailContent> {
       return;
     }
     Navigator.of(context).pushNamed(
-      widget.uiItem.miniApp,
+      widget.uiItem.miniApp!,
     );
   }
 
@@ -102,7 +102,7 @@ class _UIDetailContentState extends State<UIDetailContent> {
                       horizontal: AppDimensions.padding,
                     ),
                     child: Text(
-                      widget.uiItem.description,
+                      widget.uiItem.description!,
                       style: TextStyles.body26.copyWith(
                         color: AppTheme.subText2,
                       ),

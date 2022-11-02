@@ -20,19 +20,19 @@ class DownloadScreen extends StatelessWidget {
         Navigator.popUntil(
           context,
           (route) =>
-              route.settings.name != ModalRoute.of(context).settings.name,
+              route.settings.name != ModalRoute.of(context)!.settings.name,
         );
         return false;
       },
       child: Screen(
         belowBuilders: [
-          MirrorAnimation<Color>(
+          MirrorAnimationBuilder(
             tween: ColorTween(
               begin: AppTheme.primary.withOpacity(0.15),
               end: AppTheme.primary.withOpacity(1.0),
             ),
             duration: Duration(milliseconds: 2400),
-            builder: (context, child, animation) {
+            builder: (context, animation, child) {
               return Positioned(
                 bottom: AppDimensions.ratio * -10 +
                     MediaQuery.of(context).padding.bottom,

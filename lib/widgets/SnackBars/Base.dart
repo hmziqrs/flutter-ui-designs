@@ -8,7 +8,7 @@ void showSnackBarBase({
   required BuildContext context,
   Widget? child,
   required String text,
-  required double width,
+  double? width,
 }) {
   ScaffoldMessenger.of(context).hideCurrentSnackBar();
   final snackbar = SnackBar(

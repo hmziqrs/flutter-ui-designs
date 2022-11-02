@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_uis/AppRoutes.dart';
 import 'package:flutter_uis/widgets/Overlay/GradientFade.dart';
 import 'package:flutter_uis/widgets/ScreenAnimation/Base.dart';
@@ -16,7 +17,7 @@ import 'Dimensions.dart';
 import 'Provider.dart';
 
 class DesignerProfileScreen extends StatelessWidget {
-  const DesignerProfileScreen({Key key}) : super(key: key);
+  const DesignerProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     Dimensions.init(context);
 
-    final Map obj = ModalRoute.of(context).settings.arguments;
+    final Map obj = ModalRoute.of(context)!.settings.arguments! as Map;
     final String username = obj["designer"];
     List<UIItem> uiList =
         uilist.where((ui) => ui.designer == username).toList();
@@ -60,7 +61,6 @@ class _Body extends StatelessWidget {
           slivers: [
             SliverAppBar(
               stretch: true,
-              brightness: Brightness.dark,
               backgroundColor: Colors.transparent,
               iconTheme: IconThemeData(opacity: 0.0),
               expandedHeight: Dimensions.coverImageHeight,
@@ -93,7 +93,7 @@ class _Body extends StatelessWidget {
                       ),
                       child: ScreenAnimationBase<DesignerProfileStateProvider>(
                         delay: 500,
-                        builder: (_, child, animation) {
+                        builder: (_, animation, child) {
                           return Opacity(
                             child: child,
                             opacity: animation,
@@ -107,6 +107,7 @@ class _Body extends StatelessWidget {
                   ),
                 ],
               ),
+              systemOverlayStyle: SystemUiOverlayStyle.light,
             ),
             SliverToBoxAdapter(
               child: DesignerProfileBody(

@@ -1,6 +1,5 @@
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/UI.dart';
 import 'package:flutter_uis/configs/Ads.dart';
 import 'package:flutter_uis/configs/App.dart';
 
@@ -82,9 +81,10 @@ class HomeBody extends StatelessWidget {
                       vertical: AppDimensions.padding * 1,
                     ),
                     child: InkWell(
-                      key: Key(item["key"]),
+                      key: Key(item["key"]! as String),
                       borderRadius: CommonProps.buttonRadius,
-                      onTap: () => this.onPress(context, item["path"]),
+                      onTap: () =>
+                          this.onPress(context, item["path"] as String),
                       child: Ink(
                         padding: EdgeInsets.symmetric(
                           vertical: AppDimensions.padding * 1.5,
@@ -95,14 +95,14 @@ class HomeBody extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              item["icon"],
+                              item["icon"] as IconData,
                               size: 20,
                               color: AppTheme.primary,
                             ),
                             Container(width: AppDimensions.padding),
                             Text(
                               App.translate(
-                                item["label"],
+                                item["label"] as String,
                                 context,
                               ),
                               style: TextStyles.body16
