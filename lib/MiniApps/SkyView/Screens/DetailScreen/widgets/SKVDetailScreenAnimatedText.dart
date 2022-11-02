@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
 import 'package:provider/provider.dart';
 import '../Provider.dart';
 
 class SKVDetailScreenAnimatedText extends StatelessWidget {
   SKVDetailScreenAnimatedText({
-    @required this.index,
-    @required this.child,
+    required this.index,
+    required this.child,
   });
 
   final int index;

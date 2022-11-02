@@ -12,9 +12,9 @@ import '../messages/keys.dart';
 
 class HFDDetailScreenBody extends StatelessWidget {
   HFDDetailScreenBody({
-    @required this.item,
-    @required this.bars,
-    @required this.circle,
+    required this.item,
+    required this.bars,
+    required this.circle,
   });
 
   final HFDFoodItem item;

@@ -20,12 +20,12 @@ class App {
     isLtr = Directionality.of(context) == TextDirection.ltr;
   }
 
-  static translate(String key, [BuildContext? ctx]) {
+  static translate(String? key, [BuildContext? ctx]) {
     final base = AppLocalizations.of(ctx ?? App.ctx);
     if (base == null) {
       return key;
     }
-    return base.translate(key) ?? key;
+    return base.translate(key ?? '') ?? key;
   }
 
   static bool isDark([BuildContext? context]) =>

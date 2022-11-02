@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -12,12 +11,12 @@ import '../TestKeys.dart';
 
 class ASCHomeScreenContentColorFilters extends StatelessWidget {
   ASCHomeScreenContentColorFilters({
-    @required this.item,
-    @required this.uiParallax,
-    @required this.activePage,
-    @required this.activeColor,
-    @required this.changeColor,
-    @required this.activeColorIndex,
+    required this.item,
+    required this.uiParallax,
+    required this.activePage,
+    required this.activeColor,
+    required this.changeColor,
+    required this.activeColorIndex,
   });
 
   final ASCItem item;

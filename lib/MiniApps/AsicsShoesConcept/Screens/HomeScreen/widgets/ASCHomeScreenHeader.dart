@@ -10,8 +10,8 @@ import '../Dimensions.dart';
 
 class ASCHomeScreenHeader extends StatelessWidget {
   ASCHomeScreenHeader({
-    @required this.item,
-    @required this.parallax,
+    required this.item,
+    required this.parallax,
   });
 
   final ASCItem item;

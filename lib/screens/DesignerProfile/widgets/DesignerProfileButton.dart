@@ -9,9 +9,9 @@ import '../Dimensions.dart';
 
 class DesignerProfileButton extends StatelessWidget {
   DesignerProfileButton({
-    @required this.label,
-    @required this.onPress,
-    @required this.icon,
+    required this.label,
+    required this.onPress,
+    required this.icon,
     this.enable = false,
   });
 

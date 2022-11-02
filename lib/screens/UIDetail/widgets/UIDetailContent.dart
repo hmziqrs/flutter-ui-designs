@@ -22,7 +22,7 @@ import '../Provider.dart';
 
 class UIDetailContent extends StatefulWidget {
   UIDetailContent({
-    @required this.uiItem,
+    required this.uiItem,
   });
 
   final UIItem uiItem;

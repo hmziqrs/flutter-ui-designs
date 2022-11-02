@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/UI.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/utils/Utils.dart';
@@ -11,10 +10,10 @@ import '../Dimensions.dart';
 
 class SKVDetailScreenPlanet extends StatelessWidget {
   SKVDetailScreenPlanet({
-    @required this.item,
-    @required this.pageRendered,
-    @required this.index,
-    @required this.offset,
+    required this.item,
+    required this.pageRendered,
+    required this.index,
+    required this.offset,
   });
   final data.SKVObject item;
   final bool pageRendered;

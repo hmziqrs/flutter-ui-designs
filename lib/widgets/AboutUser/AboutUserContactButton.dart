@@ -18,13 +18,13 @@ import 'messages/keys.dart';
 class AboutUserContactButton extends StatelessWidget {
   AboutUserContactButton({
     this.url,
-    @required this.icon,
-    @required this.label,
-    @required this.platform,
-    @required this.initContext,
+    required this.icon,
+    required this.label,
+    required this.platform,
+    required this.initContext,
   });
 
-  final String url;
+  final String? url;
   final String label;
   final IconData icon;
   final String platform;

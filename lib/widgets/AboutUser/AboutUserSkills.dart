@@ -6,7 +6,7 @@ import 'package:flutter_uis/configs/AppTheme.dart';
 
 class AboutUserSkills extends StatelessWidget {
   AboutUserSkills({
-    @required this.skills,
+    required this.skills,
   });
 
   final List<String> skills;

@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
@@ -10,7 +9,7 @@ import '../Dimensions.dart';
 
 class HFDDetailScreenBackgroundImageBody extends StatelessWidget {
   HFDDetailScreenBackgroundImageBody({
-    @required this.item,
+    required this.item,
   });
 
   final HFDFoodItem item;

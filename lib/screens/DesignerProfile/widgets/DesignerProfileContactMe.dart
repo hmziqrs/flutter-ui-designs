@@ -10,7 +10,7 @@ import 'DesignerProfileButton.dart';
 import '../messages/keys.dart';
 
 class DesignerProfileContactMe extends StatelessWidget {
-  DesignerProfileContactMe({@required this.designer});
+  DesignerProfileContactMe({required this.designer});
 
   final UIDesigner designer;
 

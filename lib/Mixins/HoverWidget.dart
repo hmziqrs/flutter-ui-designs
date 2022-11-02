@@ -58,7 +58,7 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
   }
 
   Widget buildInkWell({
-    @required Widget child,
+    required Widget child,
     GestureTapCallback onTap,
     GestureTapCallback onDoubleTap,
     GestureLongPressCallback onLongPress,
@@ -86,33 +86,23 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
       splashColor: isButton ? null : Colors.transparent,
       onTap: () {
         this.removeForceFocus();
-        if (onTap != null) {
-          onTap();
-        }
+        onTap();
       },
       onTapDown: (value) {
         this.addForceFocus();
-        if (onTapDown != null) {
-          onTapDown(value);
-        }
+        onTapDown(value);
       },
       onTapCancel: () {
         this.removeForceFocus();
-        if (onTapCancel != null) {
-          onTapCancel();
-        }
+        onTapCancel();
       },
       onHover: (value) {
         this.onFocus(value);
-        if (onHover != null) {
-          onHover(value);
-        }
+        onHover(value);
       },
       onFocusChange: (value) {
         this.onFocus(value);
-        if (onFocusChange != null) {
-          onFocusChange(value);
-        }
+        onFocusChange(value);
       },
     );
   }
@@ -136,7 +126,7 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
   void dispose() {
     controller.dispose();
     assert(() {
-      if (_ticker == null || !_ticker.isActive) return true;
+      if (!_ticker.isActive) return true;
       throw FlutterError('$this was disposed with an active Ticker.\n'
           '$runtimeType created a Ticker via its SingleTickerProviderStateMixin, but at the time '
           'dispose() was called on the mixin, that Ticker was still active. The Ticker must '
@@ -150,7 +140,7 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
 
   @override
   void didChangeDependencies() {
-    if (_ticker != null) _ticker.muted = !TickerMode.of(context);
+    _ticker.muted = !TickerMode.of(context);
     super.didChangeDependencies();
   }
 
@@ -158,16 +148,14 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     String tickerDescription;
-    if (_ticker != null) {
-      if (_ticker.isActive && _ticker.muted)
-        tickerDescription = 'active but muted';
-      else if (_ticker.isActive)
-        tickerDescription = 'active';
-      else if (_ticker.muted)
-        tickerDescription = 'inactive and muted';
-      else
-        tickerDescription = 'inactive';
-    }
+    if (_ticker.isActive && _ticker.muted)
+      tickerDescription = 'active but muted';
+    else if (_ticker.isActive)
+      tickerDescription = 'active';
+    else if (_ticker.muted)
+      tickerDescription = 'inactive and muted';
+    else
+      tickerDescription = 'inactive';
     properties.add(DiagnosticsProperty<Ticker>('ticker', _ticker,
         description: tickerDescription,
         showSeparator: false,

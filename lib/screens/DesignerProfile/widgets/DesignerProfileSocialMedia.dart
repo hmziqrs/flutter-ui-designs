@@ -11,7 +11,7 @@ import '../messages/keys.dart';
 
 class DesignerProfileSocialMedia extends StatelessWidget {
   DesignerProfileSocialMedia({
-    @required this.designer,
+    required this.designer,
   });
 
   final UIDesigner designer;

@@ -5,7 +5,7 @@ import 'package:flutter_uis/configs/TextStyles.dart';
 
 class AlphaBanner extends StatelessWidget {
   AlphaBanner({
-    @required this.text,
+    required this.text,
     this.margin = EdgeInsets.zero,
   });
 

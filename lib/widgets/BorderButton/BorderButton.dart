@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/configs/CommonProps.dart';
 
 class BorderButton extends StatelessWidget {
@@ -14,12 +15,12 @@ class BorderButton extends StatelessWidget {
     this.maxWidth = double.infinity,
   }) : this.margin = margin ?? EdgeInsets.all(AppDimensions.padding);
 
-  final Color color;
+  final Color? color;
   final double width;
-  final Widget child;
+  final Widget? child;
   final double maxWidth;
-  final String testKey;
-  final Function onPressed;
+  final String? testKey;
+  final void Function()? onPressed;
   final EdgeInsetsGeometry margin;
 
   @override
@@ -27,7 +28,7 @@ class BorderButton extends StatelessWidget {
     return Padding(
       padding: this.margin,
       child: InkWell(
-        key: Key(this.testKey),
+        key: this.testKey != null ? Key(this.testKey!) : null,
         onTap: this.onPressed,
         borderRadius: CommonProps.buttonRadius,
         child: ConstrainedBox(
@@ -35,8 +36,8 @@ class BorderButton extends StatelessWidget {
           child: Ink(
             decoration: CommonProps.borderButton.copyWith(
               border: Border.all(
-                color: this.color,
-                width: CommonProps.borderButton.border.top.width,
+                color: this.color ?? AppTheme.primary,
+                width: CommonProps.borderButton.border!.top.width,
               ),
             ),
             width: this.width,
@@ -44,7 +45,7 @@ class BorderButton extends StatelessWidget {
               vertical: AppDimensions.padding * 1.5,
             ),
             child: DefaultTextStyle(
-              child: this.child,
+              child: this.child ?? SizedBox(),
               textAlign: TextAlign.center,
               style: DefaultTextStyle.of(context).style.copyWith(
                     color: this.color,

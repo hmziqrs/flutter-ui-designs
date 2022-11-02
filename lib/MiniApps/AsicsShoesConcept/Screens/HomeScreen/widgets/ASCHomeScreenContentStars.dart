@@ -8,9 +8,9 @@ import '../../../models/ASCItem.dart';
 
 class ASCHomeScreenContentStars extends StatelessWidget {
   ASCHomeScreenContentStars({
-    @required this.uiParallax,
-    @required this.activeColor,
-    @required this.item,
+    required this.uiParallax,
+    required this.activeColor,
+    required this.item,
   });
 
   final double uiParallax;

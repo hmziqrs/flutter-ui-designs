@@ -8,9 +8,9 @@ import '../messages/keys.dart';
 
 class ASCHomeScreenContentPriceBadge extends StatelessWidget {
   ASCHomeScreenContentPriceBadge({
-    @required this.activeColor,
-    @required this.uiParallax,
-    @required this.item,
+    required this.activeColor,
+    required this.uiParallax,
+    required this.item,
   });
 
   final Color activeColor;

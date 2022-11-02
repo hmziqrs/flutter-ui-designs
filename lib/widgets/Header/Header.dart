@@ -15,7 +15,7 @@ class Header extends StatelessWidget {
     this.enableSafePadding = true,
   });
 
-  final String label;
+  final String? label;
   final bool enableSafePadding;
 
   @override
@@ -48,7 +48,7 @@ class Header extends StatelessWidget {
                     context,
                     (route) =>
                         route.settings.name !=
-                        ModalRoute.of(context).settings.name,
+                        ModalRoute.of(context)!.settings.name,
                   );
                 },
               ),

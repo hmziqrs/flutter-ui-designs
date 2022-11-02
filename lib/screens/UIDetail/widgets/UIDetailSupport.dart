@@ -9,7 +9,7 @@ import 'package:flutter_uis/statics/models/UIItem.dart';
 import '../data.dart' as data;
 
 class UIDetailSupport extends StatelessWidget {
-  UIDetailSupport({@required this.uiItem});
+  UIDetailSupport({required this.uiItem});
 
   final UIItem uiItem;
 

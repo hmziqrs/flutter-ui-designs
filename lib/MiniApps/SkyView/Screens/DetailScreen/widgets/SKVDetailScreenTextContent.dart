@@ -12,7 +12,7 @@ import '../messages/keys.dart';
 
 class SKVDetailScreenTextContent extends StatelessWidget {
   SKVDetailScreenTextContent({
-    @required this.item,
+    required this.item,
   });
 
   final SKVObject item;

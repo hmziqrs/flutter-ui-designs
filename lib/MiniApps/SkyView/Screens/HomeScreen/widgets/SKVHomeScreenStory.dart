@@ -9,7 +9,7 @@ import '../../../models/SKVStory.dart';
 import '../Dimensions.dart';
 
 class SKVHomeScreenStory extends StatelessWidget {
-  SKVHomeScreenStory({@required this.story});
+  SKVHomeScreenStory({required this.story});
 
   final SKVStory story;
 

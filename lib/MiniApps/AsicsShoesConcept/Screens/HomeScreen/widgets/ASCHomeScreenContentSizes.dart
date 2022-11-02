@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/Provider.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -15,9 +14,9 @@ enum AniColors { bg, text }
 
 class ASCHomeScreenContentSizes extends StatelessWidget {
   ASCHomeScreenContentSizes({
-    @required this.uiParallax,
-    @required this.activePage,
-    @required this.activeColor,
+    required this.uiParallax,
+    required this.activePage,
+    required this.activeColor,
   });
 
   final int activePage;

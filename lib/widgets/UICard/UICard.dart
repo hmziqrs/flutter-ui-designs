@@ -11,18 +11,18 @@ class UICard extends StatefulWidget {
   const UICard(
     this.item, {
     this.onTap,
-    this.padding,
     this.cardWidth,
     this.cardHeight,
     this.isMini = false,
+    required this.padding,
     this.perspectiveScale = 0,
   });
   final UIItem item;
   final bool isMini;
   final double padding;
-  final double cardWidth;
-  final double cardHeight;
-  final VoidCallback onTap;
+  final double? cardWidth;
+  final double? cardHeight;
+  final VoidCallback? onTap;
   final double perspectiveScale;
 
   @override
@@ -30,7 +30,7 @@ class UICard extends StatefulWidget {
 }
 
 class _UICardState extends State<UICard> with AnimationMixin {
-  Animation<double> animation;
+  late Animation<double> animation;
 
   @override
   void initState() {

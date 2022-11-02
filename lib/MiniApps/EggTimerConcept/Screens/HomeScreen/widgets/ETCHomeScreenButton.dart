@@ -4,10 +4,10 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 
 class ETCHomeScreenButton extends StatelessWidget {
   ETCHomeScreenButton({
-    @required this.icon,
-    @required this.label,
-    @required this.testKey,
-    @required this.onPress,
+    required this.icon,
+    required this.label,
+    required this.testKey,
+    required this.onPress,
   });
   final Key testKey;
   final String label;

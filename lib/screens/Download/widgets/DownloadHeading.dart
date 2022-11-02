@@ -6,7 +6,7 @@ import 'package:flutter_uis/configs/App.dart';
 
 class DownloadHeading extends StatelessWidget {
   DownloadHeading({
-    @required this.label,
+    required this.label,
   });
 
   final String label;

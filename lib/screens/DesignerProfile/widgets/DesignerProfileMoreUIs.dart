@@ -15,8 +15,8 @@ import '../Provider.dart';
 
 class DesignerProfileMoreUIs extends StatelessWidget {
   DesignerProfileMoreUIs({
-    @required this.designer,
-    @required this.uiList,
+    required this.designer,
+    required this.uiList,
   });
 
   final UIDesigner designer;

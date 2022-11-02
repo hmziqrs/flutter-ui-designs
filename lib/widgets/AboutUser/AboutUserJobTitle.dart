@@ -6,7 +6,7 @@ import 'package:flutter_uis/configs/AppTheme.dart';
 
 class AboutUserJobTitle extends StatelessWidget {
   AboutUserJobTitle({
-    @required this.label,
+    required this.label,
   });
 
   final String label;

@@ -8,9 +8,9 @@ import '../Dimensions.dart';
 
 class UIDetailButton extends StatelessWidget {
   UIDetailButton({
-    @required this.text,
-    @required this.testKey,
-    @required this.callback,
+    required this.text,
+    required this.testKey,
+    required this.callback,
   });
 
   final String text;
