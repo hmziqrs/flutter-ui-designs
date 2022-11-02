@@ -5,15 +5,15 @@ import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/UI.dart';
 
 class Dimensions {
-  static double headerHeight;
-  static double logoHeight;
+  static late double headerHeight;
+  static late double logoHeight;
 
-  static double shoeTop;
-  static double shoeWidth;
-  static double shoeHeight;
+  static late double shoeTop;
+  static late double shoeWidth;
+  static late double shoeHeight;
 
-  static double sizeRadius;
-  static double colorRadius;
+  static late double sizeRadius;
+  static late double colorRadius;
   static init(BuildContext context) {
     App.init(context);
 

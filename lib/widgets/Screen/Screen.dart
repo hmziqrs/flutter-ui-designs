@@ -9,7 +9,7 @@ import 'Provider.dart';
 
 class Screen extends StatelessWidget {
   Screen({
-    required this.init,
+    this.init,
     this.child,
     this.theme,
     this.drawer,
@@ -33,14 +33,16 @@ class Screen extends StatelessWidget {
   final bool renderSettings;
   final Widget? bottomNavigationBar;
   final Color? scaffoldBackgroundColor;
-  final void Function(BuildContext) init;
+  final void Function(BuildContext)? init;
   final Widget Function(BuildContext)? builder;
   final List<Widget>? belowBuilders;
   final List<Widget>? overlayBuilders;
 
   @override
   Widget build(BuildContext context) {
-    this.init(context);
+    if (this.init != null) {
+      this.init!(context);
+    }
 
     final baseTheme = this.theme ?? Theme.of(context);
 

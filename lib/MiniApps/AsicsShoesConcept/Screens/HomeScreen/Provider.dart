@@ -7,8 +7,8 @@ class ASCShoeProvider extends ChangeNotifier {
   static final List<int> shoeSizes = [7, 8, 9, 10, 11];
 
   int _activeShoeSize = shoeSizes[0];
-  AnimationController shoesController;
-  Animation<double> shoeAnimation;
+  late AnimationController shoesController;
+  late Animation<double> shoeAnimation;
   int _index = 0;
   get activeShoeSize => this._activeShoeSize;
 
