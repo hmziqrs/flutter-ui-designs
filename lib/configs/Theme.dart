@@ -21,7 +21,7 @@ final accent2 = TinyColor.fromString("#2FA4FF").darken(18).color;
 final base = ThemeData(
   fontFamily: 'Muli',
   primaryColor: primary,
-  brightness: Brightness.light,
+  // brightness: Brightness.light,
   backgroundColor: Colors.white,
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: Colors.white,
@@ -31,13 +31,13 @@ final base = ThemeData(
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
     },
   ),
-  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: primary),
+  colorScheme: ColorScheme.light().copyWith(secondary: primary),
 );
 
 final baseDark = ThemeData(
   fontFamily: 'Muli',
   primaryColor: primary,
-  brightness: Brightness.dark,
+  // brightness: Brightness.dark,
   backgroundColor: darkBackground,
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: darkBackground,
@@ -47,5 +47,5 @@ final baseDark = ThemeData(
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
     },
   ),
-  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: primary),
+  colorScheme: ColorScheme.dark().copyWith(secondary: primary),
 );

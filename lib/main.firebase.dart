@@ -5,6 +5,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_uis/firebase_options.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'utils/UIUtils.dart';
@@ -14,6 +15,10 @@ import 'Navigator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   App.showAds = Utils.isMobile();
   if (App.showAds) {
     Admob.initialize();
