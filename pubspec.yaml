@@ -55,7 +55,7 @@ dependencies:
   open_url: 2.0.0
   hive_flutter: 1.1.0
   url_launcher: 6.1.6
-  universal_io: 2.0.4
+  # universal_io: 2.0.4
   admob_flutter: 3.0.0
 
   emojis: 0.9.9
@@ -64,16 +64,16 @@ dependencies:
   faker: 2.0.0
   pigment: 1.0.4
   provider: 6.0.4
-  tinycolor: 1.0.3
-  flutter_icons: 1.1.0
+  tinycolor2: 3.0.1
+  supercharged: 2.1.1
   dotted_border: 2.0.0+3
   fluttery_dart2: 0.0.9
   stretchy_header: 2.0.0
   touchable_opacity: 1.2.0
   page_transition: 2.0.9
   percent_indicator: 4.2.2
-  supercharged: 2.1.1
   simple_animations: 5.0.0+2
+  flutter_font_icons: ^2.2.5
 
 dev_dependencies:
   # flutter_driver:

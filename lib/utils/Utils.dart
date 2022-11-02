@@ -1,5 +1,6 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:universal_io/io.dart';
 
 import 'package:url_launcher/url_launcher.dart' as url;
 import 'package:open_url/open_url.dart';

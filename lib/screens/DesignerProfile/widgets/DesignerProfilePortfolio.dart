@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 import 'package:flutter_uis/statics/models/UIDesigner.dart';
 import 'package:flutter_uis/utils/Utils.dart';
@@ -46,7 +46,7 @@ class DesignerProfilePortfolio extends StatelessWidget {
                   hasBehance
                       ? DesignerProfileButton(
                           label: "Behance",
-                          icon: MaterialCommunityIcons.behance,
+                          icon: Entypo.behance,
                           onPress: () => Utils.launchSocialLink(
                             designer.behance,
                             'behance',
@@ -57,7 +57,7 @@ class DesignerProfilePortfolio extends StatelessWidget {
                   hasDribbble
                       ? DesignerProfileButton(
                           label: "Dribbble",
-                          icon: MaterialCommunityIcons.dribbble,
+                          icon: Entypo.dribbble,
                           onPress: () => Utils.launchSocialLink(
                             designer.dribbble,
                             'dribbble',

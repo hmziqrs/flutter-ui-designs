@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 import 'package:flutter_uis/statics/models/UIDesigner.dart';
 import 'package:flutter_uis/utils/Utils.dart';

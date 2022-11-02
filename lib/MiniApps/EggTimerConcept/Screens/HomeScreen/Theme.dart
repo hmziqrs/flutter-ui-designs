@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tinycolor/tinycolor.dart';
+import 'package:tinycolor2/tinycolor2.dart';
 
 import 'package:flutter_uis/configs/App.dart';
 

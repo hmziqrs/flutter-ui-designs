@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pigment/pigment.dart';
-import 'package:tinycolor/tinycolor.dart';
+import 'package:tinycolor2/tinycolor2.dart';
 
 final background = Pigment.fromString('#f5eee6');
 final background2 = Pigment.fromString('#f6eee6');
@@ -20,7 +20,6 @@ final accent2 = TinyColor.fromString("#2FA4FF").darken(18).color;
 
 final base = ThemeData(
   fontFamily: 'Muli',
-  accentColor: primary,
   primaryColor: primary,
   brightness: Brightness.light,
   backgroundColor: Colors.white,
@@ -32,11 +31,11 @@ final base = ThemeData(
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
     },
   ),
+  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: primary),
 );
 
 final baseDark = ThemeData(
   fontFamily: 'Muli',
-  accentColor: primary,
   primaryColor: primary,
   brightness: Brightness.dark,
   backgroundColor: darkBackground,
@@ -48,4 +47,5 @@ final baseDark = ThemeData(
       TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
     },
   ),
+  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: primary),
 );
