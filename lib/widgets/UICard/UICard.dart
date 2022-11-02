@@ -90,7 +90,7 @@ class _UICardState extends State<UICard> with AnimationMixin {
       margin: EdgeInsets.all(this.widget.padding),
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: ExactAssetImage(this.widget.item.thumbnail),
+          image: ExactAssetImage(this.widget.item.thumbnail!),
           fit: BoxFit.cover,
         ),
         boxShadow: [this.boxShadow()],
@@ -134,7 +134,7 @@ class _UICardState extends State<UICard> with AnimationMixin {
               right: this.widget.padding,
               left: this.widget.padding,
               child: InkWell(
-                key: Key(this.widget.item.testKey),
+                key: Key(this.widget.item.testKey!),
                 hoverColor: Colors.transparent,
                 focusColor: Colors.transparent,
                 highlightColor: Colors.transparent,

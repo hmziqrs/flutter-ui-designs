@@ -48,20 +48,24 @@ class AppButton extends StatelessWidget {
       margin: this.margin,
       width: this.width,
       child: TextButton(
-        height: 0,
-        textColor: text,
-        color: background,
+        style: TextButton.styleFrom(
+          // height: 0,
+          textStyle: TextStyle(color: text),
+          backgroundColor: background,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppTheme.buttonRadius),
+          ),
+          padding: EdgeInsets.symmetric(
+            vertical: AppDimensions.padding * this.padding,
+          ),
+
+        ),
         child: this.child ??
             Text(
-              label,
+              label!,
               style: TextStyles.heading6,
             ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppTheme.buttonRadius),
-        ),
-        padding: EdgeInsets.symmetric(
-          vertical: AppDimensions.padding * this.padding,
-        ),
+        
         onPressed: this.onTap,
       ),
     );
