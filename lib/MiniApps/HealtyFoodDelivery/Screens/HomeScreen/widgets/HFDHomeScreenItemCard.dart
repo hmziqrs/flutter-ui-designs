@@ -12,7 +12,7 @@ import '../Dimensions.dart';
 
 class HFDHomeScreenItemCard extends StatefulWidget {
   final HFDFoodItem item;
-  HFDHomeScreenItemCard(this.item, {Key key}) : super(key: key);
+  HFDHomeScreenItemCard(this.item, {Key? key}) : super(key: key);
 
   @override
   _HFDHomeScreenItemCardState createState() => _HFDHomeScreenItemCardState();

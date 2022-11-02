@@ -11,7 +11,7 @@ import '../Dimensions.dart';
 
 class HFDHomeScreenRestaurantCard extends StatefulWidget {
   final data.HFDRestaurant restaurant;
-  HFDHomeScreenRestaurantCard(this.restaurant, {Key key}) : super(key: key);
+  HFDHomeScreenRestaurantCard(this.restaurant, {Key? key}) : super(key: key);
 
   @override
   _HFDHomeScreenRestaurantCardState createState() =>
@@ -120,12 +120,12 @@ class _HFDHomeScreenRestaurantCardState
                           -AppDimensions.ratio * 16,
                           AppDimensions.ratio * 4,
                         ),
-                        child: CustomAnimation(
+                        child: CustomAnimationBuilder(
                           tween: Tween(begin: 0.0, end: 1.0),
                           duration: Duration(milliseconds: 280),
                           control: this.animation.value > 0.5
-                              ? CustomAnimationControl.PLAY
-                              : CustomAnimationControl.PLAY_REVERSE,
+                              ? Control.play
+                              : Control.playReverse,
                           child: Container(
                             width: double.infinity,
                             margin: EdgeInsets.symmetric(
@@ -148,7 +148,7 @@ class _HFDHomeScreenRestaurantCardState
                               ],
                             ),
                           ),
-                          builder: (context, child, opacityAnimation) {
+                          builder: (context, opacityAnimation, child) {
                             return Opacity(
                               opacity: opacityAnimation,
                               child: child,

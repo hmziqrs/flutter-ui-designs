@@ -43,8 +43,7 @@ class _ETCHomeScreenTimerTimeState extends State<ETCHomeScreenTimerTime> {
       tween: Tween(begin: 0.0, end: 1.0),
       duration: Duration(milliseconds: 200),
       control: isReady
-          ? CustomAnimationControl.PLAY
-          : CustomAnimationControl.PLAY_REVERSE,
+          ? Control.play : Control.play_REVERSE,
       builder: (context, child, animation) {
         return Stack(
           alignment: Alignment.center,

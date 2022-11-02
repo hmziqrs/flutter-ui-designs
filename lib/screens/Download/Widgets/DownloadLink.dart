@@ -55,8 +55,7 @@ class _DownloadLinkState extends State<DownloadLink> with HoverWidgetMixin {
               duration: Duration(milliseconds: 280),
               tween: ColorTween(begin: AppTheme.text, end: AppTheme.primary),
               control: this.isFocused
-                  ? CustomAnimationControl.PLAY
-                  : CustomAnimationControl.PLAY_REVERSE,
+                  ? Control.play : Control.play_REVERSE,
               builder: (context, child, animation) {
                 return Row(
                   children: [

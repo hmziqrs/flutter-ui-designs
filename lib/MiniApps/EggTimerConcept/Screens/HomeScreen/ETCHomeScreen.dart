@@ -53,20 +53,18 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
   }
 
   onRadialDragUpdate(PolarCoord cord) {
-    if (this.dragStartCord != null) {
-      final factor = math.pi * 2;
-      final angleDiff = cord.angle - dragStartCord.angle;
-      final anglePercent =
-          (angleDiff + (angleDiff < 0.0 ? factor : 0.0)) / factor;
-      final timeDiffInSecs =
-          (anglePercent * this.timer.maxTime.inSeconds).round();
-      this.selectedTime =
-          Duration(seconds: this.dragStartTime.inSeconds + timeDiffInSecs);
+    final factor = math.pi * 2;
+    final angleDiff = cord.angle - dragStartCord.angle;
+    final anglePercent =
+        (angleDiff + (angleDiff < 0.0 ? factor : 0.0)) / factor;
+    final timeDiffInSecs =
+        (anglePercent * this.timer.maxTime.inSeconds).round();
+    this.selectedTime =
+        Duration(seconds: this.dragStartTime.inSeconds + timeDiffInSecs);
 
-      setState(() {
-        this.timer.setCurrentTime(this.selectedTime);
-      });
-    }
+    setState(() {
+      this.timer.setCurrentTime(this.selectedTime);
+    });
   }
 
   onRadialDragEnd() {
@@ -81,20 +79,20 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
   playPauseAnimationState() {
     switch (this.timer.state) {
       case ETCTimerState.running:
-        return CustomAnimationControl.PLAY;
+        return Control.play;
       case ETCTimerState.paused:
         return CustomAnimationControl.STOP;
       default:
-        return CustomAnimationControl.PLAY_REVERSE;
+        return Control.play_REVERSE;
     }
   }
 
   resetRestartAnimationState() {
     switch (this.timer.state) {
       case ETCTimerState.paused:
-        return CustomAnimationControl.PLAY;
+        return Control.play;
       default:
-        return CustomAnimationControl.PLAY_REVERSE;
+        return Control.play_REVERSE;
     }
   }
 
@@ -142,8 +140,7 @@ class _ETCHomeScreenState extends State<ETCHomeScreen> {
                       .toInt(),
                 ),
                 control: isReady
-                    ? CustomAnimationControl.PLAY
-                    : CustomAnimationControl.PLAY_REVERSE,
+                    ? Control.play : Control.play_REVERSE,
                 builder: (context, child, animation) {
                   return ETCHomeScreenTimerDial(
                     gradient,

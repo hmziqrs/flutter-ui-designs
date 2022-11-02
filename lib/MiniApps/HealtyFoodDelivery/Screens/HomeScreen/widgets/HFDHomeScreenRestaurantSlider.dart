@@ -9,7 +9,7 @@ import '../TestKeys.dart';
 import 'HFDHomeScreenRestaurantCard.dart';
 
 class HFDHomeScreenRestaurantSlider extends StatefulWidget {
-  HFDHomeScreenRestaurantSlider({Key key}) : super(key: key);
+  HFDHomeScreenRestaurantSlider({Key? key}) : super(key: key);
 
   @override
   _HFDHomeScreenRestaurantSliderState createState() =>
@@ -18,24 +18,25 @@ class HFDHomeScreenRestaurantSlider extends StatefulWidget {
 
 class _HFDHomeScreenRestaurantSliderState
     extends State<HFDHomeScreenRestaurantSlider> {
-  PageController pageController;
+  late PageController pageController;
 
   @override
   void initState() {
+    this.pageController = PageController(
+      viewportFraction:
+          Dimensions.restaurantCardBaseWidth / AppDimensions.size.width,
+    );
     super.initState();
   }
 
   @override
   void dispose() {
+    this.pageController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    this.pageController = PageController(
-      viewportFraction:
-          Dimensions.restaurantCardBaseWidth / AppDimensions.size.width,
-    );
     return Container(
       margin: EdgeInsets.only(
         top: AppDimensions.padding * 2,

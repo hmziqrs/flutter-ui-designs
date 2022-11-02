@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +12,6 @@ import 'widgets/HFDHomeScreenCategories.dart';
 import 'widgets/HFDHomeScreenItemCard.dart';
 import 'widgets/HFDHomeScreenFilters.dart';
 
-import '../../../../configs/AppDimensions.dart';
 import '../../configs/theme.dart' as theme;
 import 'messages/keys.dart';
 import 'data.dart' as data;
@@ -39,8 +37,9 @@ class _Body extends StatelessWidget {
     return Container(
       child: Screen(
         theme: Theme.of(context).copyWith(
-          accentColor: theme.primary,
           primaryColor: theme.primary,
+          colorScheme:
+              ColorScheme.fromSwatch().copyWith(secondary: theme.primary),
         ),
         fontFamily: 'Nunito',
         bottomNavigationBar: Selector<HFDHomeState, int>(
@@ -57,29 +56,38 @@ class _Body extends StatelessWidget {
                 items: data.bottomNavList.map(
                   (item) {
                     return BottomNavigationBarItem(
-                      icon: Icon(item),
-                      title: Padding(
-                        padding: EdgeInsets.all(0),
-                        child: Container(
-                          width: 30,
-                          height: 4,
-                          transform: Matrix4.identity()..translate(0.0, 4.0),
-                          decoration: BoxDecoration(
-                            color: (data.bottomNavList[activeTab] == item
-                                ? theme.primary
-                                : Colors.transparent),
-                            borderRadius: BorderRadius.circular(4.0),
+                    icon: Stack(
+                      children: [
+                        Icon(item),
+                        Positioned(
+                          bottom: 0,
+                          child: Padding(
+                            padding: EdgeInsets.all(0),
+                            child: Container(
+                              width: 30,
+                              height: 4,
+                              transform: Matrix4.identity()
+                                ..translate(0.0, 4.0),
+                              decoration: BoxDecoration(
+                                color: (data.bottomNavList[activeTab] == item
+                                    ? theme.primary
+                                    : Colors.transparent),
+                                borderRadius: BorderRadius.circular(4.0),
+                              ),
+                            ),
                           ),
-                        ),
+                        )
+                      ],
                       ),
                     );
                   },
                 ).toList(),
               );
-            }),
+          },
+        ),
         textStyle: Theme.of(context)
             .textTheme
-            .bodyText1
+            .bodyText1!
             .copyWith(fontFamily: 'Nunito'),
         child: SafeArea(
           top: false,
