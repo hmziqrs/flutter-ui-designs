@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter_uis/Navigator.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -26,5 +27,5 @@ void _main(NavigatorObserver? observer) async {
     observers.add(observer);
   }
 
-  runApp(AppNavigator(observers));
+  runApp(ProviderScope(child: AppNavigator(observers)));
 }

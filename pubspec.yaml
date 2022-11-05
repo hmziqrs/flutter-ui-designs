@@ -66,6 +66,8 @@ dependencies:
   faker: 2.0.0
   pigment: 1.0.4
   provider: 6.0.4
+  riverpod: 2.1.1
+  flutter_riverpod: 2.1.1
   tinycolor2: 3.0.1
   supercharged: 2.1.1
   dotted_border: 2.0.0+3

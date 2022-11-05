@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_uis/firebase_options.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -48,5 +49,5 @@ void main() async {
   FlutterError.onError = (FlutterErrorDetails err) {
     FirebaseCrashlytics.instance.recordFlutterError(err);
   };
-  runApp(AppNavigator(observers));
+  runApp(ProviderScope(child: AppNavigator(observers)));
 }
