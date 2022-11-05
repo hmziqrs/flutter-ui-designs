@@ -15,16 +15,15 @@ import '../TestKeys.dart';
 class ScreenSettingsModalBody extends StatelessWidget {
   ScreenSettingsModalBody({
     required this.onClose,
-    required this.appState,
     required this.isModalOpen,
   });
 
   final VoidCallback onClose;
-  final AppProvider appState;
   final bool isModalOpen;
 
   @override
   Widget build(BuildContext context) {
+    final appState = AppProvider.state(context, true);
     return Material(
       textStyle: Theme.of(context).textTheme.bodyText1,
       color: Colors.transparent,

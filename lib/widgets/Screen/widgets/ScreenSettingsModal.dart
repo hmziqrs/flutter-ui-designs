@@ -1,4 +1,3 @@
-import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/Providers/AppProvider.dart';
 import 'package:supercharged/supercharged.dart';
@@ -9,7 +8,7 @@ import 'ScreenSettingsModalBody.dart';
 import '../Provider.dart';
 
 class ScreenSettingsModal extends StatefulWidget {
-  ScreenSettingsModal({
+  const ScreenSettingsModal({
     Key? key,
     required this.isSettingsOpen,
   }) : super(key: key);
@@ -29,14 +28,14 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal> {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
         await 400.milliseconds.delay;
         setState(() {
-          this.isSettingsMounted = false;
+          isSettingsMounted = false;
         });
       });
     }
     if (!oldWidget.isSettingsOpen && widget.isSettingsOpen) {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
         setState(() {
-          this.isSettingsMounted = true;
+          isSettingsMounted = true;
         });
       });
     }
@@ -45,18 +44,20 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal> {
 
   Color getBackgroundColor(BuildContext context) {
     if (Theme.of(context).brightness == Brightness.light) {
-      return Colors.white.withOpacity(0.40);
+      return Colors.white.withOpacity(0.90);
     }
-    return Colors.black.withOpacity(0.10);
+    return Colors.black.withOpacity(0.90);
   }
 
   @override
   Widget build(BuildContext context) {
     final state = ScreenStateProvider.state(context);
-    final appState = AppProvider.state(context);
+    AppProvider.state(context, true);
 
     return Positioned.fill(
-      top: !this.isSettingsMounted ? UI.height - 20 : 0.0,
+      top: !isSettingsMounted
+          ? UI.getSize().height - (20 + UI.padding.bottom)
+          : 0.0,
       child: GestureDetector(
         // onDoubleTap: ()this.openModal,
         onDoubleTap: () => state.setSettingsOpen(true),
@@ -68,32 +69,23 @@ class ScreenSettingsModalState extends State<ScreenSettingsModal> {
             return !widget.isSettingsOpen;
           },
           child: ClipRect(
-            child: Container(
-              child: BackdropFilter(
-                filter: ui.ImageFilter.blur(
-                  sigmaX: 15,
-                  sigmaY: 15,
-                ),
-                child: AnimatedOpacity(
-                  onEnd: () async {
-                    await 100.milliseconds.delay;
-                    if (!widget.isSettingsOpen) {
-                      state.setSettingsOpen(false);
-                    }
-                  },
-                  duration: 400.milliseconds,
-                  opacity: widget.isSettingsOpen ? 1.0 : 0.0,
-                  child: Container(
-                    alignment: Alignment.topCenter,
-                    color: this.getBackgroundColor(context),
-                    child: Container(
-                      height: UI.height,
-                      child: ScreenSettingsModalBody(
-                        appState: appState,
-                        isModalOpen: widget.isSettingsOpen,
-                        onClose: () => state.setSettingsOpen(false),
-                      ),
-                    ),
+            child: AnimatedOpacity(
+              onEnd: () async {
+                await 100.milliseconds.delay;
+                if (!widget.isSettingsOpen) {
+                  state.setSettingsOpen(false);
+                }
+              },
+              duration: 400.milliseconds,
+              opacity: widget.isSettingsOpen ? 1.0 : 0.0,
+              child: Container(
+                alignment: Alignment.topCenter,
+                color: this.getBackgroundColor(context),
+                child: SizedBox(
+                  height: UI.height,
+                  child: ScreenSettingsModalBody(
+                    isModalOpen: widget.isSettingsOpen,
+                    onClose: () => state.setSettingsOpen(false),
                   ),
                 ),
               ),

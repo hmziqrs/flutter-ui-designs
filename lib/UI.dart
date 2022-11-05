@@ -15,6 +15,9 @@ class UI {
   static late double safeWidth;
   static late double safeHeight;
 
+  static late EdgeInsets padding;
+  static late EdgeInsets vi;
+
   static late bool isTablet;
   static late double diagonal;
 
@@ -36,6 +39,9 @@ class UI {
     height = _mediaQueryData.size.height;
     horizontal = width / 100;
     vertical = height / 100;
+
+    padding = _mediaQueryData.padding;
+    vi = _mediaQueryData.viewInsets;
 
     _safeAreaHorizontal =
         _mediaQueryData.padding.left + _mediaQueryData.padding.right;
