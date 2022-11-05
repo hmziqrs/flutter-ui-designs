@@ -1,6 +1,4 @@
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/configs/Ads.dart';
 import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -70,10 +68,12 @@ class HomeBody extends StatelessWidget {
                       padding: EdgeInsets.symmetric(
                         vertical: AppDimensions.padding * 1,
                       ),
-                      child: AdmobBanner(
-                        adSize: AdmobBannerSize.SMART_BANNER(context),
-                        adUnitId: Ads.getHomeScreenBanner(),
-                      ),
+                      child: SizedBox(),
+                      // AddTodo
+                      // child: AdmobBanner(
+                      //   adSize: AdmobBannerSize.SMART_BANNER(context),
+                      //   adUnitId: Ads.getHomeScreenBanner(),
+                      // ),
                     );
                   }
                   return Padding(

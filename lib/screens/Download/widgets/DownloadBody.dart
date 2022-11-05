@@ -1,8 +1,6 @@
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
-import 'package:flutter_uis/configs/Ads.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:share/share.dart';
 
@@ -110,10 +108,12 @@ class DownloadBody extends StatelessWidget {
               vertical: AppDimensions.padding * 1,
             ),
             child: Center(
-              child: AdmobBanner(
-                adSize: AdmobBannerSize.SMART_BANNER(context),
-                adUnitId: Ads.getDownloadScreenBanner(),
-              ),
+              child: SizedBox(),
+              // AddTodo
+              // child: AdmobBanner(
+              //   adSize: AdmobBannerSize.SMART_BANNER(context),
+              //   adUnitId: Ads.getDownloadScreenBanner(),
+              // ),
             ),
           ),
         //Mobile

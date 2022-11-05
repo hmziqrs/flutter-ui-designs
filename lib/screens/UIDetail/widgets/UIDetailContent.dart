@@ -1,8 +1,7 @@
 import 'dart:math';
 
-import 'package:admob_flutter/admob_flutter.dart';
+// import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/configs/Ads.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/AppTheme.dart';
@@ -32,27 +31,28 @@ class UIDetailContent extends StatefulWidget {
 }
 
 class _UIDetailContentState extends State<UIDetailContent> {
-  late AdmobInterstitial interstitialAd;
+  // late AdmobInterstitial interstitialAd;
 
   @override
   void initState() {
-    this.interstitialAd = AdmobInterstitial(
-      adUnitId: Ads.getOpenAppVideo(),
-      listener: (AdmobAdEvent event, args) {
-        if (event == AdmobAdEvent.closed) {
-          Navigator.of(context).pushNamed(
-            this.widget.uiItem.miniApp!,
-          );
-        }
-      },
-    )..load();
+    // AddToDo
+    // this.interstitialAd = AdmobInterstitial(
+    //   adUnitId: Ads.getOpenAppVideo(),
+    //   listener: (AdmobAdEvent event, args) {
+    //     if (event == AdmobAdEvent.closed) {
+    //       Navigator.of(context).pushNamed(
+    //         this.widget.uiItem.miniApp!,
+    //       );
+    //     }
+    //   },
+    // )..load();
     super.initState();
   }
 
   void openApp(BuildContext context) {
     final r = Random().nextInt(4);
     if (r == 2 && App.showAds) {
-      this.interstitialAd.show();
+      // this.interstitialAd.show();
       return;
     }
     Navigator.of(context).pushNamed(

@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_uis/firebase_options.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'utils/UIUtils.dart';
@@ -21,9 +21,15 @@ void main() async {
 
   App.showAds = Utils.isMobile();
   if (App.showAds) {
-    Admob.initialize();
+    // MobileAds.instance.updateRequestConfiguration(RequestConfiguration(
+    //   testDeviceIds: ['33BE2250B43518CCDA7DE426D04EE231'],
+    // ));
+
+    MobileAds.instance.initialize();
+    // Admob.initialize();
     if (Platform.isIOS) {
-      await Admob.requestTrackingAuthorization();
+      // await MobileAds.instance.req;
+      // await Admob.requestTrackingAuthorization();
     }
   }
   await Firebase.initializeApp();
