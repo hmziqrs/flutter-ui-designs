@@ -58,6 +58,7 @@ dependencies:
   # universal_io: 2.0.4
   # admob_flutter: 3.0.0
   google_mobile_ads: 2.2.0
+  package_info_plus: 3.0.1
 
   emojis: 0.9.9
   recase: 4.1.0
