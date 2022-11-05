@@ -70,10 +70,8 @@ class DefaultFirebaseOptions {
     projectId: 'flutter-ui-challenges-hgl',
     databaseURL: 'https://flutter-ui-challenges-hgl.firebaseio.com',
     storageBucket: 'flutter-ui-challenges-hgl.appspot.com',
-    androidClientId:
-        '322047224635-9mqs8s0t8vgcn51njv59cudn2721feb2.apps.googleusercontent.com',
-    iosClientId:
-        '322047224635-dcrsla38nrue26isrvt3tnjrc2eleok3.apps.googleusercontent.com',
+    androidClientId: '322047224635-9mqs8s0t8vgcn51njv59cudn2721feb2.apps.googleusercontent.com',
+    iosClientId: '322047224635-dcrsla38nrue26isrvt3tnjrc2eleok3.apps.googleusercontent.com',
     iosBundleId: 'com.onemdev.flutter-ui-challenges',
   );
 
@@ -84,10 +82,8 @@ class DefaultFirebaseOptions {
     projectId: 'flutter-ui-challenges-hgl',
     databaseURL: 'https://flutter-ui-challenges-hgl.firebaseio.com',
     storageBucket: 'flutter-ui-challenges-hgl.appspot.com',
-    androidClientId:
-        '322047224635-9mqs8s0t8vgcn51njv59cudn2721feb2.apps.googleusercontent.com',
-    iosClientId:
-        '322047224635-re8jqqobom6s24tjee2mejcijpo9jqba.apps.googleusercontent.com',
+    androidClientId: '322047224635-9mqs8s0t8vgcn51njv59cudn2721feb2.apps.googleusercontent.com',
+    iosClientId: '322047224635-re8jqqobom6s24tjee2mejcijpo9jqba.apps.googleusercontent.com',
     iosBundleId: 'com.onemdev.flutter-ui-challenges-mac',
   );
 }

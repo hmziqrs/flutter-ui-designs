@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>322047224635-re8jqqobom6s24tjee2mejcijpo9jqba.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.322047224635-re8jqqobom6s24tjee2mejcijpo9jqba</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>322047224635-9mqs8s0t8vgcn51njv59cudn2721feb2.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBzC3rYW7IaRhL9ZoAX7WjefJEEGQnlwVs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>322047224635</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.onemdev.flutter-ui-challenges-mac</string>
+	<key>PROJECT_ID</key>
+	<string>flutter-ui-challenges-hgl</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flutter-ui-challenges-hgl.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:322047224635:ios:99d72077bc2e6c0bd2e51e</string>
+	<key>DATABASE_URL</key>
+	<string>https://flutter-ui-challenges-hgl.firebaseio.com</string>
+</dict>
+</plist>
