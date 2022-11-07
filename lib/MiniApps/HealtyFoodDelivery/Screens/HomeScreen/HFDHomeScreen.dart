@@ -56,6 +56,7 @@ class _Body extends StatelessWidget {
                 items: data.bottomNavList.map(
                   (item) {
                     return BottomNavigationBarItem(
+                    label: '',
                     icon: Stack(
                       children: [
                         Icon(item),
