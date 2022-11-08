@@ -315,6 +315,7 @@ class _Body extends StatelessWidget {
                           );
                         },
                       ),
+                      SizedBox(height: AppDimensions.padding * 12),
                       Utils.safePadding(context, "bottom"),
                     ],
                   ),

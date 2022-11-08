@@ -58,12 +58,17 @@ class AppButton extends StatelessWidget {
           padding: EdgeInsets.symmetric(
             vertical: AppDimensions.padding * this.padding,
           ),
-
+        ).copyWith(
+          overlayColor: MaterialStateColor.resolveWith(
+            (states) => text.withOpacity(0.1),
+          ),
         ),
         child: this.child ??
             Text(
               label!,
-              style: TextStyles.heading6,
+              style: TextStyles.heading6.copyWith(
+                color: text,
+              ),
             ),
         
         onPressed: this.onTap,
