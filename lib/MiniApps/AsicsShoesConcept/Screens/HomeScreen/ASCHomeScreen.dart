@@ -146,7 +146,10 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> with AnimationMixin {
                           Column(
                             children: [
                               ASCHomeScreenHeader(
-                                  item: item, parallax: parallax),
+                                item: item,
+                                parallax: parallax,
+                                colorIndex: activeColorIndex,
+                              ),
                               ASCHomeScreenContent(
                                 item: item,
                                 uiParallax: uiParallax,

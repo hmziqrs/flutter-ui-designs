@@ -55,7 +55,7 @@ class _ASCHomeScreenShoeState extends State<ASCHomeScreenShoe>
     final scale = this.widget.uiParallax * -0.12;
     final opacity = this.widget.uiParallax * 0.15;
     final state = ASCShoeProvider.state(context);
-    final sizeScale = (state.shoeAnimation.value ?? 0);
+    final sizeScale = state.shoeAnimation?.value ?? 0;
     return Positioned(
       top: Dimensions.shoeTop,
       // left: (AppDimensions.size.width / 2) - width * 0.4,
