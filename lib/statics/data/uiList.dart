@@ -31,6 +31,8 @@ List<UIItem> uilist = [
     thumbnail: "assets/thumbnails/hot_air_balloon.jpg",
     tabletSupport: true,
     landscapeSupport: true,
+    webSupport: true,
+    desktopSupport: true,
   ),
   new UIItem(
     id: 3,
