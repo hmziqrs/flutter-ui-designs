@@ -1,7 +1,9 @@
 import 'dart:math';
 
+import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/io/io.dart';
 import 'package:flutter_uis/widgets/Buttons/AppButton.dart';
 import 'package:flutter_uis/widgets/Overlay/GradientFade.dart';
 import 'package:flutter_uis/widgets/ScreenAnimation/Base.dart';
@@ -59,7 +61,8 @@ class _Body extends StatelessWidget {
       "${r.nextInt(60)} mins",
     ];
 
-    return WillPopScope(
+    return ConditionalWillPopScope(
+      shouldAddCallback: Platform.isAndroid,
       onWillPop: () async {
         this.onClose(context);
         return false;

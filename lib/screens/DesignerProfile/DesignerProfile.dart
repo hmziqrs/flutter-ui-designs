@@ -1,6 +1,8 @@
+import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_uis/AppRoutes.dart';
+import 'package:flutter_uis/io/io.dart';
 import 'package:flutter_uis/widgets/Overlay/GradientFade.dart';
 import 'package:flutter_uis/widgets/ScreenAnimation/Base.dart';
 import 'package:flutter_uis/widgets/custom/CustomFlexibleSpaceBar.dart';
@@ -49,7 +51,8 @@ class _Body extends StatelessWidget {
     UIDesigner designer =
         uiDesigners.firstWhere((user) => user.username == username);
 
-    return WillPopScope(
+    return ConditionalWillPopScope(
+      shouldAddCallback: Platform.isAndroid,
       onWillPop: () async {
         this.onClose(context);
         return false;

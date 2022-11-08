@@ -1,5 +1,7 @@
+import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_uis/io/io.dart';
 import 'package:flutter_uis/widgets/ScreenAnimation/Base.dart';
 import 'package:provider/provider.dart';
 
@@ -41,7 +43,8 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     final UIItem uiItem = ModalRoute.of(context)!.settings.arguments! as UIItem;
 
-    return WillPopScope(
+    return ConditionalWillPopScope(
+      shouldAddCallback: Platform.isAndroid,
       onWillPop: () async {
         this.onClose(context);
         return false;
