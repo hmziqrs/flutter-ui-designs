@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+
 abstract class Ads {
-  static bool _test = true;
+  static bool _forceTest = true;
+  static bool _test = kDebugMode || _forceTest;
 
   static String getAppId() {
     return "ca-app-pub-9217632370383904~2821189635";

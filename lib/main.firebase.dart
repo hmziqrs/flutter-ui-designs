@@ -22,10 +22,6 @@ void main() async {
 
   App.showAds = Utils.isMobile();
   if (App.showAds) {
-    // MobileAds.instance.updateRequestConfiguration(RequestConfiguration(
-    //   testDeviceIds: ['33BE2250B43518CCDA7DE426D04EE231'],
-    // ));
-
     MobileAds.instance.initialize();
     if (Platform.isIOS) {
       // await MobileAds.instance.req;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
+import 'package:flutter_uis/configs/Ads.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:share/share.dart';
 
@@ -21,7 +23,33 @@ import '../messages/keys.dart';
 import '../data.dart' as data;
 import '../Dimensions.dart';
 
-class DownloadBody extends StatelessWidget {
+class DownloadBody extends StatefulWidget {
+  @override
+  State<DownloadBody> createState() => _DownloadBodyState();
+}
+
+class _DownloadBodyState extends State<DownloadBody> {
+  BannerAd? ad;
+  @override
+  void initState() {
+    super.initState();
+    BannerAd(
+      adUnitId: Ads.getDownloadScreenBanner(),
+      size: AdSize.largeBanner,
+      request: AdRequest(),
+      listener: BannerAdListener(
+        onAdLoaded: (ladedAd) {
+          setState(() {
+            this.ad = ladedAd as BannerAd;
+          });
+        },
+        onAdFailedToLoad: (ad, error) {
+          ad.dispose();
+        },
+      ),
+    ).load();
+  }
+
   void onTap(BuildContext context, Map map) {
     final str = ["web", "github", "play store"].where(
       (element) => element == map["name"].toString().toLowerCase(),
@@ -102,18 +130,15 @@ class DownloadBody extends StatelessWidget {
 
         AlphaBanner(text: App.translate(DownloadScreenMessages.desc, context)),
         SizedBox(height: AppDimensions.padding * 2),
-        if (App.showAds)
+        if (App.showAds && this.ad != null)
           Padding(
             padding: EdgeInsets.symmetric(
               vertical: AppDimensions.padding * 1,
             ),
-            child: Center(
-              child: SizedBox(),
-              // AddTodo
-              // child: AdmobBanner(
-              //   adSize: AdmobBannerSize.SMART_BANNER(context),
-              //   adUnitId: Ads.getDownloadScreenBanner(),
-              // ),
+            child: Container(
+              height: this.ad!.size.height.toDouble(),
+              alignment: Alignment.center,
+              child: AdWidget(ad: this.ad!),
             ),
           ),
         //Mobile
