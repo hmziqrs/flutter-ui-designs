@@ -1,3 +1,4 @@
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -36,6 +37,10 @@ class _UIDetailContentState extends State<UIDetailContent> {
   @override
   void initState() {
     super.initState();
+    this.initAd();
+  }
+
+  void initAd() {
     if (!App.showAds) return;
     InterstitialAd.load(
       adUnitId: Ads.getOpenAppVideo(),
@@ -44,9 +49,20 @@ class _UIDetailContentState extends State<UIDetailContent> {
         onAdLoaded: (loadedAd) {
           // Keep a reference to the ad so you can show it later.
           this.ad = loadedAd;
+          this.ad!.fullScreenContentCallback = FullScreenContentCallback(
+            onAdShowedFullScreenContent: (InterstitialAd ad) {},
+            onAdDismissedFullScreenContent: (InterstitialAd ad) {},
+            onAdFailedToShowFullScreenContent:
+                (InterstitialAd ad, AdError error) {},
+            onAdImpression: (InterstitialAd ad) {
+              this.navigate();
+              this.initAd();
+            },
+          );
+          setState(() {});
         },
         onAdFailedToLoad: (LoadAdError error) {
-          print('InterstitialAd failed to load: $error');
+          this.ad = null;
         },
       ),
     );
@@ -54,12 +70,16 @@ class _UIDetailContentState extends State<UIDetailContent> {
 
   void openApp(BuildContext context) {
     final r = Random().nextInt(4);
-    print("RRRR $r");
-    if (r == 2 && App.showAds && this.ad != null) {
+    final adCheck = App.showAds && this.ad != null;
+    if (r == 2 && adCheck) {
       this.ad!.show();
       return;
     }
 
+    this.navigate();
+  }
+
+  void navigate() {
     Navigator.of(context).pushNamed(
       widget.uiItem.miniApp!,
     );
