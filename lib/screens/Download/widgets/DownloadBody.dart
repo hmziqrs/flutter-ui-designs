@@ -15,7 +15,6 @@ import 'package:flutter_uis/widgets/BottomSheets/WithBoxButtons.dart';
 import 'package:flutter_uis/widgets/SnackBars/Base.dart';
 import 'package:flutter_uis/widgets/Banners/Alpha.dart';
 import 'package:flutter_uis/widgets/Buttons/Alpha.dart';
-import 'package:flutter_uis/widgets/Header/Header.dart';
 
 import 'DownloadHeading.dart';
 
@@ -126,9 +125,6 @@ class _DownloadBodyState extends State<DownloadBody> {
     return ListView(
       padding: EdgeInsets.zero,
       children: <Widget>[
-        Header(label: App.translate(DownloadScreenMessages.title, context)),
-        // Content
-
         AlphaBanner(text: App.translate(DownloadScreenMessages.desc, context)),
         SizedBox(height: AppDimensions.padding * 2),
         if (App.showAds && this.ad != null)

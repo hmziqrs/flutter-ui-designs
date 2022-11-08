@@ -25,6 +25,7 @@ class Header extends StatelessWidget {
           ? Utils.safePaddingUnit(context, "top")
           : EdgeInsets.zero,
       width: double.infinity,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
         color: AppTheme.background,
         boxShadow: [
@@ -34,33 +35,38 @@ class Header extends StatelessWidget {
           )
         ],
       ),
-      child: Material(
-        color: Colors.transparent,
-        child: Row(
-          children: [
-            Container(
-              key: Key(HeaderWidgetKey.backButton),
-              child: IconButton(
-                icon: Icon(Icons.chevron_left),
-                tooltip: MaterialLocalizations.of(context).backButtonTooltip,
-                onPressed: () {
-                  Navigator.popUntil(
-                    context,
-                    (route) =>
-                        route.settings.name !=
-                        ModalRoute.of(context)!.settings.name,
-                  );
-                },
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxWidth: AppDimensions.maxContainerWidth,
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: Row(
+            children: [
+              Container(
+                key: Key(HeaderWidgetKey.backButton),
+                child: IconButton(
+                  icon: Icon(Icons.chevron_left),
+                  tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+                  onPressed: () {
+                    Navigator.popUntil(
+                      context,
+                      (route) =>
+                          route.settings.name !=
+                          ModalRoute.of(context)!.settings.name,
+                    );
+                  },
+                ),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.all(AppDimensions.padding * 2),
-              child: Text(
-                App.translate(this.label, context),
-                style: TextStyles.heading46,
+              Container(
+                padding: EdgeInsets.all(AppDimensions.padding * 2),
+                child: Text(
+                  App.translate(this.label, context),
+                  style: TextStyles.heading46,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

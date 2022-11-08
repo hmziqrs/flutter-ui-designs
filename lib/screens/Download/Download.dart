@@ -1,6 +1,9 @@
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/io/io.dart';
+import 'package:flutter_uis/screens/Download/messages/keys.dart';
+import 'package:flutter_uis/widgets/Header/Header.dart';
 import 'package:simple_animations/simple_animations.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
 
@@ -49,11 +52,19 @@ class DownloadScreen extends StatelessWidget {
             },
           )
         ],
-        child: Align(
-          child: Container(
-            width: AppDimensions.maxContainerWidth,
-            child: DownloadBody(),
-          ),
+        child: Column(
+          children: [
+            Header(
+              label: App.translate(DownloadScreenMessages.title, context),
+            ),
+            SizedBox(height: AppDimensions.padding * 3),
+            Expanded(
+              child: Container(
+                width: AppDimensions.maxContainerWidth,
+                child: DownloadBody(),
+              ),
+            ),
+          ],
         ),
       ),
     );
