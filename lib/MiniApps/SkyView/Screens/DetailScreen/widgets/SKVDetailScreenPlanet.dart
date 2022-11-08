@@ -1,10 +1,12 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/MiniApps/SkyView/Screens/DetailScreen/Provider.dart';
 import 'package:flutter_uis/Mixins/HoverWidget.dart';
 import 'package:flutter_uis/UI.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/utils/Utils.dart';
+import 'package:provider/provider.dart';
 
 import '../../../data/data.dart' as data;
 import '../Dimensions.dart';
@@ -14,17 +16,15 @@ class SKVDetailScreenPlanet extends StatelessWidget {
     required this.item,
     required this.pageRendered,
     required this.index,
-    required this.offset,
   });
   final data.SKVObject item;
   final bool pageRendered;
   final int index;
-  final double offset;
 
-  Widget renderContent(double animation) {
+  Widget renderContent(double animation, double offset) {
     final width = UI.getSize().width;
     // This variable helps us calculate parallax for each page.
-    final widthOffset = this.offset - (width * this.index);
+    final widthOffset = offset - (width * this.index);
     final rotateRatio = math.pi / 180;
 
     double opacityOffset = animation;
@@ -139,7 +139,13 @@ class SKVDetailScreenPlanet extends StatelessWidget {
         delay: Duration(milliseconds: 410),
         tween: Tween(begin: 0.0, end: 1.0),
         duration: Duration(milliseconds: 500),
-        builder: (ctx, animation, child) => this.renderContent(animation),
+        builder: (ctx, animation, child) => Selector<SKVDetailState, double>(
+          selector: (_, s) => s.offset,
+          builder: (context, offset, child) => this.renderContent(
+            animation,
+            offset,
+          ),
+        ),
       ),
     );
   }

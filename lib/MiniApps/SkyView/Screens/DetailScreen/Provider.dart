@@ -23,6 +23,7 @@ class SKVDetailState extends ChangeNotifier {
     required PageController pageController,
   }) {
     this.pageController = pageController;
+    this._offset = this.activePage * UI.width;
     this.pageController.addListener(() {
       final __offset = this.pageController.offset;
       final screenWidth = UI.getSize().width;
@@ -51,8 +52,6 @@ class SKVDetailState extends ChangeNotifier {
     this.pageRendered = true;
     this.notifyListeners();
   }
-
-
 
   setActivePage(int index) {
     this.activePage = index;

@@ -22,6 +22,9 @@ class SKVDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    UI.init(context);
+    Dimensions.init(context);
+
     return ChangeNotifierProvider<SKVDetailState>(
       create: (_) => SKVDetailState(
         activePage: this.index,
@@ -64,9 +67,6 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    UI.init(context);
-    Dimensions.init(context);
-
     final fontStyle = Theme.of(context).textTheme.bodyText1!.copyWith(
           fontFamily: 'Montserrat',
         );
@@ -89,7 +89,7 @@ class _Body extends StatelessWidget {
         onKey: this.onKeyHandler,
         child: Stack(
           fit: StackFit.expand,
-          children: <Widget>[
+          children: [
             SKVDetailScreenSpaceBackground(),
             Selector<SKVDetailState, bool>(
               selector: (_, s) => s.pageRendered,
@@ -107,20 +107,17 @@ class _Body extends StatelessWidget {
                         : new NeverScrollableScrollPhysics(),
                     itemBuilder: (ctx, index) {
                       data.SKVObject item = data.objectList[index];
-                      final offset = SKVDetailState.state(ctx, true).offset;
                       return Stack(
                         fit: StackFit.expand,
                         children: [
                           SKVDetailScreenOrbit(
                             index: index,
                             pageRendered: pageRendered,
-                            offset: offset,
                           ),
                           SKVDetailScreenPlanet(
                             item: item,
                             index: index,
                             pageRendered: pageRendered,
-                            offset: offset,
                           ),
                           SKVDetailScreenTextContent(
                             item: item,
