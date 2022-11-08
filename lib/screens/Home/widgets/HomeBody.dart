@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/Ads.dart';
 import 'package:flutter_uis/configs/App.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -6,12 +7,38 @@ import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/configs/CommonProps.dart';
 import 'package:flutter_uis/configs/TextStyles.dart';
 import 'package:flutter_uis/widgets/Screen/Provider.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-import 'HomeBuildVersion.dart';
 import '../data.dart' as data;
 import '../messages/keys.dart';
 
-class HomeBody extends StatelessWidget {
+class HomeBody extends StatefulWidget {
+  @override
+  State<HomeBody> createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
+  BannerAd? ad;
+  @override
+  void initState() {
+    super.initState();
+    BannerAd(
+      adUnitId: Ads.getHomeScreenBanner(),
+      size: AdSize.largeBanner,
+      request: AdRequest(),
+      listener: BannerAdListener(
+        onAdLoaded: (ladedAd) {
+          setState(() {
+            this.ad = ladedAd as BannerAd;
+          });
+        },
+        onAdFailedToLoad: (ad, error) {
+          ad.dispose();
+        },
+      ),
+    ).load();
+  }
+
   onPress(BuildContext context, String path) {
     if (path == 'settings') {
       return ScreenStateProvider.state(context).setSettingsOpen(true);
@@ -61,19 +88,18 @@ class HomeBody extends StatelessWidget {
               ...data.list.map(
                 (item) {
                   if (item["key"] == 'ad') {
-                    if (!App.showAds) {
+                    if (!App.showAds || this.ad == null) {
                       return SizedBox();
                     }
                     return Padding(
                       padding: EdgeInsets.symmetric(
                         vertical: AppDimensions.padding * 1,
                       ),
-                      child: SizedBox(),
-                      // AddTodo
-                      // child: AdmobBanner(
-                      //   adSize: AdmobBannerSize.SMART_BANNER(context),
-                      //   adUnitId: Ads.getHomeScreenBanner(),
-                      // ),
+                      child: Container(
+                        height: this.ad!.size.height.toDouble(),
+                        alignment: Alignment.center,
+                        child: AdWidget(ad: this.ad!),
+                      ),
                     );
                   }
                   return Padding(
@@ -115,7 +141,6 @@ class HomeBody extends StatelessWidget {
                   );
                 },
               ).toList(),
-              HomeBuildVersion(),
             ],
           ),
         ),

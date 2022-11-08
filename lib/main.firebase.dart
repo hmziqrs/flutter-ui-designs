@@ -27,7 +27,6 @@ void main() async {
     // ));
 
     MobileAds.instance.initialize();
-    // Admob.initialize();
     if (Platform.isIOS) {
       // await MobileAds.instance.req;
       // await Admob.requestTrackingAuthorization();

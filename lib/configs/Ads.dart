@@ -1,7 +1,7 @@
 import 'dart:io';
 
 abstract class Ads {
-  static bool _test = false;
+  static bool _test = true;
 
   static String getAppId() {
     return "ca-app-pub-9217632370383904~2821189635";
