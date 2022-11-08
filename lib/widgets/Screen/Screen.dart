@@ -66,7 +66,7 @@ class Screen extends StatelessWidget {
           body: AnnotatedRegion<SystemUiOverlayStyle>(
             value: StatusBarHandler.get(
               context,
-              ModalRoute.of(context)!.settings.name!,
+              ModalRoute.of(context)!.settings.name,
             ),
             child: Stack(
               fit: StackFit.expand,

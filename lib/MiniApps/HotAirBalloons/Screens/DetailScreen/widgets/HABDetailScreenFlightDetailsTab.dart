@@ -91,21 +91,23 @@ class HABDetailScreenFlightDetailsTab extends StatelessWidget {
           ),
           child: TextButton(
             onPressed: () {},
-            // VISIT
             style: TextButton.styleFrom(
               backgroundColor: AppTheme.primary,
-              // splashColor: Colors.transparent,
-              // highlightColor: Colors.black.withOpacity(0.1),
               padding:
-                  EdgeInsets.symmetric(vertical: AppDimensions.padding * 2),
+                  EdgeInsets.symmetric(
+                vertical: AppDimensions.padding * 2,
+              ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12.0),
               ),
               textStyle: TextStyle(
                 color: Colors.white,
               ),
+            ).copyWith(
+              overlayColor: MaterialStateColor.resolveWith(
+                (states) => Colors.white.withOpacity(0.1),
+              ),
             ),
-
             child: Text(
               App.translate(
                 HABDetailScreenMessages.bookNow,
@@ -114,6 +116,7 @@ class HABDetailScreenFlightDetailsTab extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
+                color: Colors.white,
               ),
             ),
           ),

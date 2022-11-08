@@ -37,7 +37,7 @@ final statusBarMap = {
 };
 
 class StatusBarHandler {
-  static get(BuildContext context, String route) {
+  static get(BuildContext context, String? route) {
     final theme = statusBarMap[route];
     switch (theme) {
       case DARK:
@@ -46,21 +46,18 @@ class StatusBarHandler {
           statusBarBrightness: Brightness.light,
           navBarBrightness: Brightness.light,
         );
-        break;
       case LIGHT:
         return UIUtils.getThemeStatusBar(
           context,
           statusBarBrightness: Brightness.dark,
           navBarBrightness: Brightness.dark,
         );
-        break;
       case LIGHT_NAVDARK:
         return UIUtils.getThemeStatusBar(
           context,
           statusBarBrightness: Brightness.dark,
           navBarBrightness: Brightness.light,
         );
-        break;
       default:
         return UIUtils.getThemeStatusBar(context);
     }
