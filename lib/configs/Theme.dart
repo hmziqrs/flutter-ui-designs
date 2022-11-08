@@ -1,3 +1,4 @@
+import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:pigment/pigment.dart';
 import 'package:tinycolor2/tinycolor2.dart';
@@ -28,7 +29,7 @@ final base = ThemeData(
   pageTransitionsTheme: PageTransitionsTheme(
     builders: {
       TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
-      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.iOS: CupertinoWillPopScopePageTransionsBuilder(),
     },
   ),
   colorScheme: ColorScheme.light().copyWith(secondary: primary),
@@ -44,7 +45,7 @@ final baseDark = ThemeData(
   pageTransitionsTheme: PageTransitionsTheme(
     builders: {
       TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
-      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.iOS: CupertinoWillPopScopePageTransionsBuilder(),
     },
   ),
   colorScheme: ColorScheme.dark().copyWith(secondary: primary),

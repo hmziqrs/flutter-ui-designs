@@ -77,7 +77,8 @@ dependencies:
   page_transition: 2.0.9
   percent_indicator: 4.2.2
   simple_animations: 5.0.0+2
-  flutter_font_icons: ^2.2.5
+  flutter_font_icons: 2.2.5
+  cupertino_will_pop_scope: 1.2.1
 
 dev_dependencies:
   # flutter_driver:

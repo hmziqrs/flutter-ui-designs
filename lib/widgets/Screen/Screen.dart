@@ -50,9 +50,13 @@ class Screen extends StatelessWidget {
       create: (_) => ScreenStateProvider(),
       child: Theme(
         data: baseTheme.copyWith(
-          textTheme: baseTheme.textTheme.apply(fontFamily: this.fontFamily),
+          textTheme: baseTheme.textTheme.apply(
+            fontFamily: this.fontFamily,
+          ),
           primaryTextTheme:
-              baseTheme.primaryTextTheme.apply(fontFamily: this.fontFamily),
+              baseTheme.primaryTextTheme.apply(
+            fontFamily: this.fontFamily,
+          ),
         ),
         child: Scaffold(
           drawer: this.drawer,
@@ -68,7 +72,7 @@ class Screen extends StatelessWidget {
               fit: StackFit.expand,
               children: <Widget>[
                 ...(this.belowBuilders ?? []),
-                Positioned.fill(
+                Positioned(
                   child: child ??
                       (builder != null ? builder!(context) : SizedBox()),
                 ),
@@ -83,15 +87,7 @@ class Screen extends StatelessWidget {
                     ),
                   ),
                   child: this.renderSettings
-                      ? Selector<ScreenStateProvider, bool>(
-                          selector: (_, state) => state.isSettingsOpen,
-                          builder: (ctx, isSettingsOpen, child) {
-                            return ScreenSettingsModal(
-                              isSettingsOpen: isSettingsOpen,
-                            );
-                          },
-                        )
-                      : Container(),
+                      ? ScreenSettingsModal() : SizedBox(),
                 ),
               ],
             ),

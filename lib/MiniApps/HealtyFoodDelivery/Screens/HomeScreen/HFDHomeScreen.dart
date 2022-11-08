@@ -43,20 +43,23 @@ class _Body extends StatelessWidget {
         ),
         fontFamily: 'Nunito',
         bottomNavigationBar: Selector<HFDHomeState, int>(
-            selector: (_, state) => state.activeTab,
-            builder: (context, activeTab, child) {
-              return BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                currentIndex: activeTab,
-                selectedItemColor: theme.primary,
-                unselectedItemColor: Colors.black,
-                onTap: (index) {
-                  HFDHomeState.state(context).setActiveTab(index);
-                },
-                items: data.bottomNavList.map(
-                  (item) {
-                    return BottomNavigationBarItem(
-                    label: '',
+          selector: (_, state) => state.activeTab,
+          builder: (context, activeTab, child) {
+            return BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              currentIndex: activeTab,
+              selectedItemColor: theme.primary,
+              unselectedItemColor: Colors.black,
+              onTap: (index) {
+                HFDHomeState.state(context).setActiveTab(index);
+              },
+              items: data.bottomNavList.map(
+                (item) {
+                  final color = data.bottomNavList[activeTab] == item
+                      ? theme.primary
+                      : Colors.transparent;
+                  return BottomNavigationBarItem(
+                    label: 'sadasd',
                     icon: Stack(
                       children: [
                         Icon(item),
@@ -67,23 +70,21 @@ class _Body extends StatelessWidget {
                             child: Container(
                               width: 30,
                               height: 4,
-                              transform: Matrix4.identity()
-                                ..translate(0.0, 4.0),
+                              // transform: Matrix4.identity()
+                              //   ..translate(0.0, 4.0),
                               decoration: BoxDecoration(
-                                color: (data.bottomNavList[activeTab] == item
-                                    ? theme.primary
-                                    : Colors.transparent),
+                                color: color,
                                 borderRadius: BorderRadius.circular(4.0),
                               ),
                             ),
                           ),
                         )
                       ],
-                      ),
-                    );
-                  },
-                ).toList(),
-              );
+                    ),
+                  );
+                },
+              ).toList(),
+            );
           },
         ),
         textStyle: Theme.of(context)
