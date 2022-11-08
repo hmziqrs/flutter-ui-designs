@@ -75,6 +75,10 @@ class _Body extends StatelessWidget {
         duration: baseDuration,
       );
 
+    final colorScheme = ColorScheme.fromSwatch().copyWith(
+      secondary: theme.primary,
+    );
+
     return NotificationListener<ScrollNotification>(
       onNotification: (notification) {
         if (notification is ScrollUpdateNotification) {
@@ -87,8 +91,7 @@ class _Body extends StatelessWidget {
       child: Screen(
         theme: Theme.of(context).copyWith(
           primaryColor: theme.primary,
-          colorScheme:
-              ColorScheme.fromSwatch().copyWith(secondary: theme.primary),
+          colorScheme: colorScheme,
         ),
         textStyle: textStyle,
         fontFamily: 'Nunito',
@@ -160,7 +163,6 @@ class _Body extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(80),
                                       ),
                                     ),
-
                                     child: Text(
                                       App.translate(
                                         HFDDetailScreenMessages.orderNow,

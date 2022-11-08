@@ -1,10 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/Mixins/HoverBase.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/utils/Utils.dart';
-
-import 'package:flutter_uis/Mixins/HoverWidget.dart';
 
 import '../data.dart' as data;
 import '../Dimensions.dart';
@@ -19,22 +18,23 @@ class HFDHomeScreenRestaurantCard extends StatefulWidget {
 }
 
 class _HFDHomeScreenRestaurantCardState
-    extends State<HFDHomeScreenRestaurantCard> with HoverWidgetMixin {
+    extends State<HFDHomeScreenRestaurantCard>
+    with SingleTickerProviderStateMixin, HoverWidgetBase {
   @override
   Widget build(BuildContext context) {
     final sigma = Utils.rangeMap(
-          this.animation.value,
-          0.0,
-          1.0,
-          2.4,
-          0.01,
-        ) ??
-        0.1;
+      this.animation.value,
+      0.0,
+      1.0,
+      2.4,
+      0.01,
+    );
 
     return Padding(
       padding: EdgeInsets.all(AppDimensions.padding * 2),
       child: Align(
         child: this.buildInkWell(
+          onTap: () {},
           key: Key(this.widget.restaurant.testKey),
           child: Container(
             width: Dimensions.restaurantCardBaseWidth,

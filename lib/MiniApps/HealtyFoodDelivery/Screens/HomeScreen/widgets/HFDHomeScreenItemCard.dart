@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/Mixins/HoverWidget.dart';
+import 'package:flutter_uis/Mixins/HoverBase.dart';
 import 'package:flutter_uis/utils/Utils.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
@@ -19,7 +19,7 @@ class HFDHomeScreenItemCard extends StatefulWidget {
 }
 
 class _HFDHomeScreenItemCardState extends State<HFDHomeScreenItemCard>
-    with HoverWidgetMixin {
+    with SingleTickerProviderStateMixin, HoverWidgetBase {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,6 +43,7 @@ class _HFDHomeScreenItemCardState extends State<HFDHomeScreenItemCard>
                       arguments: widget.item,
                     );
                   },
+
                   child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
 import 'package:provider/provider.dart';
+import 'package:supercharged/supercharged.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -50,28 +51,32 @@ class _Body extends StatelessWidget {
               currentIndex: activeTab,
               selectedItemColor: theme.primary,
               unselectedItemColor: Colors.black,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
               onTap: (index) {
                 HFDHomeState.state(context).setActiveTab(index);
               },
               items: data.bottomNavList.map(
                 (item) {
-                  final color = data.bottomNavList[activeTab] == item
-                      ? theme.primary
-                      : Colors.transparent;
+                  final isActive = data.bottomNavList[activeTab] == item;
+                  final color = isActive ? theme.primary : Colors.transparent;
                   return BottomNavigationBarItem(
-                    label: 'sadasd',
+                    label: '',
                     icon: Stack(
+                      clipBehavior: Clip.none,
                       children: [
                         Icon(item),
-                        Positioned(
-                          bottom: 0,
+                        AnimatedPositioned(
+                          left: 0,
+                          right: 0,
+                          bottom: isActive ? -10 : -14,
+                          duration: 300.milliseconds,
                           child: Padding(
                             padding: EdgeInsets.all(0),
-                            child: Container(
+                            child: AnimatedContainer(
                               width: 30,
                               height: 4,
-                              // transform: Matrix4.identity()
-                              //   ..translate(0.0, 4.0),
+                              duration: 300.milliseconds,
                               decoration: BoxDecoration(
                                 color: color,
                                 borderRadius: BorderRadius.circular(4.0),

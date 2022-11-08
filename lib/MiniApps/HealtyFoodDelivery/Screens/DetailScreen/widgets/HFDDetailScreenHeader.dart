@@ -25,7 +25,10 @@ class HFDDetailScreenHeader extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: Colors.white.withOpacity(0.3),
               ),
-              child: BackButton(),
+              child: Transform.translate(
+                offset: Offset(4, 0.0),
+                child: BackButton(),
+              ),
             ),
             Flexible(child: Container()),
             Container(
