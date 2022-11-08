@@ -1,7 +1,7 @@
 import 'dart:math';
 
-// import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/Ads.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/AppTheme.dart';
@@ -10,6 +10,7 @@ import 'package:flutter_uis/configs/TextStyles.dart';
 
 import 'package:flutter_uis/statics/models/UIItem.dart';
 import 'package:flutter_uis/utils/Utils.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'UIDetailSupport.dart';
 import 'UIDetailMoreUIs.dart';
@@ -31,30 +32,34 @@ class UIDetailContent extends StatefulWidget {
 }
 
 class _UIDetailContentState extends State<UIDetailContent> {
-  // late AdmobInterstitial interstitialAd;
-
+  InterstitialAd? ad;
   @override
   void initState() {
-    // AddToDo
-    // this.interstitialAd = AdmobInterstitial(
-    //   adUnitId: Ads.getOpenAppVideo(),
-    //   listener: (AdmobAdEvent event, args) {
-    //     if (event == AdmobAdEvent.closed) {
-    //       Navigator.of(context).pushNamed(
-    //         this.widget.uiItem.miniApp!,
-    //       );
-    //     }
-    //   },
-    // )..load();
     super.initState();
+    if (!App.showAds) return;
+    InterstitialAd.load(
+      adUnitId: Ads.getOpenAppVideo(),
+      request: AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (loadedAd) {
+          // Keep a reference to the ad so you can show it later.
+          this.ad = loadedAd;
+        },
+        onAdFailedToLoad: (LoadAdError error) {
+          print('InterstitialAd failed to load: $error');
+        },
+      ),
+    );
   }
 
   void openApp(BuildContext context) {
     final r = Random().nextInt(4);
-    if (r == 2 && App.showAds) {
-      // this.interstitialAd.show();
+    print("RRRR $r");
+    if (r == 2 && App.showAds && this.ad != null) {
+      this.ad!.show();
       return;
     }
+
     Navigator.of(context).pushNamed(
       widget.uiItem.miniApp!,
     );
@@ -95,7 +100,7 @@ class _UIDetailContentState extends State<UIDetailContent> {
                 ),
               ),
             ),
-            (widget.uiItem.description != null
+            widget.uiItem.description != null
                 ? Container(
                     margin: EdgeInsets.only(top: AppDimensions.padding),
                     padding: EdgeInsets.symmetric(
@@ -108,7 +113,7 @@ class _UIDetailContentState extends State<UIDetailContent> {
                       ),
                     ),
                   )
-                : Container()),
+                : SizedBox(),
             Padding(padding: EdgeInsets.all(AppDimensions.padding)),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,

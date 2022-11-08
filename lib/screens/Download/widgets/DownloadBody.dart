@@ -33,6 +33,7 @@ class _DownloadBodyState extends State<DownloadBody> {
   @override
   void initState() {
     super.initState();
+    if (!App.showAds) return;
     BannerAd(
       adUnitId: Ads.getDownloadScreenBanner(),
       size: AdSize.largeBanner,
