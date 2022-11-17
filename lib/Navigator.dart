@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_uis/AppRoutes.dart';
@@ -106,8 +107,18 @@ class MaterialChild extends StatelessWidget {
       darkTheme: theme.baseDark,
       themeMode: state.themeMode,
       navigatorKey: this.navigatorKey,
-      navigatorObservers: [AppNavigatorObserver()],
       initialRoute: AppRoutes.home,
+      navigatorObservers: [AppNavigatorObserver()],
+      scrollBehavior: MaterialScrollBehavior().copyWith(
+        dragDevices: {
+          PointerDeviceKind.mouse,
+          PointerDeviceKind.touch,
+          PointerDeviceKind.stylus,
+          PointerDeviceKind.trackpad,
+          PointerDeviceKind.unknown
+        },
+      ),
+
       onGenerateRoute: (settings) {
         final index = ["skvDetail", "hfdDetail"].indexOf(settings.name ?? '');
         if (index > -1) {

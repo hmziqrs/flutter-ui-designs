@@ -35,7 +35,7 @@ class _Body extends StatelessWidget {
     ScrollNotification notification, [
     bool isHorizontal = false,
   ]) {
-    final offset = notification?.metrics?.pixels;
+    final offset = notification.metrics.pixels;
     if (offset == null) {
       return false;
     }
@@ -53,8 +53,8 @@ class _Body extends StatelessWidget {
     Dimensions.init(context);
 
     final rootTheme = Theme.of(context).copyWith(
-      accentColor: theme.primary,
       primaryColor: theme.primary,
+      colorScheme: ColorScheme.fromSwatch().copyWith(secondary: theme.primary),
     );
 
     return Screen(
@@ -79,7 +79,6 @@ class _Body extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SKVHomeScreenSearchBar(),
-
                       Padding(
                         padding: EdgeInsets.only(
                           top: AppDimensions.padding * 4,

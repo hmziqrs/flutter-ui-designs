@@ -12,8 +12,6 @@ import '../messages/keys.dart';
 final versionProvider = FutureProvider<String>((ref) async {
   final package = await PackageInfo.fromPlatform();
   final version = "${package.version}";
-  print(package.toString());
-
   return version;
 });
 
