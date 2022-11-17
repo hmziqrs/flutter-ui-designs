@@ -81,9 +81,11 @@ dependencies:
   cupertino_will_pop_scope: 1.2.1
 
 dev_dependencies:
-  # flutter_driver:
-  #   sdk: flutter
-  # test: any
+  integration_test:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
+  test: any
   io: 1.0.3
   glob: 2.1.0
   yaml: 3.1.1
