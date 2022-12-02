@@ -14,7 +14,7 @@ import 'utils/Utils.dart';
 import 'configs/App.dart';
 import 'Navigator.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -22,7 +22,7 @@ void main() async {
 
   App.showAds = Utils.isMobile();
   if (App.showAds) {
-    MobileAds.instance.initialize();
+    await MobileAds.instance.initialize();
     if (Platform.isIOS) {
       // await MobileAds.instance.req;
       // await Admob.requestTrackingAuthorization();
