@@ -1,6 +1,4 @@
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/UI.dart';
 import 'package:flutter_uis/configs/Ads.dart';
 import 'package:flutter_uis/configs/App.dart';
 
@@ -9,12 +7,39 @@ import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/configs/CommonProps.dart';
 import 'package:flutter_uis/configs/TextStyles.dart';
 import 'package:flutter_uis/widgets/Screen/Provider.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-import 'HomeBuildVersion.dart';
 import '../data.dart' as data;
 import '../messages/keys.dart';
 
-class HomeBody extends StatelessWidget {
+class HomeBody extends StatefulWidget {
+  @override
+  State<HomeBody> createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
+  BannerAd? ad;
+  @override
+  void initState() {
+    super.initState();
+    if (!App.showAds) return;
+    BannerAd(
+      adUnitId: Ads.getHomeScreenBanner(),
+      size: AdSize.largeBanner,
+      request: AdRequest(),
+      listener: BannerAdListener(
+        onAdLoaded: (ladedAd) {
+          setState(() {
+            this.ad = ladedAd as BannerAd;
+          });
+        },
+        onAdFailedToLoad: (ad, error) {
+          ad.dispose();
+        },
+      ),
+    ).load();
+  }
+
   onPress(BuildContext context, String path) {
     if (path == 'settings') {
       return ScreenStateProvider.state(context).setSettingsOpen(true);
@@ -64,16 +89,17 @@ class HomeBody extends StatelessWidget {
               ...data.list.map(
                 (item) {
                   if (item["key"] == 'ad') {
-                    if (!App.showAds) {
+                    if (!App.showAds || this.ad == null) {
                       return SizedBox();
                     }
                     return Padding(
                       padding: EdgeInsets.symmetric(
                         vertical: AppDimensions.padding * 1,
                       ),
-                      child: AdmobBanner(
-                        adSize: AdmobBannerSize.SMART_BANNER(context),
-                        adUnitId: Ads.getHomeScreenBanner(),
+                      child: Container(
+                        height: this.ad!.size.height.toDouble(),
+                        alignment: Alignment.center,
+                        child: AdWidget(ad: this.ad!),
                       ),
                     );
                   }
@@ -82,9 +108,10 @@ class HomeBody extends StatelessWidget {
                       vertical: AppDimensions.padding * 1,
                     ),
                     child: InkWell(
-                      key: Key(item["key"]),
+                      key: Key(item["key"]! as String),
                       borderRadius: CommonProps.buttonRadius,
-                      onTap: () => this.onPress(context, item["path"]),
+                      onTap: () =>
+                          this.onPress(context, item["path"] as String),
                       child: Ink(
                         padding: EdgeInsets.symmetric(
                           vertical: AppDimensions.padding * 1.5,
@@ -95,14 +122,14 @@ class HomeBody extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
-                              item["icon"],
+                              item["icon"] as IconData,
                               size: 20,
                               color: AppTheme.primary,
                             ),
                             Container(width: AppDimensions.padding),
                             Text(
                               App.translate(
-                                item["label"],
+                                item["label"] as String,
                                 context,
                               ),
                               style: TextStyles.body16
@@ -115,7 +142,6 @@ class HomeBody extends StatelessWidget {
                   );
                 },
               ).toList(),
-              HomeBuildVersion(),
             ],
           ),
         ),

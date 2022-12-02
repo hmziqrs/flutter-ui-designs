@@ -7,7 +7,7 @@ import '../../../models/HFDFoodItem.dart';
 import '../Dimensions.dart';
 
 class HFDDetailScreenBackground extends StatelessWidget {
-  HFDDetailScreenBackground({@required this.offset, @required this.item});
+  HFDDetailScreenBackground({required this.offset, required this.item});
 
   final double offset;
   final HFDFoodItem item;

@@ -4,9 +4,9 @@ import 'package:flutter_uis/UI.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
 class Dimensions {
-  static double cardHeight;
-  static double cardWidth;
-  static int chunks;
+  static late double cardHeight;
+  static late double cardWidth;
+  static late int chunks;
 
   static init(BuildContext context) {
     AppDimensions.init(context);

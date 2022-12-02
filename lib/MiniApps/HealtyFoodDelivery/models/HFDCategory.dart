@@ -11,7 +11,7 @@ class HFDCategory {
 
   String name;
   IconData icon;
-  String testKey;
+  String? testKey;
   EdgeInsets margin;
   double iconSize;
 }

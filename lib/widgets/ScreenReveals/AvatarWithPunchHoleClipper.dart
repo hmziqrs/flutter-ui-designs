@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class AvatarWithPunchHoleClipper extends CustomClipper<Path> {
   AvatarWithPunchHoleClipper({
-    @required this.holeRadius,
-    @required this.position,
+    required this.holeRadius,
+    required this.position,
   });
   final double holeRadius;
   final String position;

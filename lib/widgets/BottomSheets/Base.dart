@@ -5,10 +5,10 @@ import 'package:flutter_uis/configs/AppTheme.dart';
 class BottomSheetBase extends StatelessWidget {
   BottomSheetBase({
     this.width,
-    @required this.children,
+    required this.children,
   });
 
-  final double width;
+  final double? width;
   final List<Widget> children;
 
   @override

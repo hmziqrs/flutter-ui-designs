@@ -17,12 +17,12 @@ import '../messages/keys.dart';
 
 class ASCHomeScreenContent extends StatefulWidget {
   ASCHomeScreenContent({
-    this.item,
-    this.activePage,
-    this.uiParallax,
-    this.changeColor,
-    this.activeColor,
-    this.activeColorIndex,
+    required this.item,
+    required this.activePage,
+    required this.uiParallax,
+    required this.changeColor,
+    required this.activeColor,
+    required this.activeColorIndex,
   });
 
   final int activePage;

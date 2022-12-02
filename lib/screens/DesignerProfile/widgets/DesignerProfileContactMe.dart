@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 import 'package:flutter_uis/statics/models/UIDesigner.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -10,7 +10,7 @@ import 'DesignerProfileButton.dart';
 import '../messages/keys.dart';
 
 class DesignerProfileContactMe extends StatelessWidget {
-  DesignerProfileContactMe({@required this.designer});
+  DesignerProfileContactMe({required this.designer});
 
   final UIDesigner designer;
 

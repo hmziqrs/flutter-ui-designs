@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tinycolor/tinycolor.dart';
+import 'package:tinycolor2/tinycolor2.dart';
 
 import 'package:flutter_uis/configs/App.dart';
 
 abstract class ETCTheme {
-  static Color color1;
-  static Color color2;
+  static late Color color1;
+  static late Color color2;
 
   static void init() {
     color1 = TinyColor.fromString('#f5f5f5').color;

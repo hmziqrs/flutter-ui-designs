@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/AppTheme.dart';
@@ -8,9 +8,9 @@ import '../../../models/ASCItem.dart';
 
 class ASCHomeScreenContentStars extends StatelessWidget {
   ASCHomeScreenContentStars({
-    @required this.uiParallax,
-    @required this.activeColor,
-    @required this.item,
+    required this.uiParallax,
+    required this.activeColor,
+    required this.item,
   });
 
   final double uiParallax;

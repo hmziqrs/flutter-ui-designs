@@ -8,8 +8,8 @@ import 'package:flutter_uis/io/io.dart';
 class UIUtils {
   static SystemUiOverlayStyle getThemeStatusBar(
     BuildContext context, {
-    Brightness statusBarBrightness,
-    Brightness navBarBrightness,
+    Brightness? statusBarBrightness,
+    Brightness? navBarBrightness,
   }) {
     final isDark = App.isDark(context);
     final brightness = isDark ? Brightness.light : Brightness.dark;

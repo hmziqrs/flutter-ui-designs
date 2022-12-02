@@ -1,30 +1,30 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/MiniApps/SkyView/Screens/DetailScreen/Provider.dart';
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 import 'package:flutter_uis/UI.dart';
-import 'package:simple_animations/simple_animations.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/utils/Utils.dart';
+import 'package:provider/provider.dart';
 
 import '../../../data/data.dart' as data;
 import '../Dimensions.dart';
 
 class SKVDetailScreenPlanet extends StatelessWidget {
   SKVDetailScreenPlanet({
-    @required this.item,
-    @required this.pageRendered,
-    @required this.index,
-    @required this.offset,
+    required this.item,
+    required this.pageRendered,
+    required this.index,
   });
   final data.SKVObject item;
   final bool pageRendered;
   final int index;
-  final double offset;
 
-  Widget renderContent(double animation) {
+  Widget renderContent(double animation, double offset) {
     final width = UI.getSize().width;
     // This variable helps us calculate parallax for each page.
-    final widthOffset = this.offset - (width * this.index);
+    final widthOffset = offset - (width * this.index);
     final rotateRatio = math.pi / 180;
 
     double opacityOffset = animation;
@@ -60,10 +60,10 @@ class SKVDetailScreenPlanet extends StatelessWidget {
     final sin = initOffSetX + (math.sin(angle * rotateRatio) * radiusX);
     final cos = initOffSetY + (math.cos(angle * rotateRatio) * -radiusY);
 
-    CustomAnimationControl control = CustomAnimationControl.LOOP;
+    Control control = Control.loop;
 
     if (widthOffset > 20 || widthOffset < -20) {
-      control = CustomAnimationControl.STOP;
+      control = Control.stop;
     }
 
     return Opacity(
@@ -81,7 +81,7 @@ class SKVDetailScreenPlanet extends StatelessWidget {
             width: Dimensions.planetSize,
             height: Dimensions.planetSize,
             alignment: Alignment.bottomCenter,
-            child: CustomAnimation(
+            child: CustomAnimationBuilder(
               control: control,
               delay: Duration(milliseconds: this.pageRendered ? 800 : 1400),
               tween: Tween(begin: 0.0, end: math.pi * 2),
@@ -95,7 +95,11 @@ class SKVDetailScreenPlanet extends StatelessWidget {
                   ),
                 ),
               ),
-              builder: (ctx, child, rotation) {
+              builder: (
+                ctx,
+                rotation,
+                child,
+              ) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(Dimensions.planetSize),
                   child: Container(
@@ -131,11 +135,17 @@ class SKVDetailScreenPlanet extends StatelessWidget {
     return Positioned.fill(
       left: 0,
       right: 0,
-      child: CustomAnimation(
+      child: CustomAnimationBuilder(
         delay: Duration(milliseconds: 410),
         tween: Tween(begin: 0.0, end: 1.0),
         duration: Duration(milliseconds: 500),
-        builder: (ctx, child, animation) => this.renderContent(animation),
+        builder: (ctx, animation, child) => Selector<SKVDetailState, double>(
+          selector: (_, s) => s.offset,
+          builder: (context, offset, child) => this.renderContent(
+            animation,
+            offset,
+          ),
+        ),
       ),
     );
   }

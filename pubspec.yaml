@@ -14,16 +14,16 @@ description: A new Flutter project.
 version: 2.0.1
 
 environment:
-  sdk: '>=2.7.0 <3.0.0'
+  sdk: '>=2.18.2 <3.0.0'
   # sdk: '>=2.12.0-135.0.dev <3.0.0'
 
 dependency_overrides:
-  path: 1.8.0
+  path: 1.8.2
   intl: 0.17.0
 
-  xml: 5.1.0
-  # image: 3.0.2
-  petitparser: 4.1.0
+  xml: 6.2.0
+  petitparser: 5.1.0
+  collection: 1.17.0
 
 flutter_icons:
   includes:
@@ -42,45 +42,54 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+
+
   # Firebase
-  firebase_core: 1.1.0
-  firebase_analytics: 8.0.3
-  firebase_performance: 0.7.0+2
-  firebase_crashlytics: 2.0.2
+  firebase_core: 2.1.1
+  firebase_analytics: 10.0.3
+  firebase_performance: 0.9.0+3
+  firebase_crashlytics: 3.0.4
 
-  share: 2.0.1
-  hive: 2.0.4
+  share: 2.0.4
+  hive: 2.2.3
   open_url: 2.0.0
-  hive_flutter: 1.0.0
-  url_launcher: 6.0.3
-  universal_io: 2.0.4
-  admob_flutter: 2.0.0-nullsafety.1
+  hive_flutter: 1.1.0
+  url_launcher: 6.1.6
+  # universal_io: 2.0.4
+  # admob_flutter: 3.0.0
+  google_mobile_ads: 2.2.0
+  package_info_plus: 3.0.1
 
-  emojis: 0.9.3
-  recase: 4.0.0
-  quiver: 3.0.1
+  emojis: 0.9.9
+  recase: 4.1.0
+  quiver: 3.1.0
   faker: 2.0.0
   pigment: 1.0.4
-  provider: 5.0.0
-  tinycolor: 1.0.3
-  flutter_icons: 1.1.0
-  dotted_border: 2.0.0
-  fluttery_dart2: 0.0.9
+  provider: 6.0.4
+  riverpod: 2.1.1
+  flutter_riverpod: 2.1.1
+  tinycolor2: 3.0.1
+  supercharged: 2.1.1
+  dotted_border: 2.0.0+3
+  # fluttery_dart2: 0.0.9
   stretchy_header: 2.0.0
   touchable_opacity: 1.2.0
-  page_transition: 2.0.2
-  percent_indicator: 3.3.0-nullsafety.1
-  supercharged: 2.0.0
-  simple_animations: 3.1.1
+  page_transition: 2.0.9
+  percent_indicator: 4.2.2
+  simple_animations: 5.0.0+2
+  flutter_font_icons: 2.2.5
+  cupertino_will_pop_scope: 1.2.1
 
 dev_dependencies:
-  # flutter_driver:
-  #   sdk: flutter
-  # test: any
-  io: 1.0.0
-  glob: 2.0.1
-  yaml: 3.1.0
-  translator: 0.1.6+1
+  integration_test:
+    sdk: flutter
+  flutter_test:
+    sdk: flutter
+  test: any
+  io: 1.0.3
+  glob: 2.1.0
+  yaml: 3.1.1
+  translator: 0.1.7
 
 flutter:
   uses-material-design: true

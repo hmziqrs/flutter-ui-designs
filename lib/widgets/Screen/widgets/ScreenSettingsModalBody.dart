@@ -14,17 +14,16 @@ import '../TestKeys.dart';
 
 class ScreenSettingsModalBody extends StatelessWidget {
   ScreenSettingsModalBody({
-    @required this.onClose,
-    @required this.appState,
-    @required this.isModalOpen,
+    required this.onClose,
+    required this.isModalOpen,
   });
 
   final VoidCallback onClose;
-  final AppProvider appState;
   final bool isModalOpen;
 
   @override
   Widget build(BuildContext context) {
+    final appState = AppProvider.state(context, true);
     return Material(
       textStyle: Theme.of(context).textTheme.bodyText1,
       color: Colors.transparent,
@@ -34,7 +33,7 @@ class ScreenSettingsModalBody extends StatelessWidget {
           Flexible(
             child: NotificationListener<OverscrollIndicatorNotification>(
               onNotification: (notification) {
-                notification.disallowGlow();
+                notification.disallowIndicator();
                 return true;
               },
               child: ListView(
@@ -101,8 +100,8 @@ class ScreenSettingsModalBody extends StatelessWidget {
                         textChild: Row(
                           children: [
                             Text(
-                                "${map[key]["emoji"]}  ${map[key]["label"]} - ${App.translate(
-                              map[key]["trans"],
+                                "${map[key]!["emoji"]}  ${map[key]!["label"]} - ${App.translate(
+                              map[key]!["trans"],
                               context,
                             )}"),
                           ],

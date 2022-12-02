@@ -1,13 +1,13 @@
 class CCNItem {
   CCNItem({
-    this.testKey,
-    this.name,
-    this.author,
-    this.stars,
-    this.calories,
-    this.ingredients,
-    this.duration,
-    this.desc,
+    required this.testKey,
+    required this.name,
+    required this.author,
+    required this.stars,
+    required this.calories,
+    required this.ingredients,
+    required this.duration,
+    required this.desc,
   });
 
   String testKey;

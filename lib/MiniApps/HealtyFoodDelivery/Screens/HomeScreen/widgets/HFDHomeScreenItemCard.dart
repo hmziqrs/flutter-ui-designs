@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_uis/Mixins/HoverWidget.dart';
+import 'package:flutter_uis/Mixins/HoverBase.dart';
 import 'package:flutter_uis/utils/Utils.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 import '../../../configs/theme.dart' as theme;
 import '../../../models/HFDFoodItem.dart';
@@ -12,14 +12,14 @@ import '../Dimensions.dart';
 
 class HFDHomeScreenItemCard extends StatefulWidget {
   final HFDFoodItem item;
-  HFDHomeScreenItemCard(this.item, {Key key}) : super(key: key);
+  HFDHomeScreenItemCard(this.item, {Key? key}) : super(key: key);
 
   @override
   _HFDHomeScreenItemCardState createState() => _HFDHomeScreenItemCardState();
 }
 
 class _HFDHomeScreenItemCardState extends State<HFDHomeScreenItemCard>
-    with HoverWidgetMixin {
+    with SingleTickerProviderStateMixin, HoverWidgetBase {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -43,6 +43,7 @@ class _HFDHomeScreenItemCardState extends State<HFDHomeScreenItemCard>
                       arguments: widget.item,
                     );
                   },
+
                   child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(

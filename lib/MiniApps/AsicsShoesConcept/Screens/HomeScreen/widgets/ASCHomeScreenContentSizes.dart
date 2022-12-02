@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/MiniApps/AsicsShoesConcept/Screens/HomeScreen/Provider.dart';
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 import 'package:provider/provider.dart';
-import 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -15,9 +15,9 @@ enum AniColors { bg, text }
 
 class ASCHomeScreenContentSizes extends StatelessWidget {
   ASCHomeScreenContentSizes({
-    @required this.uiParallax,
-    @required this.activePage,
-    @required this.activeColor,
+    required this.uiParallax,
+    required this.activePage,
+    required this.activeColor,
   });
 
   final int activePage;
@@ -26,16 +26,16 @@ class ASCHomeScreenContentSizes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tween = MultiTween<AniColors>()
-      ..add(
+    final tween = MovieTween()
+      ..tween(
         AniColors.bg,
         Colors.transparent.tweenTo(AppTheme.text03),
-        400.milliseconds,
+        duration: 400.milliseconds,
       )
-      ..add(
+      ..tween(
         AniColors.text,
         AppTheme.text.tweenTo(AppTheme.background),
-        250.milliseconds,
+        duration: 250.milliseconds,
       );
 
     return Selector<ASCShoeProvider, int>(
@@ -59,14 +59,17 @@ class ASCHomeScreenContentSizes extends StatelessWidget {
                       entry.key + 1,
                     ),
                   ),
-                  child: CustomAnimation<MultiTweenValues<AniColors>>(
+                  child: CustomAnimationBuilder<Movie>(
                     tween: tween,
                     duration: tween.duration,
                     key: Key(App.isDark().toString()),
                     control: isActive
-                        ? CustomAnimationControl.PLAY
-                        : CustomAnimationControl.PLAY_REVERSE,
-                    builder: (context, child, animation) {
+                        ? Control.play : Control.playReverse,
+                    builder: (
+                      context,
+                      animation,
+                      child,
+                    ) {
                       return Container(
                         width: Dimensions.sizeRadius,
                         height: Dimensions.sizeRadius,

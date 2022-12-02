@@ -24,7 +24,7 @@ class AboutDeveloperMoreProjects extends StatelessWidget {
         itemCount: data.moreProjects.length,
         itemBuilder: (context, index) {
           final project = data.moreProjects[index];
-          final List<Map> links = project["links"];
+          final List<Map> links = project["links"]! as List<Map>;
 
           return Container(
             width: Dimensions.projectCardWidth,
@@ -49,13 +49,13 @@ class AboutDeveloperMoreProjects extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  project["label"],
+                  project["label"]! as String,
                   style: TextStyles.heading5.copyWith(
                     color: Colors.white,
                   ),
                 ),
                 Text(
-                  App.translate(project["desc"], context),
+                  App.translate(project["desc"] as String, context),
                   style: TextStyles.body2.copyWith(
                     color: Colors.white.withOpacity(0.85),
                   ),

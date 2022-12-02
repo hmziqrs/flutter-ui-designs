@@ -24,6 +24,7 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.firebase-perf'
 apply plugin: 'com.google.firebase.crashlytics'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
@@ -34,9 +35,8 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 30
-    ndkVersion "21.3.6528147"
-
+    compileSdkVersion 33
+//    ndkVersion "21.3.6528147"
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -50,8 +50,8 @@ android {
         buildToolsVersion = "30.0.2"
         applicationId "com.onemdev.flutter_ui_challenges"
         vectorDrawables.useSupportLibrary = true
-        minSdkVersion 16
-        targetSdkVersion 30
+        minSdkVersion 19
+        targetSdkVersion 33
         multiDexEnabled true
         versionName flutterVersionName
         versionCode flutterVersionCode.toInteger()

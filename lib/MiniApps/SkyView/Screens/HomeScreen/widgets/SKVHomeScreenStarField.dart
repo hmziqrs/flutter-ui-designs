@@ -13,7 +13,7 @@ class SKVHomeScreenStarField extends StatefulWidget {
   SKVHomeScreenStarField({
     this.scrollX = 0.0,
     this.scrollY = 0.0,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -26,7 +26,7 @@ class _SKVHomeScreenStarFieldState extends State<SKVHomeScreenStarField> {
     4: Pigment.fromString("#9400D3"),
     8: Pigment.fromString("#00b"),
   };
-  List<Star> stars;
+  late List<Star> stars;
 
   @override
   void initState() {

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_uis/configs/AppTheme.dart';
 
-import 'package:flutter_uis/utils/Utils.dart';
-import 'package:flutter_uis/UI.dart';
 
 import 'package:flutter_uis/widgets/BackButton4Stack/BackButton4Stack.dart';
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
@@ -20,7 +17,7 @@ import 'Dimensions.dart';
 import 'TestKeys.dart';
 
 class HABDetailScreen extends StatelessWidget {
-  HABDetailScreen(this.index, {Key key}) : super(key: key);
+  HABDetailScreen(this.index, {Key? key}) : super(key: key);
   final int index;
 
   @override
@@ -45,12 +42,13 @@ class _HABDetailBody extends StatelessWidget {
     Dimensions.init(context);
     final state = HABDetailState.state(context);
 
-    final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
+    final fontStyle = Theme.of(context).textTheme.bodyText1!.copyWith(
           fontFamily: 'Montserrat',
         );
     final rootTheme = Theme.of(context).copyWith(
       primaryColor: AppTheme.primary,
-      accentColor: AppTheme.primary,
+      colorScheme:
+          ColorScheme.fromSwatch().copyWith(secondary: AppTheme.primary),
     );
 
     return RawKeyboardListener(

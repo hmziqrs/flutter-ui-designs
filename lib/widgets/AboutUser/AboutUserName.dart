@@ -5,7 +5,7 @@ import 'package:flutter_uis/configs/TextStyles.dart';
 
 class AboutUserName extends StatelessWidget {
   AboutUserName({
-    @required this.name,
+    required this.name,
   });
 
   final String name;

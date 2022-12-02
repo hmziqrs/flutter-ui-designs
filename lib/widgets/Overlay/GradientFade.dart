@@ -11,31 +11,32 @@ import 'package:flutter_uis/Providers/FadeScreen.dart';
 class OverlayGradientFade<T extends FadeScreenProvider>
     extends StatelessWidget {
   const OverlayGradientFade({
-    Key key,
-    this.delay,
-    this.fromTop = true,
+    Key? key,
     this.top,
+    this.delay,
     this.bottom,
+
+    this.fromTop = true,
     this.left = 0,
     this.right = 0,
     this.colors,
     this.duration,
     this.end = Alignment.bottomCenter,
     this.begin = Alignment.topCenter,
-    @required this.height,
+    required this.height,
   }) : super(key: key);
 
-  final int delay;
+  final int? delay;
+  final double? top;
+  final double? bottom;
+  final List<Color>? colors;
+  final int? duration;
   final bool fromTop;
-  final double top;
-  final double bottom;
   final double left;
   final double right;
-  final int duration;
   final double height;
   final Alignment begin;
   final Alignment end;
-  final List<Color> colors;
 
   @override
   Widget build(BuildContext context) {
@@ -53,13 +54,14 @@ class OverlayGradientFade<T extends FadeScreenProvider>
       child: ScreenAnimationBase<T>(
         delay: delay,
         duration: duration,
-        builder: (_, child, animation) {
+        builder: (_, animation, child) {
           return Transform.translate(
             offset: Offset(
                 0.0,
                 !this.fromTop
                     ? this.height + animation * -this.height
-                    : -this.height + animation * this.height),
+                  : -this.height + animation * this.height,
+            ),
             child: Opacity(
               opacity: animation,
               child: child,

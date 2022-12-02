@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
 import 'package:supercharged/supercharged.dart';
 
@@ -12,7 +11,7 @@ abstract class FadeScreenProvider extends ChangeNotifier {
   bool get fadeOff => _fadeOff;
   Future<void> get dDelayD => dDelay.milliseconds.delay;
 
-  void close({VoidCallback callback, int delay}) async {
+  void close({required VoidCallback callback, int? delay}) async {
     if (this._fadeOff) {
       return;
     }
@@ -30,7 +29,7 @@ abstract class FadeScreenProvider extends ChangeNotifier {
     this.notifyListeners();
   }
 
-  Future<void> hide({int delay}) async {
+  Future<void> hide({int? delay}) async {
     if (this._fadeOff) {
       return;
     }

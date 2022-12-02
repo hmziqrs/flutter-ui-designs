@@ -12,17 +12,19 @@ class Device {
   static double screenHeight = height / devicePixelRatio;
   static ui.Size screenSize = new ui.Size(screenWidth, screenHeight);
   final bool isTablet, isPhone, isIos, isAndroid, isIphoneX;
-  static Device _device;
 
-  Device(
-      {this.isTablet,
-      this.isPhone,
-      this.isIos,
-      this.isAndroid,
-      this.isIphoneX});
+  static Device? _device;
+
+  Device({
+    required this.isTablet,
+    required this.isPhone,
+    required this.isIos,
+    required this.isAndroid,
+    required this.isIphoneX,
+  });
 
   factory Device.get() {
-    if (_device != null) return _device;
+    if (_device != null) return _device!;
 
     bool isTablet;
     bool isPhone;
@@ -52,6 +54,7 @@ class Device {
         isPhone: isPhone,
         isAndroid: isAndroid,
         isIos: isIos,
-        isIphoneX: isIphoneX);
+      isIphoneX: isIphoneX,
+    );
   }
 }

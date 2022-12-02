@@ -1,7 +1,9 @@
 import 'dart:math';
 
+import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/io/io.dart';
 import 'package:flutter_uis/widgets/Buttons/AppButton.dart';
 import 'package:flutter_uis/widgets/Overlay/GradientFade.dart';
 import 'package:flutter_uis/widgets/ScreenAnimation/Base.dart';
@@ -47,7 +49,8 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
-    final data.HFDFoodItem item = ModalRoute.of(context).settings.arguments;
+    final data.HFDFoodItem item =
+        ModalRoute.of(context)!.settings.arguments! as data.HFDFoodItem;
 
     final space = AppDimensions.padding * 3;
 
@@ -58,7 +61,8 @@ class _Body extends StatelessWidget {
       "${r.nextInt(60)} mins",
     ];
 
-    return WillPopScope(
+    return ConditionalWillPopScope(
+      shouldAddCallback: Platform.isAndroid,
       onWillPop: () async {
         this.onClose(context);
         return false;
@@ -100,7 +104,7 @@ class _Body extends StatelessWidget {
               ),
               child: ScreenAnimationBase<CCNDetailState>(
                 delay: 500,
-                builder: (_, child, animation) {
+                builder: (_, animation, child) {
                   return Opacity(
                     child: child,
                     opacity: animation,
@@ -134,7 +138,7 @@ class _Body extends StatelessWidget {
               ),
               child: ScreenAnimationBase<CCNDetailState>(
                 delay: 500,
-                builder: (_, child, animation) {
+                builder: (_, animation, child) {
                   return Opacity(
                     child: child,
                     opacity: animation,
@@ -264,7 +268,7 @@ class _Body extends StatelessWidget {
                         maxLines: 6,
                         style: TextStyles.body1.copyWith(
                           color: AppTheme.subText,
-                          height: TextStyles.body1.fontSize * 0.12,
+                          height: TextStyles.body1.fontSize! * 0.12,
                         ),
                       ),
                       SizedBox(height: space),
@@ -311,6 +315,7 @@ class _Body extends StatelessWidget {
                           );
                         },
                       ),
+                      SizedBox(height: AppDimensions.padding * 12),
                       Utils.safePadding(context, "bottom"),
                     ],
                   ),

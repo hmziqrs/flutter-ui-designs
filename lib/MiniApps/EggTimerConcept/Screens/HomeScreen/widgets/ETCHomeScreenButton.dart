@@ -4,10 +4,10 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 
 class ETCHomeScreenButton extends StatelessWidget {
   ETCHomeScreenButton({
-    @required this.icon,
-    @required this.label,
-    @required this.testKey,
-    @required this.onPress,
+    required this.icon,
+    required this.label,
+    required this.testKey,
+    required this.onPress,
   });
   final Key testKey;
   final String label;
@@ -16,14 +16,21 @@ class ETCHomeScreenButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    final color = Theme.of(context).textTheme.bodyText1!.color!;
+    return TextButton(
       onPressed: onPress,
       key: this.testKey,
-      padding: EdgeInsets.symmetric(vertical: AppDimensions.padding * 1.5),
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.symmetric(vertical: AppDimensions.padding * 1.5),
+      ).copyWith(
+          overlayColor: MaterialStateColor.resolveWith(
+        (states) => color.withOpacity(0.1),
+      )
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon),
+          Icon(icon, color: color),
           Padding(
             padding: EdgeInsets.symmetric(
               horizontal: AppDimensions.padding,
@@ -32,6 +39,7 @@ class ETCHomeScreenButton extends StatelessWidget {
               label,
               style: TextStyle(
                 fontSize: 12 + AppDimensions.ratio * 6,
+                color: color,
               ),
             ),
           ),

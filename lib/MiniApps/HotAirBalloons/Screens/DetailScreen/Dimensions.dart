@@ -5,8 +5,8 @@ import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
 class Dimensions {
-  static double borderClipping;
-  static double backgroundImageHeight;
+  static late double borderClipping;
+  static late double backgroundImageHeight;
   static int noOfImages = 1;
 
   static init(BuildContext context) {

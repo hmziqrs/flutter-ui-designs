@@ -1,19 +1,19 @@
 class HFDFoodItem {
   HFDFoodItem({
-    this.id,
-    this.name,
-    this.author,
-    this.description,
-    this.testKey,
-    this.price,
-    this.stars,
-    this.location,
-    this.kcal,
-    this.dailyCal,
-    this.carbo,
-    this.protien,
-    this.fat,
-    this.image,
+    required this.id,
+    required this.name,
+    required this.author,
+    required this.description,
+    required this.testKey,
+    required this.price,
+    required this.stars,
+    required this.location,
+    required this.kcal,
+    required this.dailyCal,
+    required this.carbo,
+    required this.protien,
+    required this.fat,
+    required this.image,
   });
 
   int id;

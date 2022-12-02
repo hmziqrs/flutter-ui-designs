@@ -34,13 +34,19 @@ class AppProvider extends ChangeNotifier {
 
     final cachedTheme = appBox.get(Cache.theme.toString());
     this._themeMode =
-        cachedTheme == null ? themeMap["system"] : themeMap[cachedTheme];
+        cachedTheme == null ? themeMap["system"]! : themeMap[cachedTheme]!;
   }
 
-  Locale _activeLocale;
-  Locale get activeLocale => this._activeLocale;
+  Locale? _activeLocale;
+  Locale? get activeLocale => this._activeLocale;
 
-  setActiveLocale(Locale locale) {
+  setActiveLocale(Locale? locale) {
+    if (locale == null) {
+      this._activeLocale = null;
+      appBox.put(Cache.locale.toString(), null);
+      notifyListeners();
+    }
+
     if (locale == this._activeLocale) {
       return;
     }

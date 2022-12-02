@@ -7,21 +7,19 @@ class ASCItem {
   final String headerDescription;
   final String contentHeading;
   final String contentSubHeading;
-  final String contentBadge;
   final List<Color> colors;
   final double stars;
   final double price;
 
   ASCItem({
-    this.logoLink,
-    this.shoeImage,
-    this.headerHeading,
-    this.headerDescription,
-    this.contentHeading,
-    this.contentSubHeading,
-    this.contentBadge,
-    this.colors,
-    this.stars,
-    this.price,
+    required this.logoLink,
+    required this.shoeImage,
+    required this.headerHeading,
+    required this.headerDescription,
+    required this.contentHeading,
+    required this.contentSubHeading,
+    required this.colors,
+    required this.stars,
+    required this.price,
   });
 }

@@ -1,5 +1,7 @@
+import 'package:flutter_uis/io/io.dart';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:universal_io/io.dart';
 
 import 'package:url_launcher/url_launcher.dart' as url;
 import 'package:open_url/open_url.dart';
@@ -134,11 +136,21 @@ class Utils {
     return Padding(padding: paddingWidget);
   }
 
+  static bool isWeb() => kIsWeb;
+
+  static bool isAndroid() => !isWeb() && Platform.isAndroid;
+  static bool isIOS() => !isWeb() && Platform.isIOS;
+  static bool isWindows() => !isWeb() && Platform.isWindows;
+  static bool isMacOS() => !isWeb() && Platform.isMacOS;
+  static bool isLinux() => !isWeb() && Platform.isLinux;
+  
+
   static bool isDesktop() {
-    return Platform.isMacOS || Platform.isWindows || Platform.isLinux;
+    return isMacOS() || isWindows() || isLinux();
   }
 
   static bool isMobile() {
-    return Platform.isAndroid || Platform.isIOS;
+    return isAndroid() || isIOS();
   }
+
 }

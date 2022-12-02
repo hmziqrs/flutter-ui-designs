@@ -3,50 +3,50 @@ import 'package:flutter/material.dart';
 import 'AppDimensions.dart';
 
 abstract class TextStyles {
-  static TextStyle heading1;
-  static TextStyle heading16;
-  static TextStyle heading14;
-  static TextStyle heading13;
+  static late TextStyle heading1;
+  static late TextStyle heading16;
+  static late TextStyle heading14;
+  static late TextStyle heading13;
 
-  static TextStyle heading2;
-  static TextStyle heading26;
-  static TextStyle heading24;
-  static TextStyle heading23;
+  static late TextStyle heading2;
+  static late TextStyle heading26;
+  static late TextStyle heading24;
+  static late TextStyle heading23;
 
-  static TextStyle heading3;
-  static TextStyle heading36;
-  static TextStyle heading34;
-  static TextStyle heading33;
+  static late TextStyle heading3;
+  static late TextStyle heading36;
+  static late TextStyle heading34;
+  static late TextStyle heading33;
 
-  static TextStyle heading4;
-  static TextStyle heading46;
-  static TextStyle heading44;
-  static TextStyle heading43;
+  static late TextStyle heading4;
+  static late TextStyle heading46;
+  static late TextStyle heading44;
+  static late TextStyle heading43;
 
-  static TextStyle heading5;
-  static TextStyle heading56;
-  static TextStyle heading54;
-  static TextStyle heading53;
+  static late TextStyle heading5;
+  static late TextStyle heading56;
+  static late TextStyle heading54;
+  static late TextStyle heading53;
 
-  static TextStyle heading6;
-  static TextStyle heading66;
-  static TextStyle heading64;
-  static TextStyle heading63;
+  static late TextStyle heading6;
+  static late TextStyle heading66;
+  static late TextStyle heading64;
+  static late TextStyle heading63;
 
-  static TextStyle body17;
-  static TextStyle body16;
-  static TextStyle body1;
-  static TextStyle body13;
+  static late TextStyle body17;
+  static late TextStyle body16;
+  static late TextStyle body1;
+  static late TextStyle body13;
 
-  static TextStyle body27;
-  static TextStyle body26;
-  static TextStyle body2;
-  static TextStyle body23;
+  static late TextStyle body27;
+  static late TextStyle body26;
+  static late TextStyle body2;
+  static late TextStyle body23;
 
-  static TextStyle body37;
-  static TextStyle body36;
-  static TextStyle body3;
-  static TextStyle body33;
+  static late TextStyle body37;
+  static late TextStyle body36;
+  static late TextStyle body3;
+  static late TextStyle body33;
 
   static init() {
     initHeadings();

@@ -4,8 +4,8 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 
 class ScreenSettingsSelect extends StatelessWidget {
   ScreenSettingsSelect({
-    @required this.onPress,
-    @required this.isActive,
+    required this.onPress,
+    required this.isActive,
     this.text,
     this.textChild,
     this.testKey,
@@ -13,21 +13,21 @@ class ScreenSettingsSelect extends StatelessWidget {
 
   final VoidCallback onPress;
   final bool isActive;
-  final String text;
-  final Widget textChild;
-  final String testKey;
+  final String? text;
+  final Widget? textChild;
+  final String? testKey;
 
   Color getIsActive(BuildContext context) {
     if (!this.isActive) {
       return Colors.transparent;
     }
-    return Theme.of(context).textTheme.bodyText1.color.withOpacity(0.08);
+    return Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.08);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      key: testKey != null ? Key(testKey) : null,
+      key: testKey != null ? Key(testKey!) : null,
       margin: EdgeInsets.only(
         top: AppDimensions.padding,
       ),
@@ -42,7 +42,7 @@ class ScreenSettingsSelect extends StatelessWidget {
           ),
           child: this.textChild ??
               Text(
-                text,
+                text ?? '',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                 ),

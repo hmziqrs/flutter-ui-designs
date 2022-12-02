@@ -1,4 +1,6 @@
+import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/io/io.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
@@ -11,12 +13,13 @@ class AboutDeveloperScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Dimensions.init(context);
 
-    return WillPopScope(
+    return ConditionalWillPopScope(
+      shouldAddCallback: Platform.isAndroid,
       onWillPop: () async {
         Navigator.popUntil(
           context,
           (route) =>
-              route.settings.name != ModalRoute.of(context).settings.name,
+              route.settings.name != ModalRoute.of(context)!.settings.name,
         );
         return false;
       },

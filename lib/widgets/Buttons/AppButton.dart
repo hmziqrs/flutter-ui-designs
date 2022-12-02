@@ -12,12 +12,12 @@ class AppButton extends StatelessWidget {
     this.padding = 2.5,
     this.margin = EdgeInsets.zero,
     this.width = double.infinity,
-    @required this.onTap,
+    required this.onTap,
   });
 
   final VoidCallback onTap;
-  final String label;
-  final Widget child;
+  final String? label;
+  final Widget? child;
   final String theme;
   final double padding;
   final EdgeInsets margin;
@@ -37,31 +37,40 @@ class AppButton extends StatelessWidget {
     };
 
     final check = theme[this.theme];
-    Color text = theme['default']['text'];
-    Color background = theme['default']['background'];
+    Color text = theme['default']!['text']!;
+    Color background = theme['default']!['background']!;
     if (check != null) {
-      text = check['text'];
-      background = check['background'];
+      text = check['text']!;
+      background = check['background']!;
     }
 
     return Container(
       margin: this.margin,
       width: this.width,
-      child: FlatButton(
-        height: 0,
-        textColor: text,
-        color: background,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          // height: 0,
+          textStyle: TextStyle(color: text),
+          backgroundColor: background,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppTheme.buttonRadius),
+          ),
+          padding: EdgeInsets.symmetric(
+            vertical: AppDimensions.padding * this.padding,
+          ),
+        ).copyWith(
+          overlayColor: MaterialStateColor.resolveWith(
+            (states) => text.withOpacity(0.1),
+          ),
+        ),
         child: this.child ??
             Text(
-              label,
-              style: TextStyles.heading6,
+              label!,
+              style: TextStyles.heading6.copyWith(
+                color: text,
+              ),
             ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppTheme.buttonRadius),
-        ),
-        padding: EdgeInsets.symmetric(
-          vertical: AppDimensions.padding * this.padding,
-        ),
+        
         onPressed: this.onTap,
       ),
     );

@@ -8,21 +8,21 @@ import 'package:flutter_uis/screens/Home/TestKeys.dart';
 
 class HomeAlertModal extends StatefulWidget {
   HomeAlertModal({
-    this.title,
-    this.isOpen,
-    this.initialMount,
-    this.description,
+    required this.title,
+    required this.isOpen,
+    required this.initialMount,
+    required this.description,
     this.primaryText,
-    this.onPrimary,
-    this.secondaryText,
-    this.onSecondary,
+    required this.onPrimary,
+    required this.secondaryText,
+    required this.onSecondary,
   });
 
   final String title;
   final bool isOpen;
   final bool initialMount;
   final String description;
-  final String primaryText;
+  final String? primaryText;
   final VoidCallback onPrimary;
   final String secondaryText;
   final VoidCallback onSecondary;
@@ -32,7 +32,7 @@ class HomeAlertModal extends StatefulWidget {
 }
 
 class _HomeAlertModalState extends State<HomeAlertModal> {
-  bool didMount;
+  late bool didMount;
   @override
   void initState() {
     this.didMount = widget.initialMount;
@@ -118,19 +118,23 @@ class _HomeAlertModalState extends State<HomeAlertModal> {
                       alignment: WrapAlignment.end,
                       children: <Widget>[
                         widget.primaryText != null
-                            ? RaisedButton(
-                                color: AppTheme.primary,
+                            ? ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppTheme.primary,
+                                ),
                                 onPressed: widget.onPrimary,
                                 child: Text(
-                                  widget.primaryText,
+                                  widget.primaryText!,
                                   style: TextStyle(
                                     color: AppTheme.text,
                                   ),
                                 ),
                               )
                             : Container(),
-                        RaisedButton(
-                          color: AppTheme.background,
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppTheme.background,
+                          ),
                           onPressed: widget.onSecondary,
                           key: Key(HomeScreenTestKeys.modalContinueBtn),
                           child: Text(

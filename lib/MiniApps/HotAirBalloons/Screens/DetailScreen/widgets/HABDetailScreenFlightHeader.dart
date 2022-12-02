@@ -13,8 +13,8 @@ import '../Dimensions.dart';
 
 class HABDetailScreenFlightHeader extends StatelessWidget {
   HABDetailScreenFlightHeader({
-    @required this.activePage,
-    @required this.pageViewOffset,
+    required this.activePage,
+    required this.pageViewOffset,
   }) : this.flight = data.flights[activePage];
 
   final data.HABFlight flight;

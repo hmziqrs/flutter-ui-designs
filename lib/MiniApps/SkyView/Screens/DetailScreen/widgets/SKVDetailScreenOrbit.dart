@@ -1,37 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/MiniApps/SkyView/Screens/DetailScreen/Provider.dart';
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
-import 'package:simple_animations/simple_animations.dart';
-
 import 'package:flutter_uis/utils/Utils.dart';
+import 'package:provider/provider.dart';
 
 import '../Dimensions.dart';
 
 class SKVDetailScreenOrbit extends StatelessWidget {
   SKVDetailScreenOrbit({
-    @required this.pageRendered,
-    @required this.index,
-    @required this.offset,
+    required this.pageRendered,
+    required this.index,
   });
   final bool pageRendered;
   final int index;
-  final double offset;
 
   @override
   Widget build(BuildContext context) {
     final tween = Tween(begin: Dimensions.orbitInitialOffset, end: 0.0);
     return this.pageRendered
-        ? this.renderContent(0.0)
-        : PlayAnimation(
-            duration: Duration(milliseconds: 800),
+        ? Selector<SKVDetailState, double>(
+            selector: ((_, s) => s.offset),
+            builder: (context, offset, child) {
+              return this.renderContent(0.0, offset);
+            },
+          )
+        : PlayAnimationBuilder(
             tween: tween,
             delay: Duration(milliseconds: 400),
+            duration: Duration(milliseconds: 800),
             curve: Curves.fastLinearToSlowEaseIn,
-            builder: (ctx, child, animation) => this.renderContent(animation),
+            builder: (ctx, animation, child) =>
+                this.renderContent(animation, 0.0),
           );
   }
 
-  Widget renderContent(double animation) {
+  Widget renderContent(double animation, double offset) {
     final opacity = Utils.rangeMap(
       animation,
       Dimensions.orbitInitialOffset,

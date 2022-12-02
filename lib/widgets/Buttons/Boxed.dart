@@ -6,9 +6,9 @@ import 'package:flutter_uis/configs/AppTheme.dart';
 
 class BoxedButton extends StatelessWidget {
   BoxedButton({
-    @required this.icon,
-    @required this.label,
-    @required this.onPressed,
+    required this.icon,
+    required this.label,
+    required this.onPressed,
 
     // Not Required
     margin,

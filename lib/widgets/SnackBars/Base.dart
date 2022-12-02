@@ -5,10 +5,10 @@ import 'package:flutter_uis/configs/TextStyles.dart';
 import 'package:flutter_uis/configs/AppTheme.dart';
 
 void showSnackBarBase({
-  @required BuildContext context,
-  Widget child,
-  String text,
-  double width,
+  required BuildContext context,
+  Widget? child,
+  required String text,
+  double? width,
 }) {
   ScaffoldMessenger.of(context).hideCurrentSnackBar();
   final snackbar = SnackBar(

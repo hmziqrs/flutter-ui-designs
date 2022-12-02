@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter_uis/Navigator.dart';
 import 'package:flutter_uis/configs/App.dart';
 
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-void main(List<String> args) {
+Future<void> main(List<String> args) async {
   _main(null);
 }
 
-void mainTest(NavigatorObserver observer) {
+Future<void> mainTest(NavigatorObserver observer) async {
   _main(observer);
 }
 
-void _main(NavigatorObserver observer) async {
+Future<void> _main(NavigatorObserver? observer) async {
   App.showAds = false;
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
@@ -27,5 +27,5 @@ void _main(NavigatorObserver observer) async {
     observers.add(observer);
   }
 
-  runApp(AppNavigator(observers));
+  runApp(ProviderScope(child: AppNavigator(observers)));
 }

@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/MiniApps/HealtyFoodDelivery/Screens/HomeScreen/messages/keys.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 import '../../models/HFDRestaurant.dart';
 import '../../models/HFDFoodItem.dart';

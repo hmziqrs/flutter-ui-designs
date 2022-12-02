@@ -20,7 +20,7 @@ class _SKVHomeScreenTabBarState extends State<SKVHomeScreenTabBar>
     SKVHomeScreenMessages.comets,
   ];
 
-  TabController tabController;
+  late TabController tabController;
 
   @override
   void initState() {
@@ -39,7 +39,7 @@ class _SKVHomeScreenTabBarState extends State<SKVHomeScreenTabBar>
 
   @override
   Widget build(BuildContext context) {
-    final fontStyle = Theme.of(context).textTheme.bodyText1.copyWith(
+    final fontStyle = Theme.of(context).textTheme.bodyText1!.copyWith(
           fontFamily: 'Montserrat',
         );
 

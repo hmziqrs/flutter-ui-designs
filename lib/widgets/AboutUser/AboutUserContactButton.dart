@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 import 'package:supercharged/supercharged.dart';
 import 'package:share/share.dart';
 
@@ -18,13 +18,13 @@ import 'messages/keys.dart';
 class AboutUserContactButton extends StatelessWidget {
   AboutUserContactButton({
     this.url,
-    @required this.icon,
-    @required this.label,
-    @required this.platform,
-    @required this.initContext,
+    required this.icon,
+    required this.label,
+    required this.platform,
+    required this.initContext,
   });
 
-  final String url;
+  final String? url;
   final String label;
   final IconData icon;
   final String platform;

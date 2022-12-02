@@ -9,7 +9,7 @@ import 'package:flutter_uis/statics/models/UIItem.dart';
 import '../data.dart' as data;
 
 class UIDetailSupport extends StatelessWidget {
-  UIDetailSupport({@required this.uiItem});
+  UIDetailSupport({required this.uiItem});
 
   final UIItem uiItem;
 
@@ -24,19 +24,20 @@ class UIDetailSupport extends StatelessWidget {
           Row(
             children: data.getSupportList(uiItem).map(
               (support) {
-                final color = support["flag"] ? theme.primary : Colors.grey;
+                final color =
+                    (support["flag"] as bool) ? theme.primary : Colors.grey;
                 return Flexible(
                   child: Center(
                     child: Column(
                       children: [
                         Icon(
-                          support["icon"],
+                          support["icon"] as IconData,
                           color: color,
                           size: 24,
                         ),
                         Padding(padding: EdgeInsets.only(top: 4)),
                         Text(
-                          App.translate(support["label"], context),
+                          App.translate(support["label"] as String, context),
                           style: TextStyle(
                             color: color,
                             fontSize: 5 * AppDimensions.ratio,

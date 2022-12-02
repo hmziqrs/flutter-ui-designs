@@ -15,7 +15,7 @@ final map = {
 
 class AboutUserHeading extends StatelessWidget {
   AboutUserHeading({
-    @required this.label,
+    required this.label,
     this.isMapped = true,
   });
 

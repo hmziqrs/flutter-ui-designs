@@ -24,24 +24,24 @@ class Screen extends StatelessWidget {
     this.scaffoldBackgroundColor,
   });
 
-  final Widget child;
-  final Widget drawer;
-  final ThemeData theme;
-  final String debugLabel;
-  final String fontFamily;
-  final TextStyle textStyle;
+  final Widget? child;
+  final Widget? drawer;
+  final ThemeData? theme;
+  final String? debugLabel;
+  final String? fontFamily;
+  final TextStyle? textStyle;
   final bool renderSettings;
-  final Widget bottomNavigationBar;
-  final Color scaffoldBackgroundColor;
-  final void Function(BuildContext) init;
-  final Widget Function(BuildContext) builder;
-  final List<Widget> belowBuilders;
-  final List<Widget> overlayBuilders;
+  final Widget? bottomNavigationBar;
+  final Color? scaffoldBackgroundColor;
+  final void Function(BuildContext)? init;
+  final Widget Function(BuildContext)? builder;
+  final List<Widget>? belowBuilders;
+  final List<Widget>? overlayBuilders;
 
   @override
   Widget build(BuildContext context) {
     if (this.init != null) {
-      this.init(context);
+      this.init!(context);
     }
 
     final baseTheme = this.theme ?? Theme.of(context);
@@ -50,11 +50,13 @@ class Screen extends StatelessWidget {
       create: (_) => ScreenStateProvider(),
       child: Theme(
         data: baseTheme.copyWith(
-          textTheme: baseTheme.textTheme.apply(fontFamily: this.fontFamily),
+          textTheme: baseTheme.textTheme.apply(
+            fontFamily: this.fontFamily,
+          ),
           primaryTextTheme:
-              baseTheme.primaryTextTheme.apply(fontFamily: this.fontFamily),
-          accentTextTheme:
-              baseTheme.accentTextTheme.apply(fontFamily: this.fontFamily),
+              baseTheme.primaryTextTheme.apply(
+            fontFamily: this.fontFamily,
+          ),
         ),
         child: Scaffold(
           drawer: this.drawer,
@@ -64,14 +66,15 @@ class Screen extends StatelessWidget {
           body: AnnotatedRegion<SystemUiOverlayStyle>(
             value: StatusBarHandler.get(
               context,
-              ModalRoute.of(context).settings.name,
+              ModalRoute.of(context)!.settings.name,
             ),
             child: Stack(
               fit: StackFit.expand,
               children: <Widget>[
                 ...(this.belowBuilders ?? []),
-                Positioned.fill(
-                  child: child ?? builder(context),
+                Positioned(
+                  child: child ??
+                      (builder != null ? builder!(context) : SizedBox()),
                 ),
                 ...(this.overlayBuilders ?? []),
                 Theme(
@@ -82,20 +85,9 @@ class Screen extends StatelessWidget {
                     primaryTextTheme: baseTheme.primaryTextTheme.apply(
                       fontFamily: 'Muli',
                     ),
-                    accentTextTheme: baseTheme.accentTextTheme.apply(
-                      fontFamily: 'Muli',
-                    ),
                   ),
                   child: this.renderSettings
-                      ? Selector<ScreenStateProvider, bool>(
-                          selector: (_, state) => state.isSettingsOpen,
-                          builder: (ctx, isSettingsOpen, child) {
-                            return ScreenSettingsModal(
-                              isSettingsOpen: isSettingsOpen,
-                            );
-                          },
-                        )
-                      : Container(),
+                      ? ScreenSettingsModal() : SizedBox(),
                 ),
               ],
             ),

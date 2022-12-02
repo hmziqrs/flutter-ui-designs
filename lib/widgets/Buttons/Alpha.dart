@@ -5,8 +5,8 @@ import 'package:flutter_uis/configs/AppTheme.dart';
 class AlphaButton extends StatelessWidget {
   AlphaButton({
     // Required
-    @required this.onTap,
-    @required this.label,
+    required this.onTap,
+    required this.label,
 
     // Not required
     this.icon,
@@ -17,7 +17,7 @@ class AlphaButton extends StatelessWidget {
   }) : this.borderRadius = borderRadius ?? BorderRadius.circular(8.0);
 
   final String label;
-  final IconData icon;
+  final IconData? icon;
   final EdgeInsets margin;
   final VoidCallback onTap;
   final BorderRadius borderRadius;

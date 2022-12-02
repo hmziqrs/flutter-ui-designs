@@ -25,7 +25,7 @@ class ASCHomeScreen extends StatefulWidget {
 
 class _ASCHomeScreenState extends State<ASCHomeScreen> with AnimationMixin {
   PageController pageController = PageController();
-  Animation<Color> activeColor;
+  late Animation<Color?> activeColor;
   int activeColorIndex = 0;
   double offset = 0.0;
   int activePage = 0;
@@ -34,10 +34,7 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> with AnimationMixin {
   void initState() {
     final color = data.list[activePage].colors[0];
     this.controller.duration = 280.milliseconds;
-    this.activeColor = ColorTween(
-      begin: color,
-      end: color,
-    ).animate(this.controller);
+    this.activeColor = color.tweenTo(color).animate(this.controller);
 
     this.pageController.addListener(() {
       setState(() {
@@ -105,8 +102,9 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> with AnimationMixin {
         child: SizeChangedLayoutNotifier(
           child: Screen(
             theme: Theme.of(context).copyWith(
-              accentColor: this.activeColor.value,
               primaryColor: this.activeColor.value,
+              colorScheme: ColorScheme.fromSwatch()
+                  .copyWith(secondary: this.activeColor.value),
             ),
             child: PageView.builder(
               physics: ClampingScrollPhysics(),
@@ -148,13 +146,16 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> with AnimationMixin {
                           Column(
                             children: [
                               ASCHomeScreenHeader(
-                                  item: item, parallax: parallax),
+                                item: item,
+                                parallax: parallax,
+                                colorIndex: activeColorIndex,
+                              ),
                               ASCHomeScreenContent(
                                 item: item,
                                 uiParallax: uiParallax,
                                 activePage: this.activePage,
                                 changeColor: this.changeColor,
-                                activeColor: this.activeColor.value,
+                                activeColor: this.activeColor.value!,
                                 activeColorIndex: this.activeColorIndex,
                               ),
                             ],

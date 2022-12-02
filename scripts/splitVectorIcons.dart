@@ -20,7 +20,7 @@ void main(List<String> arguments) {
   // ignore: omit_local_variable_types
   List<String> lines = packages.readAsLinesSync();
   // flutter_icons:file:///Users/makisu/development/flutter/.pub-cache/hosted/pub.flutter-io.cn/flutter_icons-1.0.0+1/lib/
-  String flutterIconPath;
+  String? flutterIconPath;
   var flutterIconVersion;
   for (var i = 0; i < lines.length; i++) {
     if (lines[i].contains('flutter_icons')) {
@@ -46,7 +46,7 @@ void main(List<String> arguments) {
       pubSpecDoc['flutter_icons']['includes'] != null) {
     includes = pubSpecDoc['flutter_icons']['includes'];
     includes.forEach((key) {
-      yamlString += fontsMap[key];
+      yamlString += fontsMap[key]!;
     });
   } else {
     yamlString += allFonts;

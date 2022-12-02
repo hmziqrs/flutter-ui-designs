@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/widgets.dart';
 export 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 @optionalTypeArgs
 mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
     implements TickerProvider {
-  Ticker _ticker;
-  Animation<double> animation;
+  late Ticker _ticker;
+  late Animation<double> animation;
   bool isFocused = false;
   bool forceFocus = false;
 
-  AnimationController controller;
+  late AnimationController controller;
 
   @override
   void initState() {
@@ -35,12 +34,7 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
             milliseconds: 180,
           ),
         );
-    // controller.reset([
-    //   FromToTask(
-    //     to: ,
 
-    //   )
-    // ]);
   }
 
   void removeForceFocus() {
@@ -58,21 +52,21 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
   }
 
   Widget buildInkWell({
-    @required Widget child,
-    GestureTapCallback onTap,
-    GestureTapCallback onDoubleTap,
-    GestureLongPressCallback onLongPress,
-    GestureTapDownCallback onTapDown,
-    GestureTapCancelCallback onTapCancel,
-    ValueChanged<bool> onHighlightChanged,
-    ValueChanged<bool> onHover,
-    ValueChanged<bool> onFocusChange,
-    Color focusColor,
-    Color hoverColor,
-    Color highlightColor,
-    Color splashColor,
+    required Widget child,
+    GestureTapCallback? onTap,
+    GestureTapCallback? onDoubleTap,
+    GestureLongPressCallback? onLongPress,
+    GestureTapDownCallback? onTapDown,
+    GestureTapCancelCallback? onTapCancel,
+    ValueChanged<bool>? onHighlightChanged,
+    ValueChanged<bool>? onHover,
+    ValueChanged<bool>? onFocusChange,
+    Color? focusColor,
+    Color? hoverColor,
+    Color? highlightColor,
+    Color? splashColor,
     bool isButton = false,
-    Key key,
+    Key? key,
   }) {
     return InkWell(
       key: key,
@@ -136,21 +130,21 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
   void dispose() {
     controller.dispose();
     assert(() {
-      if (_ticker == null || !_ticker.isActive) return true;
+      if (!_ticker.isActive) return true;
       throw FlutterError('$this was disposed with an active Ticker.\n'
           '$runtimeType created a Ticker via its SingleTickerProviderStateMixin, but at the time '
           'dispose() was called on the mixin, that Ticker was still active. The Ticker must '
           'be disposed before calling super.dispose(). Tickers used by AnimationControllers '
           'should be disposed by calling dispose() on the AnimationController itself. '
           'Otherwise, the ticker will leak.\n'
-          'The offending ticker was: ${_ticker.toString(debugIncludeStack: true)}');
+          'The offending ticker was: ${_ticker.toString()}');
     }());
     super.dispose();
   }
 
   @override
   void didChangeDependencies() {
-    if (_ticker != null) _ticker.muted = !TickerMode.of(context);
+    _ticker.muted = !TickerMode.of(context);
     super.didChangeDependencies();
   }
 
@@ -158,19 +152,19 @@ mixin HoverWidgetMixin<T extends StatefulWidget> on State<T>
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     String tickerDescription;
-    if (_ticker != null) {
-      if (_ticker.isActive && _ticker.muted)
-        tickerDescription = 'active but muted';
-      else if (_ticker.isActive)
-        tickerDescription = 'active';
-      else if (_ticker.muted)
-        tickerDescription = 'inactive and muted';
-      else
-        tickerDescription = 'inactive';
-    }
+    if (_ticker.isActive && _ticker.muted)
+      tickerDescription = 'active but muted';
+    else if (_ticker.isActive)
+      tickerDescription = 'active';
+    else if (_ticker.muted)
+      tickerDescription = 'inactive and muted';
+    else
+      tickerDescription = 'inactive';
     properties.add(DiagnosticsProperty<Ticker>('ticker', _ticker,
         description: tickerDescription,
         showSeparator: false,
-        defaultValue: null));
+        defaultValue: null,
+      ),
+    );
   }
 }

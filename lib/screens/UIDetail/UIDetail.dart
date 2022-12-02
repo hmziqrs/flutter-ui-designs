@@ -1,5 +1,7 @@
+import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_uis/io/io.dart';
 import 'package:flutter_uis/widgets/ScreenAnimation/Base.dart';
 import 'package:provider/provider.dart';
 
@@ -28,7 +30,7 @@ class UIDetailScreen extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({Key key}) : super(key: key);
+  const _Body({Key? key}) : super(key: key);
 
   void onClose(BuildContext context) =>
       UIDetailStateProvider.state(context).close(callback: () {
@@ -39,9 +41,10 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UIItem uiItem = ModalRoute.of(context).settings.arguments;
+    final UIItem uiItem = ModalRoute.of(context)!.settings.arguments! as UIItem;
 
-    return WillPopScope(
+    return ConditionalWillPopScope(
+      shouldAddCallback: Platform.isAndroid,
       onWillPop: () async {
         this.onClose(context);
         return false;
@@ -60,7 +63,7 @@ class _Body extends StatelessWidget {
               ),
               child: ScreenAnimationBase<UIDetailStateProvider>(
                 delay: 500,
-                builder: (_, child, animation) {
+                builder: (_, animation, child) {
                   return Opacity(
                     child: child,
                     opacity: animation,
@@ -78,7 +81,6 @@ class _Body extends StatelessWidget {
           slivers: [
             SliverAppBar(
               stretch: true,
-              brightness: Brightness.dark,
               backgroundColor: Colors.transparent,
               iconTheme: IconThemeData(opacity: 0.0),
               expandedHeight: Dimensions.coverImageHeight,
@@ -91,11 +93,12 @@ class _Body extends StatelessWidget {
                   transitionOnUserGestures: true,
                   tag: "thumbnail-${uiItem.id}",
                   child: Image.asset(
-                    uiItem.thumbnail,
+                    uiItem.thumbnail!,
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
+              systemOverlayStyle: SystemUiOverlayStyle.light,
             ),
             SliverToBoxAdapter(
               child: UIDetailContent(

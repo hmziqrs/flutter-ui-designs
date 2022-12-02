@@ -1,7 +1,7 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 import 'package:provider/provider.dart';
+import 'package:supercharged/supercharged.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -13,7 +13,6 @@ import 'widgets/HFDHomeScreenCategories.dart';
 import 'widgets/HFDHomeScreenItemCard.dart';
 import 'widgets/HFDHomeScreenFilters.dart';
 
-import '../../../../configs/AppDimensions.dart';
 import '../../configs/theme.dart' as theme;
 import 'messages/keys.dart';
 import 'data.dart' as data;
@@ -39,47 +38,63 @@ class _Body extends StatelessWidget {
     return Container(
       child: Screen(
         theme: Theme.of(context).copyWith(
-          accentColor: theme.primary,
           primaryColor: theme.primary,
+          colorScheme:
+              ColorScheme.fromSwatch().copyWith(secondary: theme.primary),
         ),
         fontFamily: 'Nunito',
         bottomNavigationBar: Selector<HFDHomeState, int>(
-            selector: (_, state) => state.activeTab,
-            builder: (context, activeTab, child) {
-              return BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                currentIndex: activeTab,
-                selectedItemColor: theme.primary,
-                unselectedItemColor: Colors.black,
-                onTap: (index) {
-                  HFDHomeState.state(context).setActiveTab(index);
-                },
-                items: data.bottomNavList.map(
-                  (item) {
-                    return BottomNavigationBarItem(
-                      icon: Icon(item),
-                      title: Padding(
-                        padding: EdgeInsets.all(0),
-                        child: Container(
-                          width: 30,
-                          height: 4,
-                          transform: Matrix4.identity()..translate(0.0, 4.0),
-                          decoration: BoxDecoration(
-                            color: (data.bottomNavList[activeTab] == item
-                                ? theme.primary
-                                : Colors.transparent),
-                            borderRadius: BorderRadius.circular(4.0),
+          selector: (_, state) => state.activeTab,
+          builder: (context, activeTab, child) {
+            return BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              currentIndex: activeTab,
+              selectedItemColor: theme.primary,
+              unselectedItemColor: Colors.black,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              onTap: (index) {
+                HFDHomeState.state(context).setActiveTab(index);
+              },
+              items: data.bottomNavList.map(
+                (item) {
+                  final isActive = data.bottomNavList[activeTab] == item;
+                  final color = isActive ? theme.primary : Colors.transparent;
+                  return BottomNavigationBarItem(
+                    label: '',
+                    icon: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Icon(item),
+                        AnimatedPositioned(
+                          left: 0,
+                          right: 0,
+                          bottom: isActive ? -10 : -14,
+                          duration: 300.milliseconds,
+                          child: Padding(
+                            padding: EdgeInsets.all(0),
+                            child: AnimatedContainer(
+                              width: 30,
+                              height: 4,
+                              duration: 300.milliseconds,
+                              decoration: BoxDecoration(
+                                color: color,
+                                borderRadius: BorderRadius.circular(4.0),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    );
-                  },
-                ).toList(),
-              );
-            }),
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ).toList(),
+            );
+          },
+        ),
         textStyle: Theme.of(context)
             .textTheme
-            .bodyText1
+            .bodyText1!
             .copyWith(fontFamily: 'Nunito'),
         child: SafeArea(
           top: false,

@@ -9,19 +9,19 @@ import 'Base.dart';
 
 PersistentBottomSheetController showBottomSheetWithBoxButtons({
   // Contexts
-  BuildContext context,
-  Function(BuildContext) appInit,
-  Future<void> Function(BuildContext context) button1,
-  Future<void> Function(BuildContext context) button2,
+  required BuildContext context,
+  required Function(BuildContext) appInit,
+  required Future<void> Function(BuildContext context) button1,
+  required Future<void> Function(BuildContext context) button2,
 
   // Strings
-  String title,
-  String label1,
-  String label2,
+  required String title,
+  required String label1,
+  required String label2,
 
   // Icons
-  IconData icon1,
-  IconData icon2,
+  required IconData icon1,
+  required IconData icon2,
 }) {
   return Scaffold.of(context).showBottomSheet(
     (bottomSheetContext) {

@@ -12,9 +12,9 @@ import '../messages/keys.dart';
 
 class HFDDetailScreenBody extends StatelessWidget {
   HFDDetailScreenBody({
-    @required this.item,
-    @required this.bars,
-    @required this.circle,
+    required this.item,
+    required this.bars,
+    required this.circle,
   });
 
   final HFDFoodItem item;
@@ -23,6 +23,9 @@ class HFDDetailScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = 20 + (AppDimensions.ratio * 20);
+    final radius = size * 0.48;
+
     return Container(
       padding: EdgeInsets.all(AppDimensions.padding * 2),
       width: (AppDimensions.miniContainerWidth - AppDimensions.padding * 8),
@@ -53,16 +56,16 @@ class HFDDetailScreenBody extends StatelessWidget {
             ),
           ),
           Row(
-            children: <Widget>[
+            children: [
               Container(
-                width: 60,
-                height: 60,
+                width: size,
+                height: size,
                 margin: EdgeInsets.only(
                   left: AppDimensions.padding * 2,
                   right: AppDimensions.padding * 2,
                 ),
                 child: CircularPercentIndicator(
-                  radius: 52.0,
+                  radius: radius,
                   lineWidth: 4.5,
                   center: new Text(
                     "${item.kcal.toStringAsFixed(0)}",
@@ -73,7 +76,7 @@ class HFDDetailScreenBody extends StatelessWidget {
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+                children: [
                   Text(
                     "${item.kcal.toStringAsFixed(0)} kcal",
                     style: TextStyle(
@@ -141,6 +144,7 @@ class HFDDetailScreenBody extends StatelessWidget {
                 child: LinearProgressIndicator(
                   value: Utils.rangeMap(animate, 0.0, 1.0, 0.0, no / 100),
                   backgroundColor: AppTheme.text03,
+                  color: theme.primary,
                 ),
               ),
             ),

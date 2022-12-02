@@ -5,18 +5,18 @@ import 'AppTheme.dart';
 
 abstract class CommonProps {
   //
-  static EdgeInsets btnPadMed;
-  static EdgeInsets btnPadSm;
+  static late EdgeInsets btnPadMed;
+  static late EdgeInsets btnPadSm;
 
   //
-  static LinearGradient gradient1;
-  static LinearGradient bottomBgGradient;
-  static List<BoxShadow> headerShadow;
-  static LinearGradient gradient1Cross;
+  static late LinearGradient gradient1;
+  static late LinearGradient bottomBgGradient;
+  static late List<BoxShadow> headerShadow;
+  static late LinearGradient gradient1Cross;
 
-  static BorderRadius buttonRadius;
-  static BorderRadius cardRadius;
-  static BoxDecoration borderButton;
+  static late BorderRadius buttonRadius;
+  static late BorderRadius cardRadius;
+  static late BoxDecoration borderButton;
 
   static init() {
     initRadius();

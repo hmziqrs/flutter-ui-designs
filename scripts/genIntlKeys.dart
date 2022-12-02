@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:isolate';
 import 'package:glob/glob.dart';
+import 'package:glob/list_local_fs.dart';
 
 import 'utils.dart';
 
@@ -40,7 +41,7 @@ Future<Map> getMessagesViaIsolate(
 ) async {
   await Isolate.spawnUri(
     Uri.parse(entity.resolveSymbolicLinksSync().replaceAll("\\", "/")),
-    null,
+    [],
     port.sendPort,
   );
   final Map messages = await port.first;

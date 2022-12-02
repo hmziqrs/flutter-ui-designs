@@ -4,8 +4,8 @@ import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
 
 class Dimensions {
-  static double smallBox;
-  static double largeBox;
+  static late double smallBox;
+  static late double largeBox;
 
   static init(BuildContext context) {
     App.init(context);

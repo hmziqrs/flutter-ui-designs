@@ -1,6 +1,7 @@
+import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:pigment/pigment.dart';
-import 'package:tinycolor/tinycolor.dart';
+import 'package:tinycolor2/tinycolor2.dart';
 
 final background = Pigment.fromString('#f5eee6');
 final background2 = Pigment.fromString('#f6eee6');
@@ -20,32 +21,32 @@ final accent2 = TinyColor.fromString("#2FA4FF").darken(18).color;
 
 final base = ThemeData(
   fontFamily: 'Muli',
-  accentColor: primary,
   primaryColor: primary,
-  brightness: Brightness.light,
+  // brightness: Brightness.light,
   backgroundColor: Colors.white,
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: Colors.white,
   pageTransitionsTheme: PageTransitionsTheme(
     builders: {
       TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
-      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.iOS: CupertinoWillPopScopePageTransionsBuilder(),
     },
   ),
+  colorScheme: ColorScheme.light().copyWith(secondary: primary),
 );
 
 final baseDark = ThemeData(
   fontFamily: 'Muli',
-  accentColor: primary,
   primaryColor: primary,
-  brightness: Brightness.dark,
+  // brightness: Brightness.dark,
   backgroundColor: darkBackground,
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: darkBackground,
   pageTransitionsTheme: PageTransitionsTheme(
     builders: {
       TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
-      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.iOS: CupertinoWillPopScopePageTransionsBuilder(),
     },
   ),
+  colorScheme: ColorScheme.dark().copyWith(secondary: primary),
 );

@@ -5,11 +5,11 @@ import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/UI.dart';
 
 class Dimensions {
-  static double coverImageHeight;
+  static late double coverImageHeight;
 
-  static double cardWidth;
-  static double cardHeight;
-  static double buttonWidth;
+  static late double cardWidth;
+  static late double cardHeight;
+  static late double buttonWidth;
 
   static init(BuildContext context) {
     App.init(context);

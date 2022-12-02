@@ -1,5 +1,5 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -7,7 +7,6 @@ import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/utils/Utils.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
-import 'package:flutter_uis/Mixins/HoverWidget.dart';
 
 import '../../configs/theme.dart' as theme;
 import '../../models/HFDFoodItem.dart';
@@ -41,39 +40,44 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     Dimensions.init(context);
 
-    final HFDFoodItem item = ModalRoute.of(context).settings.arguments;
+    final HFDFoodItem item =
+        ModalRoute.of(context)!.settings.arguments as HFDFoodItem;
     final textStyle =
-        Theme.of(context).textTheme.bodyText1.copyWith(fontFamily: 'Nunito');
+        Theme.of(context).textTheme.bodyText1!.copyWith(fontFamily: 'Nunito');
 
     final baseDuration = Duration(milliseconds: 400);
     final baseTween = Tween(begin: 0.0, end: 1.0);
 
-    MultiTween<AnimProp> tween = MultiTween<AnimProp>()
-      ..add(
+    final tween = MovieTween()
+      ..tween(
         AnimProp.base,
         baseTween,
-        baseDuration,
+        duration: baseDuration,
       )
-      ..add(
+      ..tween(
         AnimProp.circle,
         ConstantTween(0.0),
-        Duration(milliseconds: 300),
+        duration: Duration(milliseconds: 300),
       )
-      ..add(
+      ..tween(
         AnimProp.circle,
         baseTween,
-        baseDuration,
+        duration: baseDuration,
       )
-      ..add(
+      ..tween(
         AnimProp.bars,
         ConstantTween(0.0),
-        Duration(milliseconds: 300),
+        duration: Duration(milliseconds: 300),
       )
-      ..add(
+      ..tween(
         AnimProp.bars,
         baseTween,
-        baseDuration,
+        duration: baseDuration,
       );
+
+    final colorScheme = ColorScheme.fromSwatch().copyWith(
+      secondary: theme.primary,
+    );
 
     return NotificationListener<ScrollNotification>(
       onNotification: (notification) {
@@ -86,8 +90,8 @@ class _Body extends StatelessWidget {
       },
       child: Screen(
         theme: Theme.of(context).copyWith(
-          accentColor: theme.primary,
           primaryColor: theme.primary,
+          colorScheme: colorScheme,
         ),
         textStyle: textStyle,
         fontFamily: 'Nunito',
@@ -111,11 +115,11 @@ class _Body extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       HFDDetailScreenBackgroundImageBody(item: item),
-                      CustomAnimation<MultiTweenValues<AnimProp>>(
+                      CustomAnimationBuilder<Movie>(
                         tween: tween,
                         duration: tween.duration,
                         delay: Duration(milliseconds: 400),
-                        builder: (context, child, multiTrackAnimations) =>
+                        builder: (context, multiTrackAnimations, child) =>
                             Opacity(
                           opacity: multiTrackAnimations.get(AnimProp.base),
                           child: Container(
@@ -141,21 +145,23 @@ class _Body extends StatelessWidget {
                                     AnimProp.bars,
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                   height: AppDimensions.padding * 4,
                                 ),
                                 Container(
                                   width:
                                       (AppDimensions.miniContainerWidth * 0.7)
                                           .clamp(180.0, 300.0),
-                                  child: RaisedButton(
+                                  child: ElevatedButton(
                                     onPressed: () {},
-                                    color: theme.primary,
-                                    padding: EdgeInsets.symmetric(
-                                      vertical: AppDimensions.padding * 1.8,
-                                    ),
-                                    shape: new RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(80),
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: theme.primary,
+                                      padding: EdgeInsets.symmetric(
+                                        vertical: AppDimensions.padding * 1.8,
+                                      ),
+                                      shape: new RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(80),
+                                      ),
                                     ),
                                     child: Text(
                                       App.translate(

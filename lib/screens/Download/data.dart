@@ -1,4 +1,4 @@
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 final mobileLinks = [
   {
@@ -32,7 +32,7 @@ final desktopLinks = [
     "url":
         "https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/windows-release.zip",
     "name": "Windows",
-    "icon": MaterialCommunityIcons.windows,
+    "icon": MaterialCommunityIcons.microsoft_windows,
   },
 ];
 
@@ -45,6 +45,6 @@ final webLinks = [
   {
     "name": "Github",
     "url": "https://github.com/hackerhgl/flutter-ui-designs",
-    "icon": MaterialCommunityIcons.github_face,
+    "icon": MaterialCommunityIcons.github,
   },
 ];

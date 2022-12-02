@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/AppTheme.dart';
@@ -26,8 +26,8 @@ class HABDetailScreenFlightView extends StatefulWidget {
 
 class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
     with SingleTickerProviderStateMixin {
-  TabController tabController;
-  int activeTab;
+  late TabController tabController;
+  late int activeTab;
 
   final tabs = [
     HABDetailScreenMessages.tabFlightDetails,
@@ -171,13 +171,13 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
                 Padding(
                   padding: EdgeInsets.all(AppDimensions.padding * 1.5),
                 ),
-                CustomAnimation(
+                CustomAnimationBuilder(
                   child: buildContent,
                   key: Key(this.activeTab.toString()),
                   tween: Tween(begin: 0.0, end: 1.0),
                   delay: Duration(milliseconds: 120),
                   duration: Duration(milliseconds: 500),
-                  builder: (ctx, child, animation) => Opacity(
+                  builder: (ctx, animation, child) => Opacity(
                     opacity: animation,
                     child: child,
                   ),

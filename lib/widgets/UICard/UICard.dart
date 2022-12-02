@@ -11,18 +11,18 @@ class UICard extends StatefulWidget {
   const UICard(
     this.item, {
     this.onTap,
-    this.padding,
     this.cardWidth,
     this.cardHeight,
     this.isMini = false,
+    required this.padding,
     this.perspectiveScale = 0,
   });
   final UIItem item;
   final bool isMini;
   final double padding;
-  final double cardWidth;
-  final double cardHeight;
-  final VoidCallback onTap;
+  final double? cardWidth;
+  final double? cardHeight;
+  final VoidCallback? onTap;
   final double perspectiveScale;
 
   @override
@@ -30,7 +30,7 @@ class UICard extends StatefulWidget {
 }
 
 class _UICardState extends State<UICard> with AnimationMixin {
-  Animation<double> animation;
+  late Animation<double> animation;
 
   @override
   void initState() {
@@ -90,7 +90,7 @@ class _UICardState extends State<UICard> with AnimationMixin {
       margin: EdgeInsets.all(this.widget.padding),
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: ExactAssetImage(this.widget.item.thumbnail),
+          image: ExactAssetImage(this.widget.item.thumbnail!),
           fit: BoxFit.cover,
         ),
         boxShadow: [this.boxShadow()],
@@ -134,7 +134,7 @@ class _UICardState extends State<UICard> with AnimationMixin {
               right: this.widget.padding,
               left: this.widget.padding,
               child: InkWell(
-                key: Key(this.widget.item.testKey),
+                key: Key(this.widget.item.testKey!),
                 hoverColor: Colors.transparent,
                 focusColor: Colors.transparent,
                 highlightColor: Colors.transparent,

@@ -12,7 +12,7 @@ import '../Dimensions.dart';
 
 class DownloadLink extends StatefulWidget {
   final Map obj;
-  DownloadLink(this.obj, {Key key}) : super(key: key);
+  DownloadLink(this.obj, {Key? key}) : super(key: key);
 
   @override
   _DownloadLinkState createState() => _DownloadLinkState();
@@ -51,13 +51,12 @@ class _DownloadLinkState extends State<DownloadLink> with HoverWidgetMixin {
               horizontal: AppDimensions.padding * 4,
               vertical: AppDimensions.padding * 1.8,
             ),
-            child: CustomAnimation(
+            child: CustomAnimationBuilder(
               duration: Duration(milliseconds: 280),
               tween: ColorTween(begin: AppTheme.text, end: AppTheme.primary),
               control: this.isFocused
-                  ? CustomAnimationControl.PLAY
-                  : CustomAnimationControl.PLAY_REVERSE,
-              builder: (context, child, animation) {
+                  ? Control.play : Control.playReverse,
+              builder: (context, animation, child) {
                 return Row(
                   children: [
                     Icon(

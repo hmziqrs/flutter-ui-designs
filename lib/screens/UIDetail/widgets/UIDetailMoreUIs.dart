@@ -4,7 +4,6 @@ import 'package:flutter_uis/AppRoutes.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
 
-import 'package:flutter_uis/statics/models/UIItem.dart';
 import 'package:flutter_uis/statics/data/uiList.dart';
 
 import 'package:flutter_uis/widgets/UICard/UICard.dart';
@@ -14,7 +13,7 @@ import '../Dimensions.dart';
 import '../Provider.dart';
 
 class UIDetailMoreUIs extends StatelessWidget {
-  UIDetailMoreUIs({@required this.uiItem});
+  UIDetailMoreUIs({required this.uiItem});
 
   final UIItem uiItem;
 

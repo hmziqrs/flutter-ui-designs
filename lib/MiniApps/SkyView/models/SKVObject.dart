@@ -4,11 +4,11 @@ class SKVObject {
     this.nickname,
     this.positionInSystem,
     this.image, {
-    this.testKey,
-    this.distanceInKm,
-    this.distanceFromSun,
-    this.lightTimeFromSun,
-    this.lengthOfYears,
+    required this.testKey,
+    required this.distanceInKm,
+    required this.distanceFromSun,
+    required this.lightTimeFromSun,
+    required this.lengthOfYears,
   });
 
   String name;

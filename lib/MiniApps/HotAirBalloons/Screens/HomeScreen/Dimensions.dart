@@ -5,15 +5,15 @@ import 'package:flutter_uis/configs/App.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 
 class Dimensions {
-  static double flightCardWidth;
+  static late double flightCardWidth;
 
-  static Matrix4 shapeTransform;
+  static late Matrix4 shapeTransform;
 
-  static Size balloonSize;
-  static Size balloonShadowSize;
+  static late Size balloonSize;
+  static late Size balloonShadowSize;
 
-  static Offset balloonOffset;
-  static Offset balloonShadowOffset;
+  static late Offset balloonOffset;
+  static late Offset balloonShadowOffset;
 
   static init(BuildContext context) {
     App.init(context);

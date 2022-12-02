@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:simple_animations/simple_animations.dart';
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 import 'package:supercharged/supercharged.dart';
 
 import 'package:flutter_uis/configs/AppTheme.dart';
@@ -10,8 +10,8 @@ import 'AvatarWithPunchHoleClipper.dart';
 
 class ScreenRevealAvatarWithPunchHole extends StatefulWidget {
   ScreenRevealAvatarWithPunchHole({
-    @required this.avatar,
-    @required this.avatarRadius,
+    required this.avatar,
+    required this.avatarRadius,
   });
 
   final String avatar;
@@ -47,12 +47,12 @@ class _ScreenRevealAvatarWithPunchHoleState
   Widget build(BuildContext context) {
     final sliceHeight = UI.height / 2;
 
-    return CustomAnimation<double>(
+    return CustomAnimationBuilder<double>(
       tween: 0.0.tweenTo(1.0),
       duration: 900.milliseconds,
       control:
-          this.hide ? CustomAnimationControl.PLAY : CustomAnimationControl.STOP,
-      builder: (context, _, animation) {
+          this.hide ? Control.play : Control.stop,
+      builder: (context, animation, _) {
         return Stack(
           children: [
             Positioned(
@@ -104,13 +104,12 @@ class _ScreenRevealAvatarWithPunchHoleState
               ),
             ),
             Center(
-              child: CustomAnimation<double>(
+              child: CustomAnimationBuilder<double>(
                 tween: 0.0.tweenTo(1.0),
                 duration: 700.milliseconds,
                 curve: Curves.slowMiddle,
                 control: this.hide
-                    ? CustomAnimationControl.STOP
-                    : CustomAnimationControl.MIRROR,
+                    ? Control.stop : Control.mirror,
                 child: Container(
                   width: this.widget.avatarRadius,
                   height: this.widget.avatarRadius,
@@ -130,7 +129,7 @@ class _ScreenRevealAvatarWithPunchHoleState
                     child: Image.asset(this.widget.avatar),
                   ),
                 ),
-                builder: (context, child, value) {
+                builder: (context, value, child) {
                   double scale = 1 + value * .2;
                   if (hide) {
                     scale = (1 - (animation * 1.5)).clamp(0.0, 3.0);
@@ -145,7 +144,7 @@ class _ScreenRevealAvatarWithPunchHoleState
                       opacity: (1 - (animation * 1.5)).clamp(0.0, 1.0),
                       child: Stack(
                         children: [
-                          child,
+                          child ?? SizedBox(),
                           Positioned(
                             top: 6,
                             left: 6,

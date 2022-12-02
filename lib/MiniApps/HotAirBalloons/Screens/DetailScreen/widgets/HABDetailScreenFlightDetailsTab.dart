@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/TextStyles.dart';
@@ -89,15 +89,24 @@ class HABDetailScreenFlightDetailsTab extends StatelessWidget {
               )
             ],
           ),
-          child: FlatButton(
+          child: TextButton(
             onPressed: () {},
-            color: AppTheme.primary,
-            textColor: Colors.white,
-            splashColor: Colors.transparent,
-            highlightColor: Colors.black.withOpacity(0.1),
-            padding: EdgeInsets.symmetric(vertical: AppDimensions.padding * 2),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
+            style: TextButton.styleFrom(
+              backgroundColor: AppTheme.primary,
+              padding:
+                  EdgeInsets.symmetric(
+                vertical: AppDimensions.padding * 2,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              textStyle: TextStyle(
+                color: Colors.white,
+              ),
+            ).copyWith(
+              overlayColor: MaterialStateColor.resolveWith(
+                (states) => Colors.white.withOpacity(0.1),
+              ),
             ),
             child: Text(
               App.translate(
@@ -107,6 +116,7 @@ class HABDetailScreenFlightDetailsTab extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
+                color: Colors.white,
               ),
             ),
           ),

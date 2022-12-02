@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/utils/Utils.dart';
@@ -25,7 +25,10 @@ class HFDDetailScreenHeader extends StatelessWidget {
                 shape: BoxShape.circle,
                 color: Colors.white.withOpacity(0.3),
               ),
-              child: BackButton(),
+              child: Transform.translate(
+                offset: Offset(4, 0.0),
+                child: BackButton(),
+              ),
             ),
             Flexible(child: Container()),
             Container(

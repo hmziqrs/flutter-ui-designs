@@ -10,12 +10,14 @@ import '../Dimensions.dart';
 
 class ASCHomeScreenHeader extends StatelessWidget {
   ASCHomeScreenHeader({
-    @required this.item,
-    @required this.parallax,
+    required this.item,
+    required this.parallax,
+    required this.colorIndex,
   });
 
   final ASCItem item;
   final double parallax;
+  final int colorIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +27,7 @@ class ASCHomeScreenHeader extends StatelessWidget {
       padding: EdgeInsets.all(AppDimensions.padding * 2),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            this.item.colors[0],
-            this.item.colors[1],
-            this.item.colors[2]
-          ].reversed.toList(),
+          colors: this.item.colors.reversed.toList(),
           begin: App.isLtr ? Alignment.topLeft : Alignment.topRight,
           end: Alignment.bottomRight,
         ),

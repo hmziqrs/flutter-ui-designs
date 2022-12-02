@@ -5,10 +5,10 @@ import '../../../configs/theme.dart' as theme;
 
 class SKVDetailScreenAttribute extends StatelessWidget {
   SKVDetailScreenAttribute({
-    @required this.label,
-    @required this.prefix,
-    @required this.text,
-    @required this.icon,
+    required this.label,
+    required this.prefix,
+    required this.text,
+    required this.icon,
   });
 
   final String label;

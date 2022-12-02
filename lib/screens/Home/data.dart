@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 import 'messages/keys.dart';
 import 'TestKeys.dart';
@@ -36,6 +36,6 @@ final list = [
     "key": HomeScreenTestKeys.settingsBtn,
     "label": HomeScreenMessages.settings,
     "path": "settings",
-    "icon": MaterialCommunityIcons.settings_outline,
+    "icon": MaterialCommunityIcons.phone_settings_outline,
   },
 ];

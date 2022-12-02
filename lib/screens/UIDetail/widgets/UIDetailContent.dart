@@ -1,6 +1,6 @@
+
 import 'dart:math';
 
-import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/Ads.dart';
 
@@ -11,6 +11,7 @@ import 'package:flutter_uis/configs/TextStyles.dart';
 
 import 'package:flutter_uis/statics/models/UIItem.dart';
 import 'package:flutter_uis/utils/Utils.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import 'UIDetailSupport.dart';
 import 'UIDetailMoreUIs.dart';
@@ -22,7 +23,7 @@ import '../Provider.dart';
 
 class UIDetailContent extends StatefulWidget {
   UIDetailContent({
-    @required this.uiItem,
+    required this.uiItem,
   });
 
   final UIItem uiItem;
@@ -32,31 +33,55 @@ class UIDetailContent extends StatefulWidget {
 }
 
 class _UIDetailContentState extends State<UIDetailContent> {
-  AdmobInterstitial interstitialAd;
-
+  InterstitialAd? ad;
   @override
   void initState() {
-    this.interstitialAd = AdmobInterstitial(
-      adUnitId: Ads.getOpenAppVideo(),
-      listener: (AdmobAdEvent event, Map<String, dynamic> args) {
-        if (event == AdmobAdEvent.closed) {
-          Navigator.of(context).pushNamed(
-            this.widget.uiItem.miniApp,
-          );
-        }
-      },
-    )..load();
     super.initState();
+    this.initAd();
+  }
+
+  void initAd() {
+    if (!App.showAds) return;
+    InterstitialAd.load(
+      adUnitId: Ads.getOpenAppVideo(),
+      request: AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (loadedAd) {
+          // Keep a reference to the ad so you can show it later.
+          this.ad = loadedAd;
+          this.ad!.fullScreenContentCallback = FullScreenContentCallback(
+            onAdShowedFullScreenContent: (InterstitialAd ad) {},
+            onAdDismissedFullScreenContent: (InterstitialAd ad) {},
+            onAdFailedToShowFullScreenContent:
+                (InterstitialAd ad, AdError error) {},
+            onAdImpression: (InterstitialAd ad) {
+              this.navigate();
+              this.initAd();
+            },
+          );
+          setState(() {});
+        },
+        onAdFailedToLoad: (LoadAdError error) {
+          this.ad = null;
+        },
+      ),
+    );
   }
 
   void openApp(BuildContext context) {
     final r = Random().nextInt(4);
-    if (r == 2 && App.showAds) {
-      this.interstitialAd.show();
+    final adCheck = App.showAds && this.ad != null;
+    if (r == 2 && adCheck) {
+      this.ad!.show();
       return;
     }
+
+    this.navigate();
+  }
+
+  void navigate() {
     Navigator.of(context).pushNamed(
-      widget.uiItem.miniApp,
+      widget.uiItem.miniApp!,
     );
   }
 
@@ -95,20 +120,20 @@ class _UIDetailContentState extends State<UIDetailContent> {
                 ),
               ),
             ),
-            (widget.uiItem.description != null
+            widget.uiItem.description != null
                 ? Container(
                     margin: EdgeInsets.only(top: AppDimensions.padding),
                     padding: EdgeInsets.symmetric(
                       horizontal: AppDimensions.padding,
                     ),
                     child: Text(
-                      widget.uiItem.description,
+                      widget.uiItem.description!,
                       style: TextStyles.body26.copyWith(
                         color: AppTheme.subText2,
                       ),
                     ),
                   )
-                : Container()),
+                : SizedBox(),
             Padding(padding: EdgeInsets.all(AppDimensions.padding)),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,

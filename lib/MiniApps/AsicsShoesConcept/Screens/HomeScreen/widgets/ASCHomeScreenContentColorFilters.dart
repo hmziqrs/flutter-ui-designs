@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations.dart';
+import 'package:flutter_uis/Mixins/HoverWidget.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -12,12 +12,12 @@ import '../TestKeys.dart';
 
 class ASCHomeScreenContentColorFilters extends StatelessWidget {
   ASCHomeScreenContentColorFilters({
-    @required this.item,
-    @required this.uiParallax,
-    @required this.activePage,
-    @required this.activeColor,
-    @required this.changeColor,
-    @required this.activeColorIndex,
+    required this.item,
+    required this.uiParallax,
+    required this.activePage,
+    required this.activeColor,
+    required this.changeColor,
+    required this.activeColorIndex,
   });
 
   final ASCItem item;
@@ -66,12 +66,12 @@ class ASCHomeScreenContentColorFilters extends StatelessWidget {
                       ),
                     ),
                     onTap: () => this.changeColor(color, index),
-                    child: CustomAnimation(
+                    child: CustomAnimationBuilder(
                       tween: Tween(begin: 0.0, end: 1.0),
                       duration: Duration(milliseconds: 180),
                       control: this.activeColorIndex == index
-                          ? CustomAnimationControl.PLAY
-                          : CustomAnimationControl.PLAY_REVERSE,
+                          ? Control.play
+                          : Control.playReverse,
                       child: Container(
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
@@ -82,7 +82,7 @@ class ASCHomeScreenContentColorFilters extends StatelessWidget {
                           ),
                         ),
                       ),
-                      builder: (context, child, animation) {
+                      builder: (context, animation, child) {
                         final innerCircleRadius = Dimensions.colorRadius *
                             Utils.rangeMap(animation, 0.0, 1.0, 0.55, 0.7);
 

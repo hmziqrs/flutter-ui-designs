@@ -2,17 +2,17 @@ import '../messages/keys.dart';
 
 class HABFlight {
   HABFlight({
-    this.id,
-    this.name,
-    this.testKey,
-    this.people,
-    this.basketSize,
-    this.shortDesc,
+    required this.id,
+    required this.name,
+    required this.testKey,
+    required this.people,
+    required this.basketSize,
+    required this.shortDesc,
     breakFast,
     breakFastType,
-    this.time,
-    this.price,
-    this.desc,
+    required this.time,
+    required this.price,
+    required this.desc,
   })  : this.breakFast = breakFast ?? HABRootMessages.defaultBreakFast,
         this.breakFastType =
             breakFastType ?? HABRootMessages.defaultBreakFastType;

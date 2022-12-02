@@ -1,4 +1,4 @@
-import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_font_icons/flutter_font_icons.dart';
 
 import 'package:flutter_uis/statics/Links.dart';
 
@@ -70,7 +70,7 @@ final contacts = [
 final showSupport = [
   {
     "label": AboutDeveloperScreenMessages.likeProject1,
-    "icon": MaterialCommunityIcons.github_face,
+    "icon": MaterialCommunityIcons.github,
     "link": MyLinks.fudGithub,
   },
   {
@@ -105,7 +105,7 @@ final moreProjects = [
       },
       {
         "label": "Github",
-        "icon": MaterialCommunityIcons.github_face,
+        "icon": MaterialCommunityIcons.github,
         "url": MyLinks.invmovie1GooglePlay,
       },
     ],
@@ -121,7 +121,7 @@ final moreProjects = [
       },
       {
         "label": "Github",
-        "icon": MaterialCommunityIcons.github_face,
+        "icon": MaterialCommunityIcons.github,
         "url": MyLinks.rnLoopGithub,
       },
     ],
@@ -137,7 +137,7 @@ final moreProjects = [
       },
       {
         "label": "Github",
-        "icon": MaterialCommunityIcons.github_face,
+        "icon": MaterialCommunityIcons.github,
         "url": MyLinks.hackerhglCVGithub,
       },
     ],

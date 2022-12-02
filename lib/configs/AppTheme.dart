@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:tinycolor/tinycolor.dart';
+import 'package:tinycolor2/tinycolor2.dart';
 
 import 'Theme.dart' as theme;
 
 class AppTheme {
-  static BuildContext ctx;
+  static late BuildContext ctx;
 
   static double buttonRadius = 6.0;
   static double cartRadius = 12.0;
 
-  static Color cardBg;
-  static Color background;
-  static Color background2;
-  static Color background2Dark;
-  static Color background2Light;
-  static Color backgroundSub;
+  static late Color cardBg;
+  static late Color background;
+  static late Color background2;
+  static late Color background2Dark;
+  static late Color background2Light;
+  static late Color backgroundSub;
 
-  static Color shadow;
-  static Color shadow2;
-  static Color lightShadow;
-  static Color lightShadow2;
+  static late Color shadow;
+  static late Color shadow2;
+  static late Color lightShadow;
+  static late Color lightShadow2;
 
-  static Color text;
-  static Color text01;
-  static Color text02;
-  static Color text03;
-  static Color subText;
-  static Color subText2;
-  static Color subText3;
+  static late Color text;
+  static late Color text01;
+  static late Color text02;
+  static late Color text03;
+  static late Color subText;
+  static late Color subText2;
+  static late Color subText3;
 
   // Consts
   static final Color dark = TinyColor.fromString('#333').color;
@@ -90,6 +90,6 @@ class AppTheme {
     }
   }
 
-  static bool isDark([BuildContext ctx]) =>
+  static bool isDark([BuildContext? ctx]) =>
       Theme.of(ctx ?? AppTheme.ctx).brightness == Brightness.dark;
 }

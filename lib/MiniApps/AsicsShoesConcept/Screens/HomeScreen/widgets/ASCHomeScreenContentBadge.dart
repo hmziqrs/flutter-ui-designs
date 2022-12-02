@@ -6,8 +6,8 @@ import '../messages/keys.dart';
 
 class ASCHomeScreenContentBadge extends StatelessWidget {
   ASCHomeScreenContentBadge({
-    @required this.uiParallax,
-    @required this.activeColor,
+    required this.uiParallax,
+    required this.activeColor,
   });
 
   final double uiParallax;

@@ -7,7 +7,7 @@ import 'package:flutter_uis/UI.dart';
 import '../Dimensions.dart';
 
 class DesignerProfileAvatar extends StatelessWidget {
-  DesignerProfileAvatar({@required this.username});
+  DesignerProfileAvatar({required this.username});
 
   final String username;
 

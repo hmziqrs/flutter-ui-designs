@@ -44,7 +44,7 @@ class SKVHomeScreenPlanetsCarousel extends StatelessWidget {
               margin: EdgeInsets.only(right: AppDimensions.padding * 2),
               child: Stack(
                 fit: StackFit.expand,
-                children: <Widget>[
+                children: [
                   // Background
                   Positioned.fill(
                     top: AppDimensions.padding * 6,
