@@ -85,6 +85,8 @@ dev_dependencies:
     sdk: flutter
   flutter_test:
     sdk: flutter
+  flutter_driver:
+    sdk: flutter
   test: any
   io: 1.0.3
   glob: 2.1.0
