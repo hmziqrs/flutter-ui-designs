@@ -7,11 +7,11 @@ import 'package:flutter_uis/configs/App.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main(List<String> args) async {
-  _main(null);
+  await _main(null);
 }
 
 Future<void> mainTest(NavigatorObserver observer) async {
-  _main(observer);
+  await _main(observer);
 }
 
 Future<void> _main(NavigatorObserver? observer) async {
