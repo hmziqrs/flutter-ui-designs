@@ -46,7 +46,7 @@ void main(List<String> args) async {
       return "enableFlutterDriverExtension";
     },
   );
-  app.mainTest(navigationObserver);
+  await app.mainTest(navigationObserver);
 
   // When I maximize windows after test driver connects with the app.
   // It wasn't working my actions were failing.

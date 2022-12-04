@@ -30,8 +30,15 @@ void main() async {
     setUpAll(() async {
       driver = await FlutterDriver.connect();
 
+      final txxx = find.byType('NavigatorState');
+
+      print("txxx $txxx");
+
+
       final platform = await driver.requestData("platform");
+      print("platform $platform");
       final device = await driver.requestData("device");
+      print("device $device");
       final dimensions = (await driver.requestData("dimensions")).split(",");
 
       width = double.parse(dimensions[0]);
@@ -46,13 +53,12 @@ void main() async {
       await Utils.init(platform);
       await TestActions.delay(1000);
 
-      await driver.clearTimeline();
+      // await driver.clearTimeline();
     });
 
     // Close the connection to the driver after the tests have completed.
     tearDownAll(() async {
       await TestActions.delay(8000);
-
       driver.close();
     });
 
