@@ -56,25 +56,24 @@ dependencies:
   open_url: 2.0.1
   hive_flutter: 1.1.0
   url_launcher: 6.2.5
-  # universal_io: 2.0.4
-  # admob_flutter: 3.0.0
   google_mobile_ads: 5.0.0
   package_info_plus: 6.0.0
 
+  faker: 2.1.0
   emojis: 0.9.9
   recase: 4.1.0
   quiver: 3.2.1
-  faker: 2.1.0
   pigment: 1.0.4
   provider: 6.1.2
   riverpod: 2.5.1
-  flutter_riverpod: 2.5.1
   tinycolor2: 3.0.1
   supercharged: 2.1.1
   dotted_border: 2.1.0
   stretchy_header: 2.0.0
-  touchable_opacity: 1.2.0
   page_transition: 2.1.0
+  carousel_slider: 4.2.1
+  flutter_riverpod: 2.5.1
+  touchable_opacity: 1.2.0
   percent_indicator: 4.2.3
   simple_animations: 5.0.2
   flutter_font_icons: 2.2.7

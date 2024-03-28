@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -43,12 +44,19 @@ class _HFDHomeScreenRestaurantSliderState
         bottom: AppDimensions.padding * 4,
       ),
       height: Dimensions.restaurantContainerHeight,
-      child: PageView.builder(
-        controller: this.pageController,
-        scrollDirection: Axis.horizontal,
+      child: CarouselSlider.builder(
+        options: CarouselOptions(
+          padEnds: false,
+          height: Dimensions.restaurantContainerHeight,
+          pageSnapping: true,
+          disableCenter: true,
+          enableInfiniteScroll: false,
+          scrollPhysics: const ClampingScrollPhysics(),
+          // viewportFraction: viewportFraction,
+        ),
         itemCount: data.restaurants.length,
         key: Key(HFDHomeScreenTestKeys.restaurantScroll),
-        itemBuilder: (ctx, index) {
+        itemBuilder: (ctx, index, _) {
           final restaurant = data.restaurants[index];
           return HFDHomeScreenRestaurantCard(restaurant);
         },

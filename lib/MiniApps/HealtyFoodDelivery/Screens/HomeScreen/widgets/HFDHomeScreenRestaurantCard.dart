@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_uis/Mixins/HoverBase.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/utils/Utils.dart';
 
 import '../data.dart' as data;
@@ -62,11 +63,10 @@ class _HFDHomeScreenRestaurantCardState
 
               boxShadow: [
                 BoxShadow(
-                  blurRadius: 6,
-                  spreadRadius: 2,
-                  offset: Offset(0, 2),
-                  color: Colors.black.withOpacity(
-                    Utils.rangeMap(this.animation.value, 0.0, 1.0, 0.2, 0.6),
+                  blurRadius: 5,
+                  offset: Offset(0, 3),
+                  color: AppTheme.text.withOpacity(
+                    Utils.rangeMap(this.animation.value, 0.0, 1.0, 0.08, 0.12),
                   ),
                 ),
               ],
