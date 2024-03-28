@@ -34,9 +34,9 @@ class HFDHomeScreenCategories extends StatelessWidget {
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              blurRadius: 8,
-                              offset: Offset(0, 6),
-                              color: AppTheme.text01,
+                              blurRadius: 4,
+                              offset: Offset(0, 3),
+                              color: AppTheme.text.withOpacity(0.1),
                             ),
                           ],
                         ),

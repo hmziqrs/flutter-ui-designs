@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/Mixins/HoverBase.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:flutter_uis/utils/Utils.dart';
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_font_icons/flutter_font_icons.dart';
@@ -61,9 +62,14 @@ class _HFDHomeScreenItemCardState extends State<HFDHomeScreenItemCard>
                       child: Container(
                         height: 130,
                         decoration: BoxDecoration(
-                          color: Colors.grey.withOpacity(
+                          color: Colors.black.withOpacity(
                             Utils.rangeMap(
-                                animation.value, 0.0, 1.0, 0.0, 0.20),
+                              animation.value,
+                              0.0,
+                              1.0,
+                              0.34,
+                              0.66,
+                            ),
                           ),
                         ),
                         child: ClipRRect(
@@ -98,6 +104,7 @@ class _HFDHomeScreenItemCardState extends State<HFDHomeScreenItemCard>
                                         maxLines: 2,
                                         style: TextStyle(
                                           color: Colors.white.withOpacity(0.6),
+                                          height: 1.3,
                                         ),
                                       ),
                                     ],
@@ -170,12 +177,16 @@ class _HFDHomeScreenItemCardState extends State<HFDHomeScreenItemCard>
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: theme.primary,
+                  border: Border.all(
+                    width: 3,
+                    color: AppTheme.background,
+                  ),
                 ),
                 child: Text(
                   "\$${widget.item.price.toStringAsFixed(2)}",
                   style: TextStyle(
-                    fontSize: Dimensions.itemDiscountSize * 0.25,
-                    fontWeight: FontWeight.w600,
+                    fontSize: Dimensions.itemDiscountSize * 0.23,
+                    fontWeight: FontWeight.w700,
                     color: Colors.white,
                   ),
                 ),
