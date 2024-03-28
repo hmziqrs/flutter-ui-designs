@@ -54,8 +54,8 @@ class HFDDetailScreenBackgroundImageBody extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     color: theme.primary,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(16.0),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(100.0),
                     ),
                   ),
                   padding: EdgeInsets.symmetric(
@@ -64,7 +64,10 @@ class HFDDetailScreenBackgroundImageBody extends StatelessWidget {
                   ),
                   child: Text(
                     "\$ ${this.item.price.toStringAsFixed(2)}",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ],
