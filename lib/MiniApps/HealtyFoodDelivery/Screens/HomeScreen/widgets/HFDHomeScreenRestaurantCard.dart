@@ -30,6 +30,25 @@ class _HFDHomeScreenRestaurantCardState
       0.01,
     );
 
+    final scaleImage = Utils.rangeMap(
+      this.animation.value,
+      0.0,
+      1.0,
+      1.0,
+      1.25,
+    );
+
+    final translateImageX = Utils.rangeMap(
+      this.animation.value,
+      0.0,
+      1.0,
+      0.0,
+      AppDimensions.ratio * -16,
+    );
+
+    final translateImageY = translateImageX * 0.6;
+
+
     return Padding(
       padding: EdgeInsets.all(AppDimensions.padding * 2),
       child: Align(
@@ -40,10 +59,7 @@ class _HFDHomeScreenRestaurantCardState
             width: Dimensions.restaurantCardBaseWidth,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.0),
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(widget.restaurant.image),
-              ),
+
               boxShadow: [
                 BoxShadow(
                   blurRadius: 6,
@@ -57,108 +73,125 @@ class _HFDHomeScreenRestaurantCardState
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16.0),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: sigma, sigmaY: sigma),
-                child: Container(
-                  alignment: Alignment.bottomLeft,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.bottomRight,
-                      stops: [
-                        // 0.3,
-                        Utils.rangeMap(
-                          this.animation.value,
-                          0.0,
-                          1.0,
-                          0.3,
-                          0.4,
-                        ),
-                        Utils.rangeMap(
-                          this.animation.value,
-                          0.0,
-                          1.0,
-                          0.8,
-                          1.0,
-                        ),
-                      ],
-                      colors: [
-                        Colors.black.withOpacity(0.80),
-                        Colors.transparent,
-                      ],
+              child: Stack(
+                children: [
+                  Container(
+                    transform: Matrix4.identity()
+                      ..scale(scaleImage, scaleImage)
+                      ..translate(translateImageX, translateImageY),
+                    width: Dimensions.restaurantCardBaseWidth,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16.0),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(widget.restaurant.image),
+                      ),
                     ),
                   ),
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        bottom: Utils.rangeMap(
-                          this.animation.value,
-                          0.0,
-                          1.0,
-                          AppDimensions.padding,
-                          AppDimensions.ratio * 22,
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: AppDimensions.padding * 2,
-                          ),
-                          child: Text(
-                            widget.restaurant.name,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15 + AppDimensions.ratio * 4,
+                  BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: sigma, sigmaY: sigma),
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomRight,
+                          stops: [
+                            // 0.3,
+                            Utils.rangeMap(
+                              this.animation.value,
+                              0.0,
+                              1.0,
+                              0.3,
+                              0.4,
                             ),
-                          ),
+                            Utils.rangeMap(
+                              this.animation.value,
+                              0.0,
+                              1.0,
+                              0.8,
+                              1.0,
+                            ),
+                          ],
+                          colors: [
+                            Colors.black.withOpacity(0.80),
+                            Colors.transparent,
+                          ],
                         ),
                       ),
-                      Positioned(
-                        left: 0,
-                        right: 0,
-                        bottom: Utils.rangeMap(
-                          this.animation.value,
-                          0.0,
-                          1.0,
-                          -AppDimensions.ratio * 16,
-                          AppDimensions.ratio * 4,
-                        ),
-                        child: CustomAnimationBuilder(
-                          tween: Tween(begin: 0.0, end: 1.0),
-                          duration: Duration(milliseconds: 280),
-                          control: this.animation.value > 0.5
-                              ? Control.play
-                              : Control.playReverse,
-                          child: Container(
-                            width: double.infinity,
-                            margin: EdgeInsets.symmetric(
-                              horizontal: AppDimensions.padding * 2,
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            bottom: Utils.rangeMap(
+                              this.animation.value,
+                              0.0,
+                              1.0,
+                              AppDimensions.padding,
+                              AppDimensions.ratio * 22,
                             ),
-                            child: Row(
-                              children: [
-                                Flexible(
-                                  child: Text(
-                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-                                    maxLines: 2,
-                                    style: TextStyle(
-                                      height: 1.26,
-                                      fontWeight: FontWeight.w300,
-                                      color: Colors.white.withOpacity(0.55),
-                                      fontSize: 6 + AppDimensions.ratio * 4,
-                                    ),
-                                  ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: AppDimensions.padding * 2,
+                              ),
+                              child: Text(
+                                widget.restaurant.name,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15 + AppDimensions.ratio * 4,
                                 ),
-                              ],
+                              ),
                             ),
                           ),
-                          builder: (context, opacityAnimation, child) {
-                            return Opacity(
-                              opacity: opacityAnimation,
-                              child: child,
-                            );
-                          },
-                        ),
+                          Positioned(
+                            left: 0,
+                            right: 0,
+                            bottom: Utils.rangeMap(
+                              this.animation.value,
+                              0.0,
+                              1.0,
+                              -AppDimensions.ratio * 16,
+                              AppDimensions.ratio * 4,
+                            ),
+                            child: CustomAnimationBuilder(
+                              tween: Tween(begin: 0.0, end: 1.0),
+                              duration: Duration(milliseconds: 280),
+                              control: this.animation.value > 0.5
+                                  ? Control.play
+                                  : Control.playReverse,
+                              child: Container(
+                                width: double.infinity,
+                                margin: EdgeInsets.symmetric(
+                                  horizontal: AppDimensions.padding * 2,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                          height: 1.26,
+                                          fontWeight: FontWeight.w300,
+                                          color: Colors.white.withOpacity(0.55),
+                                          fontSize: 6 + AppDimensions.ratio * 4,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              builder: (context, opacityAnimation, child) {
+                                return Opacity(
+                                  opacity: opacityAnimation,
+                                  child: child,
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
           ),

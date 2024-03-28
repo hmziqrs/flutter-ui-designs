@@ -94,7 +94,7 @@ class _Body extends StatelessWidget {
         ),
         textStyle: Theme.of(context)
             .textTheme
-            .bodyText1!
+            .bodyLarge!
             .copyWith(fontFamily: 'Nunito'),
         child: SafeArea(
           top: false,
