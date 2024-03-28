@@ -43,7 +43,7 @@ class _Body extends StatelessWidget {
     final HFDFoodItem item =
         ModalRoute.of(context)!.settings.arguments as HFDFoodItem;
     final textStyle =
-        Theme.of(context).textTheme.bodyText1!.copyWith(fontFamily: 'Nunito');
+        Theme.of(context).textTheme.bodyLarge!.copyWith(fontFamily: 'Nunito');
 
     final baseDuration = Duration(milliseconds: 400);
     final baseTween = Tween(begin: 0.0, end: 1.0);
