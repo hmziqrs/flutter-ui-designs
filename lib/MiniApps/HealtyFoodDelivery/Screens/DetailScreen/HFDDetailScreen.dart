@@ -100,14 +100,7 @@ class _Body extends StatelessWidget {
             physics: BouncingScrollPhysics(),
             child: Stack(
               children: <Widget>[
-                Consumer<HFDDetailState>(
-                  builder: (context, state, child) {
-                    return HFDDetailScreenBackground(
-                      offset: state.offset,
-                      item: item,
-                    );
-                  },
-                ),
+                HFDDetailScreenBackground(item: item),
                 Container(
                   margin: EdgeInsets.only(
                     top: Dimensions.coverImageHeight - Dimensions.contentHeight,
@@ -146,7 +139,7 @@ class _Body extends StatelessWidget {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: AppDimensions.padding * 4,
+                                  height: AppDimensions.padding * 6,
                                 ),
                                 Container(
                                   width:
@@ -182,19 +175,9 @@ class _Body extends StatelessWidget {
                           ),
                         ),
                       ),
+                      SizedBox(height: AppDimensions.padding * 12),
                     ],
                   ),
-                ),
-                Consumer<HFDDetailState>(
-                  builder: (context, state, child) {
-                    final safeOffset =
-                        state.getSafe(Dimensions.coverImageHeight);
-                    return Padding(
-                      padding: EdgeInsets.only(
-                        top: safeOffset < 0 ? 0 : safeOffset,
-                      ),
-                    );
-                  },
                 ),
                 HFDDetailScreenHeader(),
               ],

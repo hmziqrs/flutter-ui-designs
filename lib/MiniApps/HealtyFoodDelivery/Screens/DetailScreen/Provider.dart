@@ -13,11 +13,11 @@ class HFDDetailState extends ChangeNotifier {
     notifyListeners();
   }
 
-  getSafe(double max) {
-    double safeOffset = this.offset;
-    if (safeOffset > max) {
-      safeOffset = max;
-    }
-    return safeOffset;
-  }
+  // getSafe(double max) {
+  //   double safeOffset = this._offset;
+  //   if (safeOffset > max) {
+  //     safeOffset = max;
+  //   }
+  //   return safeOffset;
+  // }
 }
