@@ -42,7 +42,7 @@ class _HABDetailBody extends StatelessWidget {
     Dimensions.init(context);
     final state = HABDetailState.state(context);
 
-    final fontStyle = Theme.of(context).textTheme.bodyText1!.copyWith(
+    final fontStyle = Theme.of(context).textTheme.bodyLarge!.copyWith(
           fontFamily: 'Montserrat',
         );
     final rootTheme = Theme.of(context).copyWith(
@@ -54,7 +54,6 @@ class _HABDetailBody extends StatelessWidget {
     return RawKeyboardListener(
       autofocus: true,
       focusNode: FocusNode(),
-      // onKey: this.onKeyHandler,
       child: Screen(
         theme: rootTheme,
         textStyle: fontStyle,

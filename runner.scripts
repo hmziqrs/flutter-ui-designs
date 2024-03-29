@@ -16,3 +16,9 @@ flutter run -t .\lib\main.dart -d windows --device-vmservice-port 8999 --host-vm
 
 call .\test_driver\libs\windowMode.bat -pid 7548 -mode maximized [CMD]
 cmd.exe /c "call .\test_driver\libs\windowMode.bat -pid 7548 -mode maximized" [PS]
+
+
+
+flutter drive -t test_driver/app.dart \
+    -d DFEAD234-4BB0-447E-97D2-622C577EA024 \
+    --dart-define="PLATFORM=ios" --dart-define="DEVICE=mobile"

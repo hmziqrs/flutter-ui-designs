@@ -45,39 +45,38 @@ dependencies:
 
 
   # Firebase
-  firebase_core: 2.1.1
-  firebase_analytics: 10.0.3
-  firebase_performance: 0.9.0+3
-  firebase_crashlytics: 3.0.4
+  firebase_core: 2.27.2
+  firebase_analytics: 10.9.0
+  firebase_messaging: 14.7.21
+  firebase_crashlytics: 3.4.20
+  firebase_performance: 0.9.3+19
 
   share: 2.0.4
   hive: 2.2.3
-  open_url: 2.0.0
+  open_url: 2.0.1
   hive_flutter: 1.1.0
-  url_launcher: 6.1.6
-  # universal_io: 2.0.4
-  # admob_flutter: 3.0.0
-  google_mobile_ads: 2.2.0
-  package_info_plus: 3.0.1
+  url_launcher: 6.2.5
+  google_mobile_ads: 5.0.0
+  package_info_plus: 6.0.0
 
+  faker: 2.1.0
   emojis: 0.9.9
   recase: 4.1.0
-  quiver: 3.1.0
-  faker: 2.0.0
+  quiver: 3.2.1
   pigment: 1.0.4
-  provider: 6.0.4
-  riverpod: 2.1.1
-  flutter_riverpod: 2.1.1
+  provider: 6.1.2
+  riverpod: 2.5.1
   tinycolor2: 3.0.1
   supercharged: 2.1.1
-  dotted_border: 2.0.0+3
-  # fluttery_dart2: 0.0.9
+  dotted_border: 2.1.0
   stretchy_header: 2.0.0
+  page_transition: 2.1.0
+  carousel_slider: 4.2.1
+  flutter_riverpod: 2.5.1
   touchable_opacity: 1.2.0
-  page_transition: 2.0.9
-  percent_indicator: 4.2.2
-  simple_animations: 5.0.0+2
-  flutter_font_icons: 2.2.5
+  percent_indicator: 4.2.3
+  simple_animations: 5.0.2
+  flutter_font_icons: 2.2.7
   cupertino_will_pop_scope: 1.2.1
 
 dev_dependencies:
@@ -85,9 +84,11 @@ dev_dependencies:
     sdk: flutter
   flutter_test:
     sdk: flutter
+  flutter_driver:
+    sdk: flutter
   test: any
   io: 1.0.3
-  glob: 2.1.0
+  glob: 2.1.2
   yaml: 3.1.1
   translator: 0.1.7
 

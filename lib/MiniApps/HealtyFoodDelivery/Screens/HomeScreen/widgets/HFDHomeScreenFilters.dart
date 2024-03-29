@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/App.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -76,19 +77,10 @@ class _HFDHomeScreenFiltersState extends State<HFDHomeScreenFilters> {
                     builder: (ctx, animation, child) => Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: AppDimensions.padding * 4,
-                        vertical: AppDimensions.padding * 1.5,
+                        vertical: AppDimensions.padding * 1.25,
                       ),
                       decoration: BoxDecoration(
                         color: isActive ? theme.primary : animation,
-                        boxShadow: [
-                          BoxShadow(
-                            color: isActive
-                                ? Colors.black.withOpacity(0.25)
-                                : Colors.transparent,
-                            blurRadius: 5,
-                            offset: Offset(0, 3),
-                          ),
-                        ],
                         borderRadius: BorderRadius.circular(50.0),
                       ),
                       child: Text(
@@ -98,6 +90,7 @@ class _HFDHomeScreenFiltersState extends State<HFDHomeScreenFilters> {
                         ),
                         style: TextStyle(
                           color: isActive ? Colors.white : null,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),

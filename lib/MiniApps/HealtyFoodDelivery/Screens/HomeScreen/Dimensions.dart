@@ -26,7 +26,7 @@ class Dimensions {
 
     categoryBaseSize = 30 + AppDimensions.ratio * 15;
 
-    initRestaurantsize();
+    initRestaurantSize();
   }
 
   static initItemSize() {
@@ -43,7 +43,7 @@ class Dimensions {
     itemContentWidth = itemBaseWidth * 0.8;
   }
 
-  static initRestaurantsize() {
+  static initRestaurantSize() {
     restaurantCardBaseWidth = 250 + AppDimensions.ratio * 100;
 
     double safeBaseWidth = AppDimensions.size.width * 0.80;

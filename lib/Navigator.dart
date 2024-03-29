@@ -85,6 +85,7 @@ class MaterialChild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      key: Key("material-app"),
       debugShowCheckedModeBanner: false,
       locale: state.activeLocale,
       supportedLocales: AppProvider.locales,

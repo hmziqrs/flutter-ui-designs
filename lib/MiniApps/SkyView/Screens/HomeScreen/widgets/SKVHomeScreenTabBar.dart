@@ -39,7 +39,7 @@ class _SKVHomeScreenTabBarState extends State<SKVHomeScreenTabBar>
 
   @override
   Widget build(BuildContext context) {
-    final fontStyle = Theme.of(context).textTheme.bodyText1!.copyWith(
+    final fontStyle = Theme.of(context).textTheme.bodyLarge!.copyWith(
           fontFamily: 'Montserrat',
         );
 
@@ -50,6 +50,7 @@ class _SKVHomeScreenTabBarState extends State<SKVHomeScreenTabBar>
       ),
       color: theme.background,
       child: TabBar(
+        dividerHeight: 0.0,
         isScrollable: true,
         labelStyle: fontStyle.copyWith(
           fontSize: 16.0,
@@ -62,7 +63,7 @@ class _SKVHomeScreenTabBarState extends State<SKVHomeScreenTabBar>
         labelColor: Colors.black,
         indicatorColor: theme.primary,
         controller: this.tabController,
-        unselectedLabelColor: theme.subText,
+        unselectedLabelColor: Colors.black.withOpacity(0.6),
         indicatorSize: TabBarIndicatorSize.label,
         labelPadding: EdgeInsets.symmetric(
           vertical: AppDimensions.padding,

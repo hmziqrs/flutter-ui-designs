@@ -18,16 +18,18 @@ class HFDDetailScreenHeader extends StatelessWidget {
         padding: Utils.safePaddingUnit(context, "top"),
         child: Row(
           children: <Widget>[
-            Container(
+            SizedBox(
               width: 50,
               height: 50,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white.withOpacity(0.3),
-              ),
               child: Transform.translate(
                 offset: Offset(4, 0.0),
-                child: BackButton(),
+                child: BackButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                      Colors.white.withOpacity(0.3),
+                    ),
+                  ),
+                ),
               ),
             ),
             Flexible(child: Container()),

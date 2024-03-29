@@ -165,7 +165,7 @@ class _UIDetailContentState extends State<UIDetailContent> {
                 ? UIDetailButton(
                     testKey: UIDetailScreenTestKeys.viewDesigner,
                     text:
-                        "${App.translate(UIDetailScreenMessages.contact)} ${widget.uiItem.designer}",
+                        "${App.translate(UIDetailScreenMessages.contact, context)} ${widget.uiItem.designer}",
                     callback: () async {
                       final screenState = UIDetailStateProvider.state(context);
                       await screenState.hide();
