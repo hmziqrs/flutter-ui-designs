@@ -36,6 +36,6 @@ final list = [
     "key": HomeScreenTestKeys.settingsBtn,
     "label": HomeScreenMessages.settings,
     "path": "settings",
-    "icon": MaterialCommunityIcons.phone_settings_outline,
+    "icon": Icons.settings_outlined,
   },
 ];

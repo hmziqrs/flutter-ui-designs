@@ -5,7 +5,7 @@ const String scope = 'HomeScreen';
 const Map strings = {
   '$scope/title': 'Welcome',
   '$scope/desc':
-      "Explore UIs designs powered by the Flutter framework, designed by creative designers.",
+      "Explore UI designs powered by the Flutter framework, designed by creative designers.",
   '$scope/uiList': 'Explore UIs',
   '$scope/about': 'About App',
   '$scope/aboutDeveloper': 'About Developer',
