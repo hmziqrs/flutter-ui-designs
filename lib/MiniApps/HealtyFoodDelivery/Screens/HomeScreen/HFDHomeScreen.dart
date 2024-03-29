@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_font_icons/flutter_font_icons.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:provider/provider.dart';
 import 'package:supercharged/supercharged.dart';
 
@@ -50,7 +50,7 @@ class _Body extends StatelessWidget {
               type: BottomNavigationBarType.fixed,
               currentIndex: activeTab,
               selectedItemColor: theme.primary,
-              unselectedItemColor: Colors.black,
+              unselectedItemColor: AppTheme.text,
               showSelectedLabels: false,
               showUnselectedLabels: false,
               onTap: (index) {
@@ -100,12 +100,11 @@ class _Body extends StatelessWidget {
           top: false,
           child: ListView(
             key: Key(HFDHomeScreenTestKeys.rootScroll),
-            children: <Widget>[
-              // Header
+            children: [
               Padding(
                 padding: EdgeInsets.all(AppDimensions.padding * 2),
                 child: Row(
-                  children: <Widget>[
+                  children: [
                     Text(
                       App.translate(
                         HFDHomeScreenMessages.title,
@@ -116,11 +115,6 @@ class _Body extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    Flexible(child: Container()),
-                    InkWell(
-                      onTap: () {},
-                      child: Icon(MaterialIcons.search),
-                    )
                   ],
                 ),
               ),

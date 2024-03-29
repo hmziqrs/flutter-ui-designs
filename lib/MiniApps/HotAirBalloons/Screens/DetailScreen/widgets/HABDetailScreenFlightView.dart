@@ -125,8 +125,8 @@ class _HABDetailScreenFlightViewState extends State<HABDetailScreenFlightView>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TabBar(
+                  dividerHeight: 0.0,
                   key: Key(HABDetailScreenTestKeys.tabsScroll),
-                  indicator: null,
                   isScrollable: true,
                   onTap: this.setActiveTab,
                   labelColor: AppTheme.primary,

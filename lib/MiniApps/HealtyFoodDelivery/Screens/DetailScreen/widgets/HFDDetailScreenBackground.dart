@@ -1,50 +1,36 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_uis/configs/AppDimensions.dart';
 
 import '../../../models/HFDFoodItem.dart';
 import '../Dimensions.dart';
+import '../Provider.dart';
 
 class HFDDetailScreenBackground extends StatelessWidget {
-  HFDDetailScreenBackground({required this.offset, required this.item});
+  HFDDetailScreenBackground({required this.item});
 
-  final double offset;
   final HFDFoodItem item;
 
   @override
   Widget build(BuildContext context) {
-    double height = Dimensions.coverImageHeight + (this.offset * -1);
-
-    if (height < 0) {
-      height = 0;
+    final state = HFDDetailState.state(context, true);
+    var offset = state.offset * 0.22;
+    double height = Dimensions.coverImageHeight;
+    var scale = 1 + (offset.abs() * 0.008);
+    var translateY = offset * 2;
+    if (state.offset > 0) {
+      scale = 1.0;
+      translateY = offset * 1.8;
     }
 
-    return Container(
+    print("SS ${state.offset} $scale");
+
+    return SizedBox(
       height: height,
-      alignment: Alignment.bottomCenter,
-      transform: Matrix4.identity()..translate(0.0, this.offset),
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: ExactAssetImage(this.item.image),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(
-          sigmaX: 10,
-          sigmaY: 10,
-        ),
-        child: Container(
-          color: Colors.transparent,
-          child: Container(
-            width: AppDimensions.miniContainerWidth * 1.1,
-            height: double.infinity,
-            child: Image.asset(
-              this.item.image,
-              fit: BoxFit.cover,
-            ),
-          ),
+      child: Transform.translate(
+        offset: Offset(0, translateY),
+        child: Transform.scale(
+          scale: scale,
+          child: Image.asset(this.item.image, fit: BoxFit.cover),
         ),
       ),
     );

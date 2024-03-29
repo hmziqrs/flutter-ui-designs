@@ -36,9 +36,6 @@ class _Body extends StatelessWidget {
     bool isHorizontal = false,
   ]) {
     final offset = notification.metrics.pixels;
-    if (offset == null) {
-      return false;
-    }
     final state = SKVHomeState.state(context);
     if (notification.metrics.axis == Axis.vertical) {
       state.setOffsetY(offset);
@@ -69,7 +66,8 @@ class _Body extends StatelessWidget {
           onNotification: (n) => this.onScrollNotification(context, n),
           child: SingleChildScrollView(
             key: Key(SKVHomeScreenTestKeys.rootScroll),
-            physics: ClampingScrollPhysics(),
+            physics: BouncingScrollPhysics(),
+            // physics: ClampingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
