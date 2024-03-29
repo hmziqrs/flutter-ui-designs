@@ -44,7 +44,7 @@ android {
     defaultConfig {
         applicationId "com.onemdev.flutter_ui_challenges"
         vectorDrawables.useSupportLibrary = true
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         multiDexEnabled true
         versionCode 25
