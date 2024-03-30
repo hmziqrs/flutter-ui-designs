@@ -3,8 +3,8 @@
 const scope = 'ETCHomeScreen';
 
 abstract class ETCHomeScreenMessages {
-	static String restart = '$scope/restart';
-	static String reset = '$scope/reset';
-	static String play = '$scope/play';
-	static String pause = '$scope/pause';
+	static const restart = '$scope/restart';
+	static const reset = '$scope/reset';
+	static const play = '$scope/play';
+	static const pause = '$scope/pause';
 }

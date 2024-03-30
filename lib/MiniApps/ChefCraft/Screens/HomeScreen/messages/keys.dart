@@ -3,13 +3,13 @@
 const scope = 'CCNHomeScreen';
 
 abstract class CCNHomeScreenMessages {
-	static String heading = '$scope/heading';
-	static String cat1 = '$scope/cat1';
-	static String cat2 = '$scope/cat2';
-	static String cat3 = '$scope/cat3';
-	static String cat4 = '$scope/cat4';
-	static String tab1 = '$scope/tab1';
-	static String tab2 = '$scope/tab2';
-	static String tab3 = '$scope/tab3';
-	static String tab4 = '$scope/tab4';
+	static const heading = '$scope/heading';
+	static const cat1 = '$scope/cat1';
+	static const cat2 = '$scope/cat2';
+	static const cat3 = '$scope/cat3';
+	static const cat4 = '$scope/cat4';
+	static const tab1 = '$scope/tab1';
+	static const tab2 = '$scope/tab2';
+	static const tab3 = '$scope/tab3';
+	static const tab4 = '$scope/tab4';
 }

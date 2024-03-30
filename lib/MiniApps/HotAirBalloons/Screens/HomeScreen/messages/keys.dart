@@ -3,7 +3,7 @@
 const scope = 'HABHomeScreen';
 
 abstract class HABHomeScreenMessages {
-	static String title = '$scope/title';
-	static String subTitle = '$scope/subTitle';
-	static String flight = '$scope/flight';
+	static const title = '$scope/title';
+	static const subTitle = '$scope/subTitle';
+	static const flight = '$scope/flight';
 }

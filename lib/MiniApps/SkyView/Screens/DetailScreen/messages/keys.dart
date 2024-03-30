@@ -3,8 +3,8 @@
 const scope = 'SKVDetailScreen';
 
 abstract class SKVDetailScreenMessages {
-	static String distanceFromSun = '$scope/distanceFromSun';
-	static String oneWayTimeSun = '$scope/oneWayTimeSun';
-	static String lengthYear = '$scope/lengthYear';
-	static String earthDays = '$scope/earthDays';
+	static const distanceFromSun = '$scope/distanceFromSun';
+	static const oneWayTimeSun = '$scope/oneWayTimeSun';
+	static const lengthYear = '$scope/lengthYear';
+	static const earthDays = '$scope/earthDays';
 }
