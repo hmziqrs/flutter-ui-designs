@@ -33,7 +33,7 @@ const Map strings = {
   '$scope/question6':
       'Is Flutter truly cross-platform for both desktop and mobile operating systems?',
   '$scope/answer6':
-      'On the UI level, it is true since Flutter uses its engine for rendering UI. But like every cross-platform limitation arrives when a 3rd third-party library may support one platform but the other.',
+      'On the UI level, it is true since Flutter uses its engine for rendering UI. But like every cross-platform framework limitation arrives when a 3rd third-party library may support one platform but the other.',
   //
   '$scope/question7': 'Is Flutter superior to React Native?',
   '$scope/answer7':

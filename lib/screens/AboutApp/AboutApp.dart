@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
+import 'package:flutter_uis/configs/TextStyles.dart';
 import 'package:flutter_uis/widgets/Banners/Alpha.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
@@ -9,7 +11,6 @@ import 'package:flutter_uis/widgets/Header/Header.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
-import 'widgets/AboutAppText.dart';
 import 'messages/keys.dart';
 import 'Dimensions.dart';
 
@@ -61,21 +62,41 @@ class AboutAppScreen extends StatelessWidget {
                         padding: EdgeInsets.all(AppDimensions.padding * 1.5),
                       ),
                       ...List.generate(
-                        8,
+                        7,
                         (index) {
                           final i = index + 1;
                           final question = "$scope/question$i";
                           final answer = "$scope/answer$i";
-                          return Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              AboutAppText(App.translate(question, context)),
-                              AboutAppText(App.translate(answer, context)),
-                              Divider(),
-                            ],
+                          return Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: AppDimensions.padding * 3,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SizedBox(height: AppDimensions.padding * 1.0),
+                                Text(
+                                  App.translate(question, context),
+                                  style: TextStyles.body17,
+                                ),
+                                SizedBox(height: AppDimensions.padding * 0.3),
+                                Text(
+                                  App.translate(answer, context),
+                                  style: TextStyles.body26,
+                                ),
+                                SizedBox(height: AppDimensions.padding * 1.0),
+                                if (index != 6)
+                                  Divider(
+                                    color: AppTheme.text.withOpacity(0.18),
+                                    thickness: 1.4,
+                                  ),
+                              ],
+                            ),
                           );
                         },
                       ),
+                      SizedBox(height: AppDimensions.padding * 3),
                       AlphaBanner(
                         text: App.translate(
                           AboutAppScreenMessages.iDont,
