@@ -10,6 +10,7 @@ class HomeStateProvider extends ChangeNotifier {
 
   bool _isWebPopUpOpen = kIsWeb;
   bool get isWebPopUpOpen => this._isWebPopUpOpen;
+
   setWebPopUpOpen(bool flag) {
     if (flag == this._isWebPopUpOpen) {
       return;
@@ -20,6 +21,7 @@ class HomeStateProvider extends ChangeNotifier {
 
   bool _isDesktopPopUpOpen = Utils.isDesktop();
   bool get isDesktopPopUpOpen => this._isDesktopPopUpOpen;
+  
   setDesktopPopUpOpen(bool flag) {
     if (flag == this._isDesktopPopUpOpen) {
       return;

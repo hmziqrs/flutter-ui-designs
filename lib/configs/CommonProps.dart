@@ -17,6 +17,7 @@ abstract class CommonProps {
   static late BorderRadius buttonRadius;
   static late BorderRadius cardRadius;
   static late BoxDecoration borderButton;
+  static late BoxDecoration borderButtonText;
 
   static init() {
     initRadius();
@@ -36,6 +37,13 @@ abstract class CommonProps {
       border: Border.all(
         width: 1.4,
         color: AppTheme.primary,
+      ),
+    );
+    borderButtonText = BoxDecoration(
+      borderRadius: CommonProps.buttonRadius,
+      border: Border.all(
+        width: 1.4,
+        color: AppTheme.text,
       ),
     );
     btnPadSm = EdgeInsets.symmetric(

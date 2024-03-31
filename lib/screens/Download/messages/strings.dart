@@ -5,8 +5,7 @@ const String scope = 'DownloadScreen';
 const Map strings = {
   // Title
   '$scope/title': 'Download',
-  '$scope/desc':
-      'Explore app on a different platform or share the link directly with anyone who might be interested in exploring the app',
+  '$scope/description': 'Experience the app in different platform.',
   '$scope/mobile': 'Mobile',
   '$scope/desktop': 'Desktop',
   '$scope/web': 'Web',

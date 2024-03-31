@@ -3,23 +3,22 @@
 const scope = 'AboutAppScreen';
 
 abstract class AboutAppScreenMessages {
-	static String title = '$scope/title';
-	static String description = '$scope/description';
-	static String question1 = '$scope/question1';
-	static String question2 = '$scope/question2';
-	static String question3 = '$scope/question3';
-	static String question4 = '$scope/question4';
-	static String question5 = '$scope/question5';
-	static String question6 = '$scope/question6';
-	static String question7 = '$scope/question7';
-	static String question8 = '$scope/question8';
-	static String answer1 = '$scope/answer1';
-	static String answer2 = '$scope/answer2';
-	static String answer3 = '$scope/answer3';
-	static String answer4 = '$scope/answer4';
-	static String answer5 = '$scope/answer5';
-	static String answer6 = '$scope/answer6';
-	static String answer7 = '$scope/answer7';
-	static String answer8 = '$scope/answer8';
-	static String iDont = '$scope/iDont';
+  static const title = '$scope/title';
+  static const description = '$scope/description';
+  static const conclusion = '$scope/conclusion';
+  static const question1 = '$scope/question1';
+  static const answer1 = '$scope/answer1';
+  static const question2 = '$scope/question2';
+  static const answer2 = '$scope/answer2';
+  static const question3 = '$scope/question3';
+  static const answer3 = '$scope/answer3';
+  static const question4 = '$scope/question4';
+  static const answer4 = '$scope/answer4';
+  static const question5 = '$scope/question5';
+  static const answer5 = '$scope/answer5';
+  static const question6 = '$scope/question6';
+  static const answer6 = '$scope/answer6';
+  static const question7 = '$scope/question7';
+  static const answer7 = '$scope/answer7';
+  static const iDont = '$scope/iDont';
 }

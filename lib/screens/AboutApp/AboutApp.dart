@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/configs/AppTheme.dart';
+import 'package:flutter_uis/configs/TextStyles.dart';
 import 'package:flutter_uis/widgets/Banners/Alpha.dart';
 
 import 'package:flutter_uis/configs/Theme.dart' as theme;
@@ -9,14 +11,15 @@ import 'package:flutter_uis/widgets/Header/Header.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
 
-import 'widgets/AboutAppText.dart';
 import 'messages/keys.dart';
 import 'Dimensions.dart';
+
 
 class AboutAppScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dimensions.init(context);
+
 
     return Screen(
       child: Column(
@@ -45,7 +48,9 @@ class AboutAppScreen extends StatelessWidget {
                         ),
                         child: Text(
                           App.translate(
-                              AboutAppScreenMessages.description, context),
+                            AboutAppScreenMessages.description,
+                            context,
+                          ),
                           style: TextStyle(
                             fontSize: 16,
                             color: theme.primary,
@@ -53,86 +58,50 @@ class AboutAppScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: AppDimensions.padding * 2.0),
-                      AboutAppText(
-                        App.translate(
-                            AboutAppScreenMessages.question1, context),
-                      ),
-                      AboutAppText(
-                        App.translate(
-                            AboutAppScreenMessages.question2, context),
-                        point: true,
-                      ),
-                      AboutAppText(
-                        App.translate(
-                            AboutAppScreenMessages.question3, context),
-                        point: true,
-                      ),
-                      AboutAppText(
-                        App.translate(
-                            AboutAppScreenMessages.question4, context),
-                        point: true,
-                      ),
-                      AboutAppText(
-                        App.translate(
-                            AboutAppScreenMessages.question5, context),
-                        point: true,
-                      ),
-                      AboutAppText(
-                        App.translate(
-                            AboutAppScreenMessages.question6, context),
-                        point: true,
-                      ),
-                      AboutAppText(
-                        App.translate(
-                            AboutAppScreenMessages.question7, context),
-                        point: true,
-                      ),
-                      AboutAppText(
-                        App.translate(
-                            AboutAppScreenMessages.question8, context),
-                        point: true,
-                      ),
                       Padding(
                         padding: EdgeInsets.all(AppDimensions.padding * 1.5),
                       ),
-                      AboutAppText(
-                        App.translate(AboutAppScreenMessages.answer1, context),
+                      ...List.generate(
+                        7,
+                        (index) {
+                          final i = index + 1;
+                          final question = "$scope/question$i";
+                          final answer = "$scope/answer$i";
+                          return Padding(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: AppDimensions.padding * 3,
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                SizedBox(height: AppDimensions.padding * 1.0),
+                                Text(
+                                  App.translate(question, context),
+                                  style: TextStyles.body17,
+                                ),
+                                SizedBox(height: AppDimensions.padding * 0.3),
+                                Text(
+                                  App.translate(answer, context),
+                                  style: TextStyles.body26,
+                                ),
+                                SizedBox(height: AppDimensions.padding * 1.0),
+                                if (index != 6)
+                                  Divider(
+                                    color: AppTheme.text.withOpacity(0.18),
+                                    thickness: 1.4,
+                                  ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
-                      AboutAppText(
-                        App.translate(AboutAppScreenMessages.answer2, context),
-                        point: true,
-                      ),
-                      AboutAppText(
-                        App.translate(AboutAppScreenMessages.answer3, context),
-                        point: true,
-                      ),
-                      AboutAppText(
-                        App.translate(AboutAppScreenMessages.answer4, context),
-                        point: true,
-                      ),
-                      AboutAppText(
-                        App.translate(AboutAppScreenMessages.answer5, context),
-                        point: true,
-                      ),
-                      AboutAppText(
-                        App.translate(AboutAppScreenMessages.answer6, context),
-                        point: true,
-                      ),
-                      AboutAppText(
-                        App.translate(AboutAppScreenMessages.answer7, context),
-                        point: true,
-                      ),
-                      AboutAppText(
-                        App.translate(AboutAppScreenMessages.answer8, context),
-                        point: true,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(AppDimensions.padding * 1.5),
-                      ),
+                      SizedBox(height: AppDimensions.padding * 3),
                       AlphaBanner(
                         text: App.translate(
-                            AboutAppScreenMessages.iDont, context),
+                          AboutAppScreenMessages.iDont,
+                          context,
+                        ),
                       ),
                       SizedBox(
                         height: AppDimensions.padding * 3,

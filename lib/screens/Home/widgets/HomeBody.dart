@@ -51,99 +51,95 @@ class _HomeBodyState extends State<HomeBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topCenter,
-      child: SingleChildScrollView(
-        child: Container(
-          width: double.infinity,
-          constraints: BoxConstraints(
-            maxWidth: AppDimensions.maxContainerWidth,
-          ),
-          padding: EdgeInsets.symmetric(
-            horizontal: AppDimensions.padding * 2,
-            vertical: AppDimensions.padding * 2,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                App.translate(
-                  HomeScreenMessages.title,
-                  context,
-                ),
-                key: Key("title"),
-                style: TextStyles.heading1,
+    return SingleChildScrollView(
+      child: Container(
+        width: double.infinity,
+        constraints: BoxConstraints(
+          maxWidth: AppDimensions.maxContainerWidth,
+        ),
+        padding: EdgeInsets.symmetric(
+          horizontal: AppDimensions.padding * 2,
+          vertical: AppDimensions.padding * 2,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              App.translate(
+                HomeScreenMessages.title,
+                context,
               ),
-              Text(
-                App.translate(
-                  HomeScreenMessages.desc,
-                  context,
-                ),
-                style: TextStyle(
-                  fontSize: 16,
-                  color: AppTheme.primary,
-                  fontWeight: FontWeight.w600,
-                ),
+              key: Key("title"),
+              style: TextStyles.heading1,
+            ),
+            Text(
+              App.translate(
+                HomeScreenMessages.desc,
+                context,
               ),
-              Padding(padding: EdgeInsets.all(AppDimensions.padding)),
-              ...data.list.map(
-                (item) {
-                  if (item["key"] == 'ad') {
-                    if (!App.showAds || this.ad == null) {
-                      return SizedBox();
-                    }
-                    return Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: AppDimensions.padding * 1,
-                      ),
-                      child: Container(
-                        height: this.ad!.size.height.toDouble(),
-                        alignment: Alignment.center,
-                        child: AdWidget(ad: this.ad!),
-                      ),
-                    );
+              style: TextStyle(
+                fontSize: 16,
+                color: AppTheme.text.withOpacity(0.8),
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            Padding(padding: EdgeInsets.all(AppDimensions.padding)),
+            ...data.list.map(
+              (item) {
+                if (item["key"] == 'ad') {
+                  if (!App.showAds || this.ad == null) {
+                    return SizedBox();
                   }
                   return Padding(
                     padding: EdgeInsets.symmetric(
                       vertical: AppDimensions.padding * 1,
                     ),
-                    child: InkWell(
-                      key: Key(item["key"]! as String),
-                      borderRadius: CommonProps.buttonRadius,
-                      onTap: () =>
-                          this.onPress(context, item["path"] as String),
-                      child: Ink(
-                        padding: EdgeInsets.symmetric(
-                          vertical: AppDimensions.padding * 1.5,
-                        ),
-                        width: double.infinity,
-                        decoration: CommonProps.borderButton,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              item["icon"] as IconData,
-                              size: 20,
-                              color: AppTheme.primary,
-                            ),
-                            Container(width: AppDimensions.padding),
-                            Text(
-                              App.translate(
-                                item["label"] as String,
-                                context,
-                              ),
-                              style: TextStyles.body16
-                                  .copyWith(color: AppTheme.primary),
-                            ),
-                          ],
-                        ),
-                      ),
+                    child: Container(
+                      height: this.ad!.size.height.toDouble(),
+                      alignment: Alignment.center,
+                      child: AdWidget(ad: this.ad!),
                     ),
                   );
-                },
-              ).toList(),
-            ],
-          ),
+                }
+                return Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: AppDimensions.padding * 1,
+                  ),
+                  child: InkWell(
+                    key: Key(item["key"]! as String),
+                    borderRadius: CommonProps.buttonRadius,
+                    onTap: () => this.onPress(context, item["path"] as String),
+                    child: Ink(
+                      padding: EdgeInsets.symmetric(
+                        vertical: AppDimensions.padding * 1.5,
+                      ),
+                      width: double.infinity,
+                      decoration: CommonProps.borderButton,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            item["icon"] as IconData,
+                            size: 20,
+                            color: AppTheme.primary,
+                          ),
+                          Container(width: AppDimensions.padding),
+                          Text(
+                            App.translate(
+                              item["label"] as String,
+                              context,
+                            ),
+                            style: TextStyles.body16
+                                .copyWith(color: AppTheme.primary),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ).toList(),
+          ],
         ),
       ),
     );

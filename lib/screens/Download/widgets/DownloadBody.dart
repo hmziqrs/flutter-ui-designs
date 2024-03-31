@@ -125,7 +125,12 @@ class _DownloadBodyState extends State<DownloadBody> {
     return ListView(
       padding: EdgeInsets.zero,
       children: <Widget>[
-        AlphaBanner(text: App.translate(DownloadScreenMessages.desc, context)),
+        AlphaBanner(
+          text: App.translate(
+            DownloadScreenMessages.description,
+            context,
+          ),
+        ),
         SizedBox(height: AppDimensions.padding * 2),
         if (App.showAds && this.ad != null)
           Padding(

@@ -5,38 +5,44 @@ const String scope = 'AboutAppScreen';
 const Map strings = {
   '$scope/title': 'About App',
   '$scope/description':
-      'Flutter UI Designs is just an experimental project so please pardon & report any bugs you face',
-  '$scope/question1':
-      "I crafted this app because I wanted to know flutter's potential to solve real word problems such as.",
-  '$scope/question2': "True native performance.",
-  '$scope/question3': "Smooth 60FPS animations under the heavy load.",
-  '$scope/question4':
-      "Difficulty of adapting the dart environment & framework.",
-  '$scope/question5': "Potential to write Flexible & Readable code.",
-  '$scope/question6':
-      "Potential to built pixel perfect UI for different screen size/type",
-  '$scope/question7': "Is it really a true Cross Platform framework.",
-  '$scope/question8': "Is it superior to React Native.",
+      'This is an experimental project. So please report any bugs you may encounter. I\'ll try to fix them as soon as possible. If you have any suggestions or feedback please let me know. I\'ll be happy to hear from you.',
+  '$scope/conclusion':
+      'Here are some questions I asked myself before starting the project.',
+  '$scope/question1': 'Why build this app?',
   '$scope/answer1':
-      "Well for starters I fell in love with flutter at first glance because of no native rendering (Same render/behaviour on different platforms), lightning fast hot reload & near to no configuration to install native libraries. There's so much to talk about but I'll get to my conclusion.",
+      'I wanted to learn Flutter and started searching for ideas to implement. API-based CRUD apps like Todo lists seemed simple and repetitive to me since I had created many of them before. However, I lacked the skills to implement animations at that time. This led me to decide to build this app.',
+  //
+  '$scope/question2': 'Is Flutter\'s performance truly native?',
   '$scope/answer2':
-      "It's very close to native & performance difference isn't even noticeable for simple apps.",
+      'In my opinion, yes. Flutter provides near-native performance since the code is compiled and there is no code interpolation at runtime, resulting in fast execution.',
+  //
+  '$scope/question3': 'Do complex animations run at a smooth 60FPS?',
   '$scope/answer3':
-      "As you can see in UI designs animations are running smooth without any glitches at 60FPS.",
+      'Yes, the app features some complex parallax animations, and I find Flutter provides a smooth experience without any jank or skipped frames.',
+  //
+  '$scope/question4':
+      'How is the Dart\'s learning curve and the mindset shift required for thinking in Flutter?',
   '$scope/answer4':
-      "Someone with Java/Kotlin, Javascript or React Native background it's easy to adapt dart/flutter. Mostly it depends on developer's interest to learn.",
+      'The learning curve for Dart is relatively easy if you\'re familiar with object-oriented languages like Java and TypeScript. However, adapting to Flutter\'s UI composition approach and understanding the BuildContext, responsible for consuming theme, translation, and business data, may require some practice and a mindset shift.',
+  //
+  '$scope/question5':
+      'How does Flutter scale UI for desktop, tablet, and mobile?',
   '$scope/answer5':
-      "Yes, Thanks to the widget system in flutter you can implement different kinds of architectures.",
+      'Flutter\'s documentation provides strategies for managing UI across multiple screen sizes. Additionally, I have developed my custom guidelines for scaling UI.',
+//
+  '$scope/question6':
+      'Is Flutter truly cross-platform for both desktop and mobile operating systems?',
   '$scope/answer6':
-      "Yes, As you can see this app supports variety of screen sizes, landscape, tablets/iPads, Web & Desktop platforms.",
+      'On the UI level, it is true since Flutter uses its engine for rendering UI. But like every cross-platform framework limitation arrives when a 3rd third-party library may support one platform but the other.',
+  //
+  '$scope/question7': 'Is Flutter superior to React Native?',
   '$scope/answer7':
-      "UI part of the framework is true cross platform but most of native packages lacks support for desktop and web platform.",
-  '$scope/answer8':
-      "In terms of performance YES but flutter lacks in popularity at the time of building this app",
+      'In terms of performance, yes. However, in terms of support and ecosystem, React Native has an advantage due to its access to a vast ecosystem of JavaScript libraries and a large mature community for support.',
+  //
   '$scope/iDont':
-      "I don't own any designs that's published in this app. I asked for the permission of designers before I published UIs. And I've gave credit & put all contact information(as much as I could find) of designers.",
+      'I do not own any UI designs that are published in this app. I asked for the permission of designers before I published UI designs. I\'ve given credit & put all the designers contact information(as much as I could find).',
 };
 
 main(List<String> args, SendPort port) {
-  port.send({"strings": strings, "scope": scope});
+  port.send({'strings': strings, 'scope': scope});
 }

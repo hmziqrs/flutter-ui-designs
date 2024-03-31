@@ -37,10 +37,11 @@ class AboutDeveloperMoreProjects extends StatelessWidget {
                   Theme.of(context).primaryColor,
                 ],
               ),
-              borderRadius: BorderRadius.circular(6.0),
+              borderRadius: BorderRadius.circular(8.0),
             ),
-            padding: EdgeInsets.all(
-              AppDimensions.padding * 2,
+            padding: EdgeInsets.symmetric(
+              horizontal: AppDimensions.padding * 2,
+              vertical: AppDimensions.padding * 1,
             ),
             margin: EdgeInsets.all(
               AppDimensions.padding * 1,
@@ -48,6 +49,7 @@ class AboutDeveloperMoreProjects extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: AppDimensions.padding * 0.5),
                 Text(
                   project["label"]! as String,
                   style: TextStyles.heading5.copyWith(
@@ -56,8 +58,9 @@ class AboutDeveloperMoreProjects extends StatelessWidget {
                 ),
                 Text(
                   App.translate(project["desc"] as String, context),
-                  style: TextStyles.body2.copyWith(
-                    color: Colors.white.withOpacity(0.85),
+                  style: TextStyles.body3.copyWith(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 Flexible(child: SizedBox(height: double.infinity)),
@@ -99,6 +102,7 @@ class AboutDeveloperMoreProjects extends StatelessWidget {
                                       link["label"].toString(),
                                       style: TextStyles.body2.copyWith(
                                         color: Colors.white,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ],
@@ -109,7 +113,8 @@ class AboutDeveloperMoreProjects extends StatelessWidget {
                         ),
                       )
                       .toList(),
-                )
+                ),
+                SizedBox(height: AppDimensions.padding * 1),
               ],
             ),
           );

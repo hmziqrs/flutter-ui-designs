@@ -1,4 +1,4 @@
-package com.onemdev.flutter_uis
+package com.example.flutter_uis
 
 import io.flutter.embedding.android.FlutterActivity
 
