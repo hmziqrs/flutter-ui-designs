@@ -221,7 +221,7 @@
   "AboutUserWidget/or": "or",
   "AboutUserWidget/developers": "developer's",
   "AboutUserWidget/profile": "profile",
-  "DownloadScreen/desc": "Explore app on a different platform or share the link directly with anyone who might be interested in exploring the app",
+  "DownloadScreen/desc": "Experience the app in different platform.",
   "DownloadScreen/web": "Web",
   "DownloadScreen/copy": "Copy",
   "DownloadScreen/share": "Share",
@@ -264,5 +264,6 @@
   "AboutAppScreen/question7": "Is Flutter superior to React Native?",
   "AboutAppScreen/answer7": "In terms of performance, yes. However, in terms of support and ecosystem, React Native has an advantage due to its access to a vast ecosystem of JavaScript libraries and a large mature community for support.",
   "AboutAppScreen/iDont": "I do not own any UI designs that are published in this app. I asked for the permission of designers before I published UI designs. I've given credit & put all the designers contact information(as much as I could find).",
-  "AboutDeveloperScreen/intro": "Hi, I am a full-stack developer with over 7 years of experience in developing software. I have expertise in multiple languages and frameworks and am passionate about creating open-source apps. I enjoy watching anime in my free time, with Dragon Ball Z being my all-time favorite. I also play games, and some of my favorites include Cyberpunk 2077, Horizon Forbidden West, and Detroit: Become Human."
+  "AboutDeveloperScreen/intro": "Hi, I am a full-stack developer with over 7 years of experience in developing software. I have expertise in multiple languages and frameworks and am passionate about creating open-source apps. I enjoy watching anime in my free time, with Dragon Ball Z being my all-time favorite. I also play games, and some of my favorites include Cyberpunk 2077, Horizon Forbidden West, and Detroit: Become Human.",
+  "DownloadScreen/description": "Experience the app in different platform."
 }

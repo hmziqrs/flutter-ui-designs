@@ -4,7 +4,7 @@ const scope = 'DownloadScreen';
 
 abstract class DownloadScreenMessages {
 	static const title = '$scope/title';
-	static const desc = '$scope/desc';
+	static const description = '$scope/description';
 	static const mobile = '$scope/mobile';
 	static const desktop = '$scope/desktop';
 	static const web = '$scope/web';
