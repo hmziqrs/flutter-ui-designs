@@ -4,48 +4,30 @@ import 'package:flutter_uis/statics/Links.dart';
 
 import 'messages/keys.dart';
 
-final devDescription = [
-  AboutDeveloperScreenMessages.desc1,
-  AboutDeveloperScreenMessages.desc2,
-  AboutDeveloperScreenMessages.desc3,
-  AboutDeveloperScreenMessages.desc4,
-];
 
 final skills = [
-  "HTML/CSS",
-  "Pug(Jade)",
-  "Sass/Less",
-  "Javascript",
-  "JQuery",
-  "React JS",
-  "React SSR",
-  "Redux",
-  "Redux Saga",
-  "React Native",
-  "Dart",
+  "NextJS",
+  "ReactJS",
   "Flutter",
+  "React Native",
+  "Javascript",
+  "Typescript",
   "Firebase",
-  "Photoshop",
-  "Basic UI designs",
-  "Node JS",
-  "Express JS",
-  "MYSQL",
-  "Mongo DB",
-  "Socket.IO",
-  "Go lang",
-  "Dart Server",
-  "Automation Scripting",
+  "Rust",
+  "NodeJS",
+  "MongoDB",
+  "PostgresSQL",
 ];
 
 final contacts = [
   {
     "platform": "facebook",
-    "label": "hackerhgl",
+    "label": "facebook.com/hackerhgl",
     "icon": MaterialCommunityIcons.facebook,
   },
   {
     "platform": "linkedin",
-    "label": "hackerhgl",
+    "label": "linkedin.com/in/hackerhgl",
     "icon": MaterialCommunityIcons.linkedin,
   },
   {
@@ -53,17 +35,6 @@ final contacts = [
     "label": "hamza.iqdev@gmail.com",
     "icon": MaterialCommunityIcons.gmail,
     "url": "mailto:hamza.iqdev@gmail.com",
-  },
-  {
-    "platform": "skype",
-    "label": "hamza.iqbal.jawaid.iqbal",
-    "icon": MaterialCommunityIcons.skype_business,
-    "url": "https://join.skype.com/invite/XGRknTea0kKf",
-  },
-  {
-    "platform": "whatsapp",
-    "label": "+923148155304",
-    "icon": MaterialCommunityIcons.whatsapp
   },
 ];
 

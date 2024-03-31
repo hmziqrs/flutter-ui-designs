@@ -195,8 +195,8 @@
   "AboutDeveloperScreen/likeProjectDesc": "Show support by performing any action listed below.",
   "AboutDeveloperScreen/moreProjects": "Explore More Projects",
   "AboutDeveloperScreen/projectFUD": "Simple implementation of complex UI designs and animations. In this project you will experience my journey of experimenting to find ideal flutter architecture.",
-  "AboutDeveloperScreen/projectRNL": "Simple and elegant clone \"Loop game\" in react native with just simple setState & contexts for shared state.",
-  "AboutDeveloperScreen/projectHCV": "Simple crafting of my creativity and imagination into web version of CV/Resume with the help of Pug/Sass/JS. Which highlights my career journey",
+  "AboutDeveloperScreen/projectRNL": "React Native implementation of the puzzle game Loop.",
+  "AboutDeveloperScreen/projectHCV": "My web based resume built with HTML, CSS and JavaScript.",
   "AboutDeveloperScreen/likeProject1": "Star this repository",
   "AboutDeveloperScreen/likeProject2": "Review this app on",
   "AboutDeveloperScreen/likeProject3": "Endorse my skills on",
@@ -228,7 +228,7 @@
   "DownloadScreen/download": "Download",
   "DownloadScreen/open": "Open",
   "DownloadScreen/linkCopied": "link copied",
-  "AboutDeveloperScreen/projectINVMovie1": "Implementation of complex movie booking UI concept featuring complex gesture based parallax animations",
+  "AboutDeveloperScreen/projectINVMovie1": "A static movie app featuring a heavily animated experience for ticket reservations.",
   "SKVHomeScreen/asteroids": "Asteroids",
   "CCNHomeScreen/heading": "Looking for your favorite meal",
   "CCNHomeScreen/tab1": "Home",
@@ -263,5 +263,6 @@
   "AboutAppScreen/answer6": "On the UI level, it is true since Flutter uses its engine for rendering UI. But like every cross-platform limitation arrives when a 3rd third-party library may support one platform but the other.",
   "AboutAppScreen/question7": "Is Flutter superior to React Native?",
   "AboutAppScreen/answer7": "In terms of performance, yes. However, in terms of support and ecosystem, React Native has an advantage due to its access to a vast ecosystem of JavaScript libraries and a large mature community for support.",
-  "AboutAppScreen/iDont": "I do not own any UI designs that are published in this app. I asked for the permission of designers before I published UI designs. I've given credit & put all the designers contact information(as much as I could find)."
+  "AboutAppScreen/iDont": "I do not own any UI designs that are published in this app. I asked for the permission of designers before I published UI designs. I've given credit & put all the designers contact information(as much as I could find).",
+  "AboutDeveloperScreen/intro": "Hi, I am a full-stack developer with over 7 years of experience in developing software. I have expertise in multiple languages and frameworks and am passionate about creating open-source apps. I enjoy watching anime in my free time, with Dragon Ball Z being my all-time favorite. I also play games, and some of my favorites include Cyberpunk 2077, Horizon Forbidden West, and Detroit: Become Human."
 }

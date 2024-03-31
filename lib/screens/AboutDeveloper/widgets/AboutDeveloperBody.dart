@@ -70,7 +70,15 @@ class AboutDeveloperBody extends StatelessWidget {
                 AboutUserJobTitle(
                   label: "Full Stack, React Native & Flutter Developer",
                 ),
-                AboutUserBio(points: data.devDescription),
+                SizedBox(height: AppDimensions.padding * 1),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppDimensions.padding * 2,
+                  ),
+                  child: Text(
+                    App.translate(AboutDeveloperScreenMessages.intro, context),
+                  ),
+                ),
                 SizedBox(height: AppDimensions.padding * 3),
                 Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
                 SizedBox(height: AppDimensions.padding * 2),
@@ -85,14 +93,6 @@ class AboutDeveloperBody extends StatelessWidget {
                 Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
                 SizedBox(height: AppDimensions.padding * 2),
                 AboutUserHeading(label: "contacts"),
-                SizedBox(height: AppDimensions.padding * 2),
-                AlphaBanner(
-                  text: App.translate(
-                    AboutDeveloperScreenMessages.contactsDesc,
-                    context,
-                  ),
-                ),
-                SizedBox(height: AppDimensions.padding * 1),
                 ...data.contacts
                     .map(
                       (contact) => AboutUserContactButton(

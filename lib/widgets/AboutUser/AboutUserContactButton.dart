@@ -103,7 +103,7 @@ class AboutUserContactButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlphaButton(
       icon: this.icon,
-      label: this.label.toUpperCase(),
+      label: this.label,
       onTap: () => this.onTap(context),
       margin: EdgeInsets.only(
         top: AppDimensions.padding * 2,

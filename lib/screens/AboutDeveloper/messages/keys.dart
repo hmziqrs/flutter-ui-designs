@@ -4,10 +4,7 @@ const scope = 'AboutDeveloperScreen';
 
 abstract class AboutDeveloperScreenMessages {
 	static const title = '$scope/title';
-	static const desc1 = '$scope/desc1';
-	static const desc2 = '$scope/desc2';
-	static const desc3 = '$scope/desc3';
-	static const desc4 = '$scope/desc4';
+	static const intro = '$scope/intro';
 	static const skillSet = '$scope/skillSet';
 	static const contacts = '$scope/contacts';
 	static const contactsDesc = '$scope/contactsDesc';
