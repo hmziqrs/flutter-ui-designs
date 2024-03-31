@@ -24,17 +24,17 @@ class UIListScreen extends StatelessWidget {
           key: Key(UIListScreenTestKeys.rootScroll),
           children: [
             SizedBox(height: AppDimensions.padding * 1.5),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: AppDimensions.padding * 3,
-              ),
-              child: Text(
-                "Explore UIs",
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.w700,
+            Row(
+              children: [
+                BackButton(),
+                Text(
+                  "Explore UIs",
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
+              ],
             ),
             ...chunked.map(
               (chunked) {

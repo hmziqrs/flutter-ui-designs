@@ -71,7 +71,7 @@ class _UICardState extends State<UICard> with AnimationMixin {
 
   LinearGradient linearGradient() {
     final middle = Utils.rangeMap(animation.value, 0.0, 1.0, 0.18, 0.4);
-    final end = Utils.rangeMap(animation.value, 0.0, 1.0, 0.8, 1.0);
+    final end = Utils.rangeMap(animation.value, 0.0, 1.0, 0.9, 1.0);
     final opacity = Utils.rangeMap(animation.value, 0.0, 1.0, 0.04, 0.15);
 
     return LinearGradient(

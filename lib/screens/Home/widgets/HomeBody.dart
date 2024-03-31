@@ -130,7 +130,9 @@ class _HomeBodyState extends State<HomeBody> {
                               context,
                             ),
                             style: TextStyles.body16
-                                .copyWith(color: AppTheme.primary),
+                                .copyWith(
+                              color: AppTheme.primary,
+                            ),
                           ),
                         ],
                       ),
