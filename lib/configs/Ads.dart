@@ -12,9 +12,7 @@ abstract class Ads {
   }
 
   static String _testBanner() {
-    if (Platform.isIOS) {
-      return "ca-app-pub-3940256099942544/2934735716";
-    }
+    if (Platform.isIOS) return "ca-app-pub-3940256099942544/2934735716";
     return "ca-app-pub-3940256099942544/6300978111";
   }
 
@@ -28,34 +26,23 @@ abstract class Ads {
     return "ca-app-pub-3940256099942544/6300978111";
   }
 
-  static String getHomeScreenBanner() {
-    if (_test) {
-      return _testBanner();
-    }
+  static String bannerHome() {
+    if (_test) return _testBanner();
     return "ca-app-pub-9217632370383904/2314759267";
   }
 
-  static String getDownloadScreenBanner() {
-    if (_test) {
-      return _testBanner();
-    }
-
-    return "ca-app-pub-9217632370383904/7647795233";
+  static String bannerDownload() {
+    if (_test) return _testBanner();
+    return "ca-app-pub-9217632370383904/9583307904";
   }
 
-  static String getExploreUIsScreenBanner() {
-    if (_test) {
-      return _testBanner();
-    }
-
-    return "ca-app-pub-9217632370383904/4417521880";
+  static String bannerExploreUIs() {
+    if (_test) return _testBanner();
+    return "ca-app-pub-9217632370383904/3396006216";
   }
 
-  static String getOpenAppVideo() {
-    if (_test) {
-      return _testInterstitial();
-    }
-
+  static String interstitialUIDetail() {
+    if (_test) return _testInterstitial();
     return "ca-app-pub-9217632370383904/3620102073";
   }
 }

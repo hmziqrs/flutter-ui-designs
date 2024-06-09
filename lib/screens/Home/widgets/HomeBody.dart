@@ -24,7 +24,7 @@ class _HomeBodyState extends State<HomeBody> {
     super.initState();
     if (!App.showAds) return;
     BannerAd(
-      adUnitId: Ads.getHomeScreenBanner(),
+      adUnitId: Ads.bannerHome(),
       size: AdSize.largeBanner,
       request: AdRequest(),
       listener: BannerAdListener(

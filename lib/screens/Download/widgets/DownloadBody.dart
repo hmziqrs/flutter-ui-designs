@@ -34,7 +34,7 @@ class _DownloadBodyState extends State<DownloadBody> {
     super.initState();
     if (!App.showAds) return;
     BannerAd(
-      adUnitId: Ads.getDownloadScreenBanner(),
+      adUnitId: Ads.bannerDownload(),
       size: AdSize.largeBanner,
       request: AdRequest(),
       listener: BannerAdListener(
