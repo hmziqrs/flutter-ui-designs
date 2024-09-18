@@ -58,6 +58,7 @@ dependencies:
   url_launcher: 6.2.5
   google_mobile_ads: 5.0.0
   package_info_plus: 6.0.0
+  flutter_local_notifications: 16.2.0
 
   faker: 2.1.0
   emojis: 0.9.9

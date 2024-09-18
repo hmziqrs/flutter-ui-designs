@@ -25,7 +25,7 @@ class ScreenSettingsModalBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final appState = AppProvider.state(context, true);
     return Material(
-      textStyle: Theme.of(context).textTheme.bodyText1,
+      textStyle: Theme.of(context).textTheme.bodyLarge,
       color: Colors.transparent,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,6 +131,23 @@ class ScreenSettingsModalBody extends StatelessWidget {
                       isActive: themeMode == appState.themeMode,
                       text: App.translate(themeModeMap[themeMode], context),
                     ),
+                  ),
+                  Container(height: AppDimensions.padding),
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppDimensions.padding * 2,
+                    ),
+                    child: Text(
+                      "Notifications",
+                      style: TextStyles.heading3.copyWith(
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    ),
+                  ),
+                  ScreenSettingsSelect(
+                    onPress: () => {},
+                    isActive: false,
+                    text: "Copy fcm token to clipboard",
                   ),
                   Container(height: AppDimensions.padding * 3),
                 ],
