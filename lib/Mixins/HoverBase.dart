@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+// import 'package:flutter/scheduler.dart';
 export 'package:simple_animations/simple_animations.dart';
 import 'package:supercharged/supercharged.dart';
 
 @optionalTypeArgs
 mixin HoverWidgetBase<T extends StatefulWidget> on State<T>
     implements TickerProvider {
-  late Ticker _ticker;
+  // late Ticker _ticker;
   late Animation<double> animation;
 
   late AnimationController controller;

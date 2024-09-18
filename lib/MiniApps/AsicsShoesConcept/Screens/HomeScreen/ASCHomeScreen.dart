@@ -57,11 +57,11 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> with AnimationMixin {
     this.controller.forward(from: 0.0);
   }
 
-  void onKeyHandler(RawKeyEvent event) {
+  void onKeyHandler(KeyEvent event) {
     final duration =
         (AppDimensions.size.width * 0.5).clamp(500.0, 800.0).toInt();
 
-    if (event.runtimeType == RawKeyDownEvent) {
+    if (event.runtimeType == KeyDownEvent) {
       return;
     }
     if (event.logicalKey == LogicalKeyboardKey.arrowRight &&
@@ -86,10 +86,10 @@ class _ASCHomeScreenState extends State<ASCHomeScreen> with AnimationMixin {
   Widget build(BuildContext context) {
     Dimensions.init(context);
 
-    return RawKeyboardListener(
+    return KeyboardListener(
       autofocus: true,
       focusNode: FocusNode(),
-      onKey: this.onKeyHandler,
+      onKeyEvent: this.onKeyHandler,
       child: NotificationListener<SizeChangedLayoutNotification>(
         onNotification: (SizeChangedLayoutNotification notification) {
           WidgetsBinding.instance.addPostFrameCallback((_) {

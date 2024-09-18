@@ -25,7 +25,7 @@ class HFDDetailScreenHeader extends StatelessWidget {
                 offset: Offset(4, 0.0),
                 child: BackButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
+                    backgroundColor: WidgetStateProperty.all(
                       Colors.white.withOpacity(0.3),
                     ),
                   ),

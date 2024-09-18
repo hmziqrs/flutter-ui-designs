@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/App.dart';
-import 'package:flutter_uis/configs/AppTheme.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';

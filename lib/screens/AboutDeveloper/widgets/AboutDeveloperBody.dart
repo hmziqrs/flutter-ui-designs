@@ -11,7 +11,6 @@ import 'package:flutter_uis/widgets/AboutUser/AboutUserJobTitle.dart';
 import 'package:flutter_uis/widgets/AboutUser/AboutUserHeading.dart';
 import 'package:flutter_uis/widgets/AboutUser/AboutUserSkills.dart';
 import 'package:flutter_uis/widgets/AboutUser/AboutUserName.dart';
-import 'package:flutter_uis/widgets/AboutUser/AboutUserBio.dart';
 
 import 'package:flutter_uis/widgets/Buttons/Alpha.dart';
 import 'package:flutter_uis/widgets/Banners/Alpha.dart';

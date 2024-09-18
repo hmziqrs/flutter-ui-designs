@@ -21,7 +21,7 @@ class ScreenSettingsSelect extends StatelessWidget {
     if (!this.isActive) {
       return Colors.transparent;
     }
-    return Theme.of(context).textTheme.bodyText1!.color!.withOpacity(0.08);
+    return Theme.of(context).textTheme.bodyLarge!.color!.withOpacity(0.08);
   }
 
   @override
