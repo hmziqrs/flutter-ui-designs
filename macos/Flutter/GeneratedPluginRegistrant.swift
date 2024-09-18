@@ -11,7 +11,7 @@ import firebase_crashlytics
 import firebase_messaging
 import flutter_local_notifications
 import package_info_plus
-import path_provider_macos
+import path_provider_foundation
 import url_launcher_macos
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {

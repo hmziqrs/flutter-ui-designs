@@ -23,7 +23,7 @@ final base = ThemeData(
   fontFamily: 'Muli',
   primaryColor: primary,
   // brightness: Brightness.light,
-  backgroundColor: Colors.white,
+  dialogBackgroundColor: Colors.white,
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: Colors.white,
   pageTransitionsTheme: PageTransitionsTheme(
@@ -39,7 +39,7 @@ final baseDark = ThemeData(
   fontFamily: 'Muli',
   primaryColor: primary,
   // brightness: Brightness.dark,
-  backgroundColor: darkBackground,
+  dialogBackgroundColor: darkBackground,
   splashColor: Colors.transparent,
   scaffoldBackgroundColor: darkBackground,
   pageTransitionsTheme: PageTransitionsTheme(

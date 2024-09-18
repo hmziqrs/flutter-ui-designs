@@ -17,7 +17,7 @@ class HABHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Dimensions.init(context);
 
-    final fontStyle = Theme.of(context).textTheme.bodyText1!.copyWith(
+    final fontStyle = Theme.of(context).textTheme.bodyLarge!.copyWith(
           fontFamily: 'Montserrat',
         );
 

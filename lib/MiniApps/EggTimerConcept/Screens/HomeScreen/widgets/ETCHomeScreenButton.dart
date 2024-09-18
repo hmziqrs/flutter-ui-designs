@@ -16,14 +16,14 @@ class ETCHomeScreenButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = Theme.of(context).textTheme.bodyText1!.color!;
+    final color = Theme.of(context).textTheme.bodyLarge!.color!;
     return TextButton(
       onPressed: onPress,
       key: this.testKey,
       style: TextButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: AppDimensions.padding * 1.5),
       ).copyWith(
-          overlayColor: MaterialStateColor.resolveWith(
+          overlayColor: WidgetStateColor.resolveWith(
         (states) => color.withOpacity(0.1),
       )
       ),
