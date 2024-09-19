@@ -14,7 +14,6 @@ class AppNavigatorObserver extends RouteObserver<PageRoute<dynamic>> {
 
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    // print('super.didPush');
     super.didPush(route, previousRoute);
     if (route is PageRoute) {
       _sendScreenView(route);

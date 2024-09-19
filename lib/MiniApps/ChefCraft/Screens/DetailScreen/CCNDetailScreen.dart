@@ -235,7 +235,7 @@ class _Body extends StatelessWidget {
                                 child: Ink(
                                   child: InkWell(
                                     onTap: () {
-                                      print("WOW");
+                                      //
                                     },
                                     child: Column(
                                       children: [
