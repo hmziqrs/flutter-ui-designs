@@ -58,7 +58,9 @@ jobs:
           flutter build web -t lib/main.web.dart --release --no-tree-shake-icons
       
       - name: Copy privacy policy
-        run: cp privacy-policy/index.html app/build/web/privacy-policy.html
+        run: |
+          cd app
+          cp privacy-policy/index.html build/web/privacy-policy.html
 
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@v1.3.0
