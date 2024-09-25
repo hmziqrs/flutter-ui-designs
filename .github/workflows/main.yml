@@ -50,15 +50,20 @@ jobs:
         with:
           path: 'app'
 
-      - run: |
+      - name: Build web release
+        run: |
           cd app
           flutter config --enable-web
           flutter pub get
-          flutter build web -t lib/main.firebase.dart --release
+          flutter build web -t lib/main.web.dart --release --no-tree-shake-icons
+      
+      - name: Copy privacy policy
+        run: cp privacy-policy/index.html build/web/privacy-policy.html
+
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@v1.3.0
         with:
-          args: deploy --only hosting
+          args: deploy --only hosting  
         env:
           PROJECT_PATH: 'app'
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

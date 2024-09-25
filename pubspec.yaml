@@ -18,12 +18,7 @@ environment:
   # sdk: '>=2.12.0-135.0.dev <3.0.0'
 
 dependency_overrides:
-  path: 1.8.2
-  intl: 0.17.0
-
-  xml: 6.2.0
-  petitparser: 5.1.0
-  collection: 1.17.0
+  collection: 1.19.0
 
 flutter_icons:
   includes:
@@ -45,25 +40,25 @@ dependencies:
 
 
   # Firebase
-  firebase_core: 2.27.2
-  firebase_analytics: 10.9.0
-  firebase_messaging: 14.7.21
-  firebase_crashlytics: 3.4.20
-  firebase_performance: 0.9.3+19
+  firebase_core: 3.5.0
+  firebase_analytics: 11.3.2
+  firebase_messaging: 15.1.2
+  firebase_crashlytics: 4.1.2
+  firebase_performance: 0.10.0+7
 
   share: 2.0.4
   hive: 2.2.3
   open_url: 2.0.1
   hive_flutter: 1.1.0
-  url_launcher: 6.2.5
-  google_mobile_ads: 5.0.0
-  package_info_plus: 6.0.0
-  flutter_local_notifications: 16.2.0
+  url_launcher: 6.3.0
+  google_mobile_ads: 5.1.0
+  package_info_plus: 8.0.2
+  flutter_local_notifications: 17.2.2
 
-  faker: 2.1.0
+  faker: 2.2.0
   emojis: 0.9.9
   recase: 4.1.0
-  quiver: 3.2.1
+  quiver: 3.2.2
   pigment: 1.0.4
   provider: 6.1.2
   riverpod: 2.5.1
@@ -72,13 +67,18 @@ dependencies:
   dotted_border: 2.1.0
   stretchy_header: 2.0.0
   page_transition: 2.1.0
-  carousel_slider: 4.2.1
+  carousel_slider: 5.0.0
   flutter_riverpod: 2.5.1
   touchable_opacity: 1.2.0
   percent_indicator: 4.2.3
   simple_animations: 5.0.2
   flutter_font_icons: 2.2.7
   cupertino_will_pop_scope: 1.2.1
+
+  xml: 6.5.0
+  path: 1.9.0
+  intl: 0.19.0
+  petitparser: 6.0.2
 
 dev_dependencies:
   integration_test:

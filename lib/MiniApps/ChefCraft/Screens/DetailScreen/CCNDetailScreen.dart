@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:cupertino_will_pop_scope/cupertino_will_pop_scope.dart';
-import 'package:faker/faker.dart';
+import 'package:faker/faker.dart' as fak;
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/io/io.dart';
 import 'package:flutter_uis/widgets/Buttons/AppButton.dart';
@@ -291,7 +291,7 @@ class _Body extends StatelessWidget {
                       ...List.generate(
                         10,
                         (index) {
-                          final fake = Faker();
+                          final fake = fak.Faker();
                           final r = Random();
                           return Padding(
                             padding: EdgeInsets.only(
@@ -305,7 +305,7 @@ class _Body extends StatelessWidget {
                                 ),
                                 SizedBox(height: AppDimensions.padding * 0.5),
                                 Text(
-                                  faker.lorem
+                                  fak.faker.lorem
                                       .sentences(1 + r.nextInt(3))
                                       .join(" "),
                                   // style: TextStyles.heading66,
