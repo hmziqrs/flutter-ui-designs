@@ -63,7 +63,7 @@ jobs:
           cp privacy-policy/index.html build/web/privacy-policy.html
 
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@v1.3.0
+        uses: w9jds/firebase-action
         with:
           args: deploy --only hosting  
         env:
