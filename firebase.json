@@ -1,1 +1,37 @@
-{"hosting":{"public":"build/web","ignore":["firebase.json","**/.*","**/node_modules/**"],"rewrites":[{"source":"/privacy-policy","destination":"/privacy-policy.html"},{"source":"**","destination":"/index.html"}]},"flutter":{"platforms":{"android":{"default":{"projectId":"flutter-ui-challenges-hgl","appId":"1:322047224635:android:16ac7d8a6518a95b","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"flutter-ui-challenges-hgl","appId":"1:322047224635:ios:a8d0e327085d15edd2e51e","uploadDebugSymbols":true,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"macos":{"default":{"projectId":"flutter-ui-challenges-hgl","appId":"1:322047224635:ios:a8d0e327085d15edd2e51e","uploadDebugSymbols":true,"fileOutput":"macos/Runner/GoogleService-Info.plist"}}}}}
+{
+  "hosting": {
+    "public": "build/web",
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
+      { "source": "**", "destination": "/index.html" }
+    ]
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "flutter-ui-challenges-hgl",
+          "appId": "1:322047224635:android:16ac7d8a6518a95b",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "flutter-ui-challenges-hgl",
+          "appId": "1:322047224635:ios:a8d0e327085d15edd2e51e",
+          "uploadDebugSymbols": true,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "macos": {
+        "default": {
+          "projectId": "flutter-ui-challenges-hgl",
+          "appId": "1:322047224635:ios:a8d0e327085d15edd2e51e",
+          "uploadDebugSymbols": true,
+          "fileOutput": "macos/Runner/GoogleService-Info.plist"
+        }
+      }
+    }
+  }
+}

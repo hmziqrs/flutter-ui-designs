@@ -108,30 +108,33 @@ jobs:
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
 
-  # macos:
-  #   name: MacOS
-  #   runs-on: macos-latest
-  #   steps:
-  #     - run: |
-  #         git clone https://github.com/flutter/flutter.git
-  #         cd flutter
-  #         git checkout 72aa23eb93
-  #     - run: echo `pwd`"/flutter/bin" >> $GITHUB_PATH
-  #     - uses: actions/checkout@v2
-  #       with:
-  #         path: 'app'
-  #     - run: |
-  #         cd app
-  #         flutter config --enable-macos-desktop
-  #         flutter pub get
-  #         flutter build macos -t lib/main.firebase.dart --release
-  #         cd build/macos/Build/Products/Release
-  #         ditto -c -k --sequesterRsrc --keepParent flutter_uis.app macos-release.zip
-  #     - uses: ncipollo/release-action@v1
-  #       with:
-  #         artifacts: 'app/build/macOS/Build/Products/Release/macos-release.zip'
-  #         token: ${{ secrets.TOKEN }}
-  #         allowUpdates: true
+  macos:
+    name: MacOS
+    runs-on: macos-latest
+    steps:
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.2'
+          channel: 'stable'
+
+      - uses: actions/checkout@v4
+        with:
+          path: 'app'
+
+      - run: |
+          cd app
+          flutter config --enable-macos-desktop
+          flutter pub get
+          flutter build macos -t lib/main.firebase.dart --release
+          cd build/macos/Build/Products/Release
+          ditto -c -k --sequesterRsrc --keepParent flutter_uis.app macos-release.zip
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'app/build/macOS/Build/Products/Release/macos-release.zip'
+          token: ${{ secrets.TOKEN }}
+          allowUpdates: true
 
   # windows:
   #   name: Windows
