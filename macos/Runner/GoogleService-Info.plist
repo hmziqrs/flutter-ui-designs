@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>322047224635-re8jqqobom6s24tjee2mejcijpo9jqba.apps.googleusercontent.com</string>
+	<string>322047224635-427hflrabnrkgpt01hd66igbsogopmud.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.322047224635-re8jqqobom6s24tjee2mejcijpo9jqba</string>
+	<string>com.googleusercontent.apps.322047224635-427hflrabnrkgpt01hd66igbsogopmud</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>322047224635-9mqs8s0t8vgcn51njv59cudn2721feb2.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.onemdev.flutter-ui-challenges-mac</string>
+	<string>com.onemdev.flutterUis</string>
 	<key>PROJECT_ID</key>
 	<string>flutter-ui-challenges-hgl</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:322047224635:ios:99d72077bc2e6c0bd2e51e</string>
+	<string>1:322047224635:ios:a8d0e327085d15edd2e51e</string>
 	<key>DATABASE_URL</key>
 	<string>https://flutter-ui-challenges-hgl.firebaseio.com</string>
 </dict>
