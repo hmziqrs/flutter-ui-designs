@@ -24,7 +24,9 @@ class HFDDetailScreenBackground extends StatelessWidget {
 
     print("SS ${state.offset} $scale");
 
-    return SizedBox(
+    return Container(
+      color: Colors.red,
+      width: double.infinity,
       height: height,
       child: Transform.translate(
         offset: Offset(0, translateY),

@@ -14,7 +14,7 @@ class Dimensions {
   static late double categoryBaseSize;
 
   static late double restaurantContainerHeight;
-  static late double restaurantCardBaseWidth;
+  static late double restaurantCardFraction;
   // static late double chipsContainerWidth;
 
   static init(BuildContext context) {
@@ -44,19 +44,22 @@ class Dimensions {
   }
 
   static initRestaurantSize() {
-    restaurantCardBaseWidth = 250 + AppDimensions.ratio * 100;
-
+    restaurantCardFraction = 0.88;
+    double baseWidth = 250 + AppDimensions.ratio * 100;
     double safeBaseWidth = AppDimensions.size.width * 0.80;
-    if (restaurantCardBaseWidth > safeBaseWidth) {
-      restaurantCardBaseWidth = safeBaseWidth;
+    final ratio = 0.22 + ((baseWidth / AppDimensions.size.width) * 0.6);
+    if (baseWidth > safeBaseWidth) {
+      baseWidth = safeBaseWidth;
+    } else {
+      restaurantCardFraction = ratio;
     }
 
-    restaurantContainerHeight = restaurantCardBaseWidth * 0.6;
+    restaurantContainerHeight = baseWidth * 0.6;
 
     double safeBaseHeight = AppDimensions.size.height * 0.75;
     if (restaurantContainerHeight > safeBaseHeight) {
       restaurantContainerHeight = safeBaseHeight * 0.9;
-      restaurantCardBaseWidth = safeBaseHeight * 1.4;
+      baseWidth = safeBaseHeight * 1.4;
     }
   }
 }

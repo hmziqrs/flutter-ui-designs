@@ -57,7 +57,6 @@ class _HFDHomeScreenRestaurantCardState
           onTap: () {},
           key: Key(this.widget.restaurant.testKey),
           child: Container(
-            width: Dimensions.restaurantCardBaseWidth,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.0),
 
@@ -79,7 +78,6 @@ class _HFDHomeScreenRestaurantCardState
                     transform: Matrix4.identity()
                       ..scale(scaleImage, scaleImage)
                       ..translate(translateImageX, translateImageY),
-                    width: Dimensions.restaurantCardBaseWidth,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16.0),
                       image: DecorationImage(

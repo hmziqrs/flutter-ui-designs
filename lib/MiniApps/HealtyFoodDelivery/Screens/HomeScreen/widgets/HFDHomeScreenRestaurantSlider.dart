@@ -19,20 +19,14 @@ class HFDHomeScreenRestaurantSlider extends StatefulWidget {
 
 class _HFDHomeScreenRestaurantSliderState
     extends State<HFDHomeScreenRestaurantSlider> {
-  late PageController pageController;
 
   @override
   void initState() {
-    this.pageController = PageController(
-      viewportFraction:
-          Dimensions.restaurantCardBaseWidth / AppDimensions.size.width,
-    );
     super.initState();
   }
 
   @override
   void dispose() {
-    this.pageController.dispose();
     super.dispose();
   }
 
@@ -52,7 +46,7 @@ class _HFDHomeScreenRestaurantSliderState
           disableCenter: true,
           enableInfiniteScroll: false,
           scrollPhysics: const ClampingScrollPhysics(),
-          // viewportFraction: viewportFraction,
+          viewportFraction: Dimensions.restaurantCardFraction,
         ),
         itemCount: data.restaurants.length,
         key: Key(HFDHomeScreenTestKeys.restaurantScroll),
