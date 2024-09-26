@@ -125,7 +125,7 @@ jobs:
           flutter config --enable-macos-desktop
           flutter pub global activate flutterfire_cli
           flutter pub get
-          flutter build macos -t lib/main.firebase.dart --release -v
+          flutter build macos -t lib/main.firebase.dart --release
           cd build/macos/Build/Products/Release
           ditto -c -k --sequesterRsrc --keepParent flutter_uis.app macos-release.zip
 
