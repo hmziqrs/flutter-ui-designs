@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart' show ProviderScope;
 import 'package:flutter_uis/AppRoutes.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -36,19 +37,30 @@ import 'MiniApps/ChefCraft/Screens/HomeScreen/CCNHomeScreen.dart';
 import 'MiniApps/ChefCraft/Screens/DetailScreen/CCNDetailScreen.dart';
 
 class AppNavigator extends StatelessWidget {
-  AppNavigator(this.observers);
+  const AppNavigator({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ProviderScope(
+      child: AppNavigatorChild(const []),
+    );
+  }
+}
+
+class AppNavigatorChild extends StatelessWidget {
+  AppNavigatorChild(this.observers);
   final List<NavigatorObserver> observers;
   final GlobalKey<NavigatorState> navigator = new GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
-    return RawKeyboardListener(
+    return KeyboardListener(
       autofocus: true,
       focusNode: FocusNode(),
-      onKey: (RawKeyEvent event) {
+      onKeyEvent: (event) {
         final canPop = this.navigator.currentState?.canPop() ?? false;
-        if (event.runtimeType == RawKeyDownEvent &&
-            event.isAltPressed &&
+        if (event is KeyDownEvent &&
+            HardwareKeyboard.instance.isAltPressed &&
             event.logicalKey == LogicalKeyboardKey.backspace &&
             canPop) {
           this.navigator.currentState?.pop();

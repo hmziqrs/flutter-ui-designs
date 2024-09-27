@@ -47,5 +47,5 @@ Future<void> main() async {
   FlutterError.onError = (FlutterErrorDetails err) {
     FirebaseCrashlytics.instance.recordFlutterError(err);
   };
-  runApp(ProviderScope(child: AppNavigator(observers)));
+  runApp(ProviderScope(child: AppNavigatorChild(observers)));
 }

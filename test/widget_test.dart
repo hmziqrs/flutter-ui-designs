@@ -13,7 +13,7 @@ import 'package:flutter_uis/Navigator.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(AppNavigator([]));
+    await tester.pumpWidget(AppNavigatorChild([]));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
