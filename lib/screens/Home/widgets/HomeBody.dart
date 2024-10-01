@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_uis/configs/Ads.dart';
 import 'package:flutter_uis/configs/App.dart';
@@ -42,7 +44,11 @@ class _HomeBodyState extends State<HomeBody> {
 
   onPress(BuildContext context, String path) {
     if (path == 'settings') {
-      return ScreenStateProvider.state(context).setSettingsOpen(true);
+      // final r = Process.runSync("screencapture", ["~/Desktop/test.jpg"]);
+      final r = Process.runSync("pwd", ["-L"]);
+      print(r.stdout);
+      print(r.stderr);
+      // return ScreenStateProvider.state(context).setSettingsOpen(true);
     }
     Navigator.of(context).pushNamed(
       path,
