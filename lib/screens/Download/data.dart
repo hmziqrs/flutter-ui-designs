@@ -9,7 +9,7 @@ final mobileLinks = [
   },
   {
     "url":
-        "https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/app-release.apk",
+        "https://github.com/hmziqrs/flutter-ui-designs/releases/latest/download/app-release.apk",
     "name": "Apk",
     "icon": MaterialCommunityIcons.android,
   }
@@ -18,19 +18,19 @@ final mobileLinks = [
 final desktopLinks = [
   {
     "url":
-        "https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/macos-release.zip",
+        "https://github.com/hmziqrs/flutter-ui-designs/releases/latest/download/macos-release.zip",
     "name": "Mac",
     "icon": MaterialCommunityIcons.apple_finder,
   },
   {
     "url":
-        "https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/linux-release.zip",
+        "https://github.com/hmziqrs/flutter-ui-designs/releases/latest/download/linux-release.zip",
     "name": "Linux",
     "icon": FontAwesome.linux,
   },
   {
     "url":
-        "https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/windows-release.zip",
+        "https://github.com/hmziqrs/flutter-ui-designs/releases/latest/download/windows-release.zip",
     "name": "Windows",
     "icon": MaterialCommunityIcons.microsoft_windows,
   },
@@ -44,7 +44,7 @@ final webLinks = [
   },
   {
     "name": "Github",
-    "url": "https://github.com/hackerhgl/flutter-ui-designs",
+    "url": "https://github.com/hmziqrs/flutter-ui-designs",
     "icon": MaterialCommunityIcons.github,
   },
 ];

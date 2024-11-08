@@ -6,35 +6,36 @@ import 'messages/keys.dart';
 
 
 final skills = [
-  "NextJS",
-  "ReactJS",
+  "Rust",
   "Flutter",
   "React Native",
-  "Javascript",
+  "NextJS",
   "Typescript",
   "Firebase",
-  "Rust",
   "NodeJS",
-  "MongoDB",
   "PostgresSQL",
 ];
 
+const username = "hmziqrs";
+const email = "$username@gmail.com";
+const web = "https://hmziq.rs";
+
 final contacts = [
   {
-    "platform": "facebook",
-    "label": "facebook.com/hackerhgl",
-    "icon": MaterialCommunityIcons.facebook,
+    "platform": "twitter",
+    "label": "@$username",
+    "icon": MaterialCommunityIcons.twitter,
   },
   {
     "platform": "linkedin",
-    "label": "linkedin.com/in/hackerhgl",
+    "label": "/in/$username",
     "icon": MaterialCommunityIcons.linkedin,
   },
   {
     "platform": "gmail",
-    "label": "hamza.iqdev@gmail.com",
+    "label": "$email",
     "icon": MaterialCommunityIcons.gmail,
-    "url": "mailto:hamza.iqdev@gmail.com",
+    "url": "mailto:$email",
   },
 ];
 
@@ -49,18 +50,6 @@ final showSupport = [
     "label": AboutDeveloperScreenMessages.likeProject2,
     "icon": MaterialCommunityIcons.google_play,
     "link": MyLinks.fudGooglePlay,
-  },
-  {
-    "platform": "Linkedin",
-    "label": AboutDeveloperScreenMessages.likeProject3,
-    "icon": MaterialCommunityIcons.linkedin,
-    "link": "https://www.linkedin.com/in/hackerhgl/",
-  },
-  {
-    "platform": "Fiverr",
-    "label": AboutDeveloperScreenMessages.likeProject4,
-    "icon": MaterialCommunityIcons.heart_outline,
-    "link": "https://www.fiverr.com/hackerhgl",
   },
 ];
 
@@ -98,18 +87,18 @@ final moreProjects = [
     ],
   },
   {
-    "label": "Hackerhgl CV",
+    "label": "hmziqrs CV",
     "desc": AboutDeveloperScreenMessages.projectHCV,
     "links": [
       {
         "label": "Website",
         "icon": MaterialCommunityIcons.web,
-        "url": MyLinks.hackerhglCVWeb,
+        "url": MyLinks.myCVWeb,
       },
       {
         "label": "Github",
         "icon": MaterialCommunityIcons.github,
-        "url": MyLinks.hackerhglCVGithub,
+        "url": MyLinks.myCVGithub,
       },
     ],
   },

@@ -67,7 +67,7 @@ class Utils {
 
   static socialLink(username, platform) {
     String base = 'https://';
-    final coms = ['facebook', 'instagram', 'dribbble', 'fiverr'];
+    final coms = ['facebook', 'instagram', 'dribbble', 'twitter', 'fiverr'];
     final nets = ['behance'];
 
     if (username == null) {
