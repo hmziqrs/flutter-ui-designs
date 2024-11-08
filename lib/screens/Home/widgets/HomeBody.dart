@@ -52,8 +52,9 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      
       child: Container(
-        width: double.infinity,
+        width: AppDimensions.maxContainerWidth,
         constraints: BoxConstraints(
           maxWidth: AppDimensions.maxContainerWidth,
         ),

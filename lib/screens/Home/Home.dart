@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_uis/configs/App.dart';
+import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/utils/Utils.dart';
 
 import 'package:flutter_uis/widgets/Screen/Screen.dart';
@@ -22,7 +23,10 @@ class HomeScreen extends StatelessWidget {
       create: (_) => HomeStateProvider(),
       child: Screen(
         child: SafeArea(
-          child: HomeBody(),
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: HomeBody(),
+          ),
         ),
         overlayBuilders: [
           Selector<HomeStateProvider, bool>(

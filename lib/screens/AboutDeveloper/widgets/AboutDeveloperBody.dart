@@ -67,7 +67,7 @@ class AboutDeveloperBody extends StatelessWidget {
                 SizedBox(height: AppDimensions.padding * 1),
                 AboutUserName(name: "Hamza Iqbal"),
                 AboutUserJobTitle(
-                  label: "Full Stack, React Native & Flutter Developer",
+                  label: "Full stack engineer | Rust, Flutter & React Native",
                 ),
                 SizedBox(height: AppDimensions.padding * 1),
                 Padding(
