@@ -3,12 +3,12 @@
 const scope = 'SKVHomeScreen';
 
 abstract class SKVHomeScreenMessages {
-	static const explore = '$scope/explore';
-	static const popular = '$scope/popular';
-	static const planets = '$scope/planets';
-	static const stars = '$scope/stars';
-	static const satellites = '$scope/satellites';
-	static const asteroids = '$scope/asteroids';
-	static const comets = '$scope/comets';
-	static const searchBar = '$scope/searchBar';
+	static String explore = '$scope/explore';
+	static String popular = '$scope/popular';
+	static String planets = '$scope/planets';
+	static String stars = '$scope/stars';
+	static String satellites = '$scope/satellites';
+	static String asteroids = '$scope/asteroids';
+	static String comets = '$scope/comets';
+	static String searchBar = '$scope/searchBar';
 }

@@ -9,6 +9,7 @@ import 'messages/keys.dart';
 final map = {
   "skills": AboutUserWidgetMessages.skillSet,
   "contacts": AboutUserWidgetMessages.contacts,
+  "followMe": AboutUserWidgetMessages.followMe,
   "likeProject": AboutUserWidgetMessages.likeProject,
   "moreProjects": AboutUserWidgetMessages.moreProjects,
 };

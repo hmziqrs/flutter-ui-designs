@@ -260,10 +260,11 @@
   "AboutAppScreen/question5": "How does Flutter scale UI for desktop, tablet, and mobile?",
   "AboutAppScreen/answer5": "Flutter's documentation provides strategies for managing UI across multiple screen sizes. Additionally, I have developed my custom guidelines for scaling UI.",
   "AboutAppScreen/question6": "Is Flutter truly cross-platform for both desktop and mobile operating systems?",
-  "AboutAppScreen/answer6": "On the UI level, it is true since Flutter uses its engine for rendering UI. But like every cross-platform limitation arrives when a 3rd third-party library may support one platform but the other.",
+  "AboutAppScreen/answer6": "On the UI level, it is true since Flutter uses its engine for rendering UI. But like every cross-platform framework limitation arrives when a 3rd third-party library may support one platform but the other.",
   "AboutAppScreen/question7": "Is Flutter superior to React Native?",
   "AboutAppScreen/answer7": "In terms of performance, yes. However, in terms of support and ecosystem, React Native has an advantage due to its access to a vast ecosystem of JavaScript libraries and a large mature community for support.",
   "AboutAppScreen/iDont": "I do not own any UI designs that are published in this app. I asked for the permission of designers before I published UI designs. I've given credit & put all the designers contact information(as much as I could find).",
   "AboutDeveloperScreen/intro": "Hi, I am a full-stack developer with over 7 years of experience in developing software. I have expertise in multiple languages and frameworks and am passionate about creating open-source apps. I enjoy watching anime in my free time, with Dragon Ball Z being my all-time favorite. I also play games, and some of my favorites include Cyberpunk 2077, Horizon Forbidden West, and Detroit: Become Human.",
-  "DownloadScreen/description": "Experience the app in different platform."
+  "DownloadScreen/description": "Experience the app in different platform.",
+  "AboutUserWidget/followMe": "Follow me"
 }

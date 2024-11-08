@@ -14,8 +14,8 @@ main(List<String> args) async {
 
   final files = dartFile.listSync();
   final Map<String, String> defaultMessages = {};
-  final Map<String, Map<String, String>> defaultLocaleMessages = {};
-  final JsonEncoder jsonEncoder = JsonEncoder.withIndent('  ');
+  final Map<String, Map<String, String?>> defaultLocaleMessages = {};
+  final jsonEncoder = JsonEncoder.withIndent('  ');
 
   for (var entity in files) {
     if (entity.path.contains(normalize("/messages/strings.dart"))) {
@@ -56,8 +56,8 @@ main(List<String> args) async {
 
   await directory.list().forEach((element) async {
     final file = new File(element.path);
-    final Map parsed =
-        json.decode(file.readAsStringSync()).cast<String, String>();
+    final Map<String, String?> parsed =
+        json.decode(file.readAsStringSync()).cast<String, String?>();
 
     if (file.path.contains('en.json')) {
       parsed.addAll(defaultMessages);
@@ -77,23 +77,27 @@ main(List<String> args) async {
         }
 
         final String? rootVal = defaultMessages[key];
-        final String parsedVal = parsed[key];
+        final String? parsedVal = parsed[key];
         // if (langCode == "zh") {
         //   print("key $key");
         //   print(
         //       "parsedVal ${(parsedVal == null || (parsedVal != null && parsedVal.isEmpty))} $parsedVal");
         //   print("rootVal $rootVal");
         // }
-        if (((parsedVal.isEmpty)) &&
+        if (((parsedVal == null || parsedVal.isEmpty)) &&
             rootVal != null) {
-          newObj[key] = await translator.translate(
+          const lang_map = {
+            "zh": "zh-cn",
+          };
+          var mapped = lang_map[langCode] ?? langCode;
+          var translated = await translator.translate(
             newObj[key],
             from: "en",
-            to: langCode,
+            to: mapped,
           );
+          newObj[key] = translated.text;
         }
       }
-
       final newJson = jsonEncoder.convert(newObj);
 
       file.writeAsStringSync(newJson);

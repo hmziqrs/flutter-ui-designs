@@ -3,10 +3,10 @@
 const scope = 'CCNDetailScreen';
 
 abstract class CCNDetailScreenMessages {
-	static const calories = '$scope/calories';
-	static const ingredients = '$scope/ingredients';
-	static const totalTime = '$scope/totalTime';
-	static const about = '$scope/about';
-	static const reviews = '$scope/reviews';
-	static const cook = '$scope/cook';
+	static String calories = '$scope/calories';
+	static String ingredients = '$scope/ingredients';
+	static String totalTime = '$scope/totalTime';
+	static String about = '$scope/about';
+	static String reviews = '$scope/reviews';
+	static String cook = '$scope/cook';
 }

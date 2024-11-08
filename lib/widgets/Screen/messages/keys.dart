@@ -3,14 +3,14 @@
 const scope = 'ScreenWidget';
 
 abstract class ScreenWidgetMessages {
-	static const smTitle = '$scope/smTitle';
-	static const smSelectLanguage = '$scope/smSelectLanguage';
-	static const smEnglish = '$scope/smEnglish';
-	static const smChinese = '$scope/smChinese';
-	static const smArabic = '$scope/smArabic';
-	static const smSystemDefault = '$scope/smSystemDefault';
-	static const smSelectTheme = '$scope/smSelectTheme';
-	static const smSytemTheme = '$scope/smSytemTheme';
-	static const smLightTheme = '$scope/smLightTheme';
-	static const smDarkTheme = '$scope/smDarkTheme';
+	static String smTitle = '$scope/smTitle';
+	static String smSelectLanguage = '$scope/smSelectLanguage';
+	static String smEnglish = '$scope/smEnglish';
+	static String smChinese = '$scope/smChinese';
+	static String smArabic = '$scope/smArabic';
+	static String smSystemDefault = '$scope/smSystemDefault';
+	static String smSelectTheme = '$scope/smSelectTheme';
+	static String smSytemTheme = '$scope/smSytemTheme';
+	static String smLightTheme = '$scope/smLightTheme';
+	static String smDarkTheme = '$scope/smDarkTheme';
 }

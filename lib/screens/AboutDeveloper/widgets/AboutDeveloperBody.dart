@@ -78,12 +78,6 @@ class AboutDeveloperBody extends StatelessWidget {
                     App.translate(AboutDeveloperScreenMessages.intro, context),
                   ),
                 ),
-                SizedBox(height: AppDimensions.padding * 3),
-                Container(height: 1, color: AppTheme.subText3.withOpacity(0.1)),
-                SizedBox(height: AppDimensions.padding * 2),
-                AboutUserHeading(
-                  label: "skills",
-                ),
                 SizedBox(height: AppDimensions.padding * 1),
                 AboutUserSkills(
                   skills: data.skills,

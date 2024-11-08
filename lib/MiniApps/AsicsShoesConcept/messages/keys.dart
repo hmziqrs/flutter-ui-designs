@@ -3,6 +3,6 @@
 const scope = 'ASCRoot';
 
 abstract class ASCRootMessages {
-	static const defaultDescription = '$scope/defaultDescription';
-	static const defaultSubHeading = '$scope/defaultSubHeading';
+	static String defaultDescription = '$scope/defaultDescription';
+	static String defaultSubHeading = '$scope/defaultSubHeading';
 }

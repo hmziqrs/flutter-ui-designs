@@ -6,6 +6,7 @@ const Map strings = {
   // Headings
   '$scope/skillSet': 'My Skill Set',
   '$scope/contacts': 'My Contacts',
+  '$scope/followMe': 'Follow me',
   '$scope/likeProject': 'Like The Project?',
   '$scope/moreProjects': 'Explore More Projects',
 
