@@ -52,7 +52,7 @@ dependencies:
   hive_flutter: 1.1.0
   url_launcher: 6.3.0
   google_mobile_ads: 5.1.0
-  package_info_plus: 8.0.2
+  package_info_plus: 8.1.1
   flutter_local_notifications: 17.2.2
 
   faker: 2.2.0
