@@ -61,7 +61,7 @@ final moreProjects = [
       {
         "label": "Google Play",
         "icon": MaterialCommunityIcons.google_play,
-        "url": MyLinks.invmovie1GooglePlay,
+        "url": MyLinks.invmovie1Github,
       },
       {
         "label": "Github",
