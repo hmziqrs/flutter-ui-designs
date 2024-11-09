@@ -174,3 +174,21 @@ If you found this project helpful or learned something from it, consider:
 - Starring the repository
 - Sharing it with others
 - Following the contributors
+
+## 🌟 More Open Source Projects
+
+- [Movie Concept App](https://github.com/hmziqrs/invmovieconcept1) - An innovative movie browsing experience built with Flutter
+- [React Native Loop Game](https://github.com/hmziqrs/react-native-loop-game) - An engaging mobile game created with React Native
+- [CV Template](https://github.com/hmziqrs/cv) - A modern, customizable CV/resume template
+
+## 🔗 Connect With Me
+
+### Social Links
+
+- 𝕏 (Twitter): [@hmziqrs](https://x.com/hmziqrs)
+- LinkedIn: [hackerhgl](https://www.linkedin.com/in/hackerhgl)
+- Telegram: [@hmziqrs](https://t.me/hmziqrs)
+
+### Personal Website
+
+🌐 Visit my personal site [hmziq.rs](https://hmziq.rs/)
