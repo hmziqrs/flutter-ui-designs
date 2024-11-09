@@ -30,12 +30,9 @@ jobs:
           cd app
           flutter config --enable-linux-desktop
           flutter pub get
-          flutter build linux --release --target-platform linux-x64
+          flutter build linux --release
           cd build/linux/x64/release
-          zip -r linux-x64.zip bundle
-          flutter build linux --release --target-platform linux-arm64
-          cd build/linux/arm64/release
-          zip -r linux-arm64.zip bundle
+          zip -r linux-release.zip bundle
 
       - name: Create linux Release
         uses: ncipollo/release-action@v1
