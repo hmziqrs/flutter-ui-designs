@@ -1,45 +1,45 @@
 on:
   push:
     tags:
-      - '*'
+      - "*"
 
 name: Release Builds
 jobs:
-  # linux:
-  #   name: Linux
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Set up Flutter
-  #       uses: subosito/flutter-action@v2
-  #       with:
-  #         flutter-version: '3.22.2'
-  #         channel: 'stable'
+  linux:
+    name: Linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.4"
+          channel: "stable"
 
-  #     - uses: actions/checkout@v4
-  #       with:
-  #         path: 'app'
+      - uses: actions/checkout@v4
+        with:
+          path: "app"
 
-  #     - name: Install required build tools for linux
-  #       run: |
-  #         sudo apt-get update -y
-  #         sudo apt-get upgrade -y
-  #         sudo apt-get install -y curl git unzip xz-utils zip libglu1-mesa
-  #         sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
+      - name: Install required build tools for linux
+        run: |
+          sudo apt-get update -y
+          sudo apt-get upgrade -y
+          sudo apt-get install -y curl git unzip xz-utils zip libglu1-mesa
+          sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev
 
-  #     - run: |
-  #         cd app
-  #         flutter config --enable-linux-desktop
-  #         flutter pub get
-  #         flutter build linux --release
-  #         cd build/linux/release
-  #         zip -r linux-release.zip bundle
+      - run: |
+          cd app
+          flutter config --enable-linux-desktop
+          flutter pub get
+          flutter build linux --release
+          cd build/linux/x64/release
+          zip -r linux-release.zip bundle
 
-  #     - name: Create linux Release
-  #       uses: ncipollo/release-action@v1
-  #       with:
-  #         artifacts: 'app/build/linux/release/linux-release.zip'
-  #         token: ${{ secrets.TOKEN }}
-  #         allowUpdates: true
+      - name: Create linux Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "app/build/linux/x64/release/linux-x64.zip,app/build/linux/arm64/release/linux-arm64.zip"
+          token: ${{ secrets.TOKEN }}
+          allowUpdates: true
 
   web:
     name: Web
@@ -48,21 +48,20 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.2'
-          channel: 'stable'
-
+          flutter-version: "3.24.4"
+          channel: "stable"
 
       - uses: actions/checkout@v4
         with:
-          path: 'app'
+          path: "app"
 
       - name: Build web release
         run: |
           cd app
           flutter config --enable-web
           flutter pub get
-          flutter build web -t lib/main.web.dart --release --no-tree-shake-icons
-      
+          flutter build web -t lib/main.web.dart --release --no-tree-shake-icons --wasm
+
       - name: Copy privacy policy
         run: |
           cd app
@@ -71,9 +70,9 @@ jobs:
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting  
+          args: deploy --only hosting
         env:
-          PROJECT_PATH: 'app'
+          PROJECT_PATH: "app"
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
 
   android:
@@ -83,17 +82,17 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.2'
-          channel: 'stable'
+          flutter-version: "3.22.2"
+          channel: "stable"
 
       - uses: actions/setup-java@v4
         with:
-          java-version: '17'
-          distribution: 'oracle'
+          java-version: "17"
+          distribution: "oracle"
 
       - uses: actions/checkout@v4
         with:
-          path: 'app'
+          path: "app"
       - run: |
           cd app
           flutter pub get
@@ -102,7 +101,7 @@ jobs:
       - name: Create Android Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'app/build/app/outputs/apk/release/app-release.apk'
+          artifacts: "app/build/app/outputs/apk/release/app-release.apk"
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
 
@@ -113,12 +112,12 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.2'
-          channel: 'stable'
+          flutter-version: "3.22.2"
+          channel: "stable"
 
       - uses: actions/checkout@v4
         with:
-          path: 'app'
+          path: "app"
 
       - run: |
           cd app
@@ -131,7 +130,7 @@ jobs:
 
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: 'app/build/macOS/Build/Products/Release/macos-release.zip'
+          artifacts: "app/build/macOS/Build/Products/Release/macos-release.zip"
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
 
