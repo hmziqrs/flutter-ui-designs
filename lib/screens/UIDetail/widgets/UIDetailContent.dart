@@ -69,7 +69,7 @@ class _UIDetailContentState extends State<UIDetailContent> {
   }
 
   void openApp(BuildContext context) {
-    final r = Random().nextInt(3);
+    final r = Random().nextInt(4);
     final adCheck = App.showAds && this.ad != null;
     if (r == 2 && adCheck) {
       this.ad!.show();

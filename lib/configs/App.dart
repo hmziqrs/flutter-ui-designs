@@ -9,7 +9,7 @@ import 'AppTheme.dart';
 class App {
   static late BuildContext ctx;
   static late bool isLtr;
-  static late bool showAds = true;
+  static late bool showAds = false;
 
   static init(BuildContext context) {
     AppDimensions.init(context);
