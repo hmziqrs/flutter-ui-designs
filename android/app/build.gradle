@@ -26,9 +26,10 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace "com.example.flutter_uis"
     compileSdk 35
-    ndkVersion '26.1.10909125'
+    ndkVersion '27.2.12479018'
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -44,7 +45,7 @@ android {
     defaultConfig {
         applicationId "com.onemdev.flutter_ui_challenges"
         vectorDrawables.useSupportLibrary = true
-        minSdk 21
+        minSdk 23
         targetSdk 35
         multiDexEnabled true
         versionCode 25
@@ -73,4 +74,6 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
+}

@@ -46,7 +46,7 @@ dependencies:
   firebase_crashlytics: 4.1.2
   firebase_performance: 0.10.0+7
 
-  share: 2.0.4
+  share_plus: 10.1.2
   hive: 2.2.3
   open_url: 2.0.1
   hive_flutter: 1.1.0
