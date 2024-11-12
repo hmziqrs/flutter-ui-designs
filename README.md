@@ -1,77 +1,194 @@
-# Flutter UI Designs
+# 🎨 Flutter UI Designs
 
-> ## True cross platform app runs on web, mobile & desktop
+A comprehensive collection of beautifully crafted Flutter UI implementations supporting web, mobile, and desktop platforms. ✨
 
-## Download
+## ⭐ Features
+
+- 🌐 Cross-platform support (Web, Android, iOS, Windows, macOS, Linux)
+- 📱 Responsive layouts that adapt to different screen sizes
+- 🎬 Complex animations and transitions
+- 🌍 Internationalization (English, Chinese, Arabic)
+- 🌓 Dark/Light theme support
+- 🔥 Firebase integration for analytics and crash reporting
+- 📦 State management with Provider pattern
+- 🏗️ Clean and modular architecture
+
+## 💫 UI Implementations
+
+1. **Healthy Food Delivery** 🥗
+
+   - Food listing with parallax effects
+   - Detailed food item view
+   - Nutritional information display
+   - Rating system
+
+2. **Hot Air Balloon** 🎈
+
+   - Booking interface
+   - Flight details and scheduling
+   - Interactive balloon animations
+   - Multi-step booking process
+
+3. **Sky View** 🌌
+
+   - Planet/Star viewing interface
+   - Interactive space exploration
+   - Celestial body details
+   - Parallax star field effects
+
+4. **Asics Shoes Concept** 👟
+
+   - Product showcase
+   - Color variants
+   - Size selection
+   - Product details presentation
+
+5. **Egg Timer Concept** ⏲️
+
+   - Circular timer interface
+   - Gesture-based controls
+   - Visual time tracking
+   - Start/pause/reset functionality
+
+6. **Chef Craft** 👨‍🍳
+   - Recipe browsing
+   - Cooking instructions
+   - Ingredient lists
+   - Chef profiles
+
+## 🛠️ Setup
+
+1. **Last Tested Version**
+
+```bash
+Flutter 3.24.4 • channel stable
+Dart 3.5.4
+DevTools 2.37.3
+```
+
+2. **Enable Platforms** 🖥️
+
+```bash
+flutter config --enable-web
+flutter config --enable-macos-desktop
+flutter config --enable-linux-desktop
+flutter config --enable-windows-desktop
+```
+
+3. **Installation** 📥
+
+```bash
+# Clone repository
+git clone https://github.com/hmziqrs/flutter-ui-designs.git
+
+# Install dependencies
+flutter pub get
+
+# Run app
+flutter run
+```
+
+## 📁 Project Structure
+
+```
+lib/
+├── MiniApps/              # Individual UI implementations
+├── configs/               # App-wide configuration
+├── Providers/             # State management
+├── screens/              # Main app screens
+├── services/             # Firebase & platform services
+├── statics/             # Static data & models
+├── utils/               # Utility functions
+└── widgets/             # Reusable widgets
+```
+
+## 🔑 Key Components
+
+### Core Architecture 🏛️
+
+- `Navigator.dart` - Custom navigation handling with transitions
+- `AppDimensions.dart` - Responsive sizing system
+- `AppTheme.dart` - Theme management
+- `AppLocalizations.dart` - Internationalization support
+
+### Widget System 🧩
+
+- Screen - Base widget for all screens
+- Custom animations
+- Reusable UI components
+- Platform-specific adaptations
+
+### State Management 📊
+
+- Provider pattern implementation
+- Screen-level state isolation
+- App-wide state management
+- Animation state handling
+
+## 🤝 Contributing
+
+1. Fork repository
+2. Create feature branch
+3. Commit changes
+4. Push to branch
+5. Create pull request
+
+## 📲 Download
 
 <div id="downloads">
   <a href="https://play.google.com/store/apps/details?id=com.onemdev.flutter_ui_challenges">
-    <img src="https://raw.githubusercontent.com/hackerhgl/flutter-ui-designs/master/.github/assets/google-play.png" alt="Play Store badge" width="200" />
+    <img src="https://raw.githubusercontent.com/hmziqrs/flutter-ui-designs/master/.github/assets/google-play.png" alt="Play Store badge" width="200" />
   </a>
-  <a href="https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/app-release.apk">
-    <img src="https://raw.githubusercontent.com/hackerhgl/flutter-ui-designs/master/.github/assets/android.png" alt="Android badge" width="200" />
+  <a href="https://github.com/hmziqrs/flutter-ui-designs/releases/latest/download/app-release.apk">
+    <img src="https://raw.githubusercontent.com/hmziqrs/flutter-ui-designs/master/.github/assets/android.png" alt="Android badge" width="200" />
   </a>
-  <a href="https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/windows-release.zip">
-    <img src="https://raw.githubusercontent.com/hackerhgl/flutter-ui-designs/master/.github/assets/windows.png" alt="Windows badge" width="200" />
+  <a href="https://github.com/hmziqrs/flutter-ui-designs/releases/latest/download/windows-release.zip">
+    <img src="https://raw.githubusercontent.com/hmziqrs/flutter-ui-designs/master/.github/assets/windows.png" alt="Windows badge" width="200" />
   </a>
-  <a href="https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/macos-release.zip">
-    <img src="https://raw.githubusercontent.com/hackerhgl/flutter-ui-designs/master/.github/assets/macos.png" alt="MacOS badge"  width="200" />
+  <a href="https://github.com/hmziqrs/flutter-ui-designs/releases/latest/download/macos-release.zip">
+    <img src="https://raw.githubusercontent.com/hmziqrs/flutter-ui-designs/master/.github/assets/macos.png" alt="MacOS badge"  width="200" />
   </a>
-  <a href="https://github.com/hackerhgl/flutter-ui-designs/releases/latest/download/linux-release.zip">
-    <img src="https://raw.githubusercontent.com/hackerhgl/flutter-ui-designs/master/.github/assets/linux.png" alt="Linux badge"  width="200"/>
+  <a href="https://github.com/hmziqrs/flutter-ui-designs/releases/latest/download/linux-release.zip">
+    <img src="https://raw.githubusercontent.com/hmziqrs/flutter-ui-designs/master/.github/assets/linux.png" alt="Linux badge"  width="200"/>
   </a>
 </div>
 
-## Requirements to run locally
+## 📄 License
 
-- Flutter stable v2.0.0+
-- Dart VM version: 2.12.0+
-- To enable desktop & web builds run the relevant command
-  - Run `flutter --enable-web`
-  - Run `flutter --enable-macos-desktop`
-  - Run `flutter --enable-linux-desktop`
-  - Run `flutter --enable-windows-desktop`
-- Run `flutter doctor` this command will show you what dependencies you need to install.
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
-## Getting started with code
+## 🙏 Acknowledgments
 
-> Please note that this project's code is not meant for beginners! If you're just getting started with flutter I recommend you to explore some ToDo and basic setState apps and get yourself familiar with flutter and dart eco-system because in this project intermediate and advance implementations are use which will confuse you and won't help much in terms of learning.
+- 🎨 UI designs are property of their respective designers
+- 👥 Contributors and maintainers
+- 💙 Flutter and Dart teams
 
-- There are 2 entry files for this project `main.dart` & `main.mobile.dart`. It was necessary because I'm using Firebase analytics and crashlytics and there isn't desktop support for Firebase yet.
-- `Navigator.dart` is responsible for managing routes, handles custom transition, pass parameter in screens and control navigation with keyboard shortcuts.
-- `configs/AppDimensions.dart` this is the magical file. It provides the app with:
-- `UI.dart` provides constant for building responsive UI.
-  - My custom size unit based on device's width, height & pixel density.
-  - Responsive containers.
-  - Padding multiplier unit (I learned it with experience instead of using 1,2,3px should use multiplier. it helps maintain constancy around the app).
-- `Widgets/Screen.dart` This widget is necessary when building a new screen.
-  - configure theme & font style.
-  - It also receive a `belowBuilders` parameter which builds custom background (This enables us to build Parallax, Animated background & Any thing you could imagine in background). you can find an example in `Screens/Download/Download.dart`
-- Code structure is pretty much simple.
-  - Don't import anything form ScreenA in ScreenB.
-  - Don't import anything from Screen/Widget in universal files.
-  - Don't import anything from ScreenA specific Widget in universal files.
-  - Each Screen will have `Dimensions.dart` where you can write Screen's responsive logic.
-  - I didn't use snake_case in naming convention just because I don't prefer it.
-  - I use `this` for class's properties & methods I helps keep track of variables & class properties.
+## 🐛 Found a bug?
 
-## Scripts
+Please file an issue with a detailed description on the [GitHub repository](https://github.com/hmziqrs/flutter-ui-designs/issues).
 
-- `vslaunch.dart`
-  - `dart sciprts/vslaunch.dart`
-  - This script will make vscode configuration file with all of your connected devices.
-  - You can live debug app on multiple devices at once from vs code.
-  - Each device's debug logs on separate **DEBUG CONSOLE**.
-  - Very useful for testing UI for multiple devices simultaneously.
+## ⭐ Show Your Support
 
-## Show support
+If you found this project helpful or learned something from it, consider:
 
-> **If you like the project and want to appreciate my effort. Then you can perform any of these steps**
+- Starring the repository
+- Sharing it with others
+- Following the contributors
 
-- Star this repository.
-- Rate the app on <a href="https://play.google.com/store/apps/details?id=com.onemdev.flutter_ui_challenges" target="playstore">Play Store</a>.
-- Endorse my skills on my <a href="https://www.linkedin.com/in/hackerhgl" target="linkedin">Linkedin Profile</a>.
+## 🌟 More Open Source Projects
 
-## License
+- [Movie Concept App](https://github.com/hmziqrs/invmovieconcept1) - An innovative movie browsing experience built with Flutter
+- [React Native Loop Game](https://github.com/hmziqrs/react-native-loop-game) - An engaging mobile game created with React Native
+- [CV Template](https://github.com/hmziqrs/cv) - A modern, customizable CV/resume template
 
-This project is licensed under the MIT license, Copyright (c) 2020 Hamza Iqbal. For more information see `LICENSE.md`.
+## 🔗 Connect With Me
+
+### Social Links
+
+- 𝕏 (Twitter): [@hmziqrs](https://x.com/hmziqrs)
+- LinkedIn: [hackerhgl](https://www.linkedin.com/in/hackerhgl)
+- Telegram: [@hmziqrs](https://t.me/hmziqrs)
+
+### Personal Website
+
+🌐 Visit my personal site [hmziq.rs](https://hmziq.rs/)

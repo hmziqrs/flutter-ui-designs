@@ -134,31 +134,31 @@ jobs:
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
 
-  # windows:
-  #   name: Windows
-  #   runs-on: windows-latest
-  #   steps:
-  #     - name: Set up Flutter
-  #       uses: subosito/flutter-action@v2
-  #       with:
-  #         flutter-version: '3.22.2'
-  #         channel: 'stable'
+  windows:
+    name: Windows
+    runs-on: windows-latest
+    steps:
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.4"
+          channel: "stable"
 
-  #     - uses: actions/checkout@v4
-  #       with:
-  #         path: 'app'
+      - uses: actions/checkout@v4
+        with:
+          path: "app"
 
-  #     - run: |
-  #         cd app
-  #         flutter config --enable-windows-desktop
-  #         flutter pub get
-  #         flutter build windows --release
-  #         cd build\windows\runner
-  #         Compress-Archive -Path Release -DestinationPath windows-release.zip
+      - run: |
+          cd app
+          flutter config --enable-windows-desktop
+          flutter pub get
+          flutter build windows --release
+          cd build\windows\x64\runner
+          Compress-Archive -Path Release -DestinationPath windows-release.zip
 
-  #     - name: Windows release build for github
-  #       uses: ncipollo/release-action@v1
-  #       with:
-  #         artifacts: 'app\build\windows\runner\windows-release.zip'
-  #         token: ${{ secrets.TOKEN }}
-  #         allowUpdates: true
+      - name: Windows release build for github
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'app\build\windows\runner\windows-release.zip'
+          token: ${{ secrets.TOKEN }}
+          allowUpdates: true
