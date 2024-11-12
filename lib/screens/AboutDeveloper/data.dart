@@ -25,11 +25,13 @@ final contacts = [
     "platform": "twitter",
     "label": "@$username",
     "icon": MaterialCommunityIcons.twitter,
+    "url": "https://x.com/$username",
   },
   {
     "platform": "linkedin",
     "label": "/in/$username",
     "icon": MaterialCommunityIcons.linkedin,
+    "url": "https://linkedin.com/in/$username",
   },
   {
     "platform": "gmail",
