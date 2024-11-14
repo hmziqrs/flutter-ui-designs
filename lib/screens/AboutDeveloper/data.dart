@@ -86,6 +86,27 @@ final moreProjects = [
         "icon": MaterialCommunityIcons.github,
         "url": MyLinks.rnLoopGithub,
       },
+      {
+        "label": "Github",
+        "icon": MaterialCommunityIcons.web,
+        "url": MyLinks.rnLoopGithub,
+      },
+    ],
+  },
+  {
+    "label": "Epic Gandalf Sax Infinite",
+    "desc": AboutDeveloperScreenMessages.projectGandalf,
+    "links": [
+      {
+        "label": "Google Play",
+        "icon": MaterialCommunityIcons.google_play,
+        "url": MyLinks.rnLoopGooglePlay,
+      },
+      {
+        "label": "Github",
+        "icon": MaterialCommunityIcons.github,
+        "url": MyLinks.rnLoopGithub,
+      },
     ],
   },
   {

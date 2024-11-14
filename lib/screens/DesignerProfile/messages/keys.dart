@@ -3,9 +3,9 @@
 const scope = 'DesignerProfileScreen';
 
 abstract class DesignerProfileScreenMessages {
-	static String contactMe = '$scope/contactMe';
-	static String hireMe = '$scope/hireMe';
-	static String explore = '$scope/explore';
-	static String portfolio = '$scope/portfolio';
-	static String follow = '$scope/follow';
+	static const contactMe = '$scope/contactMe';
+	static const hireMe = '$scope/hireMe';
+	static const explore = '$scope/explore';
+	static const portfolio = '$scope/portfolio';
+	static const follow = '$scope/follow';
 }

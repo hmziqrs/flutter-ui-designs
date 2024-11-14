@@ -266,5 +266,6 @@
   "AboutAppScreen/iDont": "I do not own any UI designs that are published in this app. I asked for the permission of designers before I published UI designs. I've given credit & put all the designers contact information(as much as I could find).",
   "AboutDeveloperScreen/intro": "Hi, I am a full-stack developer with over 7 years of experience in developing software. I have expertise in multiple languages and frameworks and am passionate about creating open-source apps. I enjoy watching anime in my free time, with Dragon Ball Z being my all-time favorite. I also play games, and some of my favorites include Cyberpunk 2077, Horizon Forbidden West, and Detroit: Become Human.",
   "DownloadScreen/description": "Experience the app in different platform.",
-  "AboutUserWidget/followMe": "Follow me"
+  "AboutUserWidget/followMe": "Follow me",
+  "AboutDeveloperScreen/projectGandalf": "An infinite loop of gandalf being glorious with sax in the background."
 }

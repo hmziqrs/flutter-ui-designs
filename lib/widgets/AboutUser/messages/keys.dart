@@ -3,18 +3,18 @@
 const scope = 'AboutUserWidget';
 
 abstract class AboutUserWidgetMessages {
-	static String skillSet = '$scope/skillSet';
-	static String contacts = '$scope/contacts';
-	static String followMe = '$scope/followMe';
-	static String likeProject = '$scope/likeProject';
-	static String moreProjects = '$scope/moreProjects';
-	static String contactsDesc = '$scope/contactsDesc';
-	static String likeProjectDesc = '$scope/likeProjectDesc';
-	static String share = '$scope/share';
-	static String copy = '$scope/copy';
-	static String open = '$scope/open';
-	static String linkCopied = '$scope/linkCopied';
-	static String or = '$scope/or';
-	static String developers = '$scope/developers';
-	static String profile = '$scope/profile';
+	static const skillSet = '$scope/skillSet';
+	static const contacts = '$scope/contacts';
+	static const followMe = '$scope/followMe';
+	static const likeProject = '$scope/likeProject';
+	static const moreProjects = '$scope/moreProjects';
+	static const contactsDesc = '$scope/contactsDesc';
+	static const likeProjectDesc = '$scope/likeProjectDesc';
+	static const share = '$scope/share';
+	static const copy = '$scope/copy';
+	static const open = '$scope/open';
+	static const linkCopied = '$scope/linkCopied';
+	static const or = '$scope/or';
+	static const developers = '$scope/developers';
+	static const profile = '$scope/profile';
 }

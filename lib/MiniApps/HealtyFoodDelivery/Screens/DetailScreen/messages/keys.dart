@@ -3,11 +3,11 @@
 const scope = 'HFDDetailScreen';
 
 abstract class HFDDetailScreenMessages {
-	static String title = '$scope/title';
-	static String orderNow = '$scope/orderNow';
-	static String nutritionFact = '$scope/nutritionFact';
-	static String dailyCalories = '$scope/dailyCalories';
-	static String carbo = '$scope/carbo';
-	static String protein = '$scope/protein';
-	static String fat = '$scope/fat';
+	static const title = '$scope/title';
+	static const orderNow = '$scope/orderNow';
+	static const nutritionFact = '$scope/nutritionFact';
+	static const dailyCalories = '$scope/dailyCalories';
+	static const carbo = '$scope/carbo';
+	static const protein = '$scope/protein';
+	static const fat = '$scope/fat';
 }

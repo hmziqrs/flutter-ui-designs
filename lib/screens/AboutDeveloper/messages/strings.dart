@@ -22,6 +22,8 @@ const Map strings = {
       "A static movie app featuring a heavily animated experience for ticket reservations.",
   '$scope/projectRNL':
       "React Native implementation of the puzzle game Loop.",
+  '$scope/projectGandalf':
+      "An infinite loop of gandalf being glorious with sax in the background.",
   '$scope/projectHCV':
       "My web based resume built with HTML, CSS and JavaScript.",
 
