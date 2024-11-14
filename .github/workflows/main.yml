@@ -83,7 +83,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           packageManager: "bun"
-          command: pages deploy ./out --project-name=flutter-uis --branch=main
+          command: pages deploy ./app/build/web --project-name=flutter-uis --branch=main
 
       # Deploy to Firebase
       - name: Deploy to Firebase
