@@ -37,7 +37,7 @@ jobs:
       - name: Create linux Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "app/build/linux/x64/release/linux-x64.zip,app/build/linux/arm64/release/linux-arm64.zip"
+          artifacts: "app/build/linux/x64/release/linux-release.zip"
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
 
@@ -159,6 +159,6 @@ jobs:
       - name: Windows release build for github
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'app\build\windows\runner\windows-release.zip'
+          artifacts: 'app\build\windows\x64\runner\windows-release.zip'
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
