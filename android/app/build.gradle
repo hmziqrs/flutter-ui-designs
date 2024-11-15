@@ -1,10 +1,11 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
-    id "debug.flutter.flutter-gradle-plugin"
+    id "dev.flutter.flutter-gradle-plugin"
+
     id "com.google.gms.google-services"
-    id "com.google.firebase.firebase-perf"
     id "com.google.firebase.crashlytics"
+    id "com.google.firebase.firebase-perf"
 }
 
 
@@ -15,7 +16,7 @@ if (debugStoreFile.exists()) {
 }
 
 def prodStore = new Properties()
-def prodStoreFile = rootProject.file('key.properties')
+def prodStoreFile = rootProject.file('prod.properties')
 if (prodStoreFile.exists()) {
     prodStore.load(new FileInputStream(prodStoreFile))
 }
@@ -50,7 +51,7 @@ android {
         versionName = flutter.versionName
     }
     signingConfigs {
-        debug {
+        dev {
             keyAlias debugStore['keyAlias']
             keyPassword debugStore['keyPassword']
             storeFile file(debugStore['storeFile'])
@@ -64,7 +65,7 @@ android {
         }
     }
     buildTypes {
-        debug {
+        dev {
             signingConfig signingConfigs.debug
         }
         release {
