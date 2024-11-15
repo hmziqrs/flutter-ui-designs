@@ -117,6 +117,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: "app"
+
+      - name: Keys n Stuff
+        run: |
+          cd app
+          dart ./scripts/keys-n-stuff.dart
+
       - run: |
           cd app
           flutter pub get
@@ -142,6 +148,11 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: "app"
+
+      - name: Keys n Stuff
+        run: |
+          cd app
+          dart ./scripts/keys-n-stuff.dart
 
       - run: |
           cd app
