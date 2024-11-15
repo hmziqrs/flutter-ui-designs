@@ -157,3 +157,12 @@ flutter:
       fonts:
         - asset: fonts/BebasNeue/BebasNeue-Regular.ttf
           weight: 400
+
+
+flutter_native_splash:
+  color: "#ffffff"
+  color_dark: "#000000"
+  image: "assets/splash.png"
+  android: true
+  ios: true
+  web: true
