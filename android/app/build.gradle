@@ -2,25 +2,18 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "debug.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"
+    id "com.google.firebase.firebase-perf"
+    id "com.google.firebase.crashlytics"
 }
 
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.firebase-perf'
-apply plugin: 'com.google.firebase.crashlytics'
-
-def localProperties = new Properties()
-def localPropertiesFile = rootProject.file('local.properties')
-if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader ->
-        localProperties.load(reader)
-    }
-}
 
 def debugStore = new Properties()
 def debugStoreFile = rootProject.file('key.properties')
 if (debugStoreFile.exists()) {
     debugStore.load(new FileInputStream(debugStoreFile))
 }
+
 def prodStore = new Properties()
 def prodStoreFile = rootProject.file('key.properties')
 if (prodStoreFile.exists()) {
