@@ -61,6 +61,11 @@ final moreProjects = [
     "desc": AboutDeveloperScreenMessages.projectINVMovie1,
     "links": [
       {
+        "label": "Web",
+        "icon": MaterialCommunityIcons.web,
+        "url": MyLinks.invmovie1Web,
+      },
+      {
         "label": "Google Play",
         "icon": MaterialCommunityIcons.google_play,
         "url": MyLinks.invmovie1Github,
@@ -77,6 +82,11 @@ final moreProjects = [
     "desc": AboutDeveloperScreenMessages.projectRNL,
     "links": [
       {
+        "label": "Web",
+        "icon": MaterialCommunityIcons.web,
+        "url": MyLinks.rnLoopWeb,
+      },
+      {
         "label": "Google Play",
         "icon": MaterialCommunityIcons.google_play,
         "url": MyLinks.rnLoopGooglePlay,
@@ -84,11 +94,6 @@ final moreProjects = [
       {
         "label": "Github",
         "icon": MaterialCommunityIcons.github,
-        "url": MyLinks.rnLoopGithub,
-      },
-      {
-        "label": "Github",
-        "icon": MaterialCommunityIcons.web,
         "url": MyLinks.rnLoopGithub,
       },
     ],
@@ -98,14 +103,19 @@ final moreProjects = [
     "desc": AboutDeveloperScreenMessages.projectGandalf,
     "links": [
       {
+        "label": "Web",
+        "icon": MaterialCommunityIcons.web,
+        "url": MyLinks.gandalfWeb,
+      },
+      {
         "label": "Google Play",
         "icon": MaterialCommunityIcons.google_play,
-        "url": MyLinks.rnLoopGooglePlay,
+        "url": MyLinks.gandalfGooglePlay,
       },
       {
         "label": "Github",
         "icon": MaterialCommunityIcons.github,
-        "url": MyLinks.rnLoopGithub,
+        "url": MyLinks.gandalfGithub,
       },
     ],
   },

@@ -66,44 +66,48 @@ class AboutDeveloperMoreProjects extends StatelessWidget {
                 ),
                 Flexible(child: SizedBox(height: double.infinity)),
                 Wrap(
+                  spacing: AppDimensions.padding,
+                  runSpacing: AppDimensions.padding,
                   alignment: WrapAlignment.start,
                   children: links
                       .map(
-                        (link) => Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.08),
-                            border: Border.all(
-                              width: 1,
-                              color: Colors.white,
-                            ),
-                            borderRadius: borderRadius,
-                          ),
-                          child: Material(
-                            color: Colors.transparent,
-                            child: InkWell(
+                        (link) => IntrinsicWidth(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.08),
+                              border: Border.all(
+                                width: 1,
+                                color: Colors.white,
+                              ),
                               borderRadius: borderRadius,
-                              onTap: () => Utils.launchUrl(link["url"]),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                  vertical: AppDimensions.padding,
-                                  horizontal: AppDimensions.padding * 2,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Icon(
-                                      link["icon"],
-                                      color: Colors.white,
-                                      size: TextStyles.body2.fontSize,
-                                    ),
-                                    SizedBox(width: AppDimensions.padding),
-                                    Text(
-                                      link["label"].toString(),
-                                      style: TextStyles.body2.copyWith(
+                            ),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                borderRadius: borderRadius,
+                                onTap: () => Utils.launchUrl(link["url"]),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    vertical: AppDimensions.padding,
+                                    horizontal: AppDimensions.padding * 2,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        link["icon"],
                                         color: Colors.white,
-                                        fontWeight: FontWeight.w600,
+                                        size: TextStyles.body2.fontSize,
                                       ),
-                                    ),
-                                  ],
+                                      SizedBox(width: AppDimensions.padding),
+                                      Text(
+                                        link["label"].toString(),
+                                        style: TextStyles.body2.copyWith(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

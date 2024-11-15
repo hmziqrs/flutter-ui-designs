@@ -9,18 +9,25 @@ abstract class MyLinks {
       'https://play.google.com/store/apps/details?id=com.onemdev.flutter_ui_challenges';
 
   //
+  static final rnLoopWeb = "https://rnloop.hmziq.xyz";
   static final rnLoopGithub =
       'https://github.com/hmziqrs/react-native-loop-game';
   static final rnLoopGooglePlay =
       'https://play.google.com/store/apps/details?id=com.onemdev.rnloop';
 
+  static final gandalfWeb = "https://gandalf.hmziq.xyz";
+  static final gandalfGithub = 'https://github.com/hmziqrs/gandlaf-sax';
+  static final gandalfGooglePlay =
+      'https://play.google.com/store/apps/details?id=com.onemdev.gandalf';
+
 //
+  static final invmovie1Web = 'https://movieui.hmziq.xyz';
   static final invmovie1Github =
       'https://github.com/hmziqrs/invmovieconcept1';
   static final invmovie1GooglePlay =
       'https://play.google.com/store/apps/details?id=com.onemdev.invmovieconcept1';
 
   //
-  static final myCVGithub = 'https://github.com/hmziqrs/cv';
   static final myCVWeb = 'https://cv.hmziq.rs';
+  static final myCVGithub = 'https://github.com/hmziqrs/cv';
 }
