@@ -37,13 +37,20 @@ jobs:
       - name: Create linux Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "app/build/linux/x64/release/linux-x64.zip,app/build/linux/arm64/release/linux-arm64.zip"
+          artifacts: "app/build/linux/x64/release/linux-release.zip"
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
 
   web:
     name: Web
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -54,6 +61,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           path: "app"
+      - uses: oven-sh/setup-bun@v2
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
       - name: Build web release
         run: |
@@ -62,11 +72,15 @@ jobs:
           flutter pub get
           flutter build web -t lib/main.web.dart --release --no-tree-shake-icons --wasm
 
-      - name: Copy privacy policy
-        run: |
-          cd app
-          cp privacy-policy/index.html build/web/privacy-policy.html
+      - name: Deploy cloudflare pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          packageManager: "bun"
+          command: pages deploy ./app/build/web --project-name=flutter-uis --branch=main
 
+      # Deploy to Firebase
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
@@ -74,6 +88,16 @@ jobs:
         env:
           PROJECT_PATH: "app"
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+
+      # GitHub Pages deployment steps
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: app/build/web
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 
   android:
     name: Android
@@ -159,6 +183,6 @@ jobs:
       - name: Windows release build for github
         uses: ncipollo/release-action@v1
         with:
-          artifacts: 'app\build\windows\runner\windows-release.zip'
+          artifacts: 'app\build\windows\x64\runner\windows-release.zip'
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
