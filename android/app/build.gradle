@@ -1,7 +1,7 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
-    id "dev.flutter.flutter-gradle-plugin"
+    id "debug.flutter.flutter-gradle-plugin"
 }
 
 apply plugin: 'com.google.gms.google-services'
@@ -16,10 +16,15 @@ if (localPropertiesFile.exists()) {
     }
 }
 
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file('key.properties')
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+def debugStore = new Properties()
+def debugStoreFile = rootProject.file('key.properties')
+if (debugStoreFile.exists()) {
+    debugStore.load(new FileInputStream(debugStoreFile))
+}
+def prodStore = new Properties()
+def prodStoreFile = rootProject.file('key.properties')
+if (prodStoreFile.exists()) {
+    prodStore.load(new FileInputStream(prodStoreFile))
 }
 
 
@@ -52,20 +57,29 @@ android {
         versionName = flutter.versionName
     }
     signingConfigs {
+        debug {
+            keyAlias debugStore['keyAlias']
+            keyPassword debugStore['keyPassword']
+            storeFile file(debugStore['storeFile'])
+            storePassword debugStore['storePassword']
+        }
         release {
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
-            storePassword keystoreProperties['storePassword']
+            keyAlias prodStore['keyAlias']
+            keyPassword prodStore['keyPassword']
+            storeFile file(prodStore['storeFile'])
+            storePassword prodStore['storePassword']
         }
     }
     buildTypes {
-       release {
-           signingConfig signingConfigs.release
-           minifyEnabled true
-           shrinkResources true
-           proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-       }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
     buildToolsVersion '35.0.0'
 }
