@@ -80,6 +80,7 @@ dev_dependencies:
   glob: 2.1.2
   yaml: 3.1.2
   translator: 1.0.0
+  flutter_launcher_icons: "^0.14.1"
 
 flutter:
   uses-material-design: true
@@ -159,7 +160,26 @@ flutter:
 flutter_native_splash:
   color: "#ffffff"
   color_dark: "#000000"
-  image: "assets/logo.png"
+  image: "assets/splash.png"
   android: true
   ios: true
   web: true
+
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/launcher.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "assets/launcher.png"
+    background_color: "#ffff"
+    theme_color: "#cc2f2c"
+  windows:
+    generate: true
+    image_path: "assets/launcher.png"
+    icon_size: 256 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/launcher.png"
