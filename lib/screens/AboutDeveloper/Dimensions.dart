@@ -12,8 +12,8 @@ class Dimensions {
   static init(BuildContext context) {
     App.init(context);
 
-    projectCardHeight = 60 + AppDimensions.ratio * 60;
-    projectCardWidth = 150 + AppDimensions.ratio * 80;
+    projectCardHeight = 80 + AppDimensions.ratio * 60;
+    projectCardWidth = 170 + AppDimensions.ratio * 80;
 
     avatarRadius = 150 + AppDimensions.ratio * 60;
   }

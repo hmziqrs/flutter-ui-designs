@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_uis/UI.dart';
 import 'package:flutter_uis/utils/Utils.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
@@ -64,14 +65,11 @@ class AboutDeveloperMoreProjects extends StatelessWidget {
                   ),
                 ),
                 Flexible(child: SizedBox(height: double.infinity)),
-                Row(
+                Wrap(
+                  alignment: WrapAlignment.start,
                   children: links
                       .map(
                         (link) => Container(
-                          margin: EdgeInsets.only(
-                            right: App.isLtr ? AppDimensions.padding * 2 : 0.0,
-                            left: !App.isLtr ? AppDimensions.padding * 2 : 0.0,
-                          ),
                           decoration: BoxDecoration(
                             color: Colors.white.withOpacity(0.08),
                             border: Border.all(

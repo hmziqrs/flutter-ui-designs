@@ -18,7 +18,7 @@ class AppDimensions {
 
     size = MediaQuery.of(context).size;
 
-    maxContainerWidth = 540.0;
+    maxContainerWidth = 640.0;
     miniContainerWidth = maxContainerWidth * 0.9;
 
     if (UI.lg) {
