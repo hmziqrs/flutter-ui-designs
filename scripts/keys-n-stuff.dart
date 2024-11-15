@@ -24,7 +24,7 @@ Future<void> main() async {
     final keysDir = Directory('.keys-n-stuff');
 
     // Read the keys-n-stuff.json file
-    final configFile = File('keys-n-stuff.json');
+    final configFile = File('.keys-n-stuff.json');
     if (!await configFile.exists()) {
       throw 'Configuration file not found';
     }
