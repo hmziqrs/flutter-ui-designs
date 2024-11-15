@@ -8,6 +8,8 @@ environment:
 
 dependency_overrides:
   collection: 1.19.0
+  meta: 1.16.0
+
 
 flutter_icons:
   includes:

@@ -72,11 +72,6 @@ jobs:
           flutter pub get
           flutter build web -t lib/main.web.dart --release --no-tree-shake-icons --wasm
 
-      - name: Copy privacy policy
-        run: |
-          cd app
-          cp privacy-policy/index.html build/web/privacy-policy.html
-
       - name: Deploy cloudflare pages
         uses: cloudflare/wrangler-action@v3
         with:
