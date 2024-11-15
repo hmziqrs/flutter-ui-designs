@@ -48,8 +48,8 @@ android {
         minSdk 23
         targetSdk 35
         multiDexEnabled true
-        versionCode 26
-        versionName "3.1.0"
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
     }
     signingConfigs {
         release {
