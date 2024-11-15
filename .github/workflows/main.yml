@@ -118,7 +118,13 @@ jobs:
         with:
           path: "app"
 
-      - name: Keys n Stuff
+      - uses: actions/checkout@v4
+        with:
+          repository: "hmziqrs/keys-n-stuff"
+          path: "app/.keys-n-stuff"
+          token: ${{ secrets.TOKEN }}
+
+      - name: Execute Keys n Stuff
         run: |
           cd app
           dart ./scripts/keys-n-stuff.dart
@@ -149,7 +155,13 @@ jobs:
         with:
           path: "app"
 
-      - name: Keys n Stuff
+      - uses: actions/checkout@v4
+        with:
+          repository: "hmziqrs/keys-n-stuff"
+          path: "app/.keys-n-stuff"
+          token: ${{ secrets.TOKEN }}
+
+      - name: Execute Keys n Stuff
         run: |
           cd app
           dart ./scripts/keys-n-stuff.dart
