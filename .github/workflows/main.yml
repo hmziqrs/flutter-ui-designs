@@ -142,6 +142,17 @@ jobs:
           artifacts: "app/build/app/outputs/apk/release/app-release.apk,app/build/app/outputs/bundle/release/app-release.aab"
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
+
+      - name: Upload app bundle to Google Play
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJson: "app/service-account.json"
+          packageName: "com.onemdev.flutter_ui_challenges"
+          releaseFile: app/build/app/outputs/bundle/release/app-release.aab
+          track: "beta"
+          inAppUpdatePriority: 3
+          status: completed
+
       - uses: actions/upload-artifact@v4
         with:
           name: "app-release.aab"

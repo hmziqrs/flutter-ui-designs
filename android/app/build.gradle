@@ -23,7 +23,7 @@ if (prodStoreFile.exists()) {
 
 
 android {
-    namespace "com.example.flutter_uis"
+    namespace "com.onemdev.flutter_ui_challenges"
     compileSdk 35
     ndkVersion '27.2.12479018'
 

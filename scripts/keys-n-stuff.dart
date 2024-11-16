@@ -33,6 +33,7 @@ Future<void> main() async {
     final String projectDir = config['dir'];
     final String projectType = config['type'];
     final String repo = config['repo'];
+    final source = ".keys-n-stuff/$projectDir";
 
     print('Project directory: $projectDir');
     print('Project type: $projectType');
@@ -66,26 +67,29 @@ Future<void> main() async {
 
       // Copy Firebase config files
       // Android
-      await copyFile('.keys-n-stuff/$projectDir/google-services.json',
-          'android/app/google-services.json');
+      await copyFile(
+          '$source/google-services.json', 'android/app/google-services.json');
 
       // iOS
-      await copyFile('.keys-n-stuff/$projectDir/GoogleService-Info.plist',
+      await copyFile('$source/GoogleService-Info.plist',
           'ios/Runner/GoogleService-Info.plist');
 
       // macOS
-      await copyFile('.keys-n-stuff/$projectDir/GoogleService-Info.plist',
+      await copyFile('$source/GoogleService-Info.plist',
           'macos/Runner/GoogleService-Info.plist');
 
       // Copy keystore properties file to android root
-      await copyFile('.keys-n-stuff/$projectDir/prod.properties',
-          'android/prod.properties');
+      await copyFile('$source/prod.properties', 'android/prod.properties');
 
       // Copy keystore file to android/app
-      final keystoreFile = File('.keys-n-stuff/$projectDir/prod.jks');
+      final keystoreFile = File('$source/prod.jks');
       if (await keystoreFile.exists()) {
-        await copyFile(
-            '.keys-n-stuff/$projectDir/prod.jks', 'android/app/prod.jks');
+        await copyFile('$source/prod.jks', 'android/app/prod.jks');
+      }
+
+      final serviceAccountFile = File('$source/service-account.json');
+      if (await serviceAccountFile.exists()) {
+        await copyFile('$source/service-account.json', 'service-account.json');
       }
 
       print(
