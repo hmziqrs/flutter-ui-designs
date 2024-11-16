@@ -87,10 +87,12 @@ Future<void> main() async {
         await copyFile('$source/prod.jks', 'android/app/prod.jks');
       }
 
+      await copyFile('$source/dev.properties', 'android/dev.properties');
+
       // Copy keystore file to android/app
-      final testKeystoreFile = File('$source/test.jks');
-      if (await testKeystoreFile.exists()) {
-        await copyFile('$source/prod.jks', 'android/app/test.jks');
+      final devKeystoreFile = File('$source/dev.jks');
+      if (await devKeystoreFile.exists()) {
+        await copyFile('$source/dev.jks', 'android/app/dev.jks');
       }
 
       final serviceAccountFile = File('$source/service-account.json');
@@ -99,7 +101,8 @@ Future<void> main() async {
       }
 
       print(
-          'Successfully copied all configuration files to their respective directories');
+        'Successfully copied all configuration files to their respective directories',
+      );
     } else {
       throw 'Unsupported project type: $projectType';
     }
