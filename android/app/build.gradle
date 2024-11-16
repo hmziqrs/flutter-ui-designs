@@ -9,10 +9,10 @@ plugins {
 }
 
 
-def debugStore = new Properties()
-def debugStoreFile = rootProject.file('key.properties')
-if (debugStoreFile.exists()) {
-    debugStore.load(new FileInputStream(debugStoreFile))
+def devStore = new Properties()
+def devStoreFile = rootProject.file('dev.properties')
+if (devStoreFile.exists()) {
+    devStore.load(new FileInputStream(devStoreFile))
 }
 
 def prodStore = new Properties()
@@ -53,10 +53,10 @@ android {
     }
     signingConfigs {
         debug {
-            keyAlias debugStore['keyAlias']
-            keyPassword debugStore['keyPassword']
-            storeFile file(debugStore['storeFile'])
-            storePassword debugStore['storePassword']
+            keyAlias devStore['keyAlias']
+            keyPassword devStore['keyPassword']
+            storeFile file(devStore['storeFile'])
+            storePassword devStore['storePassword']
         }
         release {
             keyAlias prodStore['keyAlias']
