@@ -132,6 +132,7 @@ jobs:
       - run: |
           cd app
           flutter pub get
+          dart scripts/version_sync.dart
           flutter build apk -t lib/main.firebase.dart --release
 
       - name: Create Android Release
