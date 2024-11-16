@@ -1,6 +1,6 @@
 name: flutter_uis
 description: A new Flutter project.
-version: 3.4.0+1
+version: 3.5.0+30
 
 environment:
   sdk: ">=2.18.2 <4.0.0"
