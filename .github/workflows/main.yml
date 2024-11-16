@@ -134,13 +134,22 @@ jobs:
           flutter pub get
           dart scripts/version_sync.dart
           flutter build apk -t lib/main.firebase.dart --release
+          flutter build appbundle -t lib/main.firebase.dart --release
 
       - name: Create Android Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "app/build/app/outputs/apk/release/app-release.apk"
+          artifacts: "app/build/app/outputs/apk/release/app-release.apk,app/build/app/outputs/bundle/release/app-release.aab"
           token: ${{ secrets.TOKEN }}
           allowUpdates: true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: "app-release.apk"
+          path: "app/build/app/outputs/bundle/release/app-release.aab"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: "app-release.apk"
+          path: "app/build/app/outputs/apk/release/app-release.apk"
 
   macos:
     name: MacOS
