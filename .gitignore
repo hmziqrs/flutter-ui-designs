@@ -42,3 +42,4 @@ app.*.symbols
 # My Custom paths
 
 .keys-n-stuff/
+service-account.json
