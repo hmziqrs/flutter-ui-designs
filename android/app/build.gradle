@@ -47,11 +47,12 @@ android {
         minSdk 23
         targetSdk 35
         multiDexEnabled true
+        buildToolsVersion '35.0.0'
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
     signingConfigs {
-        dev {
+        debug {
             keyAlias debugStore['keyAlias']
             keyPassword debugStore['keyPassword']
             storeFile file(debugStore['storeFile'])
@@ -65,7 +66,7 @@ android {
         }
     }
     buildTypes {
-        dev {
+        debug {
             signingConfig signingConfigs.debug
         }
         release {
@@ -75,7 +76,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '35.0.0'
 }
 
 flutter {

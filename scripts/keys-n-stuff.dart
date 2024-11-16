@@ -82,9 +82,15 @@ Future<void> main() async {
       await copyFile('$source/prod.properties', 'android/prod.properties');
 
       // Copy keystore file to android/app
-      final keystoreFile = File('$source/prod.jks');
-      if (await keystoreFile.exists()) {
+      final prodKeystoreFile = File('$source/prod.jks');
+      if (await prodKeystoreFile.exists()) {
         await copyFile('$source/prod.jks', 'android/app/prod.jks');
+      }
+
+      // Copy keystore file to android/app
+      final testKeystoreFile = File('$source/test.jks');
+      if (await testKeystoreFile.exists()) {
+        await copyFile('$source/prod.jks', 'android/app/test.jks');
       }
 
       final serviceAccountFile = File('$source/service-account.json');
