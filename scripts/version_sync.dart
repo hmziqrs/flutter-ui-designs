@@ -41,8 +41,10 @@ void updateAndroidVersion(String versionName, String versionCode) {
 
   final buildGradleContent = buildGradleFile.readAsStringSync();
   final updatedContent = buildGradleContent
-      .replaceAll(RegExp(r'versionName "[^"]+"'), 'versionName "$versionName"')
-      .replaceAll(RegExp(r'versionCode \d+'), 'versionCode $versionCode');
+      .replaceAll(RegExp(r'versionCode = .*$', multiLine: true),
+          'versionCode = $versionCode')
+      .replaceAll(RegExp(r'versionName = .*$', multiLine: true),
+          'versionName = "$versionName"');
 
   buildGradleFile.writeAsStringSync(updatedContent);
   print('Android version updated');
