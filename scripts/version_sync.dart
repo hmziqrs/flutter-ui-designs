@@ -12,10 +12,6 @@ void main() {
   final pubspec = loadYaml(pubspecContent);
 
   final version = pubspec['version'] as String;
-  if (version == null) {
-    print('Version not found in pubspec.yaml');
-    exit(1);
-  }
 
   final versionParts = version.split('+');
   if (versionParts.length != 2) {
@@ -25,6 +21,7 @@ void main() {
 
   final versionName = versionParts[0];
   final versionCode = versionParts[1];
+  print("$versionParts");
 
   updateAndroidVersion(versionName, versionCode);
   // updateIOSVersion(versionName, versionCode);
