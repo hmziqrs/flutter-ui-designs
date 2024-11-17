@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -36,16 +35,15 @@ Future<void> main() async {
   await Hive.openBox('app');
   UIUtils.setLightStatusBar();
 
-  final List<NavigatorObserver> observers = [];
-
-  if (Utils.isMobile() || (!Utils.isMobile() && !Utils.isDesktop())) {
-    observers.add(FirebaseAnalyticsObserver(
+  final List<NavigatorObserver> observers = [
+    FirebaseAnalyticsObserver(
       analytics: FirebaseAnalytics.instance,
-    ));
-  }
+    )
+  ];
 
   FlutterError.onError = (FlutterErrorDetails err) {
     FirebaseCrashlytics.instance.recordFlutterError(err);
   };
+  
   runApp(ProviderScope(child: AppNavigator(observers)));
 }
