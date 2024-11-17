@@ -30,7 +30,7 @@ Future<void> main() async {
       // await Admob.requestTrackingAuthorization();
     }
   }
-  await Firebase.initializeApp();
+
   await Hive.initFlutter();
   await Hive.openBox('app');
   UIUtils.setLightStatusBar();
@@ -44,6 +44,6 @@ Future<void> main() async {
   FlutterError.onError = (FlutterErrorDetails err) {
     FirebaseCrashlytics.instance.recordFlutterError(err);
   };
-  
+
   runApp(ProviderScope(child: AppNavigator(observers)));
 }
