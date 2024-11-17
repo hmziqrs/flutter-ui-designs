@@ -4,6 +4,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_uis/firebase_options.dart';
+import 'package:flutter_uis/services/notification/notification.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'utils/UIUtils.dart';
@@ -17,6 +18,7 @@ Future<void> main() async {
   );
 
   App.showAds = false;
+  AppFCM.init();
 
   await Hive.initFlutter();
   await Hive.openBox('app');
