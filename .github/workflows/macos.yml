@@ -1,0 +1,47 @@
+on:
+  push:
+    tags:
+      - "*"
+
+name: MacOS build and release
+jobs:
+  macos:
+    name: MacOS
+    runs-on: macos-latest
+    steps:
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          cache: true
+          flutter-version: "3.22.2"
+          channel: "stable"
+
+      - uses: actions/checkout@v4
+        with:
+          path: "app"
+
+      - uses: actions/checkout@v4
+        with:
+          repository: "hmziqrs/keys-n-stuff"
+          path: "app/.keys-n-stuff"
+          token: ${{ secrets.TOKEN }}
+
+      - name: Execute Keys n Stuff
+        run: |
+          cd app
+          dart ./scripts/keys-n-stuff.dart
+
+      - run: |
+          cd app
+          flutter config --enable-macos-desktop
+          flutter pub global activate flutterfire_cli
+          flutter pub get
+          flutter build macos -t lib/main.firebase.dart --release
+          cd build/macos/Build/Products/Release
+          ditto -c -k --sequesterRsrc --keepParent flutter_uis.app macos-release.zip
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "app/build/macOS/Build/Products/Release/macos-release.zip"
+          token: ${{ secrets.TOKEN }}
+          allowUpdates: true

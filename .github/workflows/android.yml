@@ -19,9 +19,21 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          key: ${{ runner.os }}-gradle-${{ hashFiles('app/**/*.gradle*', 'app/**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+
+      - name: Cache Android SDK
+        uses: actions/cache@v3
+        with:
+          path: |
+            /usr/local/lib/android/sdk/platform-tools
+            /usr/local/lib/android/sdk/platforms
+            /usr/local/lib/android/sdk/build-tools
+            /usr/local/lib/android/sdk/licenses
+          key: ${{ runner.os }}-android-sdk-${{ hashFiles('app/android/build.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-android-sdk-
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -35,8 +47,8 @@ jobs:
         with:
           path: |
             ${{ env.PUB_CACHE }}
-            .dart_tool
-          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
+            app/.dart_tool
+          key: ${{ runner.os }}-pub-${{ hashFiles('app/**/pubspec.lock') }}
           restore-keys: |
             ${{ runner.os }}-pub-
 
@@ -59,11 +71,12 @@ jobs:
         run: |
           cd app
           dart ./scripts/keys-n-stuff.dart
-
+      - name: Install pub dependencies
+        run: cd app && flutter pub get
+      - name: Sync android version
+        run: cd app && dart scripts/version_sync.dart
       - run: |
           cd app
-          flutter pub get
-          dart scripts/version_sync.dart
           flutter build apk -t lib/main.firebase.dart --release
           flutter build appbundle -t lib/main.firebase.dart --release
 
