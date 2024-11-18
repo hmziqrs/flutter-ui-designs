@@ -87,7 +87,7 @@ jobs:
 
   release:
     name: Android release
-    needs: android
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: read
