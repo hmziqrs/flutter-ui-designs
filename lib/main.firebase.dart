@@ -20,7 +20,9 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  AppFCM.init();
+  await AppFCM.init();
+
+  print("object");
 
   App.showAds = Utils.isMobile();
   if (App.showAds) {

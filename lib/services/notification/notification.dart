@@ -14,7 +14,7 @@ part 'models.dart';
 class AppFCM {
   static final ins = FirebaseMessaging.instance;
 
-  static void init() async {
+  static Future<void> init() async {
     LocalNotification.init();
     // FirebaseMessaging.onBackgroundMessage(_onBackgroundMessageHandler);
     if (Platform.isIOS) {

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_uis/Providers/AppProvider.dart';
 
 import 'package:flutter_uis/configs/AppDimensions.dart';
 import 'package:flutter_uis/configs/TextStyles.dart';
 import 'package:flutter_uis/configs/App.dart';
+import 'package:flutter_uis/services/notification/notification.dart';
 
 import 'ScreenSettingsSelect.dart';
 import 'data.dart';
@@ -145,7 +147,14 @@ class ScreenSettingsModalBody extends StatelessWidget {
                     ),
                   ),
                   ScreenSettingsSelect(
-                    onPress: () => {},
+                    onPress: () async {
+                      final token = await AppFCM.getToken();
+                      if (token == null) {
+                        return;
+                      }
+                      print(token);
+                      Clipboard.setData(ClipboardData(text: token));
+                    },
                     isActive: false,
                     text: "Copy fcm token to clipboard",
                   ),
