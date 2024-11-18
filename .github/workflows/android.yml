@@ -12,6 +12,7 @@ jobs:
       contents: read
       pages: write
       id-token: write
+
     steps:
       - name: Cache Gradle files
         uses: actions/cache@v3
@@ -59,10 +60,13 @@ jobs:
         run: |
           cd app
           dart ./scripts/keys-n-stuff.dart
+
       - name: Install pub dependencies
         run: cd app && flutter pub get
+
       - name: Sync android version
         run: cd app && dart scripts/version_sync.dart
+
       - run: |
           cd app
           flutter build apk -t lib/main.firebase.dart --release
@@ -81,6 +85,7 @@ jobs:
         with:
           name: "app-release.aab"
           path: "app/build/app/outputs/bundle/release/app-release.aab"
+
       - uses: actions/upload-artifact@v4
         with:
           name: "app-release.apk"
@@ -105,11 +110,6 @@ jobs:
         with:
           name: app-release.aab
           path: artifacts
-      - run: ls -lah
-      - run: ls -lah keys/
-      - run: ls -lah keys/fuid
-      - run: ls -lah artifacts
-      - run: ls -lah artifacts/app-release.aab
       - name: Upload app bundle to Google Play
         uses: r0adkll/upload-google-play@v1
         with:

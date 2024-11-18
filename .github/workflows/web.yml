@@ -12,9 +12,11 @@ jobs:
       contents: read
       pages: write
       id-token: write
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
@@ -38,17 +40,19 @@ jobs:
             ${{ runner.os }}-pub-
 
       - uses: oven-sh/setup-bun@v2
-        with:
-          cache: true
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Enable web support
+        run: flutter config --enable-web
+
+      - name: Install pub dependencies
+        run: cd app && flutter pub get
+
       - name: Build web release
         run: |
           cd app
-          flutter config --enable-web
-          flutter pub get
           flutter build web -t lib/main.web.dart --release --no-tree-shake-icons --wasm
 
       - name: Deploy cloudflare pages

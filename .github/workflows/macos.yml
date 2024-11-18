@@ -13,7 +13,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           cache: true
-          flutter-version: "3.22.2"
+          flutter-version: "3.24.5"
           channel: "stable"
 
       - uses: actions/checkout@v4
@@ -41,11 +41,14 @@ jobs:
           cd app
           dart ./scripts/keys-n-stuff.dart
 
+      - name: Enable MacOS desktop support
+        run: flutter config --enable-macos-desktop
+
+      - name: Install pub dependencies
+        run: cd app && flutter pub get
+
       - run: |
           cd app
-          flutter config --enable-macos-desktop
-          flutter pub global activate flutterfire_cli
-          flutter pub get
           flutter build macos -t lib/main.firebase.dart --release
           cd build/macos/Build/Products/Release
           ditto -c -k --sequesterRsrc --keepParent flutter_uis.app macos-release.zip
