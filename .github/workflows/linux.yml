@@ -20,6 +20,16 @@ jobs:
         with:
           path: "app"
 
+      - name: Cache pub dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ env.PUB_CACHE }}
+            app/.dart_tool
+          key: ${{ runner.os }}-pub-${{ hashFiles('app/**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+
       - name: Install required build tools for linux
         run: |
           sudo apt-get update -y

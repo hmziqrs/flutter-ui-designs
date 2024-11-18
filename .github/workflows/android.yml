@@ -23,22 +23,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Cache Android SDK
-        uses: actions/cache@v3
-        with:
-          path: |
-            /usr/local/lib/android/sdk/platform-tools
-            /usr/local/lib/android/sdk/platforms
-            /usr/local/lib/android/sdk/build-tools
-            /usr/local/lib/android/sdk/licenses
-          key: ${{ runner.os }}-android-sdk-${{ hashFiles('app/android/build.gradle') }}
-          restore-keys: |
-            ${{ runner.os }}-android-sdk-
-
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.22.2"
+          flutter-version: "3.24.5"
           channel: "stable"
           cache: true
 

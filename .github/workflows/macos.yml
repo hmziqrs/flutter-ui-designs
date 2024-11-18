@@ -20,6 +20,16 @@ jobs:
         with:
           path: "app"
 
+      - name: Cache pub dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ env.PUB_CACHE }}
+            app/.dart_tool
+          key: ${{ runner.os }}-pub-${{ hashFiles('app/**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+
       - uses: actions/checkout@v4
         with:
           repository: "hmziqrs/keys-n-stuff"
