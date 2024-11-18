@@ -8,6 +8,7 @@ class LocalNotification {
       android: AndroidInitializationSettings(
         '@drawable/ic_notification',
       ),
+      
       // iOS: DarwinInitializationSettings(
       //   onDidReceiveLocalNotification:
       //       LocalNotification.onDidReceiveLocalNotification,
@@ -20,6 +21,13 @@ class LocalNotification {
 
     LocalNotification.ins.initialize(
       initializationSettings,
+      onDidReceiveBackgroundNotificationResponse: (details) {
+        print("onDidReceiveBackgroundNotificationResponse, $details");
+      },
+      onDidReceiveNotificationResponse: (response) {
+        print("onDidReceiveNotificationResponse $response");
+      },
+
       // onSelectNotification: (string) {
       //   return LocalNotification.handleNotificationAction(
       //     string != null && string != '' ? jsonDecode(string) : {},
@@ -51,6 +59,7 @@ class LocalNotification {
 
   static Future<void> showNotification(RemoteMessage message) async {
     final notification = message.notification;
+    print("showNotification: ${notification?.title}  ${notification?.body}");
     if (notification == null) return;
     await LocalNotification.ins.show(
       notification.hashCode,

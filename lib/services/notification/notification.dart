@@ -2,8 +2,9 @@ import 'dart:io';
 import 'dart:convert';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 part 'background.dart';
 part 'local.dart';
@@ -25,13 +26,21 @@ class AppFCM {
       badge: true,
       sound: true,
     );
+
+    onReceiveRemoteMessage();
   }
 
   static Future<String?> getToken() async {
+    if (kIsWeb) {
+      const vapidKey =
+          "BEsAR1WvAgQea8790PJxv9DWM2DLzPwyruTXY6B8GAKH6vfUZ2jTLBvqSksc9tXgSnsxvoXTXbACbpft08FKcd8";
+      return AppFCM.ins.getToken(vapidKey: vapidKey);
+    }
     return AppFCM.ins.getToken();
   }
 
   static void onReceiveRemoteMessage() async {
+    print("MESGSGE");
     // _terminatedState();
     _foregroundState();
     _backgroundState();
@@ -70,6 +79,7 @@ class AppFCM {
       provisional: false,
       sound: true,
     );
+    print(settings.authorizationStatus);
 
     return settings;
   }
