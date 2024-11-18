@@ -47,6 +47,9 @@ jobs:
       - name: Install pub dependencies
         run: cd app && flutter pub get
 
+      - name: Activate flutter fire
+        run: flutter pub global activate flutterfire_cli
+
       - run: |
           cd app
           flutter build macos -t lib/main.firebase.dart --release
