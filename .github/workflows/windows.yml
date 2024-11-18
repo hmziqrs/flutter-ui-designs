@@ -1,0 +1,54 @@
+on:
+  push:
+    tags:
+      - "*"
+
+name: Windows build and release
+jobs:
+  windows:
+    name: Windows
+    runs-on: windows-latest
+    steps:
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.5"
+          cache: true
+          channel: "stable"
+
+      - uses: actions/checkout@v4
+        with:
+          path: "app"
+
+      - name: Cache pub dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ env.LOCALAPPDATA }}\Pub\Cache
+            app/.dart_tool
+            app/.pub-cache
+          key: ${{ runner.os }}-pub-${{ hashFiles('app/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+
+      - name: Flutter enable windows
+        run: flutter config --enable-windows-desktop
+
+      - name: Install pub dependencies
+        run: |
+          cd app
+          flutter pub get
+
+      - name: Build windows release & compress it
+        run: |
+          cd app
+          flutter build windows --release
+          cd build\windows\x64\runner
+          Compress-Archive -Path Release -DestinationPath windows-release.zip
+
+      - name: Windows release build for github
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'app\build\windows\x64\runner\windows-release.zip'
+          token: ${{ secrets.TOKEN }}
+          allowUpdates: true

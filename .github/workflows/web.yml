@@ -1,0 +1,79 @@
+on:
+  push:
+    tags:
+      - "*"
+
+name: Web build and release
+jobs:
+  build:
+    name: Web
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.5"
+          cache: true
+          channel: "stable"
+
+      - uses: actions/checkout@v4
+        with:
+          path: "app"
+
+      - name: Cache pub dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ env.PUB_CACHE }}
+            app/.dart_tool
+          key: ${{ runner.os }}-pub-${{ hashFiles('app/**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          cache: true
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build web release
+        run: |
+          cd app
+          flutter config --enable-web
+          flutter pub get
+          flutter build web -t lib/main.web.dart --release --no-tree-shake-icons --wasm
+
+      - name: Deploy cloudflare pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          packageManager: "bun"
+          command: pages deploy ./app/build/web --project-name=flutter-uis --branch=main
+
+      # Deploy to Firebase
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          PROJECT_PATH: "app"
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+
+      # GitHub Pages deployment steps
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: app/build/web
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

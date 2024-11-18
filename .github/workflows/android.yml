@@ -1,0 +1,121 @@
+on:
+  push:
+    tags:
+      - "*"
+
+name: Android build and release
+jobs:
+  build:
+    name: Android build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Cache Gradle files
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('app/**/*.gradle*', 'app/**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.24.5"
+          channel: "stable"
+          cache: true
+
+      - name: Cache pub dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ env.PUB_CACHE }}
+            app/.dart_tool
+          key: ${{ runner.os }}-pub-${{ hashFiles('app/**/pubspec.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: "oracle"
+
+      - uses: actions/checkout@v4
+        with:
+          path: "app"
+
+      - uses: actions/checkout@v4
+        with:
+          repository: "hmziqrs/keys-n-stuff"
+          path: "app/.keys-n-stuff"
+          token: ${{ secrets.TOKEN }}
+
+      - name: Execute Keys n Stuff
+        run: |
+          cd app
+          dart ./scripts/keys-n-stuff.dart
+      - name: Install pub dependencies
+        run: cd app && flutter pub get
+      - name: Sync android version
+        run: cd app && dart scripts/version_sync.dart
+      - run: |
+          cd app
+          flutter build apk -t lib/main.firebase.dart --release
+          flutter build appbundle -t lib/main.firebase.dart --release
+
+      - name: Create Android release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: |
+            app/build/app/outputs/apk/release/app-release.apk
+            app/build/app/outputs/bundle/release/app-release.aab
+          token: ${{ secrets.TOKEN }}
+          allowUpdates: true
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: "app-release.aab"
+          path: "app/build/app/outputs/bundle/release/app-release.aab"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: "app-release.apk"
+          path: "app/build/app/outputs/apk/release/app-release.apk"
+
+  release:
+    name: Android release
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: "hmziqrs/keys-n-stuff"
+          path: "keys"
+          token: ${{ secrets.TOKEN }}
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: app-release.aab
+          path: artifacts
+      - run: ls -lah
+      - run: ls -lah keys/
+      - run: ls -lah keys/fuid
+      - run: ls -lah artifacts
+      - run: ls -lah artifacts/app-release.aab
+      - name: Upload app bundle to Google Play
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJson: "keys/fuid/service-account.json"
+          packageName: "com.onemdev.flutter_ui_challenges"
+          releaseFiles: "artifacts/*.aab"
+          track: "beta"
+          inAppUpdatePriority: 3
+          status: completed
