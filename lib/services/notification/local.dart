@@ -6,7 +6,7 @@ class LocalNotification {
   static void init() {
     const initializationSettings = InitializationSettings(
       android: AndroidInitializationSettings(
-        '@mipmap/ic_launcher',
+        '@drawable/ic_notification',
       ),
       // iOS: DarwinInitializationSettings(
       //   onDidReceiveLocalNotification:
