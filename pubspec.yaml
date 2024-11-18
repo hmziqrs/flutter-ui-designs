@@ -42,7 +42,7 @@ dependencies:
   url_launcher: 6.3.0
   google_mobile_ads: 5.1.0
   package_info_plus: 8.1.1
-  flutter_local_notifications: 17.2.2
+  flutter_local_notifications: 19.0.0-dev.1
 
   faker: 2.2.0
   emojis: 0.9.9
@@ -82,7 +82,7 @@ dev_dependencies:
   glob: 2.1.2
   yaml: 3.1.2
   translator: 1.0.0
-  flutter_launcher_icons: "^0.14.1"
+  flutter_launcher_icons: 0.14.1
 
 flutter:
   uses-material-design: true

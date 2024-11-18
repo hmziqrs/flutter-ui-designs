@@ -17,9 +17,9 @@ class AppFCM {
   static Future<void> init() async {
     LocalNotification.init();
     // FirebaseMessaging.onBackgroundMessage(_onBackgroundMessageHandler);
-    if (Platform.isIOS) {
-      await _requestPermission();
-    }
+    
+    await _requestPermission();
+    
     await AppFCM.ins.setForegroundNotificationPresentationOptions(
       alert: true,
       badge: true,
@@ -39,12 +39,14 @@ class AppFCM {
 
   static void _foregroundState() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      print("foreground onMessage: $message");
       LocalNotification.showNotification(message);
     });
   }
 
   static void _backgroundState() {
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
+      print("background onMessageOpenedApp: $message");
       LocalNotification.handleNotificationAction(message.data);
     });
   }
@@ -52,6 +54,7 @@ class AppFCM {
   static void handleTerminated() async {
     // final message = await Future.value("");
     final message = await AppFCM.ins.getInitialMessage();
+    print("handleTerminated: $message");
     if (message == null) return;
 
     LocalNotification.handleNotificationAction(message.data);

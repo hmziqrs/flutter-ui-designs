@@ -8,14 +8,14 @@ class LocalNotification {
       android: AndroidInitializationSettings(
         '@mipmap/ic_launcher',
       ),
-      iOS: DarwinInitializationSettings(
-        onDidReceiveLocalNotification:
-            LocalNotification.onDidReceiveLocalNotification,
-      ),
-      macOS: DarwinInitializationSettings(
-        onDidReceiveLocalNotification:
-            LocalNotification.onDidReceiveLocalNotification,
-      ),
+      // iOS: DarwinInitializationSettings(
+      //   onDidReceiveLocalNotification:
+      //       LocalNotification.onDidReceiveLocalNotification,
+      // ),
+      // macOS: DarwinInitializationSettings(
+      //   onDidReceiveLocalNotification:
+      //       LocalNotification.onDidReceiveLocalNotification,
+      // ),
     );
 
     LocalNotification.ins.initialize(
