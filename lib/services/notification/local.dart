@@ -21,9 +21,9 @@ class LocalNotification {
 
     LocalNotification.ins.initialize(
       initializationSettings,
-      onDidReceiveBackgroundNotificationResponse: (details) {
-        print("onDidReceiveBackgroundNotificationResponse, $details");
-      },
+      // onDidReceiveBackgroundNotificationResponse: (details) {
+      //   print("onDidReceiveBackgroundNotificationResponse, $details");
+      // },
       onDidReceiveNotificationResponse: (response) {
         print("onDidReceiveNotificationResponse $response");
       },
