@@ -186,7 +186,6 @@ If you found this project helpful or learned something from it, consider:
 ### Social Links
 
 - 𝕏 (Twitter): [@hmziqrs](https://x.com/hmziqrs)
-- LinkedIn: [hackerhgl](https://www.linkedin.com/in/hackerhgl)
 - Telegram: [@hmziqrs](https://t.me/hmziqrs)
 
 ### Personal Website

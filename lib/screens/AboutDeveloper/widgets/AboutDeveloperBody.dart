@@ -65,7 +65,7 @@ class AboutDeveloperBody extends StatelessWidget {
               children: <Widget>[
 
                 SizedBox(height: AppDimensions.padding * 1),
-                AboutUserName(name: "Hamza Iqbal"),
+                AboutUserName(name: "Hmziq"),
                 AboutUserJobTitle(
                   label: "Full stack engineer | Rust, Flutter & React Native",
                 ),

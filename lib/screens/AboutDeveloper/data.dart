@@ -28,17 +28,23 @@ final contacts = [
     "url": "https://x.com/$username",
   },
   {
-    "platform": "linkedin",
-    "label": "/in/$username",
-    "icon": MaterialCommunityIcons.linkedin,
-    "url": "https://linkedin.com/in/$username",
-  },
-  {
     "platform": "gmail",
     "label": "$email",
     "icon": MaterialCommunityIcons.gmail,
     "url": "mailto:$email",
   },
+  {
+    "platform": "website",
+    "label": "hmziq.rs",
+    "icon": MaterialCommunityIcons.web,
+    "url": "https://hmziq.rs",
+  },
+  {
+    "platform": "telegram",
+    "label": "@$username",
+    "icon": MaterialCommunityIcons.telegram,
+    "url": "https://t.me/$username",
+  }
 ];
 
 final showSupport = [

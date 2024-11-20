@@ -16,7 +16,7 @@ abstract class MyLinks {
       'https://play.google.com/store/apps/details?id=com.onemdev.rnloop';
 
   static final gandalfWeb = "https://gandalf.hmziq.xyz";
-  static final gandalfGithub = 'https://github.com/hmziqrs/gandlaf-sax';
+  static final gandalfGithub = 'https://github.com/hmziqrs/gandalf-sax';
   static final gandalfGooglePlay =
       'https://play.google.com/store/apps/details?id=com.onemdev.gandalf';
 
